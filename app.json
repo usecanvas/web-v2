@@ -1,0 +1,7 @@
+{
+  "env": {
+    "SLACK_CLIENT_ID": {
+      "description": "A client ID for a Slack application"
+    }
+  }
+}

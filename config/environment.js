@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
+    slackClientID: process.env.SLACK_CLIENT_ID,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
