@@ -1,0 +1,12 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.item {
+  border-bottom: 1px solid --light-gray;
+  margin-bottom : 1rem;
+  padding-bottom: 1rem;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
