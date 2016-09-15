@@ -1,3 +1,5 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
 .title {
   font-weight: bold;
 }
