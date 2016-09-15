@@ -10,7 +10,7 @@ rules:
   accessor-pairs: error
   array-bracket-spacing: error
   array-callback-return: 'off'
-  arrow-body-style: error
+  arrow-body-style: 'off'
   arrow-parens:
     - error
     - as-needed
@@ -36,7 +36,7 @@ rules:
   computed-property-spacing: error
   consistent-return: error
   consistent-this: error
-  curly: error
+  curly: 'off'
   default-case: error
   dot-location:
     - error
