@@ -1,0 +1,11 @@
+{{#each teams as |team|}}
+  <div local-class="item">{{team-list-item team=team}}</div>
+{{/each}}
+
+<div local-class="item">
+  <div local-class="new">
+    {{#link-to 'login' local-class='new-link'}}
+      {{svg-jar "Add" local-class='new-icon' height='32' width='32'}}
+    {{/link-to}}
+  </div>
+</div>

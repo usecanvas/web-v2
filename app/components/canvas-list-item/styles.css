@@ -1,9 +1,10 @@
 @value --dark-gray from 'canvas-colors/styles/colors';
 
 .title {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .summary {
   color: --dark-gray;
+  font-size: 0.875em;
 }

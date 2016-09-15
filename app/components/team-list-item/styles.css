@@ -1,0 +1,10 @@
+.team-list-item {
+  align-items: center;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  height: 36px;
+  overflow: hidden;
+  width: 36px;
+}
