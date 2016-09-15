@@ -1,0 +1,11 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <title>Icons 100</title>
+  <path class="cls-1" d="M50,34H34V50a2,2,0,1,1-4,0V34H14a2,2,0,0,1,0-4H30V14a2,2,0,1,1,4,0V30H50A2,2,0,0,1,50,34Z"/>
+</svg>
