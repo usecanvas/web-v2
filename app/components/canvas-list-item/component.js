@@ -1,5 +1,5 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  localClass: ['canvas-list-item']
+  localClassNames: ['canvas-list-item']
 });
