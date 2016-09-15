@@ -1,11 +1,1 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <style>
-      .cls-1 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <title>Icons 400</title>
-  <path class="cls-1" d="M48,54.0157H16a6,6,0,0,1-6-6v-32a6,6,0,0,1,6-6H48a6,6,0,0,1,6,6v32A6,6,0,0,1,48,54.0157Zm-28-38a4,4,0,1,0,4,4A4,4,0,0,0,20,16.0157Zm0,24a4,4,0,1,0,4,4A4,4,0,0,0,20,40.0157Zm12-12a4,4,0,1,0,4,4A4,4,0,0,0,32,28.0157Zm12-12a4,4,0,1,0,4,4A4,4,0,0,0,44,16.0157Zm0,24a4,4,0,1,0,4,4A4,4,0,0,0,44,40.0157Z"/>
-</svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><style>.cls-1{fill-rule:evenodd}</style></defs><title>Icons 400</title><path class="cls-1" d="M48 54.016H16a6 6 0 0 1-6-6v-32a6 6 0 0 1 6-6h32a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6zm-28-38a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm0 24a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm12-12a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm12-12a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm0 24a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"/></svg>

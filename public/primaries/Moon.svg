@@ -1,11 +1,1 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <style>
-      .cls-1 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <title>Icons 400</title>
-  <path class="cls-1" d="M24.9994,18.02A20.9977,20.9977,0,0,0,45.99,39.0249a20.5948,20.5948,0,0,0,5.6866-.92,1.8161,1.8161,0,0,1,2.133,2.5321A22.9472,22.9472,0,1,1,23.4151,10.1943,1.818,1.818,0,0,1,25.95,12.3287,20.6184,20.6184,0,0,0,24.9994,18.02Z"/>
-</svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><style>.cls-1{fill-rule:evenodd}</style></defs><title>Icons 400</title><path class="cls-1" d="M25 18.02a20.998 20.998 0 0 0 20.99 21.005 20.595 20.595 0 0 0 5.687-.92 1.816 1.816 0 0 1 2.133 2.532 22.947 22.947 0 1 1-30.395-30.443 1.818 1.818 0 0 1 2.535 2.135A20.618 20.618 0 0 0 25 18.02z"/></svg>

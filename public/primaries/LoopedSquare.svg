@@ -1,11 +1,1 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <style>
-      .cls-1 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <title>Icons 100</title>
-  <path class="cls-1" d="M45.5,37A8.5,8.5,0,1,1,37,45.5V41H27v4.5A8.5,8.5,0,1,1,18.5,37H23l0-10H18.5A8.5,8.5,0,1,1,27,18.5V23H37V18.5A8.5,8.5,0,1,1,45.5,27H41V37h4.5ZM23,18.5A4.5,4.5,0,1,0,18.5,23H23ZM18.5,41A4.5,4.5,0,1,0,23,45.5L23,41H18.5ZM37,27H27V37H37V27Zm8.5-4A4.5,4.5,0,1,0,41,18.5V23h4.5ZM41,45.5A4.5,4.5,0,1,0,45.5,41H41v4.5Z"/>
-</svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><style>.cls-1{fill-rule:evenodd}</style></defs><title>Icons 100</title><path class="cls-1" d="M45.5 37a8.5 8.5 0 1 1-8.5 8.5V41H27v4.5a8.5 8.5 0 1 1-8.5-8.5H23V27h-4.5a8.5 8.5 0 1 1 8.5-8.5V23h10v-4.5a8.5 8.5 0 1 1 8.5 8.5H41v10h4.5zM23 18.5a4.5 4.5 0 1 0-4.5 4.5H23zM18.5 41a4.5 4.5 0 1 0 4.5 4.5V41h-4.5zM37 27H27v10h10V27zm8.5-4a4.5 4.5 0 1 0-4.5-4.5V23h4.5zM41 45.5a4.5 4.5 0 1 0 4.5-4.5H41v4.5z"/></svg>

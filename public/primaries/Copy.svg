@@ -1,11 +1,1 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <style>
-      .cls-1 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <title>Icons 200</title>
-  <path class="cls-1" d="M39,56H13a3,3,0,0,1-3-3V19a3,3,0,0,1,3-3h7V45a5,5,0,0,0,5,5H42v3A3,3,0,0,1,39,56Zm2-34a1,1,0,0,1-1-1V10.4142a1,1,0,0,1,1.7072-.7071L52.2929,20.293A1,1,0,0,1,51.5859,22H41Zm13,5V45a3,3,0,0,1-3,3H25a3,3,0,0,1-3-3V11a3,3,0,0,1,3-3H35a3,3,0,0,1,3,3V21a3,3,0,0,0,3,3H51A3,3,0,0,1,54,27Z"/>
-</svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><style>.cls-1{fill-rule:evenodd}</style></defs><title>Icons 200</title><path class="cls-1" d="M39 56H13a3 3 0 0 1-3-3V19a3 3 0 0 1 3-3h7v29a5 5 0 0 0 5 5h17v3a3 3 0 0 1-3 3zm2-34a1 1 0 0 1-1-1V10.414a1 1 0 0 1 1.707-.707l10.586 10.586A1 1 0 0 1 51.586 22H41zm13 5v18a3 3 0 0 1-3 3H25a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 1 3 3z"/></svg>

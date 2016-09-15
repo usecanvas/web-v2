@@ -1,11 +1,1 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <style>
-      .cls-1 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <title>Icons 200</title>
-  <path class="cls-1" d="M58,52H52a2,2,0,0,1,0-4h4V44a2,2,0,0,1,4,0v6A2,2,0,0,1,58,52Zm0-30a2,2,0,0,1-2-2V16H52a2,2,0,0,1,0-4h6a2,2,0,0,1,2,2v6A2,2,0,0,1,58,22ZM14,14a2,2,0,0,1-2,2H8v4a2,2,0,0,1-4,0V14a2,2,0,0,1,2-2h6A2,2,0,0,1,14,14ZM11,43.5v-23A1.5,1.5,0,0,1,12.5,19h39A1.5,1.5,0,0,1,53,20.5v23A1.5,1.5,0,0,1,51.5,45h-39A1.5,1.5,0,0,1,11,43.5ZM6,42a2,2,0,0,1,2,2v4h4a2,2,0,1,1,0,4H6a2,2,0,0,1-2-2V44A2,2,0,0,1,6,42Z"/>
-</svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><style>.cls-1{fill-rule:evenodd}</style></defs><title>Icons 200</title><path class="cls-1" d="M58 52h-6a2 2 0 0 1 0-4h4v-4a2 2 0 0 1 4 0v6a2 2 0 0 1-2 2zm0-30a2 2 0 0 1-2-2v-4h-4a2 2 0 0 1 0-4h6a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2zm-44-8a2 2 0 0 1-2 2H8v4a2 2 0 0 1-4 0v-6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2zm-3 29.5v-23a1.5 1.5 0 0 1 1.5-1.5h39a1.5 1.5 0 0 1 1.5 1.5v23a1.5 1.5 0 0 1-1.5 1.5h-39a1.5 1.5 0 0 1-1.5-1.5zM6 42a2 2 0 0 1 2 2v4h4a2 2 0 1 1 0 4H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/></svg>
