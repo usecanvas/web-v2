@@ -45,8 +45,8 @@ export default Ember.Route.extend({
    * @param {boolean} signedIn Whether a user is signed in
    */
   onAccountFetch(targetName, signedIn) {
-    // if (!signedIn && !this.get('unauthenticatedRoutes').includes(targetName)) {
-    //   this.replaceWith('login');
-    // }
+    if (!signedIn && !this.get('unauthenticatedRoutes').includes(targetName)) {
+      this.replaceWith('login');
+    }
   }
 });
