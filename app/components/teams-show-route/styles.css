@@ -1,0 +1,17 @@
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.teams-show-route {
+  display: flex;
+  flex: 1;
+}
+
+.canvas-list-filter {
+  composes: cell-padding from 'canvas-web/components/logged-in-user/styles';
+  border-right: 1px solid --light-gray;
+}
+
+.canvas-list {
+  composes: cell-padding from 'canvas-web/components/logged-in-user/styles';
+  flex: 1;
+  overflow: scroll;
+}
