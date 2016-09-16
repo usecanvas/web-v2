@@ -1,0 +1,28 @@
+@value --extra-light-gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.content {
+  display: flex;
+  height: 100vh;
+}
+
+.cell-padding {
+  padding: 16px;
+}
+
+.team-list {
+  composes: cell-padding;
+  background: --light-gray;
+  padding: 16px;
+}
+
+.canvas-list-filter {
+  composes: cell-padding;
+  border-right: 1px solid --light-gray;
+}
+
+.canvas-list {
+  composes: cell-padding;
+  flex: 1;
+  overflow: scroll;
+}

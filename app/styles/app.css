@@ -1,3 +1,9 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-family: -apple-system, BlinkMacSystemFont,
@@ -5,8 +11,4 @@ body {
       "Ubuntu", "Cantarell", "Fira Sans",
       "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
-}
-
-body {
-  padding: 0 1rem;
 }

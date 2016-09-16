@@ -1,0 +1,32 @@
+@value --blue from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
+
+.item {
+  margin-bottom: 1rem;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+
+.new {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
+}
+
+.new-link,
+.new-icon {
+  display: block;
+}
+
+.new-icon {
+  fill: --gray;
+}
+
+.new-icon:hover {
+  fill: --blue;
+}
