@@ -1,0 +1,16 @@
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.cell-padding {
+  padding: 16px;
+}
+
+.content {
+  display: flex;
+  height: 100vh;
+}
+
+.team-list {
+  composes: cell-padding;
+  background: --light-gray;
+  padding: 16px;
+}

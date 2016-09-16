@@ -1,1 +1,7 @@
-{{outlet}}
+{{#if model.account}}
+  {{#logged-in-user teams=model.teams}}
+    {{outlet}}
+  {{/logged-in-user}}
+{{else}}
+  {{outlet}}
+{{/if}}

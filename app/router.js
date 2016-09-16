@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('logout');
+  this.route('teams.show', { path: '/:domain' });
 });
 
 export default Router;

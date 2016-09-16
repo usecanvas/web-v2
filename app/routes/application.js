@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
 /**
  * Top-level application route.
@@ -34,6 +35,15 @@ export default Ember.Route.extend({
       .fetch()
       .then(_ => this.onAccountFetch(targetName, true))
       .catch(_ => this.onAccountFetch(targetName, false));
+  },
+
+  model() {
+    if (!this.get('currentAccount.currentAccount')) return null;
+
+    return RSVP.hash({
+      account: this.get('currentAccount.currentAccount'),
+      teams: this.get('store').findAll('team')
+    });
   },
 
   /**

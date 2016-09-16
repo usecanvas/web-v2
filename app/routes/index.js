@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    return this.get('store').findAll('team');
+    const team = this.modelFor('application').teams.get('firstObject');
+    return this.replaceWith('teams.show', team);
   }
 });
