@@ -7,10 +7,10 @@ export default Ember.Component.extend({
 
   monogram: computed('name', function() {
     const initials = [],
-          words = this.get('name').split(' '),
+          words = this.get('name').split(' ');
 
     for (let i = 0; i < 2; i++) {
-      initials.push(words[i].toUpperCase());
+      initials.push(words[i].toUpperCase().slice(0, 1));
     }
 
     return initials.join('');
