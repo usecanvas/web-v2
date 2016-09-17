@@ -1,0 +1,50 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --extra-light-gray from 'canvas-colors/styles/colors';
+@value --green from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.team-nav {
+  align-items: center;
+  color: --dark-gray;
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: space-between;
+}
+
+.section {
+  composes: cell-padding from 'canvas-web/components/teams-show-route/styles';
+}
+
+.section--with-border {
+  background: linear-gradient(white, --light-gray) top right no-repeat;
+  background-size: 1px 100%;
+}
+
+.summary {
+  align-items: center;
+  display: flex;
+}
+
+.avatar {
+  background: --extra-light-gray;
+  border-radius: 50%;
+  display: block;
+  height: 2rem;
+  margin-right: 0.5rem;
+  width: 2rem;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.username::before {
+  background: --green;
+  border-radius: 50%;
+  content: '';
+  display: inline-block;
+  height: 6px;
+  margin-right: 4px;
+  vertical-align: middle;
+  width: 6px;
+}

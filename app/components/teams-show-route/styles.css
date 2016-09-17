@@ -20,11 +20,8 @@
 }
 
 .nav {
-  composes: cell-padding;
-  align-items: center;
   border-bottom: 1px solid --light-gray;
-  display: flex;
-  justify-content: space-between;
+  font-size: 0.875rem;
 }
 
 .content {
