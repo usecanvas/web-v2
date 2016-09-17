@@ -14,7 +14,9 @@ export default Ember.Route.extend({
     return `${protocol}//${host}`;
   }),
 
-  model({ 'team.domain': domain, id }) {
+  model({ id }) {
+    const domain = this.paramsFor('team').domain;
+
     return this.get('teamQuery').findByDomain(domain).then(team => {
       return this.get('store').findRecord('canvas', id, {
         adapterOptions: { team }
