@@ -1,18 +1,20 @@
-<div local-class="content">
-  <div local-class="team-list">
-    {{team-list teams=teamsList.teams}}
-  </div>
-  <div local-class="canvas-list-filter">
-    <div local-class="canvs-list-filter-section">
-      {{channel-list}}
+<div local-class="aside">
+  {{team-list teams=teamsList.teams}}
+</div>
+
+<div local-class="main">
+  <div local-class="nav">
+    <div>
+      My Team Name<br>
+      @mschoening
     </div>
 
-    <div local-class="canvs-list-filter-section">
-      {{canvas-type-list}}
+    <div>
+      <button {{action 'onNewCanvas'}}>NEW</button>
     </div>
   </div>
 
-  <div local-class="canvas-list">
+  <div local-class="content">
     {{canvas-list
       team=team
       canvases=team.canvases}}

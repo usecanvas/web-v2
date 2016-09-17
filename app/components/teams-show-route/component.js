@@ -7,5 +7,14 @@ export default Ember.Component.extend({
   localClassNames: ['teams-show-route'],
   styles,
 
-  teamsList: Ember.inject.service()
+  store: Ember.inject.service(),
+  teamsList: Ember.inject.service(),
+
+  actions: {
+    onNewCanvas() {
+      const team = this.get('team');
+
+      this.get('store').createRecord('canvas', { team }).save();
+    }
+  }
 });

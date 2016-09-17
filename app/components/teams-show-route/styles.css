@@ -1,27 +1,32 @@
 @value --light-gray from 'canvas-colors/styles/colors';
 
-.cell-padding {
-  padding: 16px;
-}
-
-.content {
+.teams-show-route {
   display: flex;
   height: 100vh;
 }
 
-.team-list {
-  composes: cell-padding;
-  background: --light-gray;
+.cell-padding {
   padding: 16px;
 }
 
-.canvas-list-filter {
+.aside {
   composes: cell-padding;
   border-right: 1px solid --light-gray;
 }
 
-.canvas-list {
-  composes: cell-padding;
+.main {
   flex: 1;
   overflow: scroll;
+}
+
+.nav {
+  composes: cell-padding;
+  align-items: center;
+  border-bottom: 1px solid --light-gray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  composes: cell-padding;
 }
