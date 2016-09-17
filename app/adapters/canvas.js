@@ -5,5 +5,11 @@ export default ApplicationAdapter.extend({
     const teamID = snapshot.record.get('team.id');
 
     return `/teams/${teamID}/canvases`;
+  },
+
+  urlForFindRecord(id, modelName, snapshot) {
+    const teamID = snapshot.adapterOptions.team.get('id');
+
+    return `/teams/${teamID}/canvases/${id}`;
   }
 });

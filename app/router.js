@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('login');
   this.route('logout');
   this.route('teams.show', { path: '/:domain' });
+  this.route('canvases.show', { path: '/:team.domain/:id/TITLE_HERE' });
 });
 
 export default Router;

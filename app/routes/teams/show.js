@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  teamQuery: Ember.inject.service(),
+
   model({ domain }) {
-    return this.get('store')
-      .query('team', { filter: { domain } })
-      .then(query => query.get('firstObject'));
+    return this.get('teamQuery').findByDomain(domain);
   }
 });

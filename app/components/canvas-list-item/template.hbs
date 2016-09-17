@@ -1,2 +1,4 @@
-<div local-class="title">{{canvas.title}}</div>
-<div local-class="summary">{{canvas.summary}}</div>
+{{#link-to 'canvases.show' canvas}}
+  <div local-class="title">{{canvas.title}}</div>
+  <div local-class="summary">{{canvas.summary}}</div>
+{{/link-to}}
