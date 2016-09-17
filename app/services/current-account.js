@@ -22,7 +22,7 @@ export default Ember.Service.extend({
    *   and set
    */
   fetch() {
-    return this.get('store').find('account', 'me').then(account => {
+    return this.get('store').findRecord('account', 'me').then(account => {
       this.set('currentAccount', account);
       return account;
     });
