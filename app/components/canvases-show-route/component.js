@@ -176,6 +176,7 @@ export default Ember.Component.extend({
       const diff = differ.diff_main(lastContent, content);
       const blockPath = this.getPathToBlock(block).concat('content');
       const op = generateOpFromDiff(diff, blockPath);
+      this.set('canvas.updatedAt', new Date());
       this.get('canvas.shareDBDoc').submitOp(op);
     },
 

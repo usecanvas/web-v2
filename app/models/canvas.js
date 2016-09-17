@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 
 const { attr, belongsTo } = DS;
-const { computed } = Ember;
+const { computed, get } = Ember;
 
 export default DS.Model.extend({
   blocks: attr(),
@@ -12,8 +12,8 @@ export default DS.Model.extend({
 
   team: belongsTo('team', { async: true }),
 
-  insertedAt: attr(),
-  updatedAt: attr(),
+  insertedAt: attr('date'),
+  updatedAt: attr('date'),
 
   firstContentBlock: computed('blocks.[]',
                               'blocks.@each.blocks',
@@ -21,7 +21,7 @@ export default DS.Model.extend({
     const firstContentBlock = this.get('blocks.1');
 
     if (!firstContentBlock) return null;
-    return firstContentBlock.get('blocks.firstObject') || firstContentBlock;
+    return get(firstContentBlock, 'blocks.firstObject') || firstContentBlock;
   }),
 
   summary: computed('firstContentBlock.content', function() {

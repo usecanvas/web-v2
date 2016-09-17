@@ -29,17 +29,19 @@ export default Ember.Route.extend({
     const connection = new ShareDB.Connection(socket);
     const shareDBDoc = connection.get(team.get('id'), canvas.get('id'));
 
+    canvas.set('shareDBDoc', shareDBDoc);
+
     this.startPingInterval();
 
     return new Ember.RSVP.Promise((resolve, reject) => {
      shareDBDoc.subscribe(err => {
        if (err) return reject(err);
 
-       const blocks = shareDBDoc.data.map(block => {
+       canvas.set('blocks', shareDBDoc.data.map(block => {
          return RealtimeCanvas.createBlockFromJSON(block);
-       });
+       }));
 
-       return resolve(Ember.Object.create({ shareDBDoc, blocks }));
+       return resolve(canvas);
      });
    });
  },
