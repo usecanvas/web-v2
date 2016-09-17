@@ -1,3 +1,5 @@
+@value --blue from 'canvas-colors/styles/colors';
+
 *,
 *::after,
 *::before {
@@ -11,4 +13,9 @@ body {
       "Ubuntu", "Cantarell", "Fira Sans",
       "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
+}
+
+a {
+  color: --blue;
+  text-decoration: none;
 }
