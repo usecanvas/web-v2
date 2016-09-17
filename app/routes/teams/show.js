@@ -9,7 +9,8 @@ export default Ember.Route.extend({
 
   actions: {
     didCreateCanvas(canvas) {
-      this.transitionTo('canvases.show', canvas);
+      this.transitionTo('canvases.show',
+        canvas.get('team.domain'), canvas.get('id'));
     }
   }
 });
