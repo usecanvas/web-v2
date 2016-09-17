@@ -1,2 +1,10 @@
-{{canvas-editor-next
-  canvas=canvas}}
+<div style="margin: 4rem auto; max-width: 47rem;">
+  {{canvas-editor-next
+    onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
+    onBlockReplacedLocally=(action 'blockReplacedLocally')
+    onNewBlockInsertedLocally=(action 'newBlockInsertedLocally')
+    onBlockDeletedLocally=(action 'blockDeletedLocally')
+    onBlockMetaReplacedLocally=(action 'blockMetaReplacedLocally')
+    unfurlBlock=(action 'unfurlBlock')
+    canvas=canvas}}
+</div>

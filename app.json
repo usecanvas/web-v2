@@ -1,5 +1,8 @@
 {
   "env": {
+    "REALTIME_HOST": {
+      "description": "A host pointing to the realtime service"
+    },
     "SLACK_CLIENT_ID": {
       "description": "A client ID for a Slack application"
     }

@@ -5,7 +5,7 @@ const { attr, belongsTo } = DS;
 const { computed } = Ember;
 
 export default DS.Model.extend({
-  blocks: attr('blocks'),
+  blocks: attr(),
   nativeVersion: attr(),
   type: attr(),
   version: attr(),

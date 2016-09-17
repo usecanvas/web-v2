@@ -76,12 +76,10 @@ rules:
   max-params: error
   max-statements: error
   max-statements-per-line: error
-  multiline-ternary: error
+  multiline-ternary: 'off'
   new-cap: error
   new-parens: error
-  newline-after-var:
-    - error
-    - always
+  newline-after-var: 'off'
   newline-before-return: 'off'
   newline-per-chained-call: 'off'
   no-alert: error
@@ -150,7 +148,7 @@ rules:
   no-sync: error
   no-tabs: error
   no-template-curly-in-string: error
-  no-ternary: error
+  no-ternary: 'off'
   no-throw-literal: error
   no-trailing-spaces: error
   no-undef-init: error
@@ -180,14 +178,14 @@ rules:
   object-curly-spacing:
     - error
     - always
-  object-property-newline: error
+  object-property-newline: 'off'
   object-shorthand: error
   one-var: 'off'
   one-var-declaration-per-line: error
   operator-assignment: error
   operator-linebreak: error
   padded-blocks: 'off'
-  prefer-arrow-callback: error
+  prefer-arrow-callback: 'off'
   prefer-const: 'off'
   prefer-numeric-literals: error
   prefer-reflect: 'off'
