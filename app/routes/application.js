@@ -43,7 +43,7 @@ export default Ember.Route.extend({
       .catch(_ => this.onAccountFetch(targetName, false));
   },
 
-  model()  {
+  model() {
     if (!this.get('currentAccount.currentAccount')) return null;
 
     return RSVP.hash({
