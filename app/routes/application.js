@@ -15,6 +15,12 @@ export default Ember.Route.extend({
   currentAccount: Ember.inject.service(),
 
   /**
+   * Service for the teams list
+   * @member {Ember.Service}
+   */
+  teamsList: Ember.inject.service(),
+
+  /**
    * List of unauthenticated routes
    * @member {Array<string>}
    */
@@ -37,12 +43,12 @@ export default Ember.Route.extend({
       .catch(_ => this.onAccountFetch(targetName, false));
   },
 
-  model() {
+  model()  {
     if (!this.get('currentAccount.currentAccount')) return null;
 
     return RSVP.hash({
       account: this.get('currentAccount.currentAccount'),
-      teams: this.get('store').findAll('team')
+      teams: this.get('teamsList.teams')
     });
   },
 

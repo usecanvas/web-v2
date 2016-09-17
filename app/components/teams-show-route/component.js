@@ -5,5 +5,7 @@ import styles from './styles';
 export default Ember.Component.extend({
   layout,
   localClassNames: ['teams-show-route'],
-  styles
+  styles,
+
+  teamsList: Ember.inject.service()
 });
