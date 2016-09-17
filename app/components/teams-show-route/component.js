@@ -6,5 +6,11 @@ export default Ember.Component.extend({
   layout,
   localClassNames: ['teams-show-route'],
   styles,
-  teamsList: Ember.inject.service()
+  teamsList: Ember.inject.service(),
+
+  actions: {
+    didCreateCanvas(canvas) {
+      this.sendAction('didCreateCanvas', canvas);
+    }
+  }
 });

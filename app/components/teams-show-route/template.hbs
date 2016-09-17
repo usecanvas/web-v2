@@ -4,7 +4,9 @@
 
 <div local-class="main">
   <div local-class="nav">
-    {{team-nav team=team}}
+    {{team-nav
+      team=team
+      didCreateCanvas=(action 'didCreateCanvas')}}
   </div>
 
   <div local-class="content">

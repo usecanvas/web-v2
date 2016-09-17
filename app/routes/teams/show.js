@@ -5,5 +5,11 @@ export default Ember.Route.extend({
 
   model({ domain }) {
     return this.get('teamQuery').findByDomain(domain);
+  },
+
+  actions: {
+    didCreateCanvas(canvas) {
+      this.transitionTo('canvases.show', canvas);
+    }
   }
 });
