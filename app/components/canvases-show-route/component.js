@@ -87,7 +87,7 @@ export default Ember.Component.extend({
     block.set('content', newContent);
   },
 
-  applyComponentStringInsert(path,  string) {
+  applyComponentStringInsert(path, string) {
     const { block, property, offset } =
       parseStringPath(path, this.get('canvas'));
     const content = block.get(property);
@@ -96,6 +96,7 @@ export default Ember.Component.extend({
     block.set('content', newContent);
   },
 
+  /* eslint-disable max-statements */
   syncLocalSelection(op) {
     let activeElement =
       this.$(window.getSelection().anchorNode).closest('.canvas-block').get(0);
@@ -141,11 +142,12 @@ export default Ember.Component.extend({
 
     run.scheduleOnce('afterRender', selection, 'restore');
   },
+  /* eslint-enable max-statements */
 
   getPathToBlock(block, index) {
     const parent = block.get('parent') || this.get('canvas');
 
-    if (index === undefined) {
+    if (typeof index !== 'number') {
       index = parent.get('blocks').indexOf(block);
     }
 
@@ -281,7 +283,7 @@ function toJSON(obj) {
       json[key] = toJSON(obj[key]);
       return json;
     }, {});
-  } else {
-    return obj;
   }
+
+  return obj;
 }

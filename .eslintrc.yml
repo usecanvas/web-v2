@@ -50,7 +50,9 @@ rules:
   func-names:
     - error
     - never
-  func-style: error
+  func-style:
+    - error
+    - declaration
   generator-star-spacing: error
   global-require: error
   guard-for-in: error
@@ -73,8 +75,12 @@ rules:
   max-len: 'off'
   max-lines: error
   max-nested-callbacks: error
-  max-params: error
-  max-statements: error
+  max-params:
+    - error
+    - max: 6
+  max-statements:
+    - error
+    - max: 24
   max-statements-per-line: error
   multiline-ternary: 'off'
   new-cap: error
@@ -88,7 +94,7 @@ rules:
   no-caller: error
   no-catch-shadow: error
   no-confusing-arrow: error
-  no-continue: error
+  no-continue: 'off'
   no-div-regex: error
   no-duplicate-imports: error
   no-else-return: error
@@ -126,13 +132,13 @@ rules:
   no-new-require: error
   no-new-wrappers: error
   no-octal-escape: error
-  no-param-reassign: error
+  no-param-reassign: 'off'
   no-path-concat: error
   no-plusplus: error
   no-process-env: error
   no-process-exit: error
   no-proto: error
-  no-prototype-builtins: error
+  no-prototype-builtins: 'off'
   no-restricted-globals: error
   no-restricted-imports: error
   no-restricted-modules: error
@@ -162,7 +168,9 @@ rules:
     - error
     - argsIgnorePattern: '^_'
       varsIgnorePattern: '^_'
-  no-use-before-define: error
+  no-use-before-define:
+    - error
+    - functions: false
   no-useless-call: error
   no-useless-computed-key: error
   no-useless-concat: error
@@ -197,7 +205,7 @@ rules:
     - error
     - single
   radix: error
-  require-jsdoc: error
+  require-jsdoc: 'off'
   rest-spread-spacing: error
   semi: error
   semi-spacing: error
