@@ -218,7 +218,7 @@ export default Ember.Component.extend({
     unfurlBlock(block) {
       let url = block.get('meta.url');
       if (block.get('type') === 'canvas') {
-        url = `https://usecanvas.com/_/_/${block.get('meta.id')}`;
+        url = `${window.location.protocol}//${window.location.host}/_/${block.get('meta.id')}/_`;
       }
 
       return this.get('store').findRecord('unfurl', url);
