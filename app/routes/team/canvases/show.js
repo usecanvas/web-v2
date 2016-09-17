@@ -20,10 +20,12 @@ export default Ember.Route.extend({
     return this.get('teamQuery').findByDomain(domain).then(team => {
       return this.get('store').findRecord('canvas', id, {
         adapterOptions: { team }
-      }).then(canvas => {
-        return this.shareDBConnect(team, canvas);
       });
     });
+  },
+
+  afterModel(canvas) {
+    return this.shareDBConnect(canvas.get('team'), canvas);
   },
 
   shareDBConnect(team, canvas) {
