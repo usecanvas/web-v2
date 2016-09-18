@@ -9,6 +9,7 @@ const differ = new DMP();
 const { on, run } = Ember;
 
 export default Ember.Component.extend({
+  localClassNames: ['canvases-show-route'],
   store: Ember.inject.service(),
 
   bindOpEvents: on('didInsertElement', function() {
