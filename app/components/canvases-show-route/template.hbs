@@ -1,10 +1,30 @@
-<div style="margin: 4rem auto; max-width: 47rem;">
-  {{canvas-editor-next
-    onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
-    onBlockReplacedLocally=(action 'blockReplacedLocally')
-    onNewBlockInsertedLocally=(action 'newBlockInsertedLocally')
-    onBlockDeletedLocally=(action 'blockDeletedLocally')
-    onBlockMetaReplacedLocally=(action 'blockMetaReplacedLocally')
-    unfurlBlock=(action 'unfurlBlock')
-    canvas=canvas}}
+<div local-class="aside">
+  <div local-class="aside-section">
+    <div local-class="aside-item">
+      {{#link-to 'team'}}
+        {{svg-jar "ArrowLeft" height="32" width="32"}}
+      {{/link-to}}
+    </div>
+  </div>
+
+  <div local-class="aside-section">
+    <div local-class="aside-item aside-item--active">{{svg-jar "AlignLeft" height="32" width="32"}}</div>
+    <div local-class="aside-item aside-item--disabled">{{svg-jar "Activity" height="32" width="32"}}</div>
+    <div local-class="aside-item aside-item--disabled">{{svg-jar "Gear" height="32" width="32"}}</div>
+  </div>
+
+  <div local-class="aside-item"></div>
+</div>
+
+<div local-class="main">
+  <div local-class="editor">
+    {{canvas-editor-next
+      onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
+      onBlockReplacedLocally=(action 'blockReplacedLocally')
+      onNewBlockInsertedLocally=(action 'newBlockInsertedLocally')
+      onBlockDeletedLocally=(action 'blockDeletedLocally')
+      onBlockMetaReplacedLocally=(action 'blockMetaReplacedLocally')
+      unfurlBlock=(action 'unfurlBlock')
+      canvas=canvas}}
+  </div>
 </div>
