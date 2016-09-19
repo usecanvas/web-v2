@@ -51,7 +51,7 @@ module.exports = function(environment) {
 function slackRedirectURI(env) {
   if (env === 'production') {
     const segments = process.env.API_URL.split('/');
-    const apiURL = segements.slice(0, segments.length - 2).join('/');
+    const apiURL = segments.slice(0, segments.length - 2).join('/');
     return `${apiURL}/oauth/slack/callback`;
   }
 
