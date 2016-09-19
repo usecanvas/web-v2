@@ -1,7 +1,17 @@
 {
   "env": {
+    "API_URL": {
+      "description": "A URL pointing to the Canvas Pro API",
+      "development_required": false
+    },
+    "NODE_ENV": {
+      "description": "Environment to run Node process in",
+      "development_value": "development",
+      "value": "production"
+    },
     "NPM_TOKEN": {
-      "description": "An NPM token for fetching private modules"
+      "description": "An NPM token for fetching private modules",
+      "development_required": false
     },
     "PORT": {
       "description": "Port on which to run the app",

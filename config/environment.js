@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
+    apiNamespace: process.env.NODE_ENV === 'production' ? 'api' : '',
     realtimeHost: process.env.REALTIME_HOST,
     slackClientID: process.env.SLACK_CLIENT_ID,
     EmberENV: {

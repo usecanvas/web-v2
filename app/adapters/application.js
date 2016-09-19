@@ -1,2 +1,6 @@
 import DS from 'ember-data';
-export default DS.JSONAPIAdapter.extend();
+import ENV from 'canvas-web/config/environment';
+
+export default DS.JSONAPIAdapter.extend({
+  namespace: ENV.apiNamespace
+});
