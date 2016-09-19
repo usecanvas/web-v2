@@ -37,7 +37,7 @@ export default Ember.Service.extend({
    */
   logout() {
     return new RSVP.Promise(resolve => {
-      return Ember.$.ajax('/session', { type: 'DELETE' }).then(_ => {
+      return Ember.$.ajax('/v1/session', { type: 'DELETE' }).then(_ => {
         this.set('currentAccount', null);
         resolve(null);
       });
