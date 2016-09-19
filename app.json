@@ -1,5 +1,8 @@
 {
   "env": {
+    "NPM_TOKEN": {
+      "description": "An NPM token for fetching private modules"
+    },
     "PORT": {
       "description": "Port on which to run the app",
       "development_value": "4200",
