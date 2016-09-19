@@ -1,5 +1,10 @@
 {
   "env": {
+    "PORT": {
+      "description": "Port on which to run the app",
+      "development_value": "4200",
+      "required": false
+    },
     "REALTIME_HOST": {
       "description": "A host pointing to the realtime service"
     },
