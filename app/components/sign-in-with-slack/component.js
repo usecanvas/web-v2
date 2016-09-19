@@ -41,6 +41,6 @@ export default Ember.Component.extend({
    * @member {string}
    */
   authorizeURL: computed('endpoint', 'scopeParam', function() {
-    return `${this.get('endpoint')}?scope=${this.get('scopeParam')}&client_id=${ENV.slackClientID}&state=${this.get('state')}`;
+    return `${this.get('endpoint')}?scope=${this.get('scopeParam')}&client_id=${ENV.slackClientID}&state=${this.get('state')}&redirect_uri=${ENV.slackRedirectURI}`;
   })
 });
