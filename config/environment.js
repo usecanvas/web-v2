@@ -6,7 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    apiNamespace: process.env.NODE_ENV === 'production' ? 'api' : '',
+    apiNamespace: process.env.NODE_ENV === 'production' ? '/api' : '',
     realtimeHost: process.env.REALTIME_HOST,
     slackClientID: process.env.SLACK_CLIENT_ID,
     slackRedirectURI: process.env.NODE_ENV === 'production' ? `${process.env.API_URL}oauth/slack/callback` : 'http://localhost:4000/oauth/slack/callback',
