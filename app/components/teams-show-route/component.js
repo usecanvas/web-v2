@@ -61,6 +61,9 @@ export default Ember.Component.extend({
       return RSVP.all(uploads);
     }).then(_ => {
       this.set('processingDrop', false);
+    }).catch(err => {
+      this.set('processingDrop', false);
+      throw err;
     });
   },
 
