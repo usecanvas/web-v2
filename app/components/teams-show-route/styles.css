@@ -1,6 +1,6 @@
 @value --light-gray from 'canvas-colors/styles/colors';
 
-.container {
+.teams-show-route {
   display: flex;
   height: 100vh;
 }
@@ -39,4 +39,8 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.dropzone * {
+  pointer-events: none;
 }

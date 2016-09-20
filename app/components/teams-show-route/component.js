@@ -23,10 +23,6 @@ export default Ember.Component.extend({
     evt.preventDefault();
   },
 
-  dragLeave() {
-    this.set('draggingOver', false);
-  },
-
   drop(evt) {
     evt.preventDefault();
     this.set('draggingOver', false);
@@ -80,6 +76,10 @@ export default Ember.Component.extend({
   actions: {
     didCreateCanvas(canvas) {
       this.sendAction('didCreateCanvas', canvas);
+    },
+
+    dragLeaveDropzone() {
+      this.set('draggingOver', false);
     }
   }
 });
