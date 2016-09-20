@@ -67,8 +67,10 @@ export default Ember.Component.extend({
   uploadTemplate(template) {
     const team = this.get('team');
 
+    template.isTemplate = template.is_template;
+
     return this.get('store')
-               .createRecord('canvas', { blocks: template.blocks, team })
+               .createRecord('canvas', Object.assign(template, { team }))
                .save();
   },
 

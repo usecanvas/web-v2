@@ -6,6 +6,7 @@ const { computed, get } = Ember;
 
 export default DS.Model.extend({
   blocks: attr(),
+  isTemplate: attr(),
   nativeVersion: attr(),
   type: attr(),
   version: attr(),
