@@ -1,6 +1,6 @@
 @value --light-gray from 'canvas-colors/styles/colors';
 
-.teams-show-route {
+.container {
   display: flex;
   height: 100vh;
 }
