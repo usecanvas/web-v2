@@ -1,10 +1,14 @@
 {{#link-to 'team.canvases.show' canvas local-class='link'}}
   {{svg-jar 'Document' local-class='icon'}}
 
-  <div>
+  <div local-class="content">
     <div local-class="title">{{canvas.title}}</div>
     <div local-class="summary">{{canvas.summary}}</div>
   </div>
 
-  <button onclick={{action "onClickDelete"}}>Delete</button>
+  <div local-class="actions">
+    <button local-class="actions-button" onclick={{action "onClickDelete"}}>
+      {{svg-jar "Delete" height="20" width="20"}}
+    </button>
+  </div>
 {{/link-to}}
