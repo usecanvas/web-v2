@@ -10,7 +10,7 @@ Router.map(function() {
   this.route('login');
   this.route('logout');
   this.route('team', { path: '/:domain' }, function() {
-    this.route('canvases.show', { path: '/:id/TITLE_HERE' });
+    this.route('canvases.show', { path: '/:id' });
   });
 });
 
