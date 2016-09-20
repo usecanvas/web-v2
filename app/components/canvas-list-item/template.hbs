@@ -5,6 +5,6 @@
     <div local-class="title">{{canvas.title}}</div>
     <div local-class="summary">{{canvas.summary}}</div>
   </div>
-{{/link-to}}
 
-<button {{action "deleteCanvas" canvas}}>Delete</button>
+  <button onclick={{action "onClickDelete"}}>Delete</button>
+{{/link-to}}

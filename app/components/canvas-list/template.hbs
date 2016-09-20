@@ -1,7 +1,9 @@
 <div>
   {{#each sortedCanvases as |canvas|}}
     <div local-class="item">
-      {{canvas-list-item canvas=canvas}}
+      {{canvas-list-item
+        canvas=canvas
+        deleteCanvas=(action 'deleteCanvas')}}
     </div>
   {{/each}}
 </div>
