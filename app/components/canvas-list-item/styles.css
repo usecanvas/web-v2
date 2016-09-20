@@ -1,8 +1,12 @@
 @value --black from 'canvas-colors/styles/colors';
+@value --blue from 'canvas-colors/styles/colors';
 @value --dark-gray from 'canvas-colors/styles/colors';
+@value --extra-light-gray from 'canvas-colors/styles/colors';
 @value --gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
 
 .link {
+  align-items: center;
   display: flex;
 }
 
@@ -14,6 +18,10 @@
   width: 32px;
 }
 
+.content {
+  flex: 1;
+}
+
 .title {
   color: --black;
   font-weight: 600;
@@ -22,4 +30,35 @@
 .summary {
   color: --dark-gray;
   font-size: 0.875em;
+}
+
+.actions {
+  box-shadow: 0 1px 1px --extra-light-gray;
+  border: 1px solid --light-gray;
+  border-radius: 4px;
+  opacity: 0;
+  transition: 0.2s opacity ease-in-out;
+}
+
+.actions-button {
+  background: transparent;
+  border: none;
+  display: block;
+}
+
+.actions-button svg {
+  display: block;
+  fill: --dark-gray;
+}
+
+.actions-button:hover {
+  cursor: pointer;
+}
+
+.actions-button:hover svg {
+  fill: --blue;
+}
+
+.canvas-list-item:hover .actions {
+  opacity: 1;
 }
