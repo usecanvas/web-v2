@@ -27,3 +27,20 @@
 .content {
   composes: cell-padding;
 }
+
+.dropzone {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.9);
+  bottom: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dropzone * {
+  pointer-events: none;
+}

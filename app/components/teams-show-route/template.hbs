@@ -1,3 +1,9 @@
+{{#if showDropzone}}
+  <div local-class="dropzone" ondragleave={{action 'dragLeaveDropzone'}}>
+    <h1>Drop to upload to Canvas!</h1>
+  </div>
+{{/if}}
+
 <div local-class="aside">
   {{team-list teams=teamsList.teams}}
 </div>
