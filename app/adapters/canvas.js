@@ -6,6 +6,10 @@ export default ApplicationAdapter.extend({
     return `${this.get('namespace')}/teams/${teamID}/canvases`;
   },
 
+  urlForDeleteRecord() {
+    return this.urlForFindRecord(...arguments);
+  },
+
   urlForFindRecord(id, modelName, snapshot) {
     const teamID = snapshot.adapterOptions.team.get('id');
     return `${this.get('namespace')}/teams/${teamID}/canvases/${id}`;
