@@ -1,18 +1,30 @@
-<div local-class="aside">
-  {{team-list teams=teamsList.teams}}
-</div>
+<div style={{if showDropzone disablePointer}}>
+  {{#if showDropzone}}
+    <div local-class="dropzone">
+      <h1>You're Dragging!</h1>
 
-<div local-class="main">
-  <div local-class="nav">
-    {{team-nav
-      team=team
-      user=team.user
-      didCreateCanvas=(action 'didCreateCanvas')}}
+      {{#if processingDrop}}
+        <h1>Processing Drop!</h1>
+      {{/if}}
+    </div>
+  {{/if}}
+
+  <div local-class="aside">
+    {{team-list teams=teamsList.teams}}
   </div>
 
-  <div local-class="content">
-    {{canvas-list
-      team=team
-      canvases=team.canvases}}
+  <div local-class="main">
+    <div local-class="nav">
+      {{team-nav
+        team=team
+        user=team.user
+        didCreateCanvas=(action 'didCreateCanvas')}}
+    </div>
+
+    <div local-class="content">
+      {{canvas-list
+        team=team
+        canvases=team.canvases}}
+    </div>
   </div>
 </div>
