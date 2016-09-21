@@ -46,6 +46,21 @@
   padding: 0 2rem;
 }
 
+.message {
+  position: relative;
+}
+
+.message-content {
+  color: --dark-gray;
+  font-size: 0.75rem;
+  font-style: italic;
+  padding: 1rem 0;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
 .editor {
   margin: 4rem auto;
   max-width: 47rem;
