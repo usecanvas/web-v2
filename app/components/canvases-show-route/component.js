@@ -2,6 +2,7 @@ import DMP from 'diff-match-patch';
 import Ember from 'ember';
 import Rangy from 'rangy';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
+import RSVP from 'rsvp';
 import SelectionState from 'canvas-editor/lib/selection-state';
 import { getTargetBlock, parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/sharedb-path';
 
@@ -217,6 +218,22 @@ export default Ember.Component.extend({
       const path = this.getPathToBlock(block, index);
       const op = [{ p: path, ld: toShareDBBlock(block) }];
       this.get('canvas.shareDBDoc').submitOp(op);
+    },
+
+    fetchTemplates() {
+      if (this.get('templates')) return RSVP.resolve(this.get('templates'));
+
+      const team = this.get('canvas.team');
+
+      return new RSVP.Promise(resolve => {
+        const url = `/v1/teams/${team.get('id')}/templates`;
+
+        return Ember.$.getJSON(url).then(res => {
+          resolve(res.data.mapBy('attributes'));
+        }, err => {
+          throw err;
+        });
+      });
     },
 
     unfurlBlock(block) {

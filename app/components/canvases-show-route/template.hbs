@@ -28,6 +28,7 @@
 
   <div local-class="editor">
     {{canvas-editor-next
+      fetchTemplates=(action 'fetchTemplates')
       onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
       onBlockReplacedLocally=(action 'blockReplacedLocally')
       onNewBlockInsertedLocally=(action 'newBlockInsertedLocally')
