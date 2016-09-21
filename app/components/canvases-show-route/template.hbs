@@ -35,6 +35,10 @@
       onBlockDeletedLocally=(action 'blockDeletedLocally')
       onBlockMetaReplacedLocally=(action 'blockMetaReplacedLocally')
       unfurlBlock=(action 'unfurlBlock')
-      canvas=canvas}}
+      canvas=canvas
+      titleActionsComponent=(component 'canvas-title-actions'
+                             canvas=canvas
+                             onDeleteCanvas=onDeleteCanvas
+                             isTemplate=canvas.isTemplate)}}
   </div>
 </div>

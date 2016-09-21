@@ -1,0 +1,18 @@
+{{#if notHidden}}
+  <a href="#" local-class="template-badge">Use Template</a>
+{{/if}}
+
+<div local-class="actions">
+  {{#ui-dropdown as |isOpen|}}
+    <div local-class="menu">
+      <div local-class="menu-content">
+        <a href={{downloadURL}} local-class="menu-item">Download</a>
+        <div onclick={{action 'deleteCanvas'}} local-class="menu-item">Delete</div>
+      </div>
+    </div>
+  {{else}}
+    <div local-class="trigger">
+      {{svg-jar "More" height="24" width="24"}}
+    </div>
+  {{/ui-dropdown}}
+</div>

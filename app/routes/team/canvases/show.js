@@ -63,5 +63,15 @@ export default Ember.Route.extend({
 
   startPingInterval() {
     this.set('pingInterval', setInterval(this.ping.bind(this), 30000));
+  },
+
+  actions: {
+    onDeleteCanvas() {
+      return this.get('controller.model').destroyRecord({
+        adapterOptions: { team: this.get('controller.model.team') }
+      }).then(_ => {
+        this.transitionTo('team');
+      });
+    }
   }
 });
