@@ -4,4 +4,5 @@
   cursor: pointer;
   display: block;
   outline: none;
+  padding: 0;
 }
