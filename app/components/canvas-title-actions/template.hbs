@@ -6,8 +6,8 @@
   {{#ui-dropdown as |isOpen|}}
     <div local-class="menu">
       <div local-class="menu-content">
-        <div local-class="menu-item">Download</div>
-        <div local-class="menu-item">Delete</div>
+        <a href={{downloadURL}} local-class="menu-item">Download</a>
+        <div onclick={{action 'deleteCanvas'}} local-class="menu-item">Delete</div>
       </div>
     </div>
   {{else}}

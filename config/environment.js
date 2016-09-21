@@ -7,6 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     realtimeHost: process.env.REALTIME_HOST,
+    apiURL: process.env.API_URL,
     slackClientID: process.env.SLACK_CLIENT_ID,
     slackRedirectURI: slackRedirectURI(process.env.NODE_ENV),
     EmberENV: {
