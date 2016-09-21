@@ -9,7 +9,11 @@
 </div>
 
 {{#if isOpen}}
-  <div local-class="content">
-    {{yield}}
+  <div local-class="main">
+    <div local-class="main-content">
+      {{yield}}
+    </div>
   </div>
+
+  <div onclick={{action 'toggleOpen'}} local-class="backdrop"></div>
 {{/if}}

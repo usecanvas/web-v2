@@ -1,5 +1,4 @@
 @value --blue from 'canvas-colors/styles/colors';
-@value --gray from 'canvas-colors/styles/colors';
 
 .canvas-title-actions {
   align-items: center;
@@ -30,18 +29,6 @@
 
 .menu {
   font-size: 0.875rem;
-  position: relative;
-}
-
-.menu-content {
-  background: white;
-  border-radius: 3px;
-  box-shadow: 0 2px 8px --gray;
-  padding: 0.5rem;
-  position: absolute;
-  right: 0;
-  top: 0.5rem;
-  width: 12rem;
 }
 
 .menu-item {
