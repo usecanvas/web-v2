@@ -19,7 +19,8 @@
       "required": false
     },
     "REALTIME_HOST": {
-      "description": "A host pointing to the realtime service"
+      "description": "A host pointing to the realtime service",
+      "development_value": "localhost:4001",
     },
     "SLACK_CLIENT_ID": {
       "description": "A client ID for a Slack application"
