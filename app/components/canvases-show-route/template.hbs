@@ -17,6 +17,15 @@
 </div>
 
 <div local-class="main">
+  {{#if canvas.isTemplate}}
+    <div local-class="message">
+      <div local-class="message-content">
+        You’re editing a template. To create a new canvas click <strong>Use
+        Template</strong>.
+      </div>
+    </div>
+  {{/if}}
+
   <div local-class="editor">
     {{canvas-editor-next
       onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
