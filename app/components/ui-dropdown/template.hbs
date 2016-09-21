@@ -1,0 +1,15 @@
+<div local-class="trigger">
+  {{#if (hasBlock 'inverse')}}
+    <button local-class="yield-button" onclick={{action 'toggleOpen'}}>
+      {{yield to='inverse'}}
+    </button>
+  {{else}}
+    <button onclick={{action 'toggleOpen'}}>{{label}}</button>
+  {{/if}}
+</div>
+
+{{#if isOpen}}
+  <div local-class="content">
+    {{yield}}
+  </div>
+{{/if}}

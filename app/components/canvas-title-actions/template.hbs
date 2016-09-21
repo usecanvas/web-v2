@@ -3,16 +3,16 @@
 {{/unless}}
 
 <div local-class="actions">
-  <div local-class="trigger" onclick={{action 'toggleMenu'}}>
-    {{svg-jar "More" height="24" width="24"}}
-  </div>
-
-  {{#if menuIsShowing}}
+  {{#ui-dropdown as |isOpen|}}
     <div local-class="menu">
       <div local-class="menu-content">
         <div local-class="menu-item">Download</div>
         <div local-class="menu-item">Delete</div>
       </div>
     </div>
-  {{/if}}
+  {{else}}
+    <div local-class="trigger">
+      {{svg-jar "More" height="24" width="24"}}
+    </div>
+  {{/ui-dropdown}}
 </div>
