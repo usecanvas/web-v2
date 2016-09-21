@@ -54,11 +54,11 @@
   color: --dark-gray;
   font-size: 0.75rem;
   font-style: italic;
+  left: 0;
   padding: 1rem 0;
   position: absolute;
-  text-align: center;
-  left: 0;
   right: 0;
+  text-align: center;
 }
 
 .editor {
