@@ -1,17 +1,17 @@
 @value --blue from 'canvas-colors/styles/colors';
 
 .new-canvas-button {
-  background: rgba(65, 78, 249, 0.2);
+  align-items: center;
+  background: --blue;
   border-radius: 50%;
   cursor: pointer;
-  height: 2.25rem;
-  padding: 0.125rem;
-  width: 2.25rem;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
 }
 
 .icon {
   display: block;
-  fill: --blue;
-  height: 2rem;
-  width: 2rem;
+  fill: white;
 }
