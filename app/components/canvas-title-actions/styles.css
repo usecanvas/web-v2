@@ -1,0 +1,62 @@
+@value --blue from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
+
+.canvas-title-actions {
+  align-items: center;
+  display: flex;
+}
+
+.template-badge {
+  background: #E7E8FF;
+  border-radius: 3px;
+  font-size: 0.875rem;
+  margin-right: 1rem;
+  padding: 0.125rem 0.5rem;
+}
+
+.trigger {
+  align-items: center;
+  background: --blue;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.trigger svg {
+  fill: white;
+}
+
+.menu {
+  font-size: 0.875rem;
+  position: relative;
+}
+
+.menu-content {
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px --gray;
+  padding: 0.5rem;
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+  width: 12rem;
+}
+
+.menu-item {
+  border-radius: 3px;
+  margin-bottom: 0.125rem;
+  padding: 0.125rem 0.5rem;
+}
+
+.menu-item:hover {
+  background: --blue;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-item:last-child {
+  margin-bottom: 0;
+}
