@@ -33,6 +33,7 @@ export default Ember.Component.extend(WithDropzone, {
   uploadTemplate(template) {
     const team = this.get('team');
 
+    Reflect.deleteProperty(template, 'id');
     template.isTemplate = template.is_template;
 
     return this.get('store')
