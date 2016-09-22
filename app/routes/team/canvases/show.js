@@ -1,6 +1,7 @@
 import ENV from 'canvas-web/config/environment';
 import Ember from 'ember';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
+import ReconnectingWebSocket from 'reconnecting-websocket';
 import ShareDB from 'sharedb';
 
 const { computed } = Ember;
@@ -28,8 +29,16 @@ export default Ember.Route.extend({
     return this.shareDBConnect(canvas.get('team'), canvas);
   },
 
+  createSocket() {
+    return new ReconnectingWebSocket(this.get('realtimeURL'), null, {
+      debug: ENV.debugWebSockets,
+      maxReconnectInterval: 2000,
+      maxReconnectAttempts: 10
+    });
+  },
+
   shareDBConnect(team, canvas) {
-    const socket = this.set('socket', new WebSocket(this.get('realtimeURL')));
+    const socket = this.set('socket', this.createSocket());
     const connection = new ShareDB.Connection(socket);
     const shareDBDoc = connection.get(team.get('id'), canvas.get('id'));
 

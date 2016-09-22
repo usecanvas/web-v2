@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'canvas-web',
+    debugWebSockets: false,
     environment: environment,
     rootURL: '/',
     locationType: 'auto',

@@ -12,6 +12,8 @@ module.exports = function(defaults) {
   app.import('vendor/shims/diff-match-patch.js');
   app.import('vendor/sharedb.js');
   app.import('vendor/shims/sharedb.js');
+  app.import(`${app.bowerDirectory}/reconnectingWebsocket/reconnecting-websocket.js`);
+  app.import('vendor/shims/reconnecting-websocket.js');
 
   return app.toTree();
 };
