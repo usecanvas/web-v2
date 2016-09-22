@@ -1,9 +1,11 @@
-<div>
-  {{#each sortedCanvases as |canvas|}}
-    <div local-class="item">
-      {{canvas-list-item
-        canvas=canvas
-        deleteCanvas=(action 'deleteCanvas')}}
-    </div>
-  {{/each}}
-</div>
+{{#each sortedCanvases as |canvas|}}
+  <div local-class="item">
+    {{canvas-list-item
+      canvas=canvas
+      deleteCanvas=(action 'deleteCanvas')}}
+  </div>
+{{else}}
+  <div local-class="empty-state">
+    {{canvas-list-empty-state}}
+  </div>
+{{/each}}

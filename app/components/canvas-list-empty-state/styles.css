@@ -1,0 +1,32 @@
+@value --blue from 'canvas-colors/styles/colors';
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.canvas-list-empty-state {
+  color: --dark-gray;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 35rem;
+}
+
+.emoji {
+  font-size: 3rem;
+}
+
+.heading {
+  font-weight: 300;
+}
+
+.sub-heading {
+  line-height: 1.5;
+}
+
+.icon {
+  background: --blue;
+  border-radius: 50%;
+  fill: white;
+  vertical-align: middle;
+}
