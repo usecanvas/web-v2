@@ -12,6 +12,9 @@ Router.map(function() {
   this.route('team', { path: '/:domain' }, function() {
     this.route('canvases.show', { path: '/:id' });
   });
+
+  // Catch all
+  this.route('not-found', { path: '*path' });
 });
 
 export default Router;
