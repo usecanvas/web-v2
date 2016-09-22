@@ -5,7 +5,11 @@ export default Ember.Route.extend({
   teamQuery: Ember.inject.service(),
 
   model({ domain }) {
-    return preload(this.get('teamQuery').findByDomain(domain), 'canvases');
+    return this.get('teamQuery').findByDomain(domain);
+  },
+
+  afterModel(model) {
+    return preload(model, 'canvases');
   },
 
   actions: {
