@@ -23,6 +23,10 @@ export default Ember.Component.extend({
       this.get('onDeleteCanvas')();
     },
 
+    onUseTemplate() {
+      this.get('onUseTemplate')();
+    },
+
     toggleMenu() {
       this.toggleProperty('menuIsShowing');
     }

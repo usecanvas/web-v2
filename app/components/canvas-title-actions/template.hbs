@@ -1,5 +1,5 @@
-{{#if notHidden}}
-  <a href="#" local-class="template-badge">Use Template</a>
+{{#if isTemplate}}
+  <button {{action "onUseTemplate"}} local-class="template-badge">Use Template</button>
 {{/if}}
 
 <div local-class="actions">

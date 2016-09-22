@@ -38,6 +38,7 @@
       canvas=canvas
       titleActionsComponent=(component 'canvas-title-actions'
                              canvas=canvas
+                             onUseTemplate=(route-action 'createFromTemplate')
                              onDeleteCanvas=onDeleteCanvas
                              isTemplate=canvas.isTemplate)}}
   </div>
