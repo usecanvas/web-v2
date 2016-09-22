@@ -73,7 +73,9 @@ rules:
   lines-around-directive: error
   max-depth: error
   max-len: 'off'
-  max-lines: error
+  max-lines:
+    - error
+    - max: 1000
   max-nested-callbacks: error
   max-params:
     - error
@@ -159,7 +161,7 @@ rules:
   no-trailing-spaces: error
   no-undef-init: error
   no-undefined: error
-  no-underscore-dangle: error
+  no-underscore-dangle: 'off'
   no-unmodified-loop-condition: error
   no-unneeded-ternary: error
   no-unsafe-negation: error
