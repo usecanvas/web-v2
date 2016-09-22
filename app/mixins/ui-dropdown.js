@@ -4,7 +4,6 @@ import nsEvents from 'canvas-web/lib/ns-events';
 const { $, on } = Ember;
 
 export default Ember.Mixin.create({
-  closeOnEscape: true,
   eventList: 'click touchstart',
   isOpen: false,
   onClose: Ember.K,
