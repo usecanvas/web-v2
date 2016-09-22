@@ -1,0 +1,23 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.ui-billboard {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.emoji {
+  font-size: 3rem;
+}
+
+.heading {
+  font-weight: 300;
+}
+
+.message {
+  color: --dark-gray;
+  line-height: 1.5;
+  max-width: 25rem;
+}
