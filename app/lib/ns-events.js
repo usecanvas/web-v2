@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default function nsEvents(object, events) {
-  return events.split(' ').map(event => {
-    return `${event}.${Ember.guidFor(object)}`;
-  }).join(' ');
+  const guid = Ember.guidFor(object);
+  return events.split(' ').map(event => `${event}.${guid}`).join(' ');
 }

@@ -5,17 +5,18 @@ const { $, on } = Ember;
 
 export default Ember.Mixin.create({
   closeOnEscape: true,
+  eventList: 'click touchstart',
   isOpen: false,
   onClose: Ember.K,
   onOpen: Ember.K,
 
   setUpEventHandlers: on('didInsertElement', function() {
-    $(document).on(nsEvents(this, 'click touchstart'),
+    $(document).on(nsEvents(this, this.get('eventList')),
       _ => Ember.run(this, 'dropdownClick'));
   }),
 
   tearDownEventHandlers: on('willDestroyElement', function() {
-    $(document).off(nsEvents(this, 'click touchstart'));
+    $(document).off(nsEvents(this, this.get('eventList')));
   }),
 
   click(event) {
