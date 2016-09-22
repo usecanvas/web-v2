@@ -7,9 +7,13 @@
 
 .template-badge {
   background: #E7E8FF;
+  border: none;
   border-radius: 3px;
+  color: --blue;
+  cursor: pointer;
   font-size: 0.875rem;
   margin-right: 1rem;
+  outline: 0;
   padding: 0.125rem 0.5rem;
 }
 
