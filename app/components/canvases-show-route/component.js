@@ -258,7 +258,7 @@ export default Ember.Component.extend(WithDropzone, {
     unfurlBlock(block) {
       let url = block.get('meta.url');
       if (block.get('type') === 'canvas') {
-        url = `${window.location.protocol}//${window.location.host}/_/${block.get('meta.id')}`;
+        url = `${window.location.protocol}//${window.location.host}/${block.get('meta.team_domain')}/${block.get('meta.id')}`;
       }
 
       return this.get('store').findRecord('unfurl', url);
