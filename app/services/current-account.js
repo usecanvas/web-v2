@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Raven from 'raven';
 import RSVP from 'rsvp';
 
 export default Ember.Service.extend({
@@ -24,6 +25,7 @@ export default Ember.Service.extend({
   fetch() {
     return this.get('store').findRecord('account', 'me').then(account => {
       this.set('currentAccount', account);
+      Raven.setUserContext(account.getProperties('id'));
       return account;
     });
   },

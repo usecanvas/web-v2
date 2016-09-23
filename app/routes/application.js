@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Raven from 'raven';
 import RSVP from 'rsvp';
 
 /**
@@ -71,8 +72,11 @@ export default Ember.Route.extend({
       Ember.Logger.error(err);
 
       if (err.status === 404) {
+        Raven.captureException(err, { level: 'info' });
         this.intermediateTransitionTo('not-found', 'not-found');
       } else {
+        Raven.captureException(err);
+        if (Raven.isSetup()) Raven.showReportDialog();
         this.intermediateTransitionTo('error');
       }
     }

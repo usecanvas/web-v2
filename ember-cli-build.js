@@ -1,10 +1,20 @@
-/*jshint node:true*/
-/* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+/* eslint-env node */
+
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
-    // Add options here
+  const app = new EmberApp(defaults, {
+    inlineContent: {
+      sentry: {
+        enabled: Boolean(process.env.SENTRY_DSN),
+        content: `<script>
+                    Raven.config('${process.env.SENTRY_DSN}')
+                         .addPlugin(Raven.Plugins.Ember)
+                         .install();
+                    Raven.setRelease('${process.env.HEROKU_RELEASE_VERSION}');
+                  </script>`
+      }
+    }
   });
 
   app.import('vendor/normalize.css');
@@ -14,6 +24,9 @@ module.exports = function(defaults) {
   app.import('vendor/shims/sharedb.js');
   app.import(`${app.bowerDirectory}/reconnectingWebsocket/reconnecting-websocket.js`);
   app.import('vendor/shims/reconnecting-websocket.js');
+  app.import(`${app.bowerDirectory}/raven-js/dist/raven.js`);
+  app.import(`${app.bowerDirectory}/raven-js/dist/plugins/ember.js`);
+  app.import('vendor/shims/raven.js');
 
   return app.toTree();
 };
