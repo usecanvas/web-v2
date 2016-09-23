@@ -4,9 +4,12 @@ import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 import ShareDB from 'sharedb';
 
-const { computed } = Ember;
+const { computed, run } = Ember;
+const MAX_RECONNECTS = 10;
 
 export default Ember.Route.extend({
+  connected: false,
+  flashMessages: Ember.inject.service(),
   teamQuery: Ember.inject.service(),
 
   realtimeURL: computed(function() {
@@ -33,7 +36,7 @@ export default Ember.Route.extend({
     return new ReconnectingWebSocket(this.get('realtimeURL'), null, {
       debug: ENV.debugWebSockets,
       maxReconnectInterval: 2000,
-      maxReconnectAttempts: 10
+      maxReconnectAttempts: MAX_RECONNECTS
     });
   },
 
@@ -47,6 +50,32 @@ export default Ember.Route.extend({
     this.startPingInterval();
 
     return new Ember.RSVP.Promise((resolve, reject) => {
+      let reconnects = 0;
+
+      connection.on('connection error', _err => {
+        run.join(_ => {
+          reconnects += 1;
+
+          if (reconnects >= MAX_RECONNECTS) {
+            canvas.set('connected', false);
+            connection.close();
+
+            if (this.get('didConnect')) {
+              this.get('flashMessages').add({
+                destroyOnClick: false,
+                message: `We're having a difficult time sustaining a \
+                          connection to our server.`,
+                sticky: true,
+                type: 'danger'
+              });
+              throw new Error('Unable to sustain open realtime connection');
+            } else {
+              reject(new Error('Unable to open realtime connection'));
+            }
+          }
+        });
+      });
+
       shareDBDoc.subscribe(err => {
         if (err) return reject(err);
 
@@ -54,12 +83,16 @@ export default Ember.Route.extend({
           return RealtimeCanvas.createBlockFromJSON(block);
         }));
 
+        this.set('didConnect', true);
+        canvas.set('connected', true);
+
         return resolve(canvas);
       });
     });
   },
 
   deactivate() {
+    this.set('connected', false);
     this.get('socket').close();
     clearInterval(this.get('pingInterval'));
   },

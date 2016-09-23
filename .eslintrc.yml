@@ -72,7 +72,7 @@ rules:
   lines-around-comment: 'off'
   lines-around-directive: error
   max-depth: error
-  max-len: 'off'
+  max-len: error
   max-lines:
     - error
     - max: 1000
@@ -150,7 +150,10 @@ rules:
   no-script-url: error
   no-self-compare: error
   no-sequences: error
-  no-shadow: error
+  no-shadow:
+    - error
+    - allow:
+      - "_"
   no-shadow-restricted-names: error
   no-spaced-func: error
   no-sync: error
@@ -206,6 +209,8 @@ rules:
   quotes:
     - error
     - single
+    - allowTemplateLiterals: true
+      avoidEscape: true
   radix: error
   require-jsdoc: 'off'
   rest-spread-spacing: error

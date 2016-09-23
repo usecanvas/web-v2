@@ -33,6 +33,7 @@
 
   <div local-class="editor">
     {{canvas-editor-next
+      editingEnabled=connected
       fetchTemplates=(action 'fetchTemplates')
       onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
       onBlockReplacedLocally=(action 'blockReplacedLocally')
