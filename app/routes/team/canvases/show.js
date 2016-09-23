@@ -47,17 +47,17 @@ export default Ember.Route.extend({
     this.startPingInterval();
 
     return new Ember.RSVP.Promise((resolve, reject) => {
-     shareDBDoc.subscribe(err => {
-       if (err) return reject(err);
+      shareDBDoc.subscribe(err => {
+        if (err) return reject(err);
 
-       canvas.set('blocks', shareDBDoc.data.map(block => {
-         return RealtimeCanvas.createBlockFromJSON(block);
-       }));
+        canvas.set('blocks', shareDBDoc.data.map(block => {
+          return RealtimeCanvas.createBlockFromJSON(block);
+        }));
 
-       return resolve(canvas);
-     });
-   });
- },
+        return resolve(canvas);
+      });
+    });
+  },
 
   deactivate() {
     this.get('socket').close();
