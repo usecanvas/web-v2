@@ -1,0 +1,43 @@
+.ui-flash-message {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 1000px;
+  color: white;
+  font-size: 0.75rem;
+  display: flex;
+  padding: 0 0.25rem;
+}
+
+.cell {
+  align-items: center;
+  display: flex;
+  padding: 0.5rem 0.25rem;
+}
+
+.emoji {
+  composes: cell;
+  align-items: center;
+  display: flex;
+}
+
+.emoji-content {
+  font-size: 1.75rem;
+  line-height: 1;
+  position: relative;
+  top: 0.125rem;
+}
+
+.message {
+  composes: cell;
+  opacity: 0.8;
+}
+
+.action {
+  composes: cell;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+}
+
+.action-icon {
+  display: block;
+  fill: white;
+}

@@ -1,0 +1,19 @@
+<div local-class="emoji">
+  <div local-class="emoji-content">
+    {{flash.emoji}}
+  </div>
+</div>
+
+<div local-class="message">
+  <div local-class="message-content">
+    {{flash.message}}
+  </div>
+</div>
+
+{{#if flash.action}}
+  <div local-class="action" onclick={{action flash.action}}>
+    <div local-class="action-content">
+      {{svg-jar flash.actionIcon height="32" width="32" local-class="action-icon"}}
+    </div>
+  </div>
+{{/if}}
