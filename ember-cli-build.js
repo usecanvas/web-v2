@@ -4,6 +4,10 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
+    sourcemaps: {
+      enabled: true
+    },
+
     inlineContent: {
       sentry: {
         enabled: Boolean(process.env.SENTRY_DSN),
