@@ -1,0 +1,19 @@
+.flash-messages {
+  bottom: 1rem;
+  left: 1rem;
+  position: absolute;
+  width: 28rem;
+}
+
+.flash-messages-item {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 1000px;
+  color: white;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  padding: 0.25em 1em;
+}
+
+.flash-messages-item:last-child {
+  margin-bottom: 0;
+}

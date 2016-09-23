@@ -15,6 +15,12 @@ export default Ember.Route.extend({
   currentAccount: Ember.inject.service(),
 
   /**
+   * Service for flash messages
+   * @member {Ember.Service}
+   */
+  flashMessages: Ember.inject.service(),
+
+  /**
    * Service for the teams list
    * @member {Ember.Service}
    */
