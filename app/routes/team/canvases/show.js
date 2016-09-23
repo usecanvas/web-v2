@@ -63,8 +63,10 @@ export default Ember.Route.extend({
             if (this.get('didConnect')) {
               this.get('flashMessages').add({
                 destroyOnClick: false,
-                message: `We're having a difficult time sustaining a \
-                          connection to our server.`,
+                emoji: '⚡️',
+                message: `We're having a difficult time connecting to our \
+                          server. Please check your internet settings and \
+                          reload Canvas.`,
                 sticky: true,
                 type: 'danger'
               });
