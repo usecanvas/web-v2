@@ -64,5 +64,17 @@ export default Ember.Route.extend({
     if (!signedIn && !this.get('unauthenticatedRoutes').includes(targetName)) {
       this.replaceWith('login');
     }
+  },
+
+  actions: {
+    error(err) {
+      Ember.Logger.error(err);
+
+      if (err.status === 404) {
+        this.intermediateTransitionTo('not-found', 'not-found');
+      } else {
+        this.intermediateTransitionTo('error');
+      }
+    }
   }
 });

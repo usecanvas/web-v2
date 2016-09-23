@@ -13,6 +13,10 @@ Router.map(function() {
     this.route('canvases.show', { path: '/:id' });
   });
 
+
+  // For rendering 500 in error handler
+  this.route('error');
+
   // Catch all
   this.route('not-found', { path: '*path' });
 });
