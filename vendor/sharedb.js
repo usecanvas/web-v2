@@ -2997,7 +2997,9 @@ Doc.prototype._opAcknowledged = function(message) {
   } else if (message.v !== this.version) {
     // We should already be at the same version, because the server should
     // have sent all the ops that have happened before acknowledging our op
-    console.warn('Invalid version from server. Expected: ' + this.version + ' Received: ' + message.v, message);
+    const warning = `Invalid version from server. Expected: ${this.version} Received: ${message.v}`;
+    console.warn(warning, message);
+    this.emit('warning', new Error(warning));
 
     // Fetching should get us back to a working document state
     return this.fetch();

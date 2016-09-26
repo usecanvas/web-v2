@@ -2,6 +2,7 @@ import ENV from 'canvas-web/config/environment';
 import Ember from 'ember';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ReconnectingWebSocket from 'reconnecting-websocket';
+import Raven from 'raven';
 import ShareDB from 'sharedb';
 
 const { computed, run } = Ember;
@@ -46,6 +47,8 @@ export default Ember.Route.extend({
     const shareDBDoc = connection.get(team.get('id'), canvas.get('id'));
 
     canvas.set('shareDBDoc', shareDBDoc);
+    shareDBDoc.on('warning',
+      warning => Raven.captureException(warning, { level: 'warning' }));
 
     this.startPingInterval();
 
