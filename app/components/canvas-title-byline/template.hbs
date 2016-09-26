@@ -1,0 +1,7 @@
+<span local-class="byline-toggle" onclick={{action (toggle 'showInsertedAt' this)}}>
+  {{#if showInsertedAt}}
+    <span>Created <strong>{{moment-from-now canvas.insertedAt}}</strong></span>
+  {{else}}
+    <span>Last updated <strong>{{moment-from-now canvas.updatedAt}}</strong></span>
+  {{/if}}
+</span>

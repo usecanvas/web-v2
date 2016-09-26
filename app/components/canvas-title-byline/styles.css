@@ -1,0 +1,11 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.canvas-title-byline {
+  color: --dark-gray;
+  font-size: 0.875rem;
+}
+
+.byline-toggle {
+  cursor: pointer;
+  user-select: none;
+}
