@@ -17,6 +17,8 @@ function onEmberError(err) {
 }
 
 function onRSVPError(reason) {
+  if (reason && reason.name === 'TransitionAborted') return;
+
   const context = 'Unhandled Promise error detected';
 
   if (reason instanceof Error) {
