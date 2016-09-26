@@ -12,9 +12,7 @@ module.exports = function(defaults) {
       sentry: {
         enabled: Boolean(process.env.SENTRY_DSN),
         content: `<script>
-                    Raven.config('${process.env.SENTRY_DSN}')
-                         .addPlugin(Raven.Plugins.Ember)
-                         .install();
+                    Raven.config('${process.env.SENTRY_DSN}').install();
                     Raven.setRelease('${process.env.HEROKU_RELEASE_VERSION}');
                   </script>`
       }
