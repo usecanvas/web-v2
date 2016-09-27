@@ -8,11 +8,12 @@ import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import { getTargetBlock, parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/sharedb-path';
 
 const differ = new DMP();
-const { on, run } = Ember;
+const { inject, on, run } = Ember;
 
 export default Ember.Component.extend(WithDropzone, {
   localClassNames: ['canvases-show-route'],
-  store: Ember.inject.service(),
+  currentAccount: inject.service(),
+  store: inject.service(),
 
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
@@ -218,6 +219,9 @@ export default Ember.Component.extend(WithDropzone, {
     blockReplacedLocally(index, block, newBlock) {
       const path = this.getPathToBlock(block, index);
 
+      newBlock.set(
+        'meta.creator_id', this.get('currentAccount.currentUser.id'));
+
       const op = [{
         p: path,
         ld: toShareDBBlock(block),
@@ -229,6 +233,7 @@ export default Ember.Component.extend(WithDropzone, {
 
     newBlockInsertedLocally(index, block) {
       const path = this.getPathToBlock(block, index);
+      block.set('meta.creator_id', this.get('currentAccount.currentUser.id'));
       const op = [{ p: path, li: toShareDBBlock(block) }];
       this.get('canvas.shareDBDoc').submitOp(op);
     },
@@ -257,12 +262,11 @@ export default Ember.Component.extend(WithDropzone, {
     },
 
     unfurlBlock(block) {
-      let url = block.get('meta.url');
-      if (block.get('type') === 'canvas') {
-        url = `${window.location.protocol}//${window.location.host}/${block.get('meta.team_domain')}/${block.get('meta.id')}`;
-      }
-
-      return this.get('store').findRecord('unfurl', url);
+      return this.get('store').findRecord('unfurl', block.get('id'), {
+        adapterOptions: {
+          canvas: this.get('canvas')
+        }
+      });
     }
   }
 });

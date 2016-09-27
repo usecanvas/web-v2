@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import preload from 'canvas-web/lib/preload';
 
+const { inject } = Ember;
+
 export default Ember.Route.extend({
-  currentAccount: Ember.inject.service(),
-  teamQuery: Ember.inject.service(),
+  currentAccount: inject.service(),
+  teamQuery: inject.service(),
 
   model({ domain }) {
     return this.get('teamQuery').findByDomain(domain);
