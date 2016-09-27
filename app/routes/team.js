@@ -2,6 +2,7 @@ import Ember from 'ember';
 import preload from 'canvas-web/lib/preload';
 
 export default Ember.Route.extend({
+  currentAccount: Ember.inject.service(),
   teamQuery: Ember.inject.service(),
 
   model({ domain }) {
@@ -9,6 +10,7 @@ export default Ember.Route.extend({
   },
 
   afterModel(model) {
+    this.set('currentAccount.currentUser', model.get('user'));
     return preload(model, 'canvases');
   },
 
