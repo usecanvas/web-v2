@@ -5,6 +5,8 @@ module.exports = function(environment) {
     modulePrefix: 'canvas-web',
     debugWebSockets: false,
     environment: environment,
+    gitHubClientID: process.env.GITHUB_CLIENT_ID,
+    gitHubRedirectURL: process.env.GITHUB_REDIRECT_URL,
     rootURL: '/',
     locationType: 'auto',
     realtimeHost: process.env.REALTIME_HOST,
