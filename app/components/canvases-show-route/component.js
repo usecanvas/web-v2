@@ -134,11 +134,11 @@ export default Ember.Component.extend(WithDropzone, {
       if (!block || block.get('id') !== activeBlockID) continue;
 
       if (comp.si) {
-        const offset = comp.p[2];
+        const offset = comp.p[comp.p.indexOf('content') + 1];
         if (offset < selection.start) selection.start += comp.si.length;
         if (offset < selection.end) selection.end += comp.si.length;
       } else if (comp.sd) {
-        const offset = comp.p[2];
+        const offset = comp.p[comp.p.indexOf('content') + 1];
 
         if (offset < selection.start) {
           selection.start -= Math.min(comp.sd.length, selection.start - offset);
