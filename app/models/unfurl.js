@@ -22,6 +22,7 @@ export default DS.Model.extend({
   title: attr(),
   type: attr(),
   width: attr(),
+  url: attr(),
 
   canvas: belongsTo('canvas')
 });
