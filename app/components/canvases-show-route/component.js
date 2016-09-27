@@ -248,7 +248,8 @@ export default Ember.Component.extend(WithDropzone, {
         const url = `/v1/teams/${team.get('id')}/templates`;
 
         return Ember.$.getJSON(url).then(res => {
-          resolve(res.data.mapBy('attributes'));
+          this.set('templates', res.data.mapBy('attributes'));
+          resolve(this.get('templates'));
         }, err => {
           throw err;
         });
