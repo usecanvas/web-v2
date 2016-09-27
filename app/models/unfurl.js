@@ -9,6 +9,7 @@ const { attr, belongsTo } = DS;
  * @extends DS.Model
  */
 export default DS.Model.extend({
+  fetched: attr(),
   fields: attr(),
   height: attr(),
   html: attr(),
