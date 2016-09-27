@@ -45,9 +45,8 @@
       titleActionsComponent=(component 'canvas-title-actions'
                              canvas=canvas
                              onUseTemplate=(route-action 'createFromTemplate')
-                             onDeleteCanvas=onDeleteCanvas
+                             onDeleteCanvas=(route-action 'onDeleteCanvas')
                              isTemplate=canvas.isTemplate)
-      titleBylineComponent=(component 'canvas-title-byline'
-                            canvas=canvas)}}
+      titleBylineComponent=(component 'canvas-title-byline')}}
   </div>
 </div>

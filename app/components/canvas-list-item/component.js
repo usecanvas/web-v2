@@ -8,7 +8,7 @@ export default Ember.Component.extend({
     onClickDelete(evt) {
       evt.stopPropagation();
       evt.preventDefault();
-      this.sendAction('deleteCanvas', this.get('canvas'));
+      this.get('onDeleteCanvas')(this.get('canvas'));
     }
   }
 });

@@ -122,14 +122,6 @@ export default Ember.Route.extend({
       }).save().then(newCanvas => {
         this.transitionTo('team.canvases.show', newCanvas);
       });
-    },
-
-    onDeleteCanvas() {
-      return this.get('controller.model').destroyRecord({
-        adapterOptions: { team: this.get('controller.model.team') }
-      }).then(_ => {
-        this.transitionTo('team');
-      });
     }
   }
 });

@@ -2,7 +2,7 @@
   <div local-class="item">
     {{canvas-list-item
       canvas=canvas
-      deleteCanvas=(action 'deleteCanvas')}}
+      onDeleteCanvas=(route-action 'onDeleteCanvas')}}
   </div>
 {{else}}
   <div local-class="empty-state">

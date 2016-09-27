@@ -20,7 +20,9 @@ export default Ember.Component.extend({
 
   actions: {
     deleteCanvas() {
-      this.get('onDeleteCanvas')();
+      this.get('onDeleteCanvas')(this.get('canvas'), {
+        transitionTo: ['team']
+      });
     },
 
     onUseTemplate() {
