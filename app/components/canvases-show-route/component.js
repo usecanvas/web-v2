@@ -219,9 +219,6 @@ export default Ember.Component.extend(WithDropzone, {
     blockReplacedLocally(index, block, newBlock) {
       const path = this.getPathToBlock(block, index);
 
-      newBlock.set(
-        'meta.creator_id', this.get('currentAccount.currentUser.id'));
-
       const op = [{
         p: path,
         ld: toShareDBBlock(block),
@@ -233,7 +230,6 @@ export default Ember.Component.extend(WithDropzone, {
 
     newBlockInsertedLocally(index, block) {
       const path = this.getPathToBlock(block, index);
-      block.set('meta.creator_id', this.get('currentAccount.currentUser.id'));
       const op = [{ p: path, li: toShareDBBlock(block) }];
       this.get('canvas.shareDBDoc').submitOp(op);
     },
