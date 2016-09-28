@@ -12,5 +12,20 @@ export default Ember.Component.extend(OAuth, {
   clientID: ENV.gitHubClientID,
   endpoint: 'https://github.com/login/oauth/authorize',
   redirectURL: ENV.gitHubRedirectURL,
-  scope: 'repo'.w()
+  scope: 'repo'.w(),
+
+  actions: {
+    openAuthorizeURL() {
+      const authWindow = window.open(
+        this.get('authorizeURL'),
+        'github-oauth',
+        'height=800,width=1000');
+
+      const isClosedInterval = setInterval(_ => {
+        if (!authWindow.closed) return;
+        window.location.reload();
+        clearInterval(isClosedInterval);
+      }, 1000);
+    }
+  }
 });

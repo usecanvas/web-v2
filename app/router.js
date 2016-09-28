@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('post-auth');
   this.route('login');
   this.route('logout');
   this.route('team', { path: '/:domain' }, function() {
