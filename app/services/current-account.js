@@ -10,6 +10,12 @@ export default Ember.Service.extend({
   currentAccount: null,
 
   /**
+   * The active team user.
+   * @member {CanvasWeb.User}
+   */
+  currentUser: null,
+
+  /**
    * The data store
    * @member {DS.Store}
    */

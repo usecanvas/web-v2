@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-const { attr } = DS;
+const { attr, belongsTo } = DS;
 
 /**
  * A URL unfurl
@@ -9,6 +9,7 @@ const { attr } = DS;
  * @extends DS.Model
  */
 export default DS.Model.extend({
+  fetched: attr(),
   fields: attr(),
   height: attr(),
   html: attr(),
@@ -20,5 +21,8 @@ export default DS.Model.extend({
   thumbnailUrl: attr(),
   title: attr(),
   type: attr(),
-  width: attr()
+  width: attr(),
+  url: attr(),
+
+  canvas: belongsTo('canvas')
 });
