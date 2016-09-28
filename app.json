@@ -20,7 +20,7 @@
     },
     "REALTIME_HOST": {
       "description": "A host pointing to the realtime service",
-      "development_value": "localhost:4001",
+      "development_value": "localhost:4001"
     },
     "SENTRY_DSN": {
       "description": "Key for posting errors and events to Sentry",
