@@ -11,9 +11,18 @@ export default Ember.Route.extend({
     return this.get('teamQuery').findByDomain(domain);
   },
 
-  afterModel(model) {
-    this.set('currentAccount.currentUser', model.get('user'));
-    return preload(model, 'canvases');
+  afterModel(team) {
+    /*
+     * Force Ember to fetch the user keyed by team ID for the current account
+     * and team.
+     */
+    return this.store
+      .findRecord('user', team.get('id'), { adapterOptions: { team } })
+      .then(user => {
+        team.set('accountUser', user);
+        this.set('currentAccount.currentUser', team.get('accountUser'));
+        return preload(team, 'canvases');
+      });
   },
 
   actions: {
@@ -28,15 +37,13 @@ export default Ember.Route.extend({
 
       const options = opts || {};
 
-      if (confirm(message)) {
-        return canvas.destroyRecord({
-          adapterOptions: { team: canvas.get('team') }
-        }).then(_ => {
-          if (options.transitionTo) {
-            this.transitionTo(...options.transitionTo);
-          }
-        });
-      }
+      if (!confirm(message)) return;
+
+      canvas.destroyRecord(
+        { adapterOptions: { team: canvas.get('team') } }
+      ).then(_ => {
+        if (options.transitionTo) this.transitionTo(...options.transitionTo);
+      });
     }
   }
 });

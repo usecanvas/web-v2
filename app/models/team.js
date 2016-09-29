@@ -10,7 +10,7 @@ export default DS.Model.extend({
   images: attr(),
 
   canvases: hasMany('canvas', { async: true }),
-  user: belongsTo('user', { async: true }),
+  accountUser: belongsTo('user', { async: true }),
 
   insertedAt: attr('date'),
   updatedAt: attr('date'),
