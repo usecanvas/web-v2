@@ -11,7 +11,7 @@ import OAuth from 'canvas-web/mixins/oauth';
 export default Ember.Component.extend(OAuth, {
   clientID: ENV.slackClientID,
   endpoint: 'https://slack.com/oauth/authorize',
-  redurectURL: ENV.slackRedirectURI,
+  redirectURL: ENV.slackRedirectURI,
   scope: 'identity.avatar identity.basic identity.team identity.email'.w(),
   state: 'identity'
 });
