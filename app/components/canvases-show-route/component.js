@@ -258,11 +258,7 @@ export default Ember.Component.extend(WithDropzone, {
     },
 
     unfurlBlock(block) {
-      return this.get('store').findRecord('unfurl', block.get('id'), {
-        adapterOptions: {
-          canvas: this.get('canvas')
-        }
-      });
+      return this.get('store').findRecord('unfurl', block.get('meta.url'));
     }
   }
 });

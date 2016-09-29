@@ -72,7 +72,9 @@ rules:
   lines-around-comment: 'off'
   lines-around-directive: error
   max-depth: error
-  max-len: error
+  max-len:
+    - error
+    - ignorePattern: '^import .*'
   max-lines:
     - error
     - max: 1000
