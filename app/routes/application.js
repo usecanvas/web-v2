@@ -59,6 +59,10 @@ export default Ember.Route.extend({
     });
   },
 
+  title(tokens) {
+    return tokens ? `${tokens.join(' - ')} - Canvas` : 'Canvas';
+  },
+
   /**
    * Redirect the user to the login screen if they are not authenticated and not
    * visiting an unauthenticated route.
