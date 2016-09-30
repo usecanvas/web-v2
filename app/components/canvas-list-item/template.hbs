@@ -1,14 +1,16 @@
 {{#link-to 'team.canvases.show' canvas local-class='link'}}
-  {{svg-jar 'Document' local-class='icon'}}
+  <div local-class="container">
+    {{svg-jar 'Document' local-class='icon'}}
 
-  <div local-class="content">
-    <div local-class="title">{{canvas.title}} {{#if canvas.isTemplate}}<span local-class="title-badge">Template</span>{{/if}}</div>
-    <div local-class="summary">{{canvas.summary}}</div>
-  </div>
+    <div local-class="content">
+      <div local-class="title">{{canvas.title}} {{#if canvas.isTemplate}}<span local-class="title-badge">Template</span>{{/if}}</div>
+      <div local-class="summary">{{canvas.summary}}</div>
+    </div>
 
-  <div local-class="actions">
-    <button local-class="actions-button" onclick={{action "onClickDelete"}}>
-      {{svg-jar "Delete" height="20" width="20"}}
-    </button>
+    <div local-class="actions">
+      <button local-class="actions-button" onclick={{action "onClickDelete"}}>
+        {{svg-jar "Delete" height="20" width="20"}}
+      </button>
+    </div>
   </div>
 {{/link-to}}
