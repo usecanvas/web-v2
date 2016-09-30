@@ -29,6 +29,10 @@ export default Ember.Route.extend({
     });
   },
 
+  titleToken(model) {
+    return model.get('title');
+  },
+
   afterModel(canvas) {
     return this.shareDBConnect(canvas.get('team'), canvas);
   },

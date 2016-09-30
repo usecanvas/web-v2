@@ -11,6 +11,10 @@ export default Ember.Route.extend({
     return this.get('teamQuery').findByDomain(domain);
   },
 
+  titleToken(team) {
+    return team.get('name');
+  },
+
   afterModel(team) {
     /*
      * Force Ember to fetch the user keyed by team ID for the current account
