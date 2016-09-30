@@ -1,17 +1,15 @@
 @value --light-gray from 'canvas-colors/styles/colors';
 
+@value --cell-padding: 1rem;
+
 .teams-show-route {
   display: flex;
   height: 100vh;
 }
 
-.cell-padding {
-  padding: 16px;
-}
-
 .aside {
-  composes: cell-padding;
   border-right: 1px solid --light-gray;
+  padding: --cell-padding;
 }
 
 .main {
@@ -22,8 +20,4 @@
 .nav {
   border-bottom: 1px solid --light-gray;
   font-size: 0.875rem;
-}
-
-.content {
-  composes: cell-padding;
 }

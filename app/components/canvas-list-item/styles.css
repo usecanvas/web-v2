@@ -5,9 +5,18 @@
 @value --gray from 'canvas-colors/styles/colors';
 @value --light-gray from 'canvas-colors/styles/colors';
 
+@value --cell-padding from 'canvas-web/components/teams-show-route/styles';
+
 .link {
+  display: block;
+  padding: 0 --cell-padding;
+}
+
+.container {
+  border-bottom: 1px solid --light-gray;
   align-items: center;
   display: flex;
+  padding: --cell-padding 0;
 }
 
 .icon {

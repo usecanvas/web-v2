@@ -3,6 +3,8 @@
 @value --green from 'canvas-colors/styles/colors';
 @value --light-gray from 'canvas-colors/styles/colors';
 
+@value --cell-padding from 'canvas-web/components/teams-show-route/styles';
+
 .team-nav {
   align-items: center;
   color: --dark-gray;
@@ -12,7 +14,7 @@
 }
 
 .section {
-  composes: cell-padding from 'canvas-web/components/teams-show-route/styles';
+  padding: --cell-padding;
 }
 
 .section--with-border {
