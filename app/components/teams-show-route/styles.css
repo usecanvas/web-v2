@@ -14,7 +14,8 @@
 
 .main {
   flex: 1;
-  overflow: scroll;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav {
