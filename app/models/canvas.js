@@ -17,6 +17,8 @@ export default DS.Model.extend({
   insertedAt: attr('date'),
   updatedAt: attr('date'),
 
+  creator: belongsTo('user', { async: true }),
+
   firstContentBlock: computed('blocks.[]',
                               'blocks.@each.blocks',
                               'blocks.@each.content', function() {
