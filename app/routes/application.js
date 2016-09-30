@@ -60,7 +60,8 @@ export default Ember.Route.extend({
   },
 
   title(tokens) {
-    return tokens ? `${tokens.join(' - ')} - Canvas` : 'Canvas';
+    tokens.push('Canvas');
+    return `${tokens.join(' - ')}`;
   },
 
   /**
