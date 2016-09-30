@@ -10,8 +10,6 @@
 .link {
   display: block;
   padding: 0 --cell-padding;
-  padding-bottom: 0;
-  padding-top: 0;
 }
 
 .container {
