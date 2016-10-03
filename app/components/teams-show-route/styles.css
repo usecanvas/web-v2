@@ -1,3 +1,4 @@
+@value --extra-light-gray from 'canvas-colors/styles/colors';
 @value --light-gray from 'canvas-colors/styles/colors';
 
 @value --cell-padding: 1rem;
@@ -8,6 +9,7 @@
 }
 
 .aside {
+  background: --extra-light-gray;
   border-right: 1px solid --light-gray;
   padding: --cell-padding;
 }
