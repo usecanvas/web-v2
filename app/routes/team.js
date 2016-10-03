@@ -25,7 +25,7 @@ export default Ember.Route.extend({
       .then(user => {
         team.set('accountUser', user);
         this.set('currentAccount.currentUser', team.get('accountUser'));
-        return preload(team, ['canvases', 'channels']);
+        return preload(team, ['canvases']);
       });
   },
 
