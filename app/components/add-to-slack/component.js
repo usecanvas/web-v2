@@ -1,3 +1,4 @@
+import ENV from 'canvas-web/config/environment';
 import Ember from 'ember';
 import OAuth from 'canvas-web/mixins/oauth';
 
