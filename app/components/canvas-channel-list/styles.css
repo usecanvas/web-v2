@@ -1,0 +1,11 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.one-liner {
+  align-items: center;
+  display: inline-flex;
+}
+
+.icon {
+  fill: --dark-gray;
+  margin-right: 0.5rem;
+}
