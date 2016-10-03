@@ -21,7 +21,7 @@
 
 .icon {
   display: block;
-  fill: --dark-gray;
+  fill: --gray;
   height: 32px;
   margin-right: 0.25em;
   width: 32px;
@@ -87,7 +87,7 @@
 }
 
 .is-template .icon {
-  fill: --gray;
+  fill: --light-gray;
 }
 
 .is-template .title {

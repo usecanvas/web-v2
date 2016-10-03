@@ -3,6 +3,10 @@
 
 @value --cell-padding: 1rem;
 
+body {
+  background: --extra-light-gray;
+}
+
 .teams-show-route {
   display: flex;
   height: 100vh;
@@ -10,11 +14,14 @@
 
 .aside {
   background: --extra-light-gray;
-  border-right: 1px solid --light-gray;
   padding: --cell-padding;
 }
 
 .main {
+  background: white;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  box-shadow: -1px 0 2px --light-gray;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -31,6 +38,7 @@
 }
 
 .canvas-list-filter {
+  border-right: 1px solid --light-gray;
   min-width: 14rem;
   position: relative;
 }
