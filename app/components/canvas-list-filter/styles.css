@@ -1,0 +1,53 @@
+@value --blue from 'canvas-colors/styles/colors';
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
+
+.canvas-list-filter {
+  font-size: 0.875rem;
+}
+
+.section {
+  margin: 0 0 2rem;
+}
+
+.heading {
+  color: --dark-gray;
+  margin: 0 0 0.5rem;
+}
+
+.item {
+  border-radius: 4px;
+  color: inherit;
+  display: block;
+  font-weight: 600;
+  padding: 0.25rem 0;
+}
+
+.item:hover {
+  color: --blue;
+}
+
+.item--large {
+  font-size: 1rem;
+}
+
+.item--selected {
+  color: --blue;
+  position: relative;
+}
+
+.item--selected::before {
+  background: --blue;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  bottom: 0;
+  content: "";
+  left: -1rem;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.channel-prefix {
+  color: --gray;
+}

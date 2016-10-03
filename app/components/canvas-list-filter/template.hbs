@@ -1,0 +1,11 @@
+<section local-class="section">
+  <a href="#" local-class="item item--large item--selected">All Canvases</a>
+</section>
+
+<section local-class="section">
+  <h5 local-class="heading">Channels</h5>
+
+  {{#each channels as |channel|}}
+    <a href="#" local-class="item"><span local-class="channel-prefix">#</span> {{channel}}</a>
+  {{/each}}
+</section>

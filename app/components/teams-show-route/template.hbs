@@ -15,8 +15,14 @@
   </div>
 
   <div local-class="content">
-    {{canvas-list
-      team=team
-      canvases=team.canvases}}
+    <div local-class="canvas-list-filter">
+      {{canvas-list-filter}}
+    </div>
+
+    <div local-class="canvas-list">
+      {{canvas-list
+        team=team
+        canvases=team.canvases}}
+    </div>
   </div>
 </div>

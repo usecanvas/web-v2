@@ -25,6 +25,7 @@
 .summary {
   align-items: center;
   display: flex;
+  min-width: 10rem;
 }
 
 .avatar {

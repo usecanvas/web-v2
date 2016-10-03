@@ -22,3 +22,16 @@
   border-bottom: 1px solid --light-gray;
   font-size: 0.875rem;
 }
+
+.content {
+  display: flex;
+}
+
+.canvas-list-filter {
+  min-width: 12rem;
+  padding: --cell-padding;
+}
+
+.canvas-list {
+  flex: 1;
+}
