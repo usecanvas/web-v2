@@ -2,6 +2,8 @@ import Ember from 'ember';
 import Raven from 'raven';
 import RSVP from 'rsvp';
 
+const { inject } = Ember;
+
 export default Ember.Service.extend({
   /**
    * The logged-in account.
@@ -16,10 +18,16 @@ export default Ember.Service.extend({
   currentUser: null,
 
   /**
+   * The CSRF token service
+   * @member {Ember.Service}
+   */
+  csrfToken: inject.service(),
+
+  /**
    * The data store
    * @member {DS.Store}
    */
-  store: Ember.inject.service(),
+  store: inject.service(),
 
   /**
    * Fetch and set the logged-in account.
@@ -45,7 +53,10 @@ export default Ember.Service.extend({
    */
   logout() {
     return new RSVP.Promise(resolve => {
-      return Ember.$.ajax('/v1/session', { type: 'DELETE' }).then(_ => {
+      return Ember.$.ajax('/v1/session', {
+        headers: { 'x-csrf-token': this.get('csrfToken.token') },
+        type: 'DELETE'
+      }).then(_ => {
         this.set('currentAccount', null);
         resolve(null);
       });
