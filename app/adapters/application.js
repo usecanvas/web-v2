@@ -1,14 +1,19 @@
 import { runInDebug, warn } from 'ember-data/-private/debug';
 import { TimeoutError, AbortError } from 'ember-data/adapters/errors';
+import Cookies from 'cookies';
 import DS from 'ember-data';
 import Ember from 'ember';
 import parseResponseHeaders from 'ember-data/-private/utils/parse-response-headers';
 
-const { run } = Ember;
+const { computed, run } = Ember;
 const { Promise } = Ember.RSVP;
 
 export default DS.JSONAPIAdapter.extend({
   namespace: '/v1',
+
+  headers: computed(function() {
+    return { 'x-csrf-token': Cookies.get('csrf_token') };
+  }).volatile(),
 
   ajax(url, type, options) {
     const adapter = this; // eslint-disable-line consistent-this
