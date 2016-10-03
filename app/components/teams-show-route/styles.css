@@ -3,10 +3,6 @@
 
 @value --cell-padding: 1rem;
 
-body {
-  background: --extra-light-gray;
-}
-
 .teams-show-route {
   display: flex;
   height: 100vh;
