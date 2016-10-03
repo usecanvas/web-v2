@@ -16,14 +16,18 @@
 
   <div local-class="content">
     <div local-class="canvas-list-filter">
-      {{canvas-list-filter
-        channels=team.channels}}
+      <div local-class="canvas-list-filter-scroll">
+        {{canvas-list-filter
+          channels=team.channels}}
+      </div>
     </div>
 
     <div local-class="canvas-list">
-      {{canvas-list
-        team=team
-        canvases=team.canvases}}
+      <div local-class="canvas-list-scroll">
+        {{canvas-list
+          team=team
+          canvases=team.canvases}}
+      </div>
     </div>
   </div>
 </div>
