@@ -9,8 +9,9 @@ export default DS.Model.extend({
   name: attr(),
   images: attr(),
 
-  canvases: hasMany('canvas', { async: true }),
   accountUser: belongsTo('user', { async: true }),
+  canvases: hasMany('canvas', { async: true }),
+  channels: hasMany('slackChannel', { async: true }),
 
   insertedAt: attr('date'),
   updatedAt: attr('date'),
