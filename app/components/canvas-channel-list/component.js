@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   channelList: computed('canvasChannels.[]', function() {
     return this.get('canvasChannels')
                .mapBy('name')
-               .join(' ');
+               .join(', ');
   }),
 
   selectedChannels: computed(function() {

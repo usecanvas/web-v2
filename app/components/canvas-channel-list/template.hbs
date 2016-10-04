@@ -1,18 +1,29 @@
 {{#if isEditingChannels}}
-  {{#power-select-multiple
-    options=channels
-    selected=selectedChannels
-    placeholder="Add channels..."
-    onchange=(action (mut selectedChannels))
-    as |channel|}}
-    {{channel.name}}
-  {{/power-select-multiple}}
+  <div local-class="channel-editor">
+    <div local-class="channel-editor-select">
+      {{#power-select-multiple
+        options=channels
+        selected=selectedChannels
+        placeholder="Add channels..."
+        onchange=(action (mut selectedChannels))
+        as |channel|}}
+        {{channel.name}}
+      {{/power-select-multiple}}
+    </div>
 
-  <button onclick={{action 'persistChannels'}}>Done</button>
+    <button local-class="done-button" onclick={{action 'persistChannels'}}>Done</button>
+  </div>
 {{else}}
-  <div local-class="one-liner">
+  <div local-class="channel-summary">
     {{svg-jar 'slack-mark' height='16' width='16' local-class='icon'}}
     {{channelList}}
-    <button onclick={{action (toggle 'isEditingChannels' this)}}>Edit</button>
+
+    <button local-class="edit-button edit-button--placeholder" onclick={{action (toggle 'isEditingChannels' this)}}>
+      {{#if channelList}}
+        Edit
+      {{else}}
+        Add Channels
+      {{/if}}
+    </button>
   </div>
 {{/if}}

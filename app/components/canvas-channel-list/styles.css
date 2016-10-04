@@ -1,6 +1,31 @@
+@value --blue from 'canvas-colors/styles/colors';
 @value --dark-gray from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
 
-.one-liner {
+.edit-button,
+.done-button {
+  composes: button-reset from 'canvas-web/styles/utilities';
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.edit-button--placeholder {
+  color: --gray;
+}
+
+.done-button {
+  color: --blue;
+}
+
+.channel-editor {
+  display: flex;
+}
+
+.channel-editor-select {
+  flex: 1;
+}
+
+.channel-summary {
   align-items: center;
   display: inline-flex;
 }
