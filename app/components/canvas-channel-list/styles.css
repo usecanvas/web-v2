@@ -1,6 +1,7 @@
 @value --blue from 'canvas-colors/styles/colors';
 @value --dark-gray from 'canvas-colors/styles/colors';
 @value --gray from 'canvas-colors/styles/colors';
+@value --black from 'canvas-colors/styles/colors';
 
 .channel-summary-list,
 .edit-button,
@@ -11,20 +12,13 @@
 .edit-button,
 .done-button {
   composes: button-reset from 'canvas-web/styles/utilities';
+  color: --blue;
   cursor: pointer;
 }
 
 .edit-button {
   transition: opacity 0.2s ease-in-out;
   opacity: 0;
-}
-
-.edit-button--placeholder {
-  color: --gray;
-}
-
-.done-button {
-  color: --blue;
 }
 
 .channel-editor {
@@ -35,13 +29,33 @@
   flex: 1;
 }
 
+.icon {
+  fill: --gray;
+}
+
 .channel-summary {
   align-items: center;
   display: inline-flex;
 }
 
-.icon {
-  fill: --dark-gray;
+.channel-summary-list-item:link,
+.channel-summary-list-item:visited {
+  color: --dark-gray;
+  font-weight: 600;
+}
+
+.channel-summary-list-item:hover {
+  color: --black;
+}
+
+.channel-summary-list-item::after {
+  color: --gray;
+  content: ', ';
+  font-weight: normal;
+}
+
+.channel-summary-list-item:last-child::after {
+  content: '';
 }
 
 .channel-summary:hover .edit-button {
