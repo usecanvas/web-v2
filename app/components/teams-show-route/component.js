@@ -1,12 +1,13 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import ChannelIDs from 'canvas-web/mixins/channel-ids';
 import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import layout from './template';
 import styles from './styles';
 
 const { inject, run } = Ember;
 
-export default Ember.Component.extend(WithDropzone, {
+export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   layout,
   localClassNames: ['teams-show-route'],
   styles,
@@ -37,7 +38,10 @@ export default Ember.Component.extend(WithDropzone, {
     template.isTemplate = template.is_template;
 
     return this.get('store')
-               .createRecord('canvas', Object.assign(template, { team }))
+               .createRecord('canvas', Object.assign(template, {
+                 slackChannelIds: this.get('channelIDs'),
+                 team
+               }))
                .save();
   },
 

@@ -126,6 +126,7 @@ export default Ember.Route.extend({
       const canvas = this.get('controller.model');
 
       return this.get('store').createRecord('canvas', {
+        slackChannelIds: canvas.get('slackChannelIds'),
         team: canvas.get('team'),
         template: canvas
       }).save().then(newCanvas => {

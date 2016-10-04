@@ -1,6 +1,7 @@
+import ChannelIDs from 'canvas-web/mixins/channel-ids';
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(ChannelIDs, {
   localClassNames: ['new-canvas-button'],
   store: Ember.inject.service(),
 
@@ -9,7 +10,10 @@ export default Ember.Component.extend({
   click() {
     const team = this.get('team');
 
-    this.get('store').createRecord('canvas', { team }).save().then(canvas => {
+    this.get('store').createRecord('canvas', {
+      slackChannelIds: this.get('channelIDs'),
+      team
+    }).save().then(canvas => {
       this.sendAction('didCreateCanvas', canvas);
       this.get('didCreateCanvas')(canvas);
     });

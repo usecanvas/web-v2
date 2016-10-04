@@ -19,6 +19,11 @@ export default ApplicationSerializer.extend({
    * @override
    */
   serializeAttribute(snapshot, json, key, attributes) {
+    if (snapshot.record.get('isNew')) {
+      this._super(...arguments);
+      return;
+    }
+
     if (key === 'blocks') return;
 
     if (snapshot.record.get('isNew') || snapshot.changedAttributes()[key]) {

@@ -8,7 +8,7 @@ export default DS.Model.extend({
   blocks: attr(),
   isTemplate: attr(),
   nativeVersion: attr(),
-  slackChannelIds: attr(),
+  slackChannelIds: attr({ defaultValue: [] }),
   type: attr(),
   version: attr(),
 
