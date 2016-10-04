@@ -7,6 +7,7 @@ const { computed } = Ember;
 export default DS.Model.extend({
   domain: attr(),
   name: attr(),
+  hasSlackToken: attr(),
   images: attr(),
 
   accountUser: belongsTo('user', { async: true }),
