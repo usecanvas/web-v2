@@ -3,8 +3,9 @@
     <div local-class="channel-editor-select">
       {{#power-select-multiple
         options=channels
+        placeholder='Add channels...'
+        searchField='name'
         selected=selectedChannels
-        placeholder="Add channels..."
         onchange=(action (mut selectedChannels))
         as |channel|}}
         {{channel.name}}
@@ -24,7 +25,7 @@
     </div>
 
     <button local-class="edit-button edit-button--placeholder" onclick={{action (toggle 'isEditingChannels' this)}}>
-      {{#if channelList}}
+      {{#if canvasChannels}}
         Edit
       {{else}}
         Add Channels
