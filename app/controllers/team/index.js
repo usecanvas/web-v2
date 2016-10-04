@@ -7,7 +7,9 @@ export default Ember.Controller.extend({
   channel: null,
 
   filteredCanvases: computed(
-    'channel', 'model.canvases.[]', 'model.channels.[]', function() {
+    'channel',
+    'model.channels.[]',
+    'model.canvases.@each.slackChannelIds', function() {
       const canvases = this.get('model.canvases');
       const channel = this.get('model.channels')
                           .findBy('name', this.get('channel'));
