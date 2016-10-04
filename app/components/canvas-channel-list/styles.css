@@ -18,6 +18,9 @@
 
 .edit-button {
   transition: opacity 0.2s ease-in-out;
+}
+
+.edit-button--hidden {
   opacity: 0;
 }
 
@@ -60,4 +63,8 @@
 
 .channel-summary:hover .edit-button {
   opacity: 1;
+}
+
+.button-label--muted {
+  color: --gray;
 }
