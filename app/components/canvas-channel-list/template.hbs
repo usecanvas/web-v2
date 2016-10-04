@@ -16,7 +16,7 @@
 {{else}}
   <div local-class="channel-summary">
     {{svg-jar 'slack-mark' height='16' width='16' local-class='icon'}}
-    {{channelList}}
+    <span local-class="channel-summary-list">{{channelList}}</span>
 
     <button local-class="edit-button edit-button--placeholder" onclick={{action (toggle 'isEditingChannels' this)}}>
       {{#if channelList}}
