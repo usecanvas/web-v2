@@ -1,14 +1,14 @@
 {{#if isEditingChannels}}
   {{#power-select-multiple
     options=channels
-    selected=channel
+    selected=selectedChannels
     placeholder="Add channels..."
-    onchange=(action (mut channel))
+    onchange=(action (mut selectedChannels))
     as |channel|}}
-    {{channel}}
+    {{channel.name}}
   {{/power-select-multiple}}
 
-  <button onclick={{action (toggle 'isEditingChannels' this)}}>Done</button>
+  <button onclick={{action 'persistChannels'}}>Done</button>
 {{else}}
   <div local-class="one-liner">
     {{svg-jar 'slack-mark' height='16' width='16' local-class='icon'}}

@@ -48,6 +48,8 @@
                              onUseTemplate=(route-action 'createFromTemplate')
                              onDeleteCanvas=(route-action 'onDeleteCanvas')
                              isTemplate=canvas.isTemplate)
-      titleBylineComponent=(component 'canvas-title-byline' canvas=canvas)}}
+      titleBylineComponent=(component 'canvas-title-byline'
+                            canvas=canvas
+                            updateCanvasChannels=(route-action 'updateCanvasChannels'))}}
   </div>
 </div>

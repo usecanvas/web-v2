@@ -3,12 +3,28 @@ import Ember from 'ember';
 const { computed } = Ember;
 
 export default Ember.Component.extend({
-  channels: [
-    '#apple',
-    '#general'
-  ],
+  isEditingChannels: false,
 
-  channelList: computed('channels.[]', function() {
-    return this.get('channels').join(', ');
-  })
+  canvasChannels: computed('channelIds.[]', 'channels.[]', function() {
+    return this.get('channelIds')
+               .map(id => this.get('channels').findBy('id', id))
+               .compact();
+  }),
+
+  channelList: computed('canvasChannels.[]', function() {
+    return this.get('canvasChannels')
+               .mapBy('name')
+               .join(' ');
+  }),
+
+  selectedChannels: computed(function() {
+    return this.get('canvasChannels');
+  }),
+
+  actions: {
+    persistChannels() {
+      this.set('isEditingChannels', false);
+      this.get('updateCanvasChannels')(this.get('selectedChannels'));
+    }
+  }
 });

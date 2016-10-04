@@ -3,7 +3,9 @@ import Ember from 'ember';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 import Raven from 'raven';
+import RSVP from 'rsvp';
 import ShareDB from 'sharedb';
+import preload from 'canvas-web/lib/preload';
 
 const { computed, run } = Ember;
 const MAX_RECONNECTS = 10;
@@ -29,12 +31,15 @@ export default Ember.Route.extend({
     });
   },
 
-  titleToken(model) {
-    return model.get('title');
+  afterModel(canvas) {
+    return RSVP.all([
+      preload(canvas.get('team'), ['channels']),
+      this.shareDBConnect(canvas.get('team'), canvas)
+    ]);
   },
 
-  afterModel(canvas) {
-    return this.shareDBConnect(canvas.get('team'), canvas);
+  titleToken(model) {
+    return model.get('title');
   },
 
   createSocket() {
@@ -126,6 +131,13 @@ export default Ember.Route.extend({
       }).save().then(newCanvas => {
         this.transitionTo('team.canvases.show', newCanvas);
       });
+    },
+
+    updateCanvasChannels(channels) {
+      const canvas = this.get('controller.model');
+      const ids = channels.mapBy('id');
+      canvas.set('slackChannelIds', ids);
+      canvas.save();
     }
   }
 });
