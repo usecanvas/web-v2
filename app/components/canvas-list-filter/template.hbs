@@ -1,0 +1,13 @@
+<section local-class="section">
+  {{link-to 'All Canvases' 'team' (query-params channel=null) class=(unless channel styles.item--selected) local-class='item item--large'}}
+</section>
+
+<section local-class="section">
+  <h5 local-class="heading">Channels</h5>
+
+  {{#each channels as |channelItem|}}
+    {{#link-to 'team' (query-params channel=channelItem.name) class=(if (eq channelItem.name channel) styles.item--selected) local-class='item'}}
+      <span local-class="channel-prefix">#</span> {{channelItem.name}}
+    {{/link-to}}
+  {{/each}}
+</section>

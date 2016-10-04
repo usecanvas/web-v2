@@ -13,6 +13,7 @@ module.exports = function(environment) {
     apiURL: process.env.API_URL,
     slackClientID: process.env.SLACK_CLIENT_ID,
     slackRedirectURI: slackRedirectURI(process.env.NODE_ENV),
+    slackAddRedirectURI: addToSlackRedirectURI(process.env.NODE_ENV),
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -51,6 +52,16 @@ module.exports = function(environment) {
 
   return ENV;
 };
+
+function addToSlackRedirectURI(env) {
+  if (env === 'production') {
+    const segments = process.env.API_URL.split('/');
+    const apiURL = segments.slice(0, segments.length - 2).join('/');
+    return `${apiURL}/oauth/slack/add-to-slack/callback`;
+  }
+
+  return 'http://localhost:4000/oauth/slack/add-to-slack/callback';
+}
 
 function slackRedirectURI(env) {
   if (env === 'production') {

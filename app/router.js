@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('login');
   this.route('logout');
   this.route('team', { path: '/:domain' }, function() {
+    this.route('slack', { path: '/slack' });
     this.route('canvases.show', { path: '/:id' });
   });
 

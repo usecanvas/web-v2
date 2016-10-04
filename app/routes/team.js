@@ -16,6 +16,11 @@ export default Ember.Route.extend({
   },
 
   afterModel(team) {
+    if (!team.get('hasSlackToken')) {
+      this.transitionTo('team.slack');
+      return;
+    }
+
     /*
      * Force Ember to fetch the user keyed by team ID for the current account
      * and team.
@@ -25,7 +30,7 @@ export default Ember.Route.extend({
       .then(user => {
         team.set('accountUser', user);
         this.set('currentAccount.currentUser', team.get('accountUser'));
-        return preload(team, 'canvases');
+        return preload(team, ['canvases']);
       });
   },
 

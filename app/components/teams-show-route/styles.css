@@ -1,3 +1,4 @@
+@value --extra-light-gray from 'canvas-colors/styles/colors';
 @value --light-gray from 'canvas-colors/styles/colors';
 
 @value --cell-padding: 1rem;
@@ -8,17 +9,58 @@
 }
 
 .aside {
-  border-right: 1px solid --light-gray;
+  background: --extra-light-gray;
   padding: --cell-padding;
 }
 
 .main {
+  background: white;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  box-shadow: -1px 0 2px --light-gray;
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .nav {
   border-bottom: 1px solid --light-gray;
   font-size: 0.875rem;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+}
+
+.canvas-list-filter {
+  border-right: 1px solid --light-gray;
+  min-width: 14rem;
+  position: relative;
+}
+
+.canvas-list-filter-scroll {
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: --cell-padding;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.canvas-list {
+  flex: 1;
+  position: relative;
+}
+
+.canvas-list-scroll {
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
