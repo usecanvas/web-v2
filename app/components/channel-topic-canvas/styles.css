@@ -1,0 +1,16 @@
+@value --extra-light-gray from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
+
+@value --cell-padding from 'canvas-web/components/teams-show-route/styles';
+
+.channel-topic-canvas {
+  background: --extra-light-gray;
+  padding: --cell-padding;
+}
+
+.content {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px --gray;
+  padding: 1.5rem;
+}
