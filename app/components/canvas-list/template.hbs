@@ -6,6 +6,9 @@
   </div>
 {{else}}
   <div local-class="empty-state">
-    {{canvas-list-empty-state}}
+    {{canvas-list-empty-state
+      channel=channel
+      team=team
+      didCreateCanvas=didCreateCanvas}}
   </div>
 {{/each}}

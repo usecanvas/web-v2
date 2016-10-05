@@ -11,7 +11,15 @@
   width: 2rem;
 }
 
+.new-canvas-button--inline {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+}
+
 .icon {
   display: block;
   fill: white;
+  height: 100%;
+  width: 100%;
 }
