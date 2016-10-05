@@ -15,6 +15,7 @@ export default DS.Model.extend({
   team: belongsTo('team', { async: true }),
   template: belongsTo('canvas', { async: true }),
 
+  editedAt: attr('date'),
   insertedAt: attr('date'),
   updatedAt: attr('date'),
 

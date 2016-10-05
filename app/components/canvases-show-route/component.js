@@ -199,6 +199,11 @@ export default Ember.Component.extend(WithDropzone, {
     return this.getPreviousBlock(parent);
   },
 
+  submitOp(op) {
+    this.set('canvas.editedAt', new Date());
+    this.get('canvas.shareDBDoc').submitOp(op);
+  },
+
   actions: {
     blockContentUpdatedLocally(block) {
       const lastContent = block.get('lastContent');
@@ -206,8 +211,7 @@ export default Ember.Component.extend(WithDropzone, {
       const diff = differ.diff_main(lastContent, content);
       const blockPath = this.getPathToBlock(block).concat('content');
       const op = generateOpFromDiff(diff, blockPath);
-      this.set('canvas.updatedAt', new Date());
-      this.get('canvas.shareDBDoc').submitOp(op);
+      this.submitOp(op);
     },
 
     blockMetaReplacedLocally(block, metaPath, oldValue, newValue) {
@@ -219,7 +223,7 @@ export default Ember.Component.extend(WithDropzone, {
         oi: newValue
       }];
 
-      this.get('canvas.shareDBDoc').submitOp(op);
+      this.submitOp(op);
     },
 
     blockReplacedLocally(index, block, newBlock) {
@@ -231,19 +235,19 @@ export default Ember.Component.extend(WithDropzone, {
         li: toShareDBBlock(newBlock)
       }];
 
-      this.get('canvas.shareDBDoc').submitOp(op);
+      this.submitOp(op);
     },
 
     newBlockInsertedLocally(index, block) {
       const path = this.getPathToBlock(block, index);
       const op = [{ p: path, li: toShareDBBlock(block) }];
-      this.get('canvas.shareDBDoc').submitOp(op);
+      this.submitOp(op);
     },
 
     blockDeletedLocally(index, block) {
       const path = this.getPathToBlock(block, index);
       const op = [{ p: path, ld: toShareDBBlock(block) }];
-      this.get('canvas.shareDBDoc').submitOp(op);
+      this.submitOp(op);
     },
 
     fetchTemplates() {
