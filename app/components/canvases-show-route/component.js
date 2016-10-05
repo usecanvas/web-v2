@@ -8,7 +8,7 @@ import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import { getTargetBlock, parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/sharedb-path';
 
 const differ = new DMP();
-const { inject, on, run } = Ember;
+const { inject, observer, on, run } = Ember;
 
 export default Ember.Component.extend(WithDropzone, {
   localClassNames: ['canvases-show-route'],
@@ -43,6 +43,12 @@ export default Ember.Component.extend(WithDropzone, {
       throw err;
     });
   },
+
+  scrollToTop: observer('canvas', function() {
+    run.scheduleOnce('afterRender', _ => {
+      this.$(`.${this.get('styles.main')}`).get(0).scrollTop = 0;
+    });
+  }),
 
   applyOpToLocalModel(op) {
     for (const comp of op) {
