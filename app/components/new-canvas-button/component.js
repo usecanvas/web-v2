@@ -3,6 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend(ChannelIDs, {
   localClassNames: ['new-canvas-button'],
+  localClassNameBindings: ['inline:new-canvas-button--inline'],
   store: Ember.inject.service(),
 
   didCreateCanvas: Ember.K,

@@ -31,8 +31,10 @@
         {{/if}}
 
         {{canvas-list
+          canvases=filteredCanvases
+          channel=channel
           team=team
-          canvases=filteredCanvases}}
+          didCreateCanvas=(action 'didCreateCanvas')}}
       </div>
     </div>
   </div>
