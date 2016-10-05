@@ -26,6 +26,10 @@
 
     <div local-class="canvas-list">
       <div local-class="canvas-list-scroll">
+        {{#if channelModel.topicCanvas.isFulfilled}}
+          {{channel-topic-canvas canvas=channelModel.topicCanvas}}
+        {{/if}}
+
         {{canvas-list
           team=team
           canvases=filteredCanvases}}

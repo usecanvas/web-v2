@@ -1,0 +1,13 @@
+<div local-class="content">
+  <div local-class="canvas">
+    {{canvas-editor-next
+      editingEnabled=false
+      canvas=canvas
+      unfurlBlock=(action 'unfurlBlock')
+      githubAuthComponent=(component 'github-oauth')}}
+  </div>
+
+  <div local-class="footer">
+    {{link-to 'Show more' 'team.canvases.show' canvas}}
+  </div>
+</div>

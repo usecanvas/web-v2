@@ -11,6 +11,7 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   layout,
   localClassNames: ['teams-show-route'],
   styles,
+  topicCanvas: true,
 
   store: inject.service(),
   teamsList: inject.service(),

@@ -19,5 +19,9 @@ export default Ember.Controller.extend({
       return canvases.filter(canvas => {
         return canvas.get('slackChannelIds').includes(channel.get('id'));
       });
-    })
+    }),
+
+  channelModel: computed('channel', 'model.channels.[]', function() {
+    return this.get('model.channels').findBy('name', this.get('channel'));
+  })
 });
