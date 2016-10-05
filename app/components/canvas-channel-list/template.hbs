@@ -28,11 +28,13 @@
     {{/if}}
 
     <button class="{{if canvasChannels styles.edit-button--hidden}}" local-class="edit-button edit-button--placeholder" onclick={{action (toggle 'isEditingChannels' this)}}>
-      {{#if canvasChannels}}
-        Edit
-      {{else}}
-        <span local-class="button-label--muted">Add Channels</span>
-      {{/if}}
+      {{#unless static}}
+        {{#if canvasChannels}}
+          Edit
+        {{else}}
+          <span local-class="button-label--muted">Add Channels</span>
+        {{/if}}
+      {{/unless}}
     </button>
   </div>
 {{/if}}
