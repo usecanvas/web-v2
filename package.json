@@ -11,7 +11,7 @@
     "build": "ember build",
     "lint": "eslint app config tests",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test -r dot"
   },
   "repository": "",
   "engines": {
@@ -49,7 +49,7 @@
     "ember-moment": "7.0.0-beta.3",
     "ember-power-select": "1.0.0-beta.21",
     "ember-resolver": "^2.0.3",
-    "ember-route-action-helper": "2.0.0",
+    "ember-route-action-helper": "1.0.0",
     "ember-svg-jar": "0.9.3",
     "loader.js": "^4.0.1"
   }

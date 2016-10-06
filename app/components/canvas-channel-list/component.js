@@ -3,6 +3,7 @@ import Ember from 'ember';
 const { computed } = Ember;
 
 export default Ember.Component.extend({
+  channelIds: computed(_ => []),
   localClassNames: ['canvas-channel-list'],
   isEditingChannels: false,
 

@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('canvas', 'Unit | Model | canvas', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: 'model:team model:user'.w()
 });
 
 test('it exists', function(assert) {

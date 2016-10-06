@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 
 moduleForComponent('channel-topic-canvas',
                    'Integration | Component | channel topic canvas', {
@@ -9,17 +10,7 @@ moduleForComponent('channel-topic-canvas',
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{channel-topic-canvas}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#channel-topic-canvas}}
-      template block text
-    {{/channel-topic-canvas}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.set('canvas', RealtimeCanvas.create({ slackChannelIds: [] }));
+  this.render(hbs`{{channel-topic-canvas canvas=canvas}}`);
+  assert.ok(/Last edited/.test(this.$().text().trim()));
 });

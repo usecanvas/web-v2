@@ -11,15 +11,5 @@ test('it renders', function(assert) {
   // Handle any actions with this.on('myAction', function(val) { ... });
 
   this.render(hbs`{{canvas-list-filter}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#canvas-list-filter}}
-      template block text
-    {{/canvas-list-filter}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(/All Canvases/.test(this.$().text()));
 });
