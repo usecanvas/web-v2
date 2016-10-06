@@ -1,7 +1,8 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('logged-in-user', 'Integration | Component | logged in user', {
+moduleForComponent('logged-in-user',
+                   'Integration | Component | logged in user', {
   integration: true
 });
 

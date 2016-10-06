@@ -6,7 +6,7 @@ module('Unit | Mixin | oauth');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let OauthObject = Ember.Object.extend(OauthMixin);
-  let subject = OauthObject.create();
+  const OauthObject = Ember.Object.extend(OauthMixin);
+  const subject = OauthObject.create();
   assert.ok(subject);
 });

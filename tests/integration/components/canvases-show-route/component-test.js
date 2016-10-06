@@ -1,7 +1,8 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('canvases-show-route', 'Integration | Component | canvases show route', {
+moduleForComponent('canvases-show-route',
+                   'Integration | Component | canvases show route', {
   integration: true
 });
 

@@ -7,6 +7,6 @@ moduleFor('service:teams-list', 'Unit | Service | teams list', {
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  let service = this.subject();
+  const service = this.subject();
   assert.ok(service);
 });

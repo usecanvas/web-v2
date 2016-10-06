@@ -6,6 +6,6 @@ moduleFor('route:post-auth', 'Unit | Route | post auth', {
 });
 
 test('it exists', function(assert) {
-  let route = this.subject();
+  const route = this.subject();
   assert.ok(route);
 });

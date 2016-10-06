@@ -7,6 +7,6 @@ moduleFor('adapter:user', 'Unit | Adapter | user', {
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  let adapter = this.subject();
+  const adapter = this.subject();
   assert.ok(adapter);
 });

@@ -6,7 +6,7 @@ module('Unit | Mixin | with dropzone');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let WithDropzoneObject = Ember.Object.extend(WithDropzoneMixin);
-  let subject = WithDropzoneObject.create();
+  const WithDropzoneObject = Ember.Object.extend(WithDropzoneMixin);
+  const subject = WithDropzoneObject.create();
   assert.ok(subject);
 });

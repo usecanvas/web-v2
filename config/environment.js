@@ -1,10 +1,10 @@
-/* jshint node: true */
+/* eslint-env node */
 
 module.exports = function(environment) {
-  var ENV = {
+  const ENV = {
     modulePrefix: 'canvas-web',
     debugWebSockets: false,
-    environment: environment,
+    environment,
     gitHubClientID: process.env.GITHUB_CLIENT_ID,
     gitHubRedirectURL: process.env.GITHUB_REDIRECT_URL,
     rootURL: '/',
@@ -46,8 +46,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-
+  if (environment === 'production') { // eslint-disable-line no-empty
   }
 
   return ENV;

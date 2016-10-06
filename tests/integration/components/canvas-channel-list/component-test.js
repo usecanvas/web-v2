@@ -1,7 +1,8 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('canvas-channel-list', 'Integration | Component | canvas channel list', {
+moduleForComponent('canvas-channel-list',
+                   'Integration | Component | canvas channel list', {
   integration: true
 });
 

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "ember build",
+    "lint": "eslint app config tests",
     "start": "ember server",
     "test": "ember test"
   },

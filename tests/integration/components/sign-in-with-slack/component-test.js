@@ -1,7 +1,8 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('sign-in-with-slack', 'Integration | Component | sign in with slack', {
+moduleForComponent('sign-in-with-slack',
+                   'Integration | Component | sign in with slack', {
   integration: true
 });
 

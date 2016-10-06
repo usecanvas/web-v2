@@ -6,6 +6,6 @@ moduleFor('route:logout', 'Unit | Route | logout', {
 });
 
 test('it exists', function(assert) {
-  let route = this.subject();
+  const route = this.subject();
   assert.ok(route);
 });

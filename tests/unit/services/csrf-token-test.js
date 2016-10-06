@@ -7,6 +7,6 @@ moduleFor('service:csrf-token', 'Unit | Service | csrf token', {
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  let service = this.subject();
+  const service = this.subject();
   assert.ok(service);
 });
