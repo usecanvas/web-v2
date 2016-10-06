@@ -1,4 +1,4 @@
-# Canvas-web
+# Canvas Web [![CircleCI](https://circleci.com/gh/usecanvas/pro-web.svg?style=svg&circle-token=1179a600a98c51819d50e3aa6c9124323da53593)](https://circleci.com/gh/usecanvas/pro-web)
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
