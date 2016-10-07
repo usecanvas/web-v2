@@ -63,41 +63,7 @@
 }
 
 .filter {
-  position: relative;
-}
-
-.filter-content {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 4px;
-  color: white;
-  display: flex;
-  left: 0;
-  padding: 0.75rem 1rem;
-  position: absolute;
-  right: 0;
-  top: 1.5rem;
-  width: 100%;
-}
-
-.filter-content input {
-  background: transparent;
-  border: none;
-  color: inherit;
-  flex: 1;
-  font-size: 1.125rem;
-  outline: none;
-  padding: 0;
-}
-
-.filter-close {
-  composes: button-reset from 'canvas-web/styles/utilities';
-  height: 1.5rem;
-  width: 1.5rem;
-}
-
-.filter-close svg {
-  fill: white;
+  margin-top: 3rem;
 }
 
 .editor {

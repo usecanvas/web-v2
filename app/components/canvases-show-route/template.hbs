@@ -33,13 +33,8 @@
 
   {{#if showFilter}}
     <div local-class="filter">
-      <div local-class="filter-content">
-        {{input type='text' value=filterTerm placeholder='Filter canvas...' autofocus=true}}
-
-        <button onclick={{action (toggle-action 'showFilter' this)}} local-class='filter-close'>
-          {{svg-jar 'Close' height=24 width=24}}
-        </button>
-      </div>
+      {{canvas-block-filter filterTerm=(mut filterTerm)
+                            onCloseFilter=(toggle-action 'showFilter' this)}}
     </div>
   {{/if}}
 

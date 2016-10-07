@@ -1,0 +1,29 @@
+.canvas-block-filter {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  padding: 0.75rem 1rem;
+  width: 100%;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  color: inherit;
+  flex: 1;
+  font-size: 1.125rem;
+  outline: none;
+  padding: 0;
+}
+
+.close {
+  composes: button-reset from 'canvas-web/styles/utilities';
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.close-icon {
+  fill: white;
+}
