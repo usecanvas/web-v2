@@ -31,10 +31,23 @@
     </div>
   {{/if}}
 
+  {{#if showFilter}}
+    <div local-class="filter">
+      <div local-class="filter-content">
+        {{input type='text' value=filterTerm placeholder='Filter canvas...' autofocus=true}}
+
+        <button onclick={{action (toggle-action 'showFilter' this)}} local-class='filter-close'>
+          {{svg-jar 'Close' height=24 width=24}}
+        </button>
+      </div>
+    </div>
+  {{/if}}
+
   <div local-class="editor">
     {{canvas-editor-next
-      editingEnabled=connected
+      editingEnabled=(unless isFiltered connected)
       fetchTemplates=(action 'fetchTemplates')
+      filterTerm=filterTerm
       onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
       onBlockReplacedLocally=(action 'blockReplacedLocally')
       onNewBlockInsertedLocally=(action 'newBlockInsertedLocally')
@@ -47,6 +60,7 @@
                              canvas=canvas
                              onUseTemplate=(route-action 'createFromTemplate')
                              onDeleteCanvas=(route-action 'onDeleteCanvas')
+                             toggleShowFilter=(toggle 'showFilter' this)
                              isTemplate=canvas.isTemplate)
       titleBylineComponent=(component 'canvas-title-byline'
                             canvas=canvas
