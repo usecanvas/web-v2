@@ -11,7 +11,7 @@
 {{#if isOpen}}
   <div local-class="main">
     <div local-class="main-content">
-      {{yield}}
+      {{yield (hash closeDropdown=(action 'closeDropdown'))}}
     </div>
   </div>
 {{/if}}
