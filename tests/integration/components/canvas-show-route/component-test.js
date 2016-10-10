@@ -3,8 +3,8 @@ import hbs from 'htmlbars-inline-precompile';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ShareDB from 'sharedb';
 
-moduleForComponent('canvases-show-route',
-                   'Integration | Component | canvases show route', {
+moduleForComponent('canvas-show-route',
+                   'Integration | Component | canvas show route', {
   integration: true
 });
 
@@ -21,6 +21,6 @@ test('it renders', function(assert) {
         meta: {}
       }]
     }));
-  this.render(hbs`{{canvases-show-route canvas=canvas}}`);
+  this.render(hbs`{{canvas-show-route canvas=canvas}}`);
   assert.ok(/Hello, World/.test(this.$().text()));
 });
