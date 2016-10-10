@@ -1,7 +1,8 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('canvas-pulse-route', 'Integration | Component | canvas pulse route', {
+moduleForComponent('canvas-pulse-route',
+                   'Integration | Component | canvas pulse route', {
   integration: true
 });
 

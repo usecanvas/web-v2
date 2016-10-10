@@ -1,5 +1,9 @@
-<div>
-  {{#if pulse.actor}}
+<div local-class="main">
+  <div local-class="icon">
+    {{svg-jar 'Username' height=24 width=24}}
+  </div>
+
+  {{#if pulse.actor }}
     {{#if pulse.actor.link}}
       <a href="{{pulse.actor.link}}">{{pulse.actor.name}}</a>
     {{else}}
@@ -7,13 +11,7 @@
     {{/if}}
   {{/if}}
 
-  {{pulse.action}}
-
-  {{~#if pulse.provider~}}
-    on <a href="{{pulse.provider.link}}">{{pulse.provider.name}}</a>
-  {{~/if~}}
-
-  .
+  {{pulse.action}}{{#if pulse.provider}} on <a href="{{pulse.provider.link}}">{{pulse.provider.name}}</a>{{/if}}.</div>
 </div>
 
 {{#if pulse.attachment}}
