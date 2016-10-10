@@ -36,7 +36,7 @@ export default Ember.Route.extend({
 
   actions: {
     didCreateCanvas(canvas) {
-      this.transitionTo('team.canvases.show',
+      this.transitionTo('team.canvas',
         canvas.get('team.domain'), canvas.get('id'));
     },
 

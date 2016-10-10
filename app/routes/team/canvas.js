@@ -130,7 +130,7 @@ export default Ember.Route.extend({
         team: canvas.get('team'),
         template: canvas
       }).save().then(newCanvas => {
-        this.transitionTo('team.canvases.show', newCanvas);
+        this.transitionTo('team.canvas', newCanvas);
       });
     },
 
