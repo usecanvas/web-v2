@@ -1,5 +1,3 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
-  layout: null
-});
+export default Ember.Route.extend({});
