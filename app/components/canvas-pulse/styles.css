@@ -1,0 +1,28 @@
+@value --black from 'canvas-colors/styles/colors';
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.canvas-pulse {
+  color: --dark-gray;
+  position: relative;
+}
+
+.canvas-pulse::before {
+  background: --light-gray;
+  bottom: 0.125rem;
+  content: '';
+  left: -1rem;
+  position: absolute;
+  top: 0.125rem;
+  width: 0.125rem;
+}
+
+.canvas-pulse a {
+  color: --black;
+  font-weight: 600;
+}
+
+.item {
+  margin-bottom: 2rem;
+  position: relative;
+}

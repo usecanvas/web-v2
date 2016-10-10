@@ -1,0 +1,27 @@
+@value --extra-light-gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.canvas-pulse-item::before {
+  background: --light-gray;
+  border-radius: 50%;
+  border: 2px solid white;
+  content: '';
+  height: 1rem;
+  left: -1.4rem;
+  position: absolute;
+  top: 0.0625rem;
+  width: 1rem;
+}
+
+.canvas-pulse-item:last-child {
+  margin-bottom: 0;
+}
+
+.attachment {
+  box-shadow: 0 1px 1px --extra-light-gray;
+  border: 1px solid --light-gray;
+  border-radius: 4px;
+  font-size: 0.875em;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+}
