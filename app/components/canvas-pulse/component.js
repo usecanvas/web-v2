@@ -5,55 +5,55 @@ export default Ember.Component.extend({
 
   pulse: [
     {
-      icon: 'Bookmark',
-      actor: {
-        name: '@soffes'
-      },
-      action: 'referenced this canvas',
-      provider: {
-        name: 'Github',
-        link: '#'
-      },
-      attachment: {}
+      type: 'reference_added',
+
+      attachment: {
+        type: 'unfurl',
+        title: 'The Canvas Title',
+        text: 'The canvas summary that we also show in the canvas list',
+        url: 'https://github.com/usecanvas/pro-web/issues/2',
+        authorName: '@jclem',
+        providerUrl: 'https://github.com/',
+        providerName: 'Github',
+        providerIconUrl: 'https://s3.amazonaws.com/canvas-assets/provider-icons/github.png'
+      }
     },
     {
-      icon: 'Bookmark',
-      actor: {
-        name: 'Max Schoening',
-        link: '#'
-      },
-      action: 'referenced this canvas',
-      provider: {
-        name: 'Slack',
-        link: '#'
-      },
-      attachment: {}
+      type: 'reference_added',
+
+      attachment: {
+        type: 'unfurl',
+        title: 'The Canvas Title',
+        text: 'The canvas summary that we also show in the canvas list',
+        url: 'https://pro.usecanvas.com/usecanvas/76Ax31GQWYur5Q7nReI0Hy',
+        authorUrl: '#',
+        authorName: 'Oren Teich',
+        providerUrl: 'https://pro.usecanvas.com/',
+        providerName: 'Canvas',
+        providerIconUrl: 'https://s3.amazonaws.com/canvas-assets/provider-icons/canvas.png',
+        fields: [
+          {
+            label: 'Progress',
+            short: true,
+            value: 0.0
+          }
+        ]
+      }
     },
     {
-      icon: 'Bookmark',
-      actor: {
-        name: 'Oren Teich',
-        link: '#'
-      },
-      action: 'referenced this canvas',
-      attachment: {}
-    },
-    {
-      icon: 'Chat',
-      actor: {
-        name: 'Jonathan Clem',
-        link: '#'
-      },
-      action: 'kicked off a discussion',
-      attachment: {}
-    },
-    {
-      icon: 'Add',
-      actor: {
-        name: 'Oren Teich',
-        link: '#'
-      },
-      action: 'created this canvas'
+      type: 'canvas_created',
+
+      attachment: {
+        type: 'unfurl',
+        title: 'The Canvas Title',
+        text: 'The canvas summary that we also show in the canvas list',
+        url: 'https://pro.usecanvas.com/usecanvas/76Ax31GQWYur5Q7nReI0Hy',
+        authorUrl: '#',
+        authorName: 'Oren Teich',
+        providerUrl: 'https://pro.usecanvas.com/',
+        providerName: 'Canvas',
+        providerIconUrl: 'https://s3.amazonaws.com/canvas-assets/provider-icons/canvas.png',
+      }
     }
   ]
 });

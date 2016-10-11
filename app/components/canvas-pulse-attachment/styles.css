@@ -1,0 +1,113 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --extra-light-gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+@value --red from 'canvas-colors/styles/colors';
+
+.canvas-pulse-attachment {
+  box-shadow: 0 1px 1px --extra-light-gray;
+  border: 1px solid --light-gray;
+  border-radius: 4px;
+  font-size: 0.875em;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+}
+
+.main {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.provider-icon {
+  display: block;
+  fill: --dark-gray;
+  height: 24px;
+  margin-right: 8px;
+  width: 24px;
+}
+
+.provider-icon--error {
+  fill: --red;
+}
+
+.text {
+  color: --dark-gray;
+  margin-top: 0.25em;
+}
+
+.thumbnail {
+  border-radius: 4px;
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.field {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.field--short {
+  width: 50%;
+}
+
+.field-title {
+  font-weight: 600;
+}
+
+.field-value {
+  color: --dark-gray;
+}
+
+.labels {
+  display: flex;
+  font-size: 0.875em;
+  margin-top: 0.5rem;
+}
+
+.label {
+  align-items: center;
+  border-radius: 3px;
+  display: flex;
+  margin-right: 0.5em;
+}
+
+.label-icon {
+  margin-right: 0.25em;
+}
+
+.auth-component {
+  background: --extra-light-gray;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 1px 1px --light-gray inset;
+  text-align: center;
+}
+
+.auth-component a:link,
+.auth-component a:visited {
+  color: --dark-gray;
+}
+
+.component--needs-auth {
+  padding: 0;
+}
+
+.component--needs-auth .main,
+.component--needs-auth .auth-component {
+  padding: 0.75rem;
+}

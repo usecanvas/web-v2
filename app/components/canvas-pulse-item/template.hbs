@@ -1,21 +1,21 @@
 <div local-class="container">
-  {{svg-jar pulse.icon height=24 width=24 local-class='icon'}}
+  {{svg-jar iconName height=24 width=24 local-class='icon'}}
 
   <div local-class="main">
     <div class="summary" local-class="summary" data-test-summary>
-      {{#if pulse.actor }}
-        {{#if pulse.actor.link}}
-          <a href="{{pulse.actor.link}}">{{pulse.actor.name}}</a>
+      {{#if pulse.attachment.authorName}}
+        {{#if pulse.attachment.authorUrl}}
+          <a href="{{pulse.actor.link}}">{{pulse.attachment.authorName}}</a>
         {{else}}
-          <strong>{{pulse.actor.name}}</strong>
+          <strong>{{pulse.attachment.authorName}}</strong>
         {{/if}}
       {{/if}}
 
-      {{pulse.action}}{{#if pulse.provider}} on <a href="{{pulse.provider.link}}">{{pulse.provider.name}}</a>{{/if}}.
+      {{actionString}}{{#unless hideProvider}} on <a href="{{pulse.attachment.providerUrl}}">{{pulse.attachment.providerName}}</a>{{/unless}}.
     </div>
 
     {{#if pulse.attachment}}
-      <div local-class="attachment"></div>
+      {{canvas-pulse-attachment unfurled=pulse.attachment}}
     {{/if}}
   </div>
 </div>
