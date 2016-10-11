@@ -8,11 +8,13 @@ import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import { getTargetBlock, parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/sharedb-path';
 
 const differ = new DMP();
-const { inject, observer, on, run } = Ember;
+const { computed, inject, observer, on, run } = Ember;
 
 export default Ember.Component.extend(WithDropzone, {
   localClassNames: ['canvases-show-route'],
   currentAccount: inject.service(),
+  isFiltered: computed.bool('filterTerm'),
+  showFilter: false,
   store: inject.service(),
 
   bindOpEvents: on('didInsertElement', function() {
