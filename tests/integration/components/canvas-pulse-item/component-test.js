@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import testSelector from 'canvas-web/tests/helpers/ember-test-selectors';
 
 moduleForComponent('canvas-pulse-item',
                    'Integration | Component | canvas pulse item', {
@@ -7,19 +8,22 @@ moduleForComponent('canvas-pulse-item',
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('pulse', {
+    icon: 'Bookmark',
+    actor: {
+      name: 'Author'
+    },
+    action: 'referenced this canvas',
+    provider: {
+      name: 'Provider',
+      link: '#'
+    },
+    attachment: {}
+  });
 
-  this.render(hbs`{{canvas-pulse-item}}`);
+  this.render(hbs`{{canvas-pulse-item pulse=pulse}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#canvas-pulse-item}}
-      template block text
-    {{/canvas-pulse-item}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$(testSelector('summary')).text()
+    .replace(/\s+/gm, ' ')
+    .trim(), 'Author referenced this canvas on Provider.');
 });
