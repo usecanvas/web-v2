@@ -7,19 +7,7 @@ moduleForComponent('canvas-pulse-route',
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
   this.render(hbs`{{canvas-pulse-route}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#canvas-pulse-route}}
-      template block text
-    {{/canvas-pulse-route}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().trim().includes('referenced this canvas'), '');
 });

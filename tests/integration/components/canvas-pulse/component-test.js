@@ -1,24 +1,50 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import testSelector from 'canvas-web/tests/helpers/ember-test-selectors';
 
 moduleForComponent('canvas-pulse', 'Integration | Component | canvas pulse', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('it renders a list of items', function(assert) {
+  this.set('pulse', [
+    {
+      icon: 'Bookmark',
+      actor: {
+        name: '@user'
+      },
+      action: 'referenced this canvas',
+      provider: {
+        name: 'Provider1',
+        link: '#'
+      },
+      attachment: {}
+    },
+    {
+      icon: 'Bookmark',
+      actor: {
+        name: 'User1',
+        link: '#'
+      },
+      action: 'referenced this canvas',
+      provider: {
+        name: 'Provider2',
+        link: '#'
+      },
+      attachment: {}
+    },
+    {
+      icon: 'Bookmark',
+      actor: {
+        name: 'User2',
+        link: '#'
+      },
+      action: 'referenced this canvas',
+      attachment: {}
+    },
+  ]);
 
-  this.render(hbs`{{canvas-pulse}}`);
+  this.render(hbs`{{canvas-pulse pulse=pulse}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#canvas-pulse}}
-      template block text
-    {{/canvas-pulse}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$(testSelector('item')).length, 3);
 });
