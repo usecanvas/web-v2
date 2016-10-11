@@ -6,7 +6,6 @@ export default Ember.Component.extend({
   pulse: [
     {
       type: 'reference_added',
-
       attachment: {
         type: 'unfurl',
         title: 'The Canvas Title',
@@ -20,7 +19,6 @@ export default Ember.Component.extend({
     },
     {
       type: 'reference_added',
-
       attachment: {
         type: 'unfurl',
         title: 'The Canvas Title',
@@ -42,7 +40,6 @@ export default Ember.Component.extend({
     },
     {
       type: 'canvas_created',
-
       attachment: {
         type: 'unfurl',
         title: 'The Canvas Title',

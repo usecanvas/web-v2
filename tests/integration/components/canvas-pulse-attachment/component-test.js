@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import testSelector from 'canvas-web/tests/helpers/ember-test-selectors';
 
 moduleForComponent('canvas-pulse-attachment',
                    'Integration | Component | canvas pulse attachment', {
@@ -7,19 +8,18 @@ moduleForComponent('canvas-pulse-attachment',
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('unfurled', {
+    type: 'unfurl',
+    title: 'The Unfurl Title',
+    text: 'The unfurl summary',
+    url: 'http://example.com/item',
+    authorUrl: '#',
+    authorName: 'Author',
+    providerUrl: 'http://example.com/',
+    providerName: 'Provider'
+  });
 
-  this.render(hbs`{{canvas-pulse-attachment}}`);
+  this.render(hbs`{{canvas-pulse-attachment unfurled=unfurled}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#canvas-pulse-attachment}}
-      template block text
-    {{/canvas-pulse-attachment}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$(testSelector('title')).text().trim(), 'The Unfurl Title');
 });

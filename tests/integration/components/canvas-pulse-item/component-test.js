@@ -9,16 +9,17 @@ moduleForComponent('canvas-pulse-item',
 
 test('it renders', function(assert) {
   this.set('pulse', {
-    icon: 'Bookmark',
-    actor: {
-      name: 'Author'
-    },
-    action: 'referenced this canvas',
-    provider: {
-      name: 'Provider',
-      link: '#'
-    },
-    attachment: {}
+    type: 'reference_added',
+    attachment: {
+      type: 'unfurl',
+      title: 'The Unfurl Title',
+      text: 'The unfurl summary',
+      url: 'http://example.com/item',
+      authorUrl: '#',
+      authorName: 'Author',
+      providerUrl: 'http://example.com/',
+      providerName: 'Provider',
+    }
   });
 
   this.render(hbs`{{canvas-pulse-item pulse=pulse}}`);

@@ -9,39 +9,53 @@ moduleForComponent('canvas-pulse', 'Integration | Component | canvas pulse', {
 test('it renders a list of items', function(assert) {
   this.set('pulse', [
     {
-      icon: 'Bookmark',
-      actor: {
-        name: '@user'
-      },
-      action: 'referenced this canvas',
-      provider: {
-        name: 'Provider1',
-        link: '#'
-      },
-      attachment: {}
+      type: 'reference_added',
+      attachment: {
+        type: 'unfurl',
+        title: 'The Canvas Title',
+        text: 'The canvas summary that we also show in the canvas list',
+        url: 'https://github.com/usecanvas/pro-web/issues/2',
+        authorName: '@jclem',
+        providerUrl: 'https://github.com/',
+        providerName: 'Github',
+        providerIconUrl: 'https://s3.amazonaws.com/canvas-assets/provider-icons/github.png'
+      }
     },
     {
-      icon: 'Bookmark',
-      actor: {
-        name: 'User1',
-        link: '#'
-      },
-      action: 'referenced this canvas',
-      provider: {
-        name: 'Provider2',
-        link: '#'
-      },
-      attachment: {}
+      type: 'reference_added',
+      attachment: {
+        type: 'unfurl',
+        title: 'The Canvas Title',
+        text: 'The canvas summary that we also show in the canvas list',
+        url: 'https://pro.usecanvas.com/usecanvas/76Ax31GQWYur5Q7nReI0Hy',
+        authorUrl: '#',
+        authorName: 'Oren Teich',
+        providerUrl: 'https://pro.usecanvas.com/',
+        providerName: 'Canvas',
+        providerIconUrl: 'https://s3.amazonaws.com/canvas-assets/provider-icons/canvas.png',
+        fields: [
+          {
+            label: 'Progress',
+            short: true,
+            value: 0.0
+          }
+        ]
+      }
     },
     {
-      icon: 'Bookmark',
-      actor: {
-        name: 'User2',
-        link: '#'
-      },
-      action: 'referenced this canvas',
-      attachment: {}
-    },
+      type: 'canvas_created',
+      attachment: {
+        type: 'unfurl',
+        title: 'The Canvas Title',
+        text: 'The canvas summary that we also show in the canvas list',
+        url: 'https://pro.usecanvas.com/usecanvas/76Ax31GQWYur5Q7nReI0Hy',
+        authorUrl: '#',
+        authorName: 'Oren Teich',
+        providerUrl: 'https://pro.usecanvas.com/',
+        providerName: 'Canvas',
+        providerIconUrl: 'https://s3.amazonaws.com/canvas-assets/provider-icons/canvas.png',
+      }
+    }
   ]);
 
   this.render(hbs`{{canvas-pulse pulse=pulse}}`);
