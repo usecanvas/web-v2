@@ -4,11 +4,11 @@ const { $, on } = Ember;
 
 export default Ember.Component.extend({
   filterTerm: '',
-  inputClass: 'js-input',
+  inputSelector: '.js-input',
   localClassNames: ['canvas-block-filter'],
 
   focusInput: on('didInsertElement', function() {
-    $(`.${this.get('inputClass')}`).focus();
+    $(`${this.get('inputSelector')}`).focus();
   }),
 
   actions: {
