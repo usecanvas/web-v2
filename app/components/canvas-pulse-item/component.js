@@ -5,6 +5,7 @@ const { computed } = Ember;
 export default Ember.Component.extend({
   localClassNames: ['canvas-pulse-item'],
   hideProvider: computed.equal('pulse.attachment.providerName', 'Canvas'),
+  hideAttachment: computed.equal('pulse.type', 'canvas_created'),
 
   actionString: computed('pulse.type', function() {
     const type = this.get('pulse.type');
