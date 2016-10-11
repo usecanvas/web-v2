@@ -9,11 +9,11 @@
     </div>
 
     <div local-class="aside-section">
-      {{#link-to 'team.canvas.show' local-class='aside-item aside-item--active'}}
+      {{#link-to 'team.canvas.show' local-class='aside-item' activeClass=styles.aside-item--active}}
         {{svg-jar "AlignLeft" height="32" width="32"}}
       {{/link-to}}
 
-      {{#link-to 'team.canvas.pulse' local-class='aside-item'}}
+      {{#link-to 'team.canvas.pulse' local-class='aside-item' activeClass=styles.aside-item--active}}
         {{svg-jar "Activity" height="32" width="32"}}
       {{/link-to}}
 
