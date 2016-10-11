@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { $, on } = Ember;
+const { on } = Ember;
 
 export default Ember.Component.extend({
   filterTerm: '',
@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   localClassNames: ['canvas-block-filter'],
 
   focusInput: on('didInsertElement', function() {
-    $(`${this.get('inputSelector')}`).focus();
+    this.$(`${this.get('inputSelector')}`).focus();
   }),
 
   actions: {
