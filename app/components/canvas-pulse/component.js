@@ -5,10 +5,11 @@ export default Ember.Component.extend({
 
   pulse: [
     {
+      icon: 'Bookmark',
       actor: {
         name: '@soffes'
       },
-      action: 'mentioned this canvas',
+      action: 'referenced this canvas',
       provider: {
         name: 'Github',
         link: '#'
@@ -16,11 +17,12 @@ export default Ember.Component.extend({
       attachment: {}
     },
     {
+      icon: 'Bookmark',
       actor: {
         name: 'Max Schoening',
         link: '#'
       },
-      action: 'mentioned this canvas',
+      action: 'referenced this canvas',
       provider: {
         name: 'Slack',
         link: '#'
@@ -28,14 +30,16 @@ export default Ember.Component.extend({
       attachment: {}
     },
     {
+      icon: 'Bookmark',
       actor: {
         name: 'Oren Teich',
         link: '#'
       },
-      action: 'references this canvas',
+      action: 'referenced this canvas',
       attachment: {}
     },
     {
+      icon: 'Chat',
       actor: {
         name: 'Jonathan Clem',
         link: '#'
@@ -44,6 +48,7 @@ export default Ember.Component.extend({
       attachment: {}
     },
     {
+      icon: 'Add',
       actor: {
         name: 'Oren Teich',
         link: '#'

@@ -1,20 +1,25 @@
 @value --extra-light-gray from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
 @value --light-gray from 'canvas-colors/styles/colors';
 
-.canvas-pulse-item::before {
-  background: --light-gray;
-  border-radius: 50%;
-  border: 2px solid white;
-  content: '';
-  height: 1rem;
-  left: -1.4rem;
-  position: absolute;
-  top: 0.0625rem;
-  width: 1rem;
+.container {
+  display: flex;
 }
 
-.canvas-pulse-item:last-child {
-  margin-bottom: 0;
+.icon {
+  background: white;
+  outline: 2px solid white;
+  display: block;
+  fill: --gray;
+  margin-right: 0.25rem;
+}
+
+.main {
+  flex: 1;
+}
+
+.summary {
+  line-height: 1.5;
 }
 
 .attachment {

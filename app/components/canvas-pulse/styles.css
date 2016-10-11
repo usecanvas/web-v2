@@ -9,11 +9,11 @@
 
 .canvas-pulse::before {
   background: --light-gray;
-  bottom: 0.125rem;
+  bottom: 0;
   content: '';
-  left: -1rem;
+  left: 0.6875rem;
   position: absolute;
-  top: 0.125rem;
+  top: 0;
   width: 0.125rem;
 }
 
@@ -25,4 +25,8 @@
 .item {
   margin-bottom: 2rem;
   position: relative;
+}
+
+.item:last-child {
+  margin-bottom: 0;
 }

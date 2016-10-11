@@ -1,19 +1,21 @@
-<div local-class="main">
-  <div local-class="icon">
-    {{svg-jar 'Username' height=24 width=24}}
-  </div>
+<div local-class="container">
+  {{svg-jar pulse.icon height=24 width=24 local-class='icon'}}
 
-  {{#if pulse.actor }}
-    {{#if pulse.actor.link}}
-      <a href="{{pulse.actor.link}}">{{pulse.actor.name}}</a>
-    {{else}}
-      <strong>{{pulse.actor.name}}</strong>
+  <div local-class="main">
+    <div local-class="summary">
+      {{#if pulse.actor }}
+        {{#if pulse.actor.link}}
+          <a href="{{pulse.actor.link}}">{{pulse.actor.name}}</a>
+        {{else}}
+          <strong>{{pulse.actor.name}}</strong>
+        {{/if}}
+      {{/if}}
+
+      {{pulse.action}}{{#if pulse.provider}} on <a href="{{pulse.provider.link}}">{{pulse.provider.name}}</a>{{/if}}.
+    </div>
+
+    {{#if pulse.attachment}}
+      <div local-class="attachment"></div>
     {{/if}}
-  {{/if}}
-
-  {{pulse.action}}{{#if pulse.provider}} on <a href="{{pulse.provider.link}}">{{pulse.provider.name}}</a>{{/if}}.</div>
+  </div>
 </div>
-
-{{#if pulse.attachment}}
-  <div local-class="attachment"></div>
-{{/if}}
