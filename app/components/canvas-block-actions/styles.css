@@ -1,0 +1,3 @@
+.button {
+  composes: button-reset from 'canvas-web/styles/utilities';
+}
