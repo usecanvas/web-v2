@@ -17,6 +17,8 @@ export default Ember.Component.extend({
         return 'referenced this canvas';
       case 'reference_removed':
         return 'removed a reference to this canvas';
+      case 'mentioned':
+        return 'mentioned this canvas';
       default:
         throw new Error(`unrecognized event type: ${type}`);
     }
