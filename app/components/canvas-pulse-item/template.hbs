@@ -3,19 +3,19 @@
 
   <div local-class="main">
     <div class="summary" local-class="summary" data-test-summary>
-      {{#if pulse.attachment.authorName}}
-        {{#if pulse.attachment.authorUrl}}
-          <a href="{{pulse.actor.link}}">{{pulse.attachment.authorName}}</a>
+      {{#if pulseEvent.referencer.name}}
+        {{#if pulseEvent.referencer.url}}
+          <a href="{{pulseEvent.referencer.url}}">{{pulseEvent.referencer.name}}</a>
         {{else}}
-          <strong>{{pulse.attachment.authorName}}</strong>
+          <strong>{{pulseEvent.referencer.name}}</strong>
         {{/if}}
       {{/if}}
 
-      {{actionString}}{{#unless hideProvider}} on <a href="{{pulse.attachment.providerUrl}}">{{pulse.attachment.providerName}}</a>{{/unless}}.
+      {{actionString}}{{#unless hideProvider}} on <a href="{{pulseEvent.providerUrl}}">{{pulseEvent.providerName}}</a>{{/unless}}.
     </div>
 
-    {{#if (and pulse.attachment (not hideAttachment))}}
-      {{canvas-pulse-attachment unfurled=pulse.attachment}}
+    {{#if (and pulseEvent.url (not hideUnfurl))}}
+      {{canvas-pulse-unfurl unfurled=pulseEvent.unfurled}}
     {{/if}}
   </div>
 </div>

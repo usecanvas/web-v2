@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-const { attr, belongsTo } = DS;
+const { attr, belongsTo, hasMany } = DS;
 const { computed, get } = Ember;
 
 export default DS.Model.extend({
@@ -14,6 +14,7 @@ export default DS.Model.extend({
 
   team: belongsTo('team', { async: true }),
   template: belongsTo('canvas', { async: true }),
+  pulseEvents: hasMany('pulseEvent', { async: true }),
 
   editedAt: attr('date'),
   insertedAt: attr('date'),

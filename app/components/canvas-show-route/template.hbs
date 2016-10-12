@@ -12,6 +12,13 @@
   </div>
 {{/if}}
 
+{{#if showFilter}}
+  <div local-class="filter">
+    {{canvas-block-filter filterTerm=(mut filterTerm)
+                          onCloseFilter=(toggle-action 'showFilter' this)}}
+  </div>
+{{/if}}
+
 <div local-class="editor">
   {{canvas-editor-next
     editingEnabled=(unless isFiltered connected)
@@ -29,6 +36,7 @@
                            canvas=canvas
                            onUseTemplate=(route-action 'createFromTemplate')
                            onDeleteCanvas=(route-action 'onDeleteCanvas')
+                           toggleShowFilter=(toggle 'showFilter' this)
                            isTemplate=canvas.isTemplate)
     titleBylineComponent=(component 'canvas-title-byline'
                           canvas=canvas

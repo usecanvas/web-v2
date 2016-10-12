@@ -3,7 +3,7 @@
 @value --light-gray from 'canvas-colors/styles/colors';
 @value --red from 'canvas-colors/styles/colors';
 
-.canvas-pulse-attachment {
+.canvas-pulse-unfurl {
   box-shadow: 0 1px 1px --extra-light-gray;
   border: 1px solid --light-gray;
   border-radius: 4px;
