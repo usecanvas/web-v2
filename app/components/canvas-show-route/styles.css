@@ -1,0 +1,25 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.message {
+  position: relative;
+}
+
+.message-content {
+  color: --dark-gray;
+  font-size: 0.75rem;
+  font-style: italic;
+  left: 0;
+  padding: 1rem 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+
+.filter {
+  margin-top: 3rem;
+}
+
+.editor {
+  margin: 4rem auto;
+  max-width: 47rem;
+}

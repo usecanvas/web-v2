@@ -1,0 +1,23 @@
+@value --extra-light-gray from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.container {
+  display: flex;
+}
+
+.icon {
+  background: white;
+  outline: 2px solid white;
+  display: block;
+  fill: --gray;
+  margin-right: 0.25rem;
+}
+
+.main {
+  flex: 1;
+}
+
+.summary {
+  line-height: 1.5;
+}

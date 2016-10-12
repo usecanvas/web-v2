@@ -5,6 +5,7 @@ const { attr, belongsTo, hasMany } = DS;
 const { computed } = Ember;
 
 export default DS.Model.extend({
+  avatarUrl: attr(),
   email: attr(),
   images: attr(),
   name: attr(),

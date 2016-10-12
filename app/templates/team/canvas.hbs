@@ -1,0 +1,31 @@
+<div local-class="container">
+  <aside local-class="aside">
+    <div local-class="aside-section">
+      <div local-class="aside-item">
+        {{#link-to 'team'}}
+          {{svg-jar "ArrowLeft" height="32" width="32"}}
+        {{/link-to}}
+      </div>
+    </div>
+
+    <div local-class="aside-section">
+      {{#link-to 'team.canvas.show' local-class='aside-item' activeClass=styles.aside-item--active}}
+        {{svg-jar "AlignLeft" height="32" width="32"}}
+      {{/link-to}}
+
+      {{#link-to 'team.canvas.pulse' local-class='aside-item' activeClass=styles.aside-item--active}}
+        {{svg-jar "Activity" height="32" width="32"}}
+      {{/link-to}}
+
+      <div local-class="aside-item aside-item--disabled">
+        {{svg-jar "Gear" height="32" width="32"}}
+      </div>
+    </div>
+
+    <div local-class="aside-item"></div>
+  </aside>
+
+  <main local-class="main">
+    {{outlet}}
+  </main>
+</div>

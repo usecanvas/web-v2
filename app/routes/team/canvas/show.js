@@ -3,9 +3,7 @@ import Ember from 'ember';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 import Raven from 'raven';
-import RSVP from 'rsvp';
 import ShareDB from 'sharedb';
-import preload from 'canvas-web/lib/preload';
 
 const { computed, run } = Ember;
 const MAX_RECONNECTS = 10;
@@ -21,25 +19,12 @@ export default Ember.Route.extend({
     return `${protocol}//${host}`;
   }),
 
-  model({ id }) {
-    const domain = this.paramsFor('team').domain;
-
-    return this.get('teamQuery').findByDomain(domain).then(team => {
-      return this.get('store').findRecord('canvas', id, {
-        adapterOptions: { team }
-      });
-    });
+  model() {
+    return this.modelFor('team.canvas');
   },
 
   afterModel(canvas) {
-    return RSVP.all([
-      preload(canvas.get('team'), ['channels']),
-      this.shareDBConnect(canvas.get('team'), canvas)
-    ]);
-  },
-
-  titleToken(model) {
-    return model.get('title');
+    return this.shareDBConnect(canvas.get('team'), canvas);
   },
 
   createSocket() {
@@ -130,7 +115,7 @@ export default Ember.Route.extend({
         team: canvas.get('team'),
         template: canvas
       }).save().then(newCanvas => {
-        this.transitionTo('team.canvases.show', newCanvas);
+        this.transitionTo('team.canvas.show', newCanvas);
       });
     },
 

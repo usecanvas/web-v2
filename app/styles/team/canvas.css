@@ -2,7 +2,7 @@
 @value --gray from 'canvas-colors/styles/colors';
 @value --light-gray from 'canvas-colors/styles/colors';
 
-.canvases-show-route {
+.container {
   display: flex;
   height: 100vh;
 }
@@ -17,6 +17,7 @@
 }
 
 .aside-item {
+  display: block;
   margin-bottom: 1rem;
 }
 
@@ -45,28 +46,4 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   padding: 0 2rem;
-}
-
-.message {
-  position: relative;
-}
-
-.message-content {
-  color: --dark-gray;
-  font-size: 0.75rem;
-  font-style: italic;
-  left: 0;
-  padding: 1rem 0;
-  position: absolute;
-  right: 0;
-  text-align: center;
-}
-
-.filter {
-  margin-top: 3rem;
-}
-
-.editor {
-  margin: 4rem auto;
-  max-width: 47rem;
 }

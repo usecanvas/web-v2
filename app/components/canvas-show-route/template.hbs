@@ -1,0 +1,44 @@
+{{drop-zone
+  message="Drop to fill canvas from template!"
+  draggingOver=(mut draggingOver)
+  showDropzone=showDropzone}}
+
+{{#if canvas.isTemplate}}
+  <div local-class="message">
+    <div local-class="message-content">
+      You’re editing a template. To create a new canvas click <strong>Use
+      Template</strong>.
+    </div>
+  </div>
+{{/if}}
+
+{{#if showFilter}}
+  <div local-class="filter">
+    {{canvas-block-filter filterTerm=(mut filterTerm)
+                          onCloseFilter=(toggle-action 'showFilter' this)}}
+  </div>
+{{/if}}
+
+<div local-class="editor">
+  {{canvas-editor-next
+    editingEnabled=(unless isFiltered connected)
+    fetchTemplates=(action 'fetchTemplates')
+    filterTerm=filterTerm
+    onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
+    onBlockReplacedLocally=(action 'blockReplacedLocally')
+    onNewBlockInsertedLocally=(action 'newBlockInsertedLocally')
+    onBlockDeletedLocally=(action 'blockDeletedLocally')
+    onBlockMetaReplacedLocally=(action 'blockMetaReplacedLocally')
+    unfurlBlock=(action 'unfurlBlock')
+    canvas=canvas
+    githubAuthComponent=(component 'github-oauth')
+    titleActionsComponent=(component 'canvas-title-actions'
+                           canvas=canvas
+                           onUseTemplate=(route-action 'createFromTemplate')
+                           onDeleteCanvas=(route-action 'onDeleteCanvas')
+                           toggleShowFilter=(toggle 'showFilter' this)
+                           isTemplate=canvas.isTemplate)
+    titleBylineComponent=(component 'canvas-title-byline'
+                          canvas=canvas
+                          updateCanvasChannels=(route-action 'updateCanvasChannels'))}}
+</div>

@@ -12,7 +12,11 @@ Router.map(function() { // eslint-disable-line array-callback-return
   this.route('logout');
   this.route('team', { path: '/:domain' }, function() {
     this.route('slack', { path: '/slack' });
-    this.route('canvases.show', { path: '/:id' });
+
+    this.route('canvas', { path: '/:id' }, function() {
+      this.route('show', { path: '/' });
+      this.route('pulse', { path: '/pulse' });
+    });
   });
 
 

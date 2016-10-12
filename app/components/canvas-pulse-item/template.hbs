@@ -1,0 +1,21 @@
+<div local-class="container">
+  {{svg-jar iconName height=24 width=24 local-class='icon'}}
+
+  <div local-class="main">
+    <div class="summary" local-class="summary" data-test-summary>
+      {{#if pulseEvent.referencer.name}}
+        {{#if pulseEvent.referencer.url}}
+          <a href="{{pulseEvent.referencer.url}}">{{pulseEvent.referencer.name}}</a>
+        {{else}}
+          <strong>{{pulseEvent.referencer.name}}</strong>
+        {{/if}}
+      {{/if}}
+
+      {{actionString}}{{#unless hideProvider}} on <a href="{{pulseEvent.providerUrl}}">{{pulseEvent.providerName}}</a>{{/unless}}.
+    </div>
+
+    {{#if (and pulseEvent.url (not hideUnfurl))}}
+      {{canvas-pulse-unfurl unfurled=pulseEvent.unfurled}}
+    {{/if}}
+  </div>
+</div>
