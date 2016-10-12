@@ -7,7 +7,7 @@ moduleForComponent('canvas-pulse', 'Integration | Component | canvas pulse', {
 });
 
 test('it renders a list of items', function(assert) {
-  this.set('pulse', [
+  this.set('pulseEvents', [
     {
       type: 'reference_added',
       attachment: {
@@ -58,7 +58,6 @@ test('it renders a list of items', function(assert) {
     }
   ]);
 
-  this.render(hbs`{{canvas-pulse pulse=pulse}}`);
-
+  this.render(hbs`{{canvas-pulse pulseEvents=pulseEvents}}`);
   assert.equal(this.$(testSelector('item')).length, 3);
 });
