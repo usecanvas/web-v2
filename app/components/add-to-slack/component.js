@@ -8,6 +8,7 @@ export default Ember.Component.extend(OAuth, {
   redirectURL: ENV.slackAddRedirectURI,
   scope: `
     bot
+    channels:history
     channels:read
     chat:write:bot
     commands
