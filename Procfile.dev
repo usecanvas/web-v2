@@ -1,1 +1,1 @@
-web: ember server --proxy http://localhost:4000
+web: ./node_modules/.bin/ember server --proxy http://localhost:4000
