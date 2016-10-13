@@ -1,9 +1,22 @@
 /* eslint-env node */
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const autoprefixer = require('autoprefixer');
+const postcssNested = require('postcss-nested');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
+    cssModules: {
+      plugins: {
+        before: [
+          postcssNested
+        ],
+        after: [
+          autoprefixer('last 2 versions')
+        ]
+      }
+    },
+
     sourcemaps: {
       enabled: true
     },
