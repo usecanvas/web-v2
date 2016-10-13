@@ -3,6 +3,8 @@ import Ember from 'ember';
 const { computed } = Ember;
 
 export default Ember.Component.extend({
+  localClassNames: ['canvas-block-actions'],
+
   clipboardText: computed('canvas.id', 'block.id', function() {
     const { protocol, hostname } = window.location;
     const port = window.location.port ?  `:${window.location.port}` : '';
