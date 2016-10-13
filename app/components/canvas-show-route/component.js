@@ -48,7 +48,11 @@ export default Ember.Component.extend(WithDropzone, {
 
   scrollToTop: observer('canvas', function() {
     run.scheduleOnce('afterRender', _ => {
-      this.$(`.${this.get('styles.main')}`).get(0).scrollTop = 0;
+      const mainClass =
+        Ember.getOwner(this)
+             .lookup('controller:team.canvas')
+             .get('styles.main');
+      Ember.$(`.${mainClass}`).get(0).scrollTop = 0;
     });
   }),
 
