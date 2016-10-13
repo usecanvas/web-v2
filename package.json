@@ -20,7 +20,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@usecanvas/canvas-editor": "1.17.1",
+    "@usecanvas/canvas-editor": "1.17.2",
     "broccoli-asset-rev": "^2.4.2",
     "canvas-colors": "1.0.1",
     "ember-ajax": "^2.0.1",
