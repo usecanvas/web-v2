@@ -21,6 +21,7 @@
 
 .icon {
   display: block;
+  flex: none;
   fill: --gray;
   height: 32px;
   margin-right: 0.25em;
@@ -28,7 +29,7 @@
 }
 
 .content {
-  flex: 1;
+  composes: flex-auto from 'canvas-web/styles/utilities';
 }
 
 .title {
@@ -47,6 +48,7 @@
 }
 
 .summary {
+  composes: truncate from 'canvas-web/styles/utilities';
   color: --dark-gray;
   font-size: 0.875em;
 }
