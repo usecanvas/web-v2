@@ -25,7 +25,7 @@
 .summary {
   align-items: center;
   display: flex;
-  min-width: 12rem;
+  width: 12rem;
 }
 
 .avatar {
@@ -35,6 +35,15 @@
   height: 2rem;
   margin-right: 0.5rem;
   width: 2rem;
+}
+
+.summary-text {
+  composes: flex-auto from 'canvas-web/styles/utilities';
+}
+
+.name,
+.username {
+  composes: truncate from 'canvas-web/styles/utilities';
 }
 
 .name {
