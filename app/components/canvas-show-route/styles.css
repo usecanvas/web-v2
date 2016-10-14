@@ -1,10 +1,10 @@
 @value --dark-gray from 'canvas-colors/styles/colors';
 
-.message {
+.canvas-show-route {
   position: relative;
 }
 
-.message-content {
+.message {
   color: --dark-gray;
   font-size: 0.75rem;
   font-style: italic;
@@ -12,14 +12,19 @@
   padding: 1rem 0;
   position: absolute;
   right: 0;
+  top: 0;
   text-align: center;
 }
 
 .filter {
-  margin-top: 3rem;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 1.0625rem;
 }
 
 .editor {
-  margin: 4rem auto;
+  margin: 0 auto;
   max-width: 47rem;
+  padding: 4rem 0;
 }

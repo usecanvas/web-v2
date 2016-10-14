@@ -11,9 +11,9 @@ const differ = new DMP();
 const { computed, inject, observer, on, run } = Ember;
 
 export default Ember.Component.extend(WithDropzone, {
-  localClassNames: ['canvases-show-route'],
   currentAccount: inject.service(),
   isFiltered: computed.bool('filterTerm'),
+  localClassNames: ['canvas-show-route'],
   showFilter: false,
   store: inject.service(),
 
