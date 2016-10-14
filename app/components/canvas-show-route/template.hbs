@@ -3,12 +3,10 @@
   draggingOver=(mut draggingOver)
   showDropzone=showDropzone}}
 
-{{#if canvas.isTemplate}}
+{{#if (and canvas.isTemplate (not showFilter))}}
   <div local-class="message">
-    <div local-class="message-content">
-      You’re editing a template. To create a new canvas click <strong>Use
-      Template</strong>.
-    </div>
+    You’re editing a template. To create a new canvas click <strong>Use
+    Template</strong>.
   </div>
 {{/if}}
 
