@@ -1,4 +1,4 @@
-const isWindows = /^win/i.test(navigator.platform);
+const isWindows = (/^win/i).test(navigator.platform);
 
 const KEY_NAMES = {
   8: 'backspace',
@@ -377,7 +377,7 @@ export default class Key {
     } else if (this.isNavigateDownDocument) {
       return [type, 'forward', 'documentboundary'];
     }
-    return undefined;
+    return null;
   }
 
   static get KEY_NAMES() {
