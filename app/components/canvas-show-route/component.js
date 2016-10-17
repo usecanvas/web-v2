@@ -1,14 +1,17 @@
 import DMP from 'diff-match-patch';
 import Ember from 'ember';
+import Key from 'canvas-web/lib/key';
 import Rangy from 'rangy';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import RSVP from 'rsvp';
 import SelectionState from 'canvas-editor/lib/selection-state';
 import WithDropzone from 'canvas-web/mixins/with-dropzone';
+import nsEvents from 'canvas-web/lib/ns-events';
 import { getTargetBlock, parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/sharedb-path';
+import { task, timeout } from 'ember-concurrency';
 
 const differ = new DMP();
-const { computed, inject, observer, on, run } = Ember;
+const { $, computed, inject, observer, on, run } = Ember;
 
 export default Ember.Component.extend(WithDropzone, {
   currentAccount: inject.service(),
@@ -26,6 +29,41 @@ export default Ember.Component.extend(WithDropzone, {
         this.applyOpToLocalModel(op);
       });
     });
+  }),
+
+  bindKeyboardShortcuts: on('didInsertElement', function() {
+    $(document).on(nsEvents(this, 'keydown'),
+                   Ember.run.bind(this, this.handleKeyboardShortcut));
+  }),
+
+  initFilterState: on('didInsertElement', function() {
+    if (this.get('filterQueryParam')) {
+      this.set('filterTerm', this.get('filterQueryParam'));
+      this.set('showFilter', true);
+    }
+  }),
+
+  handleKeyboardShortcut(evt) {
+    const key = new Key(evt);
+    if (evt.target.nodeName === 'INPUT' || this.isInEditor(evt)) return;
+    if (key.is('slash')) {
+      this.set('showFilter', true);
+      evt.preventDefault();
+    }
+  },
+
+  isInEditor(evt) {
+    return $.contains(this.$('.canvas-editor')[0], evt.target) ||
+      this.$('[data-card-block-selected=true]').length;
+  },
+
+  updateFilterQP: task(function *() {
+    yield timeout(500);
+    this.set('filterQueryParam', this.get('filterTerm'));
+  }).drop().observes('filterTerm'),
+
+  unbindKeyboardShortcuts: on('willDestroyElement', function() {
+    $(document).off(nsEvents(this, 'keydown'));
   }),
 
   dragEnter() {
