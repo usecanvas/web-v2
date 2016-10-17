@@ -28,6 +28,12 @@ export default Ember.Component.extend(WithDropzone, {
     });
   }),
 
+  initFilterState: on('didInsertElement', function() {
+    if (this.get('filterTerm')) {
+      this.set('showFilter', true);
+    }
+  }),
+
   dragEnter() {
     if (this.get('canvas.blocks.length') > 1) return;
     if (this.get('canvas.blocks.firstObject.content')) return;
