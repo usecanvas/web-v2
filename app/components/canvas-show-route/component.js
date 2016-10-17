@@ -37,8 +37,8 @@ export default Ember.Component.extend(WithDropzone, {
   }),
 
   initFilterState: on('didInsertElement', function() {
-    if (this.get('filter')) {
-      this.set('filterTerm', this.get('filter'));
+    if (this.get('filterQueryParam')) {
+      this.set('filterTerm', this.get('filterQueryParam'));
       this.set('showFilter', true);
     }
   }),
@@ -59,7 +59,7 @@ export default Ember.Component.extend(WithDropzone, {
 
   updateFilterQP: task(function *() {
     yield timeout(500);
-    this.set('filter', this.get('filterTerm'));
+    this.set('filterQueryParam', this.get('filterTerm'));
   }).drop().observes('filterTerm'),
 
   unbindKeyboardShortcuts: on('willDestroyElement', function() {
