@@ -6,6 +6,7 @@ import RSVP from 'rsvp';
 import SelectionState from 'canvas-editor/lib/selection-state';
 import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import { getTargetBlock, parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/sharedb-path';
+import { task, timeout } from 'ember-concurrency';
 
 const differ = new DMP();
 const { computed, inject, observer, on, run } = Ember;
@@ -29,10 +30,16 @@ export default Ember.Component.extend(WithDropzone, {
   }),
 
   initFilterState: on('didInsertElement', function() {
-    if (this.get('filterTerm')) {
+    if (this.get('filter')) {
+      this.set('filterTerm', this.get('filter'));
       this.set('showFilter', true);
     }
   }),
+
+  updateFilterQP: task(function *() {
+    yield timeout(500);
+    this.set('filter', this.get('filterTerm'));
+  }).drop().observes('filterTerm'),
 
   dragEnter() {
     if (this.get('canvas.blocks.length') > 1) return;
