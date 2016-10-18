@@ -6,6 +6,6 @@
   {{svg-jar 'Chat' height=24 width=24}}
 </div>
 
-{{#copy-button clipboardText=clipboardText local-class='button'}}
+<button local-class="button" onclick={{action 'copyWebUrl'}}>
   {{svg-jar 'SendTo' height=24 width=24}}
-{{/copy-button}}
+</button>

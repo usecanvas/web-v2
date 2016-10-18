@@ -1,19 +1,14 @@
 import Ember from 'ember';
+import copyText from 'canvas-web/lib/copy-text';
 
 const { computed } = Ember;
 
 export default Ember.Component.extend({
   localClassNames: ['canvas-block-actions'],
 
-  clipboardText: computed('canvas.id', 'canvas.team.domain', 'block.id',
-    function() {
-      const { protocol, hostname } = window.location;
-      const port = window.location.port ?  `:${window.location.port}` : '';
-
-      const team = this.get('canvas.team.domain');
-      const canvasId = this.get('canvas.id');
-      const blockId = this.get('block.id');
-
-      return `${protocol}//${hostname}${port}/${team}/${canvasId}#${blockId}`;
-    })
+  actions: {
+    copyWebUrl() {
+      copyText(this.get('canvas').getWebUrl(this.get('block.id')));
+    }
+  }
 });
