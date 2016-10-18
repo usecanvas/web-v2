@@ -1,6 +1,6 @@
-export default function copyText(copyText) {
+export default function copyText(text) {
   const node = document.createElement('div');
-  node.appendChild(document.createTextNode(copyText));
+  node.appendChild(document.createTextNode(text));
   document.body.appendChild(node);
 
   const range = document.createRange();
