@@ -49,6 +49,9 @@ export default Ember.Component.extend(WithDropzone, {
     if (key.is('slash')) {
       this.set('showFilter', true);
       evt.preventDefault();
+    } else if (key.is('esc')) {
+      this.set('showFilter', false);
+      this.set('filterTerm', '');
     }
   },
 
