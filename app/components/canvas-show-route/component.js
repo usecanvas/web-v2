@@ -300,7 +300,10 @@ export default Ember.Component.extend(WithDropzone, {
       this.submitOp(op);
     },
 
-    metaSelectText({ pageX, pageY }) {
+    metaSelectText(evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      const { pageX, pageY } = evt;
       const range = this.getRangeFromPoint(pageX, pageY);
       if (!range || !range.startContainer.wholeText) return;
       const { startContainer, startOffset } = range;
