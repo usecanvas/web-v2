@@ -38,5 +38,13 @@ export default DS.Model.extend({
 
   title: computed('blocks.firstObject.content', function() {
     return this.get('blocks.firstObject.content') || 'Untitled';
-  })
+  }),
+
+  getWebUrl(blockId) {
+    const { protocol, host, search } = window.location;
+    const teamDomain = this.get('team.domain');
+    const canvasId = this.get('id');
+
+    return `${protocol}//${host}/${teamDomain}/${canvasId}${search}#${blockId}`;
+  }
 });
