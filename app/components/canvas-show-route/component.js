@@ -36,7 +36,7 @@ export default Ember.Component.extend(WithDropzone, {
                    Ember.run.bind(this, this.handleKeyboardShortcut));
   }),
 
-  initFilterState: on('didInsertElement', function() {
+  initFilterState: on('init', function() {
     if (this.get('filterQueryParam')) {
       this.set('filterTerm', this.get('filterQueryParam'));
       this.set('showFilter', true);
