@@ -49,6 +49,9 @@ export default Ember.Component.extend(WithDropzone, {
     if (key.is('slash')) {
       this.set('showFilter', true);
       evt.preventDefault();
+    } else if (key.is('esc')) {
+      this.set('showFilter', false);
+      this.set('filterTerm', '');
     }
   },
 
@@ -243,6 +246,21 @@ export default Ember.Component.extend(WithDropzone, {
     return this.getPreviousBlock(parent);
   },
 
+  getRangeFromPoint(x, y) {
+    let range;
+    if (document.caretPositionFromPoint) {
+      const position = document.caretPositionFromPoint(x, y);
+
+      if (position) {
+        range = document.createRange();
+        range.setStart(position.offsetNode, position.offset);
+      }
+    } else if (document.caretRangeFromPoint) {
+      range = document.caretRangeFromPoint(x, y);
+    }
+    return range;
+  },
+
   submitOp(op) {
     this.set('canvas.editedAt', new Date());
     this.get('canvas.shareDBDoc').submitOp(op);
@@ -280,6 +298,24 @@ export default Ember.Component.extend(WithDropzone, {
       }];
 
       this.submitOp(op);
+    },
+
+    metaSelectText(evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      const { pageX, pageY } = evt;
+      const range = this.getRangeFromPoint(pageX, pageY);
+      if (!range || !range.startContainer.wholeText) return;
+      const { startContainer, startOffset } = range;
+      const { wholeText } = startContainer;
+      const startIndex = wholeText.lastIndexOf(' ', startOffset) + 1;
+      const endIndex = wholeText.indexOf(' ', startOffset);
+      const selectedWord = endIndex === -1 ? wholeText.slice(startIndex)
+        : wholeText.slice(startIndex, endIndex);
+      if (selectedWord.trim() !== '') {
+        this.set('filterTerm', selectedWord);
+        this.set('showFilter', true);
+      }
     },
 
     newBlockInsertedLocally(index, block) {
