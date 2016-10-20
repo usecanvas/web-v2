@@ -15,7 +15,10 @@
     </div>
 
     {{#if (and pulseEvent.url (not hideUnfurl))}}
-      {{canvas-pulse-unfurl unfurled=pulseEvent.unfurled}}
+      {{canvas-block-url
+        block=pulseEvent
+        githubAuthComponent=(component 'github-oauth')
+        unfurl=(action 'unfurlEvent')}}
     {{/if}}
   </div>
 </div>
