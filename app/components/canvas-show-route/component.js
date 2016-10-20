@@ -88,15 +88,20 @@ export default Ember.Component.extend(WithDropzone, {
     });
   },
 
-  scrollToTop: observer('canvas', function() {
-    run.scheduleOnce('afterRender', _ => {
+  scrollToTop: on('didInsertElement', observer('canvas', function() {
+    run.next(_ => {
+      if (window.location.hash) {
+        const element = this.$(`${window.location.hash}`).get(0);
+        if (element) return element.scrollIntoView();
+      }
+
       const mainClass =
         Ember.getOwner(this)
              .lookup('controller:team.canvas')
              .get('styles.main');
-      Ember.$(`.${mainClass}`).get(0).scrollTop = 0;
+      return Ember.$(`.${mainClass}`).scrollTop(0);
     });
-  }),
+  })),
 
   applyOpToLocalModel(op) {
     for (const comp of op) {
