@@ -4,6 +4,8 @@ import Qs from 'qs';
 const { computed } = Ember;
 
 export default Ember.Component.extend({
+  tagName: '',
+
   parsedURL: computed('url', function() {
     const link = document.createElement('a');
     link.href = this.get('url');
