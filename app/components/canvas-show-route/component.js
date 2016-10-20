@@ -19,6 +19,7 @@ export default Ember.Component.extend(WithDropzone, {
   localClassNames: ['canvas-show-route'],
   showFilter: false,
   store: inject.service(),
+  unfurler: inject.service(),
 
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
@@ -348,7 +349,7 @@ export default Ember.Component.extend(WithDropzone, {
     },
 
     unfurlBlock(block) {
-      return this.get('store').findRecord('unfurl', block.get('meta.url'));
+      return this.get('unfurler').unfurl(block.get('meta.url'));
     }
   }
 });

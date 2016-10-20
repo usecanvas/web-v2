@@ -1,11 +1,12 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const { computed, inject } = Ember;
 
 export default Ember.Component.extend({
   localClassNames: ['canvas-pulse-item'],
   hideProvider: computed.equal('pulseEvent.providerName', 'Canvas'),
   hideUnfurl: computed.equal('pulseEvent.type', 'canvas_created'),
+  unfurler: inject.service(),
 
   actionString: computed('pulseEvent.type', function() {
     const type = this.get('pulseEvent.type');
@@ -36,5 +37,11 @@ export default Ember.Component.extend({
       default:
         return 'Notification';
     }
-  })
+  }),
+
+  actions: {
+    unfurlEvent(event) {
+      return this.get('unfurler').unfurl(event.get('url'));
+    }
+  }
 });
