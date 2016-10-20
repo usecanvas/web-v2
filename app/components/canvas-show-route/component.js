@@ -92,14 +92,18 @@ export default Ember.Component.extend(WithDropzone, {
     run.next(_ => {
       if (window.location.hash) {
         const element = this.$(`${window.location.hash}`).get(0);
-        if (element) return element.scrollIntoView();
+        if (element) {
+          element.scrollIntoView();
+          return;
+        }
       }
 
-      const mainClass =
-        Ember.getOwner(this)
-             .lookup('controller:team.canvas')
-             .get('styles.main');
-      return Ember.$(`.${mainClass}`).scrollTop(0);
+      const canvasController =
+        Ember.getOwner(this).lookup('controller:team.canvas');
+      if (canvasController) {
+        const mainClass = canvasController.get('styles.main');
+        Ember.$(`.${mainClass}`).scrollTop(0);
+      }
     });
   })),
 
