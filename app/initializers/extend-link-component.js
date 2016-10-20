@@ -11,22 +11,24 @@ export default {
 
   initialize() {
     Ember.LinkComponent.reopen({
-      href: computed('models', 'qualifiedRouteName', function computeLinkToComponentHref() {
-        if (get(this, 'tagName') !== 'a') { return; }
+      href: computed('models', 'qualifiedRouteName',
+        function computeLinkToComponentHref() {
+          if (get(this, 'tagName') !== 'a') { return null; }
 
-        let qualifiedRouteName = get(this, 'qualifiedRouteName');
-        let models = get(this, 'models');
+          const qualifiedRouteName = get(this, 'qualifiedRouteName');
+          const models = get(this, 'models');
 
-        if (get(this, 'loading')) { return get(this, 'loadingHref'); }
+          if (get(this, 'loading')) { return get(this, 'loadingHref'); }
 
-        let routing = get(this, '_routing');
-        let queryParams = get(this, 'queryParams.values');
-        const url = routing.generateURL(qualifiedRouteName, models, queryParams);
-        const fragment = get(this, 'fragment');
+          const routing = get(this, '_routing');
+          const queryParams = get(this, 'queryParams.values');
+          const url =
+            routing.generateURL(qualifiedRouteName, models, queryParams);
+          const fragment = get(this, 'fragment');
 
-        if (fragment) return `${url}#${fragment}`;
-        return url;
-      })
+          if (fragment) return `${url}#${fragment}`;
+          return url;
+        })
     });
   }
-}
+};
