@@ -38,25 +38,5 @@ export default DS.Model.extend({
 
   title: computed('blocks.firstObject.content', function() {
     return this.get('blocks.firstObject.content') || 'Untitled';
-  }),
-
-  getWebUrl(blockId) {
-    const { protocol, host } = window.location;
-    const locationSearch = window.location.search;
-    const teamDomain = this.get('team.domain');
-    const canvasId = this.get('id');
-
-    let search;
-    if (locationSearch) {
-      if (/block=\w{22}/.test(locationSearch)) {
-        search = locationSearch.replace(/block=\w{22}/, `block=${blockId}`);
-      } else {
-        search = `${locationSearch}&block=${blockId}`;
-      }
-    } else {
-      search = `?block=${blockId}`;
-    }
-
-    return `${protocol}//${host}/${teamDomain}/${canvasId}${search}`;
-  }
+  })
 });
