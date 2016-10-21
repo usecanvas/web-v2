@@ -19,8 +19,8 @@ export default Ember.Component.extend({
                .get('lastObject');
   }),
 
-  blockID: computed.readOnly('query.block'),
-  filter: computed.readOnly('query.filter'),
+  blockID: computed.oneWay('query.block'),
+  filter: computed.oneWay('query.filter'),
 
   query: computed('parsedURL', function() {
     return Qs.parse(this.get('parsedURL.search').slice(1));
