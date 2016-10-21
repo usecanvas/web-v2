@@ -41,10 +41,22 @@ export default DS.Model.extend({
   }),
 
   getWebUrl(blockId) {
-    const { protocol, host, search } = window.location;
+    const { protocol, host } = window.location;
+    const locationSearch = window.location.search;
     const teamDomain = this.get('team.domain');
     const canvasId = this.get('id');
 
-    return `${protocol}//${host}/${teamDomain}/${canvasId}${search}#${blockId}`;
+    let search;
+    if (locationSearch) {
+      if (/block=\w{22}/.test(locationSearch)) {
+        search = locationSearch.replace(/block=\w{22}/, `block=${blockId}`);
+      } else {
+        search = `${locationSearch}&block=${blockId}`;
+      }
+    } else {
+      search = `?block=${blockId}`;
+    }
+
+    return `${protocol}//${host}/${teamDomain}/${canvasId}${search}`;
   }
 });

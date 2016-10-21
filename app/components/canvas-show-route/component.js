@@ -37,12 +37,15 @@ export default Ember.Component.extend(WithDropzone, {
                    Ember.run.bind(this, this.handleKeyboardShortcut));
   }),
 
-  initFilterState: on('init', function() {
+  initFilterState: observer('filterQueryParam', on('init', function() {
     if (this.get('filterQueryParam')) {
       this.set('filterTerm', this.get('filterQueryParam'));
       this.set('showFilter', true);
+    } else {
+      this.set('filterTerm', '');
+      this.set('showFilter', false);
     }
-  }),
+  })),
 
   handleKeyboardShortcut(evt) {
     const key = new Key(evt);
@@ -90,8 +93,9 @@ export default Ember.Component.extend(WithDropzone, {
 
   scrollToTop: on('didInsertElement', observer('canvas', function() {
     run.next(_ => {
-      if (window.location.hash) {
-        const element = this.$(`${window.location.hash}`).get(0);
+      if (this.get('blockID')) {
+        const element = this.$(`#${this.get('blockID')}`).get(0);
+
         if (element) {
           element.scrollIntoView();
           return;

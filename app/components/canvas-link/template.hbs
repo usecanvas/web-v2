@@ -1,3 +1,10 @@
-{{#link-to 'team.canvas.show' id}}
+{{#link-to 'team.canvas.show' id
+    (if (and blockID filter)
+      (query-params blockID=blockID filter=filter)
+      (if blockID
+        (query-params blockID=blockID)
+        (if filter
+          (query-params filter=filter)
+          (query-params))))}}
   {{yield}}
 {{/link-to}}
