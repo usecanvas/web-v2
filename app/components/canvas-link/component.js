@@ -12,7 +12,7 @@ export default Ember.Component.extend({
     return link;
   }),
 
-  id: computed('parsedURL', function() {
+  canvasID: computed('parsedURL', function() {
     return this.get('parsedURL.pathname')
                .split('/')
                .reject(part => !part)
