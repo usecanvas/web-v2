@@ -2,6 +2,7 @@
 @value --gray from 'canvas-colors/styles/colors';
 
 .item {
+  display: block;
   margin-bottom: 1rem;
 }
 
@@ -9,7 +10,7 @@
   margin-bottom: 0;
 }
 
-.new {
+.item--new {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -17,15 +18,11 @@
   width: 36px;
 }
 
-.new-link,
 .new-icon {
   display: block;
-}
-
-.new-icon {
   fill: --gray;
 }
 
-.new-icon:hover {
+.item--new:hover .new-icon {
   fill: --blue;
 }
