@@ -13,6 +13,8 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   styles,
   topicCanvas: true,
 
+  // An array that contains any canvases created between clicking the new button
+  // and the route transition to team.canvas.show
   newCanvases: computed(() => []),
   store: inject.service(),
   teamsList: inject.service(),
