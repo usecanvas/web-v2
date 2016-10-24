@@ -10,6 +10,22 @@
   margin-bottom: 0;
 }
 
+.item--active {
+  position: relative;
+}
+
+.item--active::before {
+  background: --blue;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  bottom: 0.125rem;
+  content: '';
+  left: -1rem;
+  position: absolute;
+  top: 0.125rem;
+  width: 3px;
+}
+
 .item--new {
   align-items: center;
   display: flex;
