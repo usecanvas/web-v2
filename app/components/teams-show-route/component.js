@@ -5,7 +5,7 @@ import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import layout from './template';
 import styles from './styles';
 
-const { inject, run, computed } = Ember;
+const { computed, inject, run } = Ember;
 
 export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   layout,
