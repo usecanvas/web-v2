@@ -5,7 +5,7 @@ import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import layout from './template';
 import styles from './styles';
 
-const { inject, run } = Ember;
+const { computed, inject, run } = Ember;
 
 export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   layout,
@@ -13,10 +13,37 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   styles,
   topicCanvas: true,
 
+  // An array that contains any canvases created between clicking the new button
+  // and the route transition to team.canvas.show
+  newCanvases: computed(() => []),
   store: inject.service(),
   teamsList: inject.service(),
 
   disablePointer: Ember.String.htmlSafe('pointer-events: none'),
+
+  channelModel: computed('channel', 'team.channels.[]', function() {
+    return this.get('team.channels').findBy('name', this.get('channel'));
+  }),
+
+  filteredCanvases: computed(
+    'channel',
+    'newCanvases.[]',
+    'team.channels.[]',
+    'team.canvases.@each.slackChannelIds', function() {
+      const newCanvases = this.get('newCanvases');
+      const canvases = this.get('team.canvases')
+        .filter(canvas => canvas.get('id') &&
+          !newCanvases.includes(canvas.get('id')));
+      const channel = this.get('team.channels')
+        .findBy('name', this.get('channel'));
+
+      if (!channel) return canvases;
+
+      return canvases.filter(canvas => {
+        return canvas.get('slackChannelIds').includes(channel.get('id'));
+      });
+    }),
+
 
   processDrops({ dataTransfer }) {
     this.set('processingDrop', true);
@@ -48,6 +75,7 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
 
   actions: {
     didCreateCanvas(canvas) {
+      this.get('newCanvases').pushObject(canvas.get('id'));
       this.sendAction('didCreateCanvas', canvas);
     }
   }
