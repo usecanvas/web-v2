@@ -30,7 +30,10 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    segment: { LOG_EVENT_TRACKING: true, WRITE_KEY: process.env.WRITE_KEY }
+    segment: {
+      LOG_EVENT_TRACKING: true,
+      WRITE_KEY: process.env.SEGMENT_WRITE_KEY
+    }
   };
 
   if (environment === 'development') {

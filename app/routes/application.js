@@ -71,10 +71,11 @@ export default Ember.Route.extend({
   identifyUser() {
     const { currentAccount, currentUser } = this.get('currentAccount')
       .getProperties('currentUser', 'currentAccount');
-    const { id, hash } = currentAccount.getProperties('id', 'hash');
-    if (currentAccount) {
+    const { id, intercomHash } =
+      currentAccount.getProperties('id', 'intercomHash');
+    if (intercomHash) {
       /* eslint-disable camelcase */
-      const opts = { Intercom: { user_hash: hash } };
+      const opts = { Intercom: { user_hash: intercomHash } };
       const traits = currentUser.get('content').toJSON();
       this.get('segment').identifyUser(id, traits, opts);
     }

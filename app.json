@@ -29,6 +29,10 @@
       "description": "A host pointing to the realtime service",
       "development_value": "localhost:4001"
     },
+    "SEGMENT_WRITE_KEY": {
+      "description": "The write key to send data to segment",
+      "required": false
+    },
     "SENTRY_DSN": {
       "description": "Key for posting errors and events to Sentry",
       "required": false
