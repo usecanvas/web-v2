@@ -1,4 +1,10 @@
-@value --gray from 'canvas-colors/styles/colors';
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.container {
+  margin: 4rem auto;
+  max-width: 42rem;
+  padding: 1rem;
+}
 
 .public-access {
   display: flex;
@@ -13,5 +19,5 @@
 }
 
 .muted {
-  color: --gray;
+  color: --dark-gray;
 }
