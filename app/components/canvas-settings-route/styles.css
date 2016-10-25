@@ -1,0 +1,17 @@
+@value --gray from 'canvas-colors/styles/colors';
+
+.public-access {
+  display: flex;
+}
+
+.checkbox {
+  margin-right: 0.25rem;
+}
+
+.select {
+  margin-left: 0.25rem;
+}
+
+.muted {
+  color: --gray;
+}
