@@ -2,6 +2,8 @@ import Ember from 'ember';
 import Raven from 'raven';
 import RSVP from 'rsvp';
 
+const { inject } = Ember;
+
 /**
  * Top-level application route.
  *
@@ -13,19 +15,21 @@ export default Ember.Route.extend({
    * Service for the signed-in account
    * @member {Ember.Service}
    */
-  currentAccount: Ember.inject.service(),
+  currentAccount: inject.service(),
 
   /**
    * Service for flash messages
    * @member {Ember.Service}
    */
-  flashMessages: Ember.inject.service(),
+  flashMessages: inject.service(),
 
   /**
    * Service for the teams list
    * @member {Ember.Service}
    */
-  teamsList: Ember.inject.service(),
+  teamsList: inject.service(),
+
+  segment: inject.service(),
 
   /**
    * List of unauthenticated routes
@@ -62,6 +66,18 @@ export default Ember.Route.extend({
   title(tokens) {
     tokens.unshift('Canvas');
     return `${tokens.reverse().join(' - ')}`;
+  },
+
+  identifyUser() {
+    const { currentAccount, currentUser } = this.get('currentAccount')
+      .getProperties('currentUser', 'currentAccount');
+    const { id, hash } = currentAccount.getProperties('id', 'hash');
+    if (currentAccount) {
+      /* eslint-disable camelcase */
+      const opts = { Intercom: { user_hash: hash } };
+      const traits = currentUser.get('content').toJSON();
+      this.get('segment').identifyUser(id, traits, opts);
+    }
   },
 
   /**
