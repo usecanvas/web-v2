@@ -20,7 +20,7 @@ export default Ember.Route.extend({
       return null;
     }
 
-    if (!team.get('hasSlackToken')) {
+    if (team.get('needsSlackToken')) {
       this.transitionTo('team.slack');
       return null;
     }

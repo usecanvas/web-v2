@@ -7,7 +7,7 @@ const { computed } = Ember;
 export default DS.Model.extend({
   domain: attr(),
   name: attr(),
-  hasSlackToken: attr(),
+  needsSlackToken: attr(),
   images: attr(),
   isInTeam: attr(),
 
