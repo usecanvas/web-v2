@@ -26,13 +26,15 @@
   </div>
 
   <div local-class="content">
-    <div local-class="canvas-list-filter">
-      <div local-class="canvas-list-filter-scroll">
-        {{canvas-list-filter
-          channel=channel
-          channels=team.channels}}
+    {{#if team.slackId}}
+      <div local-class="canvas-list-filter">
+        <div local-class="canvas-list-filter-scroll">
+          {{canvas-list-filter
+            channel=channel
+            channels=team.channels}}
+        </div>
       </div>
-    </div>
+    {{/if}}
 
     <div local-class="canvas-list">
       <div local-class="canvas-list-scroll">
