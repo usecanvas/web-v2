@@ -17,9 +17,9 @@
         {{svg-jar 'Activity' height='32' width='32'}}
       {{/link-to}}
 
-      <div local-class="aside-item aside-item--disabled">
-        {{svg-jar 'Gear' height='32' width='32'}}
-      </div>
+      {{#link-to 'team.canvas.settings' local-class='aside-item' activeClass=styles.aside-item--active}}
+        {{svg-jar "Gear" height="32" width="32"}}
+      {{/link-to}}
     </div>
 
     <div local-class="aside-item">

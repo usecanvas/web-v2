@@ -16,6 +16,7 @@ Router.map(function() { // eslint-disable-line array-callback-return
     this.route('canvas', { path: '/:id' }, function() {
       this.route('show', { path: '/' });
       this.route('pulse', { path: '/pulse' });
+      this.route('settings', { path: '/settings' });
     });
   });
 
