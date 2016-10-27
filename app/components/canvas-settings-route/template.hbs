@@ -1,6 +1,6 @@
 <div local-class="container">
   <h3>Public Access</h3>
-
+    In progress: {{persistPermissionState.isRunning}}
   <div local-class="public-access">
     {{ui-checkbox
       checked=allowPublicAccess
@@ -11,7 +11,7 @@
       Anyone with the link to this canvas can
     </span>
 
-    <select local-class="select" onchange={{action (mut permission) value="target.value"}} disabled={{unless allowPublicAccess 'disabled'}}>
+    <select local-class="select" onchange={{action 'updatePermission'}} disabled={{unless allowPublicAccess 'disabled'}}>
       {{#each permissions key='@item' as |permissionChoice|}}
         <option value={{permissionChoice}} selected={{eq permission permissionChoice}}>
           {{permissionChoice}}
