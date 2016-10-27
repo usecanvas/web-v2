@@ -1,7 +1,5 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
-
 const INTERCOM_APP_ID = 'htxi7bqv';
 
 export default Ember.Component.extend({
