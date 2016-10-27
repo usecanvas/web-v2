@@ -21,6 +21,10 @@ export default DS.JSONAPIAdapter.extend({
 
     return new Promise((resolve, reject) => {
       const hash = this.ajaxOptions(url, type, options);
+      // Handle serialization of query params inside of urlForQuery...
+      if (type === 'GET') {
+        hash.data = {};
+      }
 
       hash.success = function(payload, textStatus, jqXHR) {
         const response = ajaxSuccess(adapter, jqXHR, payload, requestData);
