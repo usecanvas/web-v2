@@ -31,7 +31,7 @@ module.exports = function(environment) {
     },
 
     segment: {
-      LOG_EVENT_TRACKING: true,
+      LOG_EVENT_TRACKING: environment === 'development',
       WRITE_KEY: process.env.SEGMENT_WRITE_KEY
     }
   };
