@@ -34,11 +34,13 @@
     githubAuthComponent=(component 'github-oauth')
     titleActionsComponent=(component 'canvas-title-actions'
                            canvas=canvas
+                           showDeleteCanvas=team.isInTeam
                            onUseTemplate=(route-action 'createFromTemplate')
                            onDeleteCanvas=(route-action 'onDeleteCanvas')
                            toggleShowFilter=(toggle 'showFilter' this)
                            isTemplate=canvas.isTemplate)
     titleBylineComponent=(component 'canvas-title-byline'
                           canvas=canvas
+                          showChannelSelector=team.isInTeam
                           updateCanvasChannels=(route-action 'updateCanvasChannels'))}}
 </div>

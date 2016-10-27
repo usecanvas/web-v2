@@ -9,10 +9,12 @@
   </span>
 </div>
 
-<div class="channel-list">
-  {{canvas-channel-list
-    channelIds=canvas.slackChannelIds
-    channels=canvas.team.channels
-    static=static
-    updateCanvasChannels=updateCanvasChannels}}
-</div>
+{{#if showChannelSelector}}
+  <div class="channel-list">
+    {{canvas-channel-list
+      channelIds=canvas.slackChannelIds
+      channels=canvas.team.channels
+      static=static
+      updateCanvasChannels=updateCanvasChannels}}
+  </div>
+{{/if}}

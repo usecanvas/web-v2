@@ -8,6 +8,7 @@
       </div>
     </div>
 
+  {{#if model.team.isInTeam}}
     <div local-class="aside-section">
       {{#link-to 'team.canvas.show' local-class='aside-item' activeClass=styles.aside-item--active}}
         {{svg-jar 'AlignLeft' height='32' width='32'}}
@@ -21,6 +22,7 @@
         {{svg-jar "Gear" height="32" width="32"}}
       {{/link-to}}
     </div>
+  {{/if}}
 
     <div local-class="aside-item">
       {{#intercom-launcher}}

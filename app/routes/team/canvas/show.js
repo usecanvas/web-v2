@@ -5,7 +5,7 @@ import ReconnectingWebSocket from 'reconnecting-websocket';
 import Raven from 'raven';
 import ShareDB from 'sharedb';
 
-const { computed, run } = Ember;
+const { RSVP, computed, run } = Ember;
 const MAX_RECONNECTS = 10;
 
 export default Ember.Route.extend({
@@ -22,8 +22,8 @@ export default Ember.Route.extend({
     return this.modelFor('team.canvas');
   },
 
-  afterModel(canvas) {
-    return this.shareDBConnect(canvas.get('team'), canvas);
+  afterModel({ canvas, team }) {
+    return this.shareDBConnect(team, canvas);
   },
 
   createSocket() {
@@ -107,7 +107,7 @@ export default Ember.Route.extend({
 
   actions: {
     createFromTemplate() {
-      const canvas = this.get('controller.model');
+      const canvas = this.get('controller.model.canvas');
 
       return this.get('store').createRecord('canvas', {
         slackChannelIds: canvas.get('slackChannelIds'),
@@ -119,7 +119,7 @@ export default Ember.Route.extend({
     },
 
     updateCanvasChannels(channels) {
-      const canvas = this.get('controller.model');
+      const canvas = this.get('controller.model.canvas');
       const ids = channels.mapBy('id');
       canvas.set('slackChannelIds', ids);
       canvas.save();

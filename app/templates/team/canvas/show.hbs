@@ -1,6 +1,7 @@
 {{canvas-show-route
-  canvas=model
-  connected=model.connected
+  canvas=model.canvas
+  connected=model.canvas.connected
+  team=model.team
   blockID=blockID
   filterQueryParam=filter
   onDeleteCanvas=(route-action 'onDeleteCanvas')}}
