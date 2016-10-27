@@ -11,7 +11,6 @@ const MAX_RECONNECTS = 10;
 export default Ember.Route.extend({
   connected: false,
   flashMessages: Ember.inject.service(),
-  teamQuery: Ember.inject.service(),
 
   realtimeURL: computed(function() {
     const protocol = window.location.protocol === 'http:' ? 'ws:' : 'wss:';

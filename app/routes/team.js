@@ -15,8 +15,16 @@ export default Ember.Route.extend({
     return team.get('name');
   },
 
-  afterModel(team) {
-    if (!team.get('hasSlackToken')) {
+  afterModel(team, transition) {
+    /*
+    if (transition.get('targetName') === 'team.canvas.show' &&
+        team.get('isRestricted')) {
+      return;
+    }
+    */
+
+    if (!team.get('hasSlackToken') &&
+        transition.get('targetName') !== 'team.canvas.show') {
       this.transitionTo('team.slack');
       return null;
     }
