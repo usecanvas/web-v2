@@ -1,7 +1,8 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('intercom-launcher', 'Integration | Component | intercom launcher', {
+moduleForComponent('intercom-launcher',
+                   'Integration | Component | intercom launcher', {
   integration: true
 });
 
