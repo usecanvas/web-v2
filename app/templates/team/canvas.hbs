@@ -2,7 +2,7 @@
   <aside local-class="aside">
     <div local-class="aside-section">
       <div local-class="aside-item">
-        {{#link-to 'team'}}
+        {{#link-to (if model.team.isInTeam 'team' 'index')}}
           {{svg-jar 'Home' height='32' width='32'}}
         {{/link-to}}
       </div>
