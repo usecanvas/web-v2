@@ -22,8 +22,8 @@ export default Ember.Route.extend({
     return this.modelFor('team.canvas');
   },
 
-  afterModel({ canvas, team }) {
-    return this.shareDBConnect(team, canvas);
+  afterModel(canvas) {
+    return this.shareDBConnect(this.modelFor('team'), canvas);
   },
 
   createSocket() {
@@ -107,7 +107,7 @@ export default Ember.Route.extend({
 
   actions: {
     createFromTemplate() {
-      const canvas = this.get('controller.model.canvas');
+      const canvas = this.get('controller.model');
 
       return this.get('store').createRecord('canvas', {
         slackChannelIds: canvas.get('slackChannelIds'),
@@ -119,7 +119,7 @@ export default Ember.Route.extend({
     },
 
     updateCanvasChannels(channels) {
-      const canvas = this.get('controller.model.canvas');
+      const canvas = this.get('controller.model');
       const ids = channels.mapBy('id');
       canvas.set('slackChannelIds', ids);
       canvas.save();

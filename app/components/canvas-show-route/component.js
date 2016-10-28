@@ -21,8 +21,8 @@ export default Ember.Component.extend(WithDropzone, {
   store: inject.service(),
   unfurler: inject.service(),
 
-  readOnly: computed('team.isInTeam', 'canvas.linkAccess', function() {
-    return !this.get('team.isInTeam') &&
+  readOnly: computed('canvas.team.isInTeam', 'canvas.linkAccess', function() {
+    return !this.get('canvas.team.isInTeam') &&
       this.get('canvas.linkAccess') === 'read';
   }),
 
@@ -350,6 +350,7 @@ export default Ember.Component.extend(WithDropzone, {
     },
 
     fetchTemplates() {
+      if (!this.get('canvas.team.isInTeam')) return RSVP.resolve([]);
       if (this.get('templates')) return RSVP.resolve(this.get('templates'));
 
       const team = this.get('canvas.team');

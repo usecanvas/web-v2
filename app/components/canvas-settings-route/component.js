@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   allowPublicAccess: false,
   permissions: w('view edit'),
   permission: 'view',
-  
+
   setInitialPermissionState: on('init', function() {
     const state = this.get('canvas.linkAccess');
     if (state === 'none') return;
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     this.set('permission',
       state === 'edit' ? 'edit' : 'view');
   }),
-  
+
   currentPermissionState: computed('allowPublicAccess',
                                    'permission', function() {
     const { allowPublicAccess, permission } =

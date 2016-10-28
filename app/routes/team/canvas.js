@@ -3,11 +3,8 @@ import preload from 'canvas-web/lib/preload';
 
 export default Ember.Route.extend({
   model({ id }) {
-    return Ember.RSVP.hash({
-      canvas: this.get('store').findRecord('canvas', id,
-        { adapterOptions: { team: this.modelFor('team') } }),
-      team: this.modelFor('team')
-    });
+    return this.get('store').findRecord('canvas', id,
+      { adapterOptions: { team: this.modelFor('team') } });
   },
 
   afterModel() {
