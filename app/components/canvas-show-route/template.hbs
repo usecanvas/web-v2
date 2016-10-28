@@ -19,7 +19,7 @@
 
 <div local-class="editor">
   {{canvas-editor-next
-    editingEnabled=(unless isFiltered connected)
+    editingEnabled=(unless (or readOnly isFiltered) connected)
     fetchTemplates=(action 'fetchTemplates')
     filterTerm=filterTerm
     onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')

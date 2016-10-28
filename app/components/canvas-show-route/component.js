@@ -21,6 +21,11 @@ export default Ember.Component.extend(WithDropzone, {
   store: inject.service(),
   unfurler: inject.service(),
 
+  readOnly: computed('team.isInTeam', 'canvas.linkAccess', function() {
+    return !this.get('team.isInTeam') &&
+      this.get('canvas.linkAccess') === 'read';
+  }),
+
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
       if (isLocalOp) return;

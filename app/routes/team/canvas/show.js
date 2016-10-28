@@ -5,7 +5,7 @@ import ReconnectingWebSocket from 'reconnecting-websocket';
 import Raven from 'raven';
 import ShareDB from 'sharedb';
 
-const { RSVP, computed, run } = Ember;
+const { computed, run } = Ember;
 const MAX_RECONNECTS = 10;
 
 export default Ember.Route.extend({
