@@ -17,9 +17,8 @@ export default Ember.Route.extend({
 
   afterModel(team, { targetName }) {
     if (targetName === 'team.canvas.show' && !team.get('isInTeam')) {
-      return;
+      return null;
     }
-
 
     if (!team.get('hasSlackToken')) {
       this.transitionTo('team.slack');
