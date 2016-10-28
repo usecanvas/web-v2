@@ -5,23 +5,23 @@ const { computed, on } = Ember;
 const { w } = Ember.String;
 
 export default Ember.Component.extend({
-  allowPublicAccess: false,
+  allowLinkAccess: false,
   permissions: w('view edit'),
   permission: 'view',
 
   setInitialPermissionState: on('init', function() {
     const state = this.get('canvas.linkAccess');
     if (state === 'none') return;
-    this.set('allowPublicAccess', true);
+    this.set('allowLinkAccess', true);
     this.set('permission',
       state === 'edit' ? 'edit' : 'view');
   }),
 
-  currentPermissionState: computed('allowPublicAccess',
+  currentPermissionState: computed('allowLinkAccess',
                                    'permission', function() {
-    const { allowPublicAccess, permission } =
-      this.getProperties('allowPublicAccess', 'permission');
-    if (!allowPublicAccess) {
+    const { allowLinkAccess, permission } =
+      this.getProperties('allowLinkAccess', 'permission');
+    if (!allowLinkAccess) {
       return 'none';
     } else if (permission === 'view') {
       return 'read';
@@ -39,8 +39,8 @@ export default Ember.Component.extend({
   }).keepLatest(),
 
   actions: {
-    togglePublicAccess() {
-      this.toggleProperty('allowPublicAccess');
+    toggleLinkAccess() {
+      this.toggleProperty('allowLinkAccess');
       this.get('persistPermissionState').perform();
     },
 
