@@ -15,7 +15,7 @@ export default Ember.Route.extend({
     return null;
   },
 
-  titleToken({ canvas }) {
+  titleToken(canvas) {
     return canvas.get('title');
   }
 });
