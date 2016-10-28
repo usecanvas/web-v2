@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
     const model = this.modelFor('application');
-    if (!model) this.transitionTo('login');
+    if (!model) return this.transitionTo('login');
 
     const teams = model.teams;
     let team;
