@@ -6,7 +6,7 @@ moduleForComponent('intercom-launcher',
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it renders with a #customer-intercom-link', function(assert) {
   this.set('intercomAppID', 'foobar');
 
   this.render(hbs`
@@ -15,6 +15,10 @@ test('it renders', function(assert) {
     {{/intercom-launcher}}
   `);
 
+  /*
+   * The #custom-intercom-link is set in Segment and is required for the
+   * integration to work.
+   */
   assert.equal(
     this.$('#custom-intercom-link').text().trim(), 'template block text'
   );
