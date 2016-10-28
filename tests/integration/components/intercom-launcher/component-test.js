@@ -6,7 +6,7 @@ moduleForComponent('intercom-launcher',
   integration: true
 });
 
-test('it renders with a #customer-intercom-link', function(assert) {
+test('it renders a #customer-intercom-link', function(assert) {
   this.set('intercomAppID', 'foobar');
 
   this.render(hbs`
