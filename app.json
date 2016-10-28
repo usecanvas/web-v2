@@ -11,6 +11,10 @@
       "description": "Redirect URL for a GitHub OAuth callback",
       "development_value": "http://localhost:4000/oauth/github/callback"
     },
+    "INTERCOM_APP_ID": {
+      "description": "The ID of our Intercom app",
+      "development_required": false
+    },
     "NODE_ENV": {
       "description": "Environment to run Node process in",
       "development_value": "development",
