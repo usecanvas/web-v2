@@ -1,6 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+/* eslint-disable max-len */
 moduleForComponent('canvas-settings-route', 'Integration | Component | canvas settings route', {
   integration: true
 });
