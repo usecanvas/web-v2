@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import testSelector from 'canvas-web/tests/helpers/ember-test-selectors';
 
 /* eslint-disable max-len */
 moduleForComponent('canvas-settings-route', 'Integration | Component | canvas settings route', {
@@ -11,15 +12,5 @@ test('it renders', function(assert) {
   // Handle any actions with this.on('myAction', function(val) { ... });
 
   this.render(hbs`{{canvas-settings-route}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#canvas-settings-route}}
-      template block text
-    {{/canvas-settings-route}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$(testSelector('settings')).get(0));
 });
