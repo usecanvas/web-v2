@@ -11,7 +11,9 @@ export default Ember.Route.extend({
   },
 
   afterModel() {
-    return preload(this.modelFor('team'), ['channels']);
+    if (this.modelFor('team').get('isInTeam')) {
+      return preload(this.modelFor('team'), ['channels']);
+    }
   },
 
   titleToken({ canvas }) {
