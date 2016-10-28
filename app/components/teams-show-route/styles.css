@@ -28,6 +28,7 @@
 }
 
 .aside-item svg {
+  display: block;
   fill: --gray;
 }
 

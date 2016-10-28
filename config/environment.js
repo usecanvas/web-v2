@@ -7,6 +7,7 @@ module.exports = function(environment) {
     environment,
     gitHubClientID: process.env.GITHUB_CLIENT_ID,
     gitHubRedirectURL: process.env.GITHUB_REDIRECT_URL,
+    intercomAppID: process.env.INTERCOM_APP_ID,
     rootURL: '/',
     locationType: 'auto',
     realtimeHost: process.env.REALTIME_HOST,

@@ -1,10 +1,8 @@
 import Ember from 'ember';
-
-const INTERCOM_APP_ID = 'htxi7bqv';
+import ENV from 'canvas-web/config/environment';
 
 export default Ember.Component.extend({
-  attributeBindings: ['href', 'id'],
-  href: `mailto:${INTERCOM_APP_ID}@incoming.intercom.io`,
-  id: 'custom-intercom-link',
-  tagName: 'a'
+  intercomAppID: ENV.intercomAppID,
+  localClassNames: ['intercom-launcher'],
+  localClassNameBindings: ['intercomAppID::is-hidden']
 });
