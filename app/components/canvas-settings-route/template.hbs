@@ -1,0 +1,21 @@
+<div local-class="container" data-test-settings>
+  <h3>Public Access</h3>
+  <div local-class="public-access">
+    {{ui-checkbox
+      checked=allowLinkAccess
+      local-class="checkbox"
+      onToggle=(action 'toggleLinkAccess')}}
+
+    <span class={{unless allowLinkAccess styles.muted}}>
+      Anyone with the link to this canvas can
+    </span>
+
+    <select local-class="select" onchange={{action 'updatePermission'}} disabled={{unless allowLinkAccess 'disabled'}}>
+      {{#each permissions key='@item' as |permissionChoice|}}
+        <option value={{permissionChoice}} selected={{eq permission permissionChoice}}>
+          {{permissionChoice}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+</div>

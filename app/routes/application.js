@@ -35,7 +35,7 @@ export default Ember.Route.extend({
    * List of unauthenticated routes
    * @member {Array<string>}
    */
-  unauthenticatedRoutes: 'login'.w(),
+  unauthenticatedRoutes: 'login team.canvas.show'.w(),
 
   /**
    * Callback before model is loaded that fetches the logged-in account and
@@ -69,11 +69,13 @@ export default Ember.Route.extend({
   },
 
   identifyUser() {
-    const { currentAccount, currentUser } = this.get('currentAccount')
-      .getProperties('currentUser', 'currentAccount');
-    const { id, intercomHash } =
-      currentAccount.getProperties('id', 'intercomHash');
-    if (intercomHash) {
+    const currentAccount = this.get('currentAccount');
+    const loggedIn = currentAccount.get('loggedIn');
+    const intercomHash = currentAccount.get('currentAccount.intercomHash');
+
+    if (loggedIn && intercomHash) {
+      const id = currentAccount.get('currentAccount.id');
+      const currentUser = currentAccount.get('currentUser');
       /* eslint-disable camelcase */
       const opts = { Intercom: { user_hash: intercomHash } };
       const traits = currentUser.get('content').toJSON();

@@ -2,8 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    const teams = this.modelFor('application').teams;
+    const model = this.modelFor('application');
+    if (!model) return this.transitionTo('login');
 
+    const teams = model.teams;
     let team;
     try {
       team = teams.findBy('id', localStorage.lastTeamID);

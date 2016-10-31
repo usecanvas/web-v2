@@ -5,9 +5,8 @@ export default Ember.Service.extend({
 
   findByDomain(domain) {
     return this.get('store')
-      .query('team', { filter: { domain } })
-      .then(queryResult => {
-        const team = queryResult.get('firstObject');
+      .queryRecord('team', { filter: { domain } })
+      .then(team => {
         if (!team) {
           const err = new Error('Not found');
           err.status = 404;

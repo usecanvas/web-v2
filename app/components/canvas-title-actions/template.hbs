@@ -8,7 +8,7 @@
       <div local-class="menu-content">
         <div onclick={{action (queue (action toggleShowFilter) (action d.closeDropdown))}} local-class="menu-item">Filter</div>
         <a href={{downloadURL}} local-class="menu-item">Download</a>
-        <div onclick={{action 'deleteCanvas'}} local-class="menu-item">Delete</div>
+        {{#if showDeleteCanvas}}<div onclick={{action 'deleteCanvas'}} local-class="menu-item">Delete</div>{{/if}}
       </div>
     </div>
   {{else}}

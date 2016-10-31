@@ -7,6 +7,7 @@ const { computed, get } = Ember;
 export default DS.Model.extend({
   blocks: attr(),
   isTemplate: attr(),
+  linkAccess: attr(),
   nativeVersion: attr(),
   slackChannelIds: attr({ defaultValue: _ => [] }),
   type: attr(),

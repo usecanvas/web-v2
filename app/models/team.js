@@ -9,6 +9,7 @@ export default DS.Model.extend({
   name: attr(),
   hasSlackToken: attr(),
   images: attr(),
+  isInTeam: attr(),
 
   accountUser: belongsTo('user', { async: true }),
   canvases: hasMany('canvas', { async: true }),

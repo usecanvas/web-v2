@@ -1,0 +1,23 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.container {
+  margin: 4rem auto;
+  max-width: 42rem;
+  padding: 1rem;
+}
+
+.public-access {
+  display: flex;
+}
+
+.checkbox {
+  margin-right: 0.25rem;
+}
+
+.select {
+  margin-left: 0.25rem;
+}
+
+.muted {
+  color: --dark-gray;
+}

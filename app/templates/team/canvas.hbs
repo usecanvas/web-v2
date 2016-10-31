@@ -2,12 +2,13 @@
   <aside local-class="aside">
     <div local-class="aside-section">
       <div local-class="aside-item">
-        {{#link-to 'team'}}
+        {{#link-to (if model.team.isInTeam 'team' 'index')}}
           {{svg-jar 'Home' height='32' width='32'}}
         {{/link-to}}
       </div>
     </div>
 
+  {{#if model.team.isInTeam}}
     <div local-class="aside-section">
       {{#link-to 'team.canvas.show' local-class='aside-item' activeClass=styles.aside-item--active}}
         {{svg-jar 'AlignLeft' height='32' width='32'}}
@@ -17,10 +18,11 @@
         {{svg-jar 'Activity' height='32' width='32'}}
       {{/link-to}}
 
-      <div local-class="aside-item aside-item--disabled">
-        {{svg-jar 'Gear' height='32' width='32'}}
-      </div>
+      {{#link-to 'team.canvas.settings' local-class='aside-item' activeClass=styles.aside-item--active}}
+        {{svg-jar "Gear" height="32" width="32"}}
+      {{/link-to}}
     </div>
+  {{/if}}
 
     <div local-class="aside-item">
       {{#intercom-launcher}}

@@ -19,7 +19,7 @@
 
 <div local-class="editor">
   {{canvas-editor-next
-    editingEnabled=(unless isFiltered connected)
+    editingEnabled=(unless (or readOnly isFiltered) connected)
     fetchTemplates=(action 'fetchTemplates')
     filterTerm=filterTerm
     onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
@@ -34,11 +34,13 @@
     githubAuthComponent=(component 'github-oauth')
     titleActionsComponent=(component 'canvas-title-actions'
                            canvas=canvas
+                           showDeleteCanvas=canvas.team.isInTeam
                            onUseTemplate=(route-action 'createFromTemplate')
                            onDeleteCanvas=(route-action 'onDeleteCanvas')
                            toggleShowFilter=(toggle 'showFilter' this)
                            isTemplate=canvas.isTemplate)
     titleBylineComponent=(component 'canvas-title-byline'
                           canvas=canvas
+                          showChannelSelector=canvas.team.isInTeam
                           updateCanvasChannels=(route-action 'updateCanvasChannels'))}}
 </div>

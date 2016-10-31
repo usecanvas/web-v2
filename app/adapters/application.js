@@ -21,6 +21,7 @@ export default DS.JSONAPIAdapter.extend({
 
     return new Promise((resolve, reject) => {
       const hash = this.ajaxOptions(url, type, options);
+      // Handle serialization of query params inside of urlForQuery...
 
       hash.success = function(payload, textStatus, jqXHR) {
         const response = ajaxSuccess(adapter, jqXHR, payload, requestData);
@@ -35,7 +36,20 @@ export default DS.JSONAPIAdapter.extend({
 
       adapter._ajaxRequest(hash);
     }, `DS: RESTAdapter#ajax ${type} to ${url}`);
-  }
+  },
+
+  genericQuery(method, store, type, query) {
+    const url = this.buildURL(type.modelName, null, null, method, query);
+    return this.ajax(url, 'GET', {});
+  },
+
+  query() {
+    return this.genericQuery('query', ...arguments);
+  },
+
+   queryRecord() {
+     return this.genericQuery('queryRecord', ...arguments);
+   }
 });
 
 function ajaxSuccess(adapter, jqXHR, payload, requestData) {

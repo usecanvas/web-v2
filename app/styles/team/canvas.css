@@ -33,14 +33,6 @@
   fill: --dark-gray;
 }
 
-.aside-item--disabled {
-  cursor: not-allowed;
-}
-
-.aside-item--disabled svg {
-  fill: --light-gray;
-}
-
 .main {
   flex: 1;
   overflow: auto;
