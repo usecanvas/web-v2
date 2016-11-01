@@ -9,7 +9,7 @@ const { computed, inject, run } = Ember;
 
 export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   layout,
-  localClassNames: ['teams-show-route'],
+  localClassNames: ['route-team-index'],
   styles,
   topicCanvas: true,
 

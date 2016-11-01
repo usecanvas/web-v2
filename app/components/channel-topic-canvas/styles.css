@@ -1,7 +1,7 @@
 @value --extra-light-gray from 'canvas-colors/styles/colors';
 @value --gray from 'canvas-colors/styles/colors';
 
-@value --cell-padding from 'canvas-web/components/teams-show-route/styles';
+@value --cell-padding from 'canvas-web/components/routes/team-index/styles';
 
 .channel-topic-canvas {
   background: --extra-light-gray;

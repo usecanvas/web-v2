@@ -16,7 +16,7 @@ const { $, computed, inject, observer, on, run } = Ember;
 export default Ember.Component.extend(WithDropzone, {
   currentAccount: inject.service(),
   isFiltered: computed.bool('filterTerm'),
-  localClassNames: ['canvas-show-route'],
+  localClassNames: ['route-canvas-show'],
   showFilter: false,
   store: inject.service(),
   unfurler: inject.service(),
