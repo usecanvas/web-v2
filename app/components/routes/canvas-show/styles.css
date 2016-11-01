@@ -1,6 +1,6 @@
 @value --dark-gray from 'canvas-colors/styles/colors';
 
-.canvas-show-route {
+.route-canvas-show {
   position: relative;
 }
 
