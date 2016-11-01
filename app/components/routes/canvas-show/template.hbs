@@ -21,6 +21,7 @@
   {{canvas-editor-next
     editingEnabled=(unless (or readOnly isFiltered) connected)
     fetchTemplates=(action 'fetchTemplates')
+    fetchUploadSignature=(action 'fetchUploadSignature')
     filterTerm=filterTerm
     onBlockContentUpdatedLocally=(action 'blockContentUpdatedLocally')
     onBlockReplacedLocally=(action 'blockReplacedLocally')
