@@ -367,6 +367,10 @@ export default Ember.Component.extend(WithDropzone, {
       });
     },
 
+    fetchUploadSignature() {
+      return this.get('store').findRecord('upload-signature', 'self');
+    },
+
     unfurlBlock(block) {
       return this.get('unfurler').unfurl(block.get('meta.url'));
     }
