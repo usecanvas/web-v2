@@ -3,9 +3,19 @@
 .canvas-title-byline {
   color: --dark-gray;
   font-size: 0.875rem;
+  line-height: 1.75;
 }
 
 .byline-toggle {
   cursor: pointer;
   user-select: none;
+}
+
+/**
+ * Set min-height to make sure the channel-list sits on a baseline. Ideally we
+ * would style ember-power-select accordingly.
+ */
+
+.channel-list {
+  min-height: 2rem;
 }
