@@ -13,7 +13,7 @@
 
 /**
  * Set min-height to make sure the channel-list sits on a baseline. Ideally we
- * would style ember-power-select accordingly.
+ * would style ember-power-select instead.
  */
 
 .channel-list {
