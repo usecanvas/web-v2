@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  localClassNames: ['ui-billboard']
+  fullScreen: false,
+  localClassNames: ['ui-billboard'],
+  localClassNameBindings: ['fullScreen:full-screen']
 });
