@@ -27,5 +27,11 @@ export default DS.Model.extend({
     return !this.get('slackId');
   }),
 
-  isSlack: computed.not('isPersonal')
+  isSlack: computed.not('isPersonal'),
+
+  getDomainError() {
+    const errors = this.get('errors').errorsFor('domain');
+    if (!errors.length) return null;
+    return errors[0].message;
+  }
 });

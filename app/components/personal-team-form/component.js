@@ -18,6 +18,7 @@ export default Ember.Component.extend({
     try {
       yield this.get('team').save();
     } catch (_err) {
+      this.set('domainError', this.get('team').getDomainError());
       this.set('team.domain', oldDomain);
     }
   }).restartable(),

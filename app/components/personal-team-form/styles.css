@@ -1,6 +1,11 @@
 @value --blue from 'canvas-colors/styles/colors';
 @value --gray from 'canvas-colors/styles/colors';
 @value --light-gray from 'canvas-colors/styles/colors';
+@value --red from 'canvas-colors/styles/colors';
+
+.error {
+  color: --red;
+}
 
 .input-wrapper {
   margin-bottom: 1rem;
