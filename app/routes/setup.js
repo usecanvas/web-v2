@@ -13,7 +13,8 @@ export default Ember.Route.extend({
   model() {
     return {
       account: this.get('currentAccount.currentAccount'),
-      personalTeam: this.get('personalTeam')
+      personalTeam: this.get('personalTeam'),
+      teams: this.get('teamsList.teams')
     };
   }
 });

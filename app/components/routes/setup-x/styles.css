@@ -1,0 +1,3 @@
+.content {
+  composes: content from 'canvas-web/components/team-list-wrapper/styles';
+}

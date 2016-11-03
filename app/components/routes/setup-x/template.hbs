@@ -1,3 +1,6 @@
-<h1>Setup Personal Team</h1>
-
-{{personal-team-form team=personalTeam}}
+{{#team-list-wrapper teams=teams}}
+  <div local-class="content">
+    <h1>Setup Personal Team</h1>
+    {{personal-team-form team=personalTeam}}
+  </div>
+{{/team-list-wrapper}}

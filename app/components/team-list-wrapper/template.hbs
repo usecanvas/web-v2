@@ -1,0 +1,17 @@
+<div local-class="aside">
+  <div local-class="aside-section">
+    {{team-list teams=teams}}
+  </div>
+
+  <div local-class="aside-section"></div>
+
+  <div local-class="aside-section">
+    {{#intercom-launcher local-class='aside-item'}}
+      {{svg-jar "Help" height="32" width="32"}}
+    {{/intercom-launcher}}
+  </div>
+</div>
+
+<div local-class="main">
+  {{yield}}
+</div>
