@@ -1,3 +1,6 @@
 <b>Domain:</b>
-~{{input value=teamDomain}}
-<button {{action 'onSubmit'}}>Set Team Domain</button>
+
+<form>
+  ~{{input value=teamDomain}}
+  <input type="submit" {{action 'onSubmit'}} value="Set Team Domain">
+</form>
