@@ -1,4 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
+import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('routes/setup-x',
@@ -7,19 +8,9 @@ moduleForComponent('routes/setup-x',
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{routes/setup-x}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#routes/setup-x}}
-      template block text
-    {{/routes/setup-x}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.set('teams', []);
+  this.set('personalTeam', Ember.Object.create({ domain: 'domain' }));
+  this.render(hbs`{{routes/setup-x personalTeam=personalTeam teams=teams}}`);
+  assert.ok(this.$().text().trim().match(
+    /This is where your personal notes live\. Give this space a name:/));
 });
