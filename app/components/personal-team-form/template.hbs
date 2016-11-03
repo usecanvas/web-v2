@@ -1,6 +1,11 @@
-<b>Domain:</b>
-
 <form>
-  ~{{input value=teamDomain}}
-  <input type="submit" {{action 'onSubmit'}} value="Set Team Domain">
+  <p>
+    This is where your personal notes live. Give this space a name:
+  </p>
+
+  <div local-class="input-wrapper">
+    {{input value=teamDomain local-class='input' placeholder='dingus'}}
+  </div>
+
+  <input type="submit" {{action 'onSubmit'}} value="Save" local-class="submit">
 </form>
