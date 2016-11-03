@@ -1,17 +1,23 @@
 <form>
-  <p>
-    This is where your personal notes live. Give this space a name:
-  </p>
-
   {{#if domainError}}
     <div local-class="error">
       <p>{{domainError}}</p>
     </div>
   {{/if}}
 
-  <div local-class="input-wrapper">
-    {{input value=teamDomain local-class='input' placeholder='dingus'}}
+  <div local-class="label intro">
+    <strong>Where should your notes live?</strong> Dashes and numbers are A-OK!
   </div>
 
-  <input type="submit" {{action 'onSubmit'}} value="Save" local-class="submit">
+  <div local-class="input-wrapper">
+    {{input value=teamDomain local-class='input' placeholder=placeholder}}
+  </div>
+
+  <div local-class="label outro">
+    https://pro.usecanvas.com/~<strong>{{or teamDomain placeholder}}</strong>
+  </div>
+
+  <div local-class="submit-wrapper">
+    <input type="submit" {{action 'onSubmit'}} value="Save" local-class="submit">
+  </div>
 </form>

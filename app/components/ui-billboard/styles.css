@@ -4,8 +4,11 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
   text-align: center;
+}
+
+.ui-billboard.full-screen {
+  min-height: 100vh;
 }
 
 .emoji {
@@ -19,5 +22,5 @@
 .message {
   color: --dark-gray;
   line-height: 1.5;
-  max-width: 25rem;
+  max-width: 35rem;
 }

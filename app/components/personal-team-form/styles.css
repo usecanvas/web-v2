@@ -3,12 +3,27 @@
 @value --light-gray from 'canvas-colors/styles/colors';
 @value --red from 'canvas-colors/styles/colors';
 
+.personal-team-form {
+  text-align: left;
+}
+
 .error {
   color: --red;
 }
 
+.label {
+  font-size: 0.75rem;
+}
+
+.label.intro {
+  margin-bottom: 0.25rem;
+}
+
+.label.outro {
+  margin-top: 0.25rem;
+}
+
 .input-wrapper {
-  margin-bottom: 1rem;
   position: relative;
 }
 
@@ -41,10 +56,18 @@
   outline: none;
 }
 
+.submit-wrapper {
+  margin-top: 1rem;
+  text-align: right;
+}
+
 .submit {
+  composes: button-reset from 'canvas-web/styles/utilities';
   background: --blue;
-  border-radius: 4px;
+  border-radius: 1000px;
   border: none;
   color: white;
-  padding: 0.75rem;
+  font-size: 0.875rem;
+  min-width: 6rem;
+  padding: 0.5rem 1rem;
 }

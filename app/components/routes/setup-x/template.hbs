@@ -1,9 +1,18 @@
 {{#team-list-wrapper teams=teams}}
   <div local-class="content">
     <div local-class="container">
-      {{personal-team-form
-        team=personalTeam
-        teamUpdated=(route-action 'teamUpdated')}}
+      {{#ui-billboard emoji='📓' title='Set up your space for personal notes'}}
+        <p>
+          Personal notes are great for shopping lists, home improvement
+          projects, and your dissertation on the best LaCroix flavors.
+        </p>
+
+        <div local-class="form">
+          {{personal-team-form
+            team=personalTeam
+            teamUpdated=(route-action 'teamUpdated')}}
+        </div>
+        {{/ui-billboard}}
     </div>
   </div>
 {{/team-list-wrapper}}

@@ -4,24 +4,6 @@
 .canvas-list-empty-state {
   color: --dark-gray;
   padding: 2rem 0;
-  text-align: center;
-}
-
-.content {
-  margin: 0 auto;
-  max-width: 35rem;
-}
-
-.emoji {
-  font-size: 3rem;
-}
-
-.heading {
-  font-weight: 300;
-}
-
-.sub-heading {
-  line-height: 1.5;
 }
 
 .icon {
