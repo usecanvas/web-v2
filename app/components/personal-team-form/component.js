@@ -12,8 +12,14 @@ export default Ember.Component.extend({
   }),
 
   updateDomain: task(function *(domain) {
+    const oldDomain = this.get('team.domain');
     this.set('team.domain', domain);
-    yield this.get('team').save();
+
+    try {
+      yield this.get('team').save();
+    } catch (_err) {
+      this.set('team.domain', oldDomain);
+    }
   }).restartable(),
 
   actions: {
