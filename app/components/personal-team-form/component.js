@@ -17,11 +17,21 @@ export default Ember.Component.extend({
 
     try {
       yield this.get('team').save();
+      this.get('teamUpdated')(this.get('team'));
     } catch (_err) {
-      this.set('domainError', this.get('team').getDomainError());
+      this.set('domainError',
+        this.humanizeError(this.get('team').getDomainError()));
       this.set('team.domain', oldDomain);
     }
   }).restartable(),
+
+  humanizeError(error) {
+    if (!error) return error;
+    return error.replace(/domain/g, 'name')
+                .replace(/Domain/g, 'Name');
+  },
+
+  teamUpdated: Ember.K,
 
   actions: {
     onSubmit() {

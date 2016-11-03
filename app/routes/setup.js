@@ -15,5 +15,11 @@ export default Ember.Route.extend({
       personalTeam: this.get('personalTeam'),
       teams: this.get('teamsList.teams')
     };
+  },
+
+  actions: {
+    teamUpdated(team) {
+      return this.transitionTo('team.index', team);
+    }
   }
 });
