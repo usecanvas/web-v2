@@ -20,6 +20,8 @@ export default Ember.Component.extend(WithDropzone, {
   showFilter: false,
   store: inject.service(),
   unfurler: inject.service(),
+  showChannelSelector:
+    computed.and('canvas.team.isInTeam', 'canvas.team.slackId'),
 
   readOnly: computed('canvas.team.isInTeam', 'canvas.linkAccess', function() {
     return !this.get('canvas.team.isInTeam') &&

@@ -7,9 +7,10 @@ const { computed } = Ember;
 export default DS.Model.extend({
   domain: attr(),
   name: attr(),
-  hasSlackToken: attr(),
+  needsSlackToken: attr(),
   images: attr(),
   isInTeam: attr(),
+  slackId: attr(),
 
   accountUser: belongsTo('user', { async: true }),
   canvases: hasMany('canvas', { async: true }),
@@ -20,5 +21,17 @@ export default DS.Model.extend({
 
   image88: computed('images.[]', function() {
     return this.get('images.image_88');
-  })
+  }),
+
+  isPersonal: computed('slackId', function() {
+    return !this.get('slackId');
+  }),
+
+  isSlack: computed.not('isPersonal'),
+
+  getDomainError() {
+    const errors = this.get('errors').errorsFor('domain');
+    if (!errors.length) return null;
+    return errors[0].message;
+  }
 });

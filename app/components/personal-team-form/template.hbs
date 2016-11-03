@@ -1,0 +1,17 @@
+<form>
+  <p>
+    This is where your personal notes live. Give this space a name:
+  </p>
+
+  {{#if domainError}}
+    <div local-class="error">
+      <p>{{domainError}}</p>
+    </div>
+  {{/if}}
+
+  <div local-class="input-wrapper">
+    {{input value=teamDomain local-class='input' placeholder='dingus'}}
+  </div>
+
+  <input type="submit" {{action 'onSubmit'}} value="Save" local-class="submit">
+</form>

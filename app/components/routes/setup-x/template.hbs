@@ -1,0 +1,9 @@
+{{#team-list-wrapper teams=teams}}
+  <div local-class="content">
+    <div local-class="container">
+      {{personal-team-form
+        team=personalTeam
+        teamUpdated=(route-action 'teamUpdated')}}
+    </div>
+  </div>
+{{/team-list-wrapper}}

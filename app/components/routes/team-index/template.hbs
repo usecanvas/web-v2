@@ -3,21 +3,7 @@
   draggingOver=(mut draggingOver)
   showDropzone=showDropzone}}
 
-<div local-class="aside">
-  <div local-class="aside-section">
-    {{team-list teams=teamsList.teams}}
-  </div>
-
-  <div local-class="aside-section"></div>
-
-  <div local-class="aside-section">
-    {{#intercom-launcher local-class='aside-item'}}
-      {{svg-jar "Help" height="32" width="32"}}
-    {{/intercom-launcher}}
-  </div>
-</div>
-
-<div local-class="main">
+{{#team-list-wrapper teams=teamsList.teams}}
   <div local-class="nav">
     {{team-nav
       channel=channel
@@ -26,13 +12,15 @@
   </div>
 
   <div local-class="content">
-    <div local-class="canvas-list-filter">
-      <div local-class="canvas-list-filter-scroll">
-        {{canvas-list-filter
-          channel=channel
-          channels=team.channels}}
+    {{#if team.slackId}}
+      <div local-class="canvas-list-filter">
+        <div local-class="canvas-list-filter-scroll">
+          {{canvas-list-filter
+            channel=channel
+            channels=team.channels}}
+        </div>
       </div>
-    </div>
+    {{/if}}
 
     <div local-class="canvas-list">
       <div local-class="canvas-list-scroll">
@@ -48,4 +36,4 @@
       </div>
     </div>
   </div>
-</div>
+{{/team-list-wrapper}}
