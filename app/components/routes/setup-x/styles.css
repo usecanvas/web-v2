@@ -1,12 +1,8 @@
 .content {
   composes: content from 'canvas-web/components/team-list-wrapper/styles';
-  align-items: center;
-  justify-content: center;
 }
 
 .container {
-  margin: 4rem auto;
-  max-width: 42rem;
-  padding: 1rem;
+  padding: 4rem 0;
   width: 100%;
 }

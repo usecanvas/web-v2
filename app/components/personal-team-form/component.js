@@ -10,6 +10,9 @@ const { computed } = Ember;
  * @extends Ember.Component
  */
 export default Ember.Component.extend({
+  localClassNames: ['personal-team-form'],
+  placeholder: 'dingus',
+
   /**
    * The editable team domain with the API-added tilde removed
    *
