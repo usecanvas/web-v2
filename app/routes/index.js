@@ -13,7 +13,7 @@ export default Ember.Route.extend({
       // Ignore
     }
 
-    team = team || teams.get('firstObject');
+    team = team || teams.filterBy('isSlack').get('firstObject');
     return this.replaceWith('team', team.get('domain'));
   }
 });
