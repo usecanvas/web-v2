@@ -21,5 +21,11 @@ export default DS.Model.extend({
 
   image88: computed('images.[]', function() {
     return this.get('images.image_88');
-  })
+  }),
+
+  isPersonal: computed('slackId', function() {
+    return !this.get('slackId');
+  }),
+
+  isSlack: computed.not('isPersonal')
 });

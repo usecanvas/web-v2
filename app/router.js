@@ -10,6 +10,7 @@ Router.map(function() { // eslint-disable-line array-callback-return
   this.route('post-auth');
   this.route('login');
   this.route('logout');
+  this.route('settings');
   this.route('team', { path: '/:domain' }, function() {
     this.route('slack', { path: '/slack' });
 
