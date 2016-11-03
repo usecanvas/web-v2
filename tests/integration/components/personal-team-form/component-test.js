@@ -8,11 +8,9 @@ moduleForComponent('personal-team-form',
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
   this.set('team', Ember.Object.create({ domain: '~domain' }));
   this.render(hbs`{{personal-team-form team=team}}`);
-  assert.equal(this.$().text().trim(),
-    'This is where your personal notes live. Give this space a name:');
+
+  assert.ok(this.$().text().trim().includes(
+    'Where should your notes live? Dashes and numbers are A-OK!'));
 });
