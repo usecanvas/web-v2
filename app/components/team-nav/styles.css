@@ -50,7 +50,7 @@
   font-weight: 600;
 }
 
-.username::before {
+.username.is-online::before {
   background: --green;
   border-radius: 50%;
   content: '';

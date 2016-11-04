@@ -1,10 +1,17 @@
 <div local-class="section section--with-border">
   <div local-class="summary">
-    <img local-class="avatar" src="{{user.image72}}">
+    {{#if team.isSlack}}
+      <img local-class="avatar" src="{{user.image72}}">
+    {{/if}}
 
     <div local-class="summary-text">
-      <div local-class="name">{{team.name}}</div>
-      <div local-class="username">{{user.name}}</div>
+      {{#if team.isSlack}}
+        <div local-class="name">{{team.name}}</div>
+        <div local-class="username is-online">{{user.name}}</div>
+      {{else}}
+        <div local-class="name">{{team.domain}}</div>
+        <div local-class="username">Personal Notes</div>
+      {{/if}}
     </div>
   </div>
 </div>
