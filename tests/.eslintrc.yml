@@ -1,8 +1,9 @@
 env:
   embertest: true
 rules:
-  consistent-return: 'off'
-  newline-after-var: 'off'
-  object-curly-newline: 'off'
-  one-var: 'off'
-  require-jsdoc: 'off'
+  camelcase: off
+  consistent-return: off
+  newline-after-var: off
+  object-curly-newline: off
+  one-var: off
+  require-jsdoc: off
