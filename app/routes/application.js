@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'canvas-web/config/environment';
 import Raven from 'raven';
 import RSVP from 'rsvp';
 
@@ -94,6 +95,8 @@ export default Ember.Route.extend({
   onAccountFetch(targetName, signedIn) {
     if (!signedIn && !this.get('unauthenticatedRoutes').includes(targetName)) {
       this.replaceWith('login');
+    } else if (ENV.isElectron && signedIn && targetName === 'login') {
+      this.transitionTo('index');
     }
   },
 

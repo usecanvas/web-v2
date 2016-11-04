@@ -2,6 +2,7 @@ import { runInDebug, warn } from 'ember-data/-private/debug';
 import { TimeoutError, AbortError } from 'ember-data/adapters/errors';
 import DS from 'ember-data';
 import Ember from 'ember';
+import ENV from 'canvas-web/config/environment';
 import parseResponseHeaders from 'ember-data/-private/utils/parse-response-headers';
 
 const { computed, inject, run } = Ember;
@@ -16,6 +17,7 @@ export default DS.JSONAPIAdapter.extend({
   }).volatile(),
 
   ajax(url, type, options) {
+    url = ENV.isElectron ? ENV.apiURL.replace(/\/v1\/$/, '') + url : url;
     const adapter = this; // eslint-disable-line consistent-this
     const requestData = { url, method: type };
 

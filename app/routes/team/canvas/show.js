@@ -13,7 +13,7 @@ export default Ember.Route.extend({
   flashMessages: Ember.inject.service(),
 
   realtimeURL: computed(function() {
-    const protocol = window.location.protocol === 'http:' ? 'ws:' : 'wss:';
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const host = ENV.realtimeHost;
     return `${protocol}//${host}`;
   }),

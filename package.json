@@ -24,6 +24,10 @@
     "autoprefixer": "6.5.1",
     "broccoli-asset-rev": "^2.4.5",
     "canvas-colors": "1.0.1",
+    "devtron": "^1.4.0",
+    "electron": "^1.4.5",
+    "electron-packager": "^8.2.0",
+    "electron-rebuild": "^1.3.0",
     "ember-ajax": "^2.4.1",
     "ember-cli": "2.10.0-beta.1",
     "ember-cli-app-version": "^1.0.0",
@@ -48,7 +52,9 @@
     "ember-concurrency": "0.7.15",
     "ember-css-modules": "0.5.0",
     "ember-data": "^2.10.0-beta.1",
+    "ember-electron": "1.10.8",
     "ember-export-application-global": "^1.0.5",
+    "ember-inspector": "^2.0.4",
     "ember-load-initializers": "^0.5.1",
     "ember-moment": "7.0.0-beta.3",
     "ember-power-select": "1.0.0-beta.21",
@@ -58,5 +64,50 @@
     "ember-test-selectors": "0.0.4",
     "loader.js": "^4.0.10",
     "postcss-nested": "1.0.0"
+  },
+  "dependencies": {
+    "ember-electron": "1.10.8"
+  },
+  "main": "electron.js",
+  "ember-electron": {
+    "WHAT IS THIS?": "Please see the README.md",
+    "copy-files": [
+      "electron.js",
+      "package.json"
+    ],
+    "name": null,
+    "platform": null,
+    "arch": null,
+    "version": null,
+    "app-bundle-id": null,
+    "app-category-type": null,
+    "app-copyright": null,
+    "app-version": null,
+    "asar": null,
+    "asar-unpack": null,
+    "asar-unpack-dir": null,
+    "build-version": null,
+    "cache": null,
+    "extend-info": null,
+    "extra-resource": null,
+    "helper-bundle-id": null,
+    "icon": null,
+    "ignore": null,
+    "out": null,
+    "osx-sign": {
+      "identity": null,
+      "entitlements": null,
+      "entitlements-inherit": null
+    },
+    "overwrite": null,
+    "prune": null,
+    "strict-ssl": null,
+    "version-string": {
+      "CompanyName": null,
+      "FileDescription": null,
+      "OriginalFilename": null,
+      "ProductName": null,
+      "InternalName": null
+    }
   }
 }
