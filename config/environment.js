@@ -34,6 +34,10 @@ module.exports = function(environment) {
     segment: {
       LOG_EVENT_TRACKING: environment === 'development',
       WRITE_KEY: process.env.SEGMENT_WRITE_KEY
+    },
+
+    'ember-cli-mirage': {
+      enabled: environment === 'test'
     }
   };
 
