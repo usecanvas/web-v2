@@ -1,0 +1,1 @@
+web: ./node_modules/.bin/ember electron:package --platform=darwin --app-bundle-id=com.usecanvas.canvas-electron

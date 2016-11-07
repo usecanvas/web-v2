@@ -74,7 +74,7 @@ app.on('ready', function onReady() {
 
     // Figure out better way to filter out the urls
     electron.session.defaultSession.webRequest.onHeadersReceived(
-      { urls: [`${process.env.API_URL.slice(0, -3)}*`] }, (details, cb) => {
+      { urls: ['http://localhost:4000/*', 'https://pro.usecanvas.com/*'] }, (details, cb) => {
       if (details.url.includes(`oauth/slack/callback`)) {
         const cookies = details.responseHeaders['set-cookie'][0].split('; ');
         const [, ...rest] = cookies[0].split('=');

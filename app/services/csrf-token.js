@@ -2,10 +2,11 @@ import Cookies from 'cookies';
 import Ember from 'ember';
 import ENV from 'canvas-web/config/environment';
 
+const requireNode = window;
 const storage = requireNode('electron-json-storage');
 const { computed } = Ember;
 let token;
-storage.get('csrf', (err, data) => {
+storage.get('csrf', (_, data) => {
   token = data;
 });
 
