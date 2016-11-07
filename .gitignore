@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/electron-builds
 /tmp
 
 # dependencies
