@@ -3,6 +3,7 @@
 
 const electron             = require('electron');
 const path                 = require('path');
+const storage              = require('electron-json-storage');
 const app                  = electron.app;
 const BrowserWindow        = electron.BrowserWindow;
 const dirname              = __dirname || path.resolve(path.dirname());
@@ -69,6 +70,17 @@ app.on('ready', function onReady() {
 
     mainWindow.on('closed', () => {
         mainWindow = null;
+    });
+
+    // Figure out better way to filter out the urls
+    electron.session.defaultSession.webRequest.onHeadersReceived(
+      { urls: [`${process.env.API_URL.slice(0, -3)}*`] }, (details, cb) => {
+      if (details.url.includes(`oauth/slack/callback`)) {
+        const cookies = details.responseHeaders['set-cookie'][0].split('; ');
+        const [, ...rest] = cookies[0].split('=');
+        storage.set('csrf', rest.join('='));
+      }
+      cb({ cancel: false });
     });
 
     // Handle an unhandled error in the main thread
