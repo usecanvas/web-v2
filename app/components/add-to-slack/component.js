@@ -5,6 +5,7 @@ import OAuth from 'canvas-web/mixins/oauth';
 export default Ember.Component.extend(OAuth, {
   clientID: ENV.slackClientID,
   endpoint: 'https://slack.com/oauth/authorize',
+  localClassNames: ['add-to-slack'],
   redirectURL: ENV.slackAddRedirectURI,
   scope: `
     bot
