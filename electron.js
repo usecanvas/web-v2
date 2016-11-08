@@ -53,7 +53,7 @@ app.on('ready', function onReady() {
   // If a loading operation goes wrong, we'll send Electron back to
   // Ember App entry point
   mainWindow.webContents.on('did-fail-load', () => {
-    mainWindow.loadURL(emberAppLocation);
+//    mainWindow.loadURL(emberAppLocation);
   });
 
   mainWindow.webContents.on('did-navigate', (event, url) => {
@@ -80,16 +80,16 @@ app.on('ready', function onReady() {
   });
 
   // Figure out better way to filter out the urls
-    electron.session.defaultSession.webRequest.onHeadersReceived(
-      { urls: ['http://localhost:4000/*', 'https://pro-api.usecanvas.com/*'] }, (details, cb) => {
-      if (details.url.includes(`oauth/slack/callback`)) {
-        const cookies = (details.responseHeaders['set-cookie'] ||
-                         details.responseHeaders['Set-Cookie'])[0].split('; ');
-        const [, ...rest] = cookies[0].split('=');
-        storage.set('csrf', rest.join('='));
-      }
-      cb({ cancel: false });
-    });
+  electron.session.defaultSession.webRequest.onHeadersReceived(
+    { urls: ['http://localhost:4000/*', 'https://pro-api.usecanvas.com/*'] }, (details, cb) => {
+    if (details.url.includes(`oauth/slack/callback`)) {
+      const cookies = (details.responseHeaders['set-cookie'] ||
+                       details.responseHeaders['Set-Cookie'])[0].split('; ');
+      const [, ...rest] = cookies[0].split('=');
+      storage.set('csrf', rest.join('='));
+    }
+    cb({ cancel: false });
+  });
 
   // Handle an unhandled error in the main thread
   //
