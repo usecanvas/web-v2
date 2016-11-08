@@ -74,15 +74,16 @@ app.on('ready', function onReady() {
   });
 
   // Figure out better way to filter out the urls
-  electron.session.defaultSession.webRequest.onHeadersReceived(
-    { urls: ['http://localhost:4000/*', 'https://pro.usecanvas.com/*'] }, (details, cb) => {
-    if (details.url.includes(`oauth/slack/callback`)) {
-      const cookies = details.responseHeaders['set-cookie'][0].split('; ');
-      const [, ...rest] = cookies[0].split('=');
-      storage.set('csrf', rest.join('='));
-    }
-    cb({ cancel: false });
-  });
+    electron.session.defaultSession.webRequest.onHeadersReceived(
+      { urls: ['http://localhost:4000/*', 'https://pro-api.usecanvas.com/*'] }, (details, cb) => {
+      if (details.url.includes(`oauth/slack/callback`) &&
+          details.responseHeaders['set-cookie']) {
+        const cookies = details.responseHeaders['set-cookie'][0].split('; ');
+        const [, ...rest] = cookies[0].split('=');
+        storage.set('csrf', rest.join('='));
+      }
+      cb({ cancel: false });
+    });
 
   // Handle an unhandled error in the main thread
   //
