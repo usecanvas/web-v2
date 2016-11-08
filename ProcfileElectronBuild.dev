@@ -1,1 +1,1 @@
-web: ./node_modules/.bin/ember electron:package --platform=darwin --name=Canvas --app-bundle-id=com.usecanvas.canvas-electron --icon=./assets/icons/Canvas.icns
+web: ./node_modules/.bin/ember electron:package --platform=darwin --name=Canvas --app-bundle-id=com.usecanvas.canvas-electron --icon=./assets/icons/Canvas.icns --overwrite

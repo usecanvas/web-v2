@@ -52,14 +52,16 @@ app.on('ready', function onReady() {
 
   // If a loading operation goes wrong, we'll send Electron back to
   // Ember App entry point
-  mainWindow.webContents.on('did-fail-load', () => {
-//    mainWindow.loadURL(emberAppLocation);
+  mainWindow.webContents.on('did-fail-load', (evt) => {
+    if (mainWindow.webContents.getURL() === 'http://localhost:4200/') {
+      mainWindow.loadURL(emberAppLocation);
+    }
   });
 
   mainWindow.webContents.on('did-navigate', (event, url) => {
-    if (url === 'https://pro.usecanvas.com/') {
+    if (['https://pro.usecanvas.com/', 'http://localhost:4200'].includes(url)) {
       mainWindow.loadURL(emberAppLocation);
-    };
+    }
   });
 
   mainWindow.webContents.on('crashed', () => {
