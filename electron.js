@@ -56,6 +56,12 @@ app.on('ready', function onReady() {
     mainWindow.loadURL(emberAppLocation);
   });
 
+  mainWindow.webContents.on('did-navigate', (event, url) => {
+    if (url === 'https://pro.usecanvas.com/') {
+      mainWindow.loadURL(emberAppLocation);
+    };
+  });
+
   mainWindow.webContents.on('crashed', () => {
     console.log('Your Ember app (or other code) in the main window has crashed.');
     console.log('This is a serious issue that needs to be handled and/or debugged.');
@@ -77,12 +83,10 @@ app.on('ready', function onReady() {
     electron.session.defaultSession.webRequest.onHeadersReceived(
       { urls: ['http://localhost:4000/*', 'https://pro-api.usecanvas.com/*'] }, (details, cb) => {
       if (details.url.includes(`oauth/slack/callback`)) {
-        const cookies = (details.responseHeaders['set-cookie'] || details.responseHeaders['Set-Cookie'])[0].split('; ');
+        const cookies = (details.responseHeaders['set-cookie'] ||
+                         details.responseHeaders['Set-Cookie'])[0].split('; ');
         const [, ...rest] = cookies[0].split('=');
         storage.set('csrf', rest.join('='));
-        details.Location = [emberAppLocation];
-        details.location = [emberAppLocation];
-        cb({ cancel: false, responseHeaders: details.responseHeaders });
       }
       cb({ cancel: false });
     });
