@@ -355,17 +355,13 @@ export default Ember.Component.extend(WithDropzone, {
       if (!this.get('canvas.team.isInTeam')) return RSVP.resolve([]);
       if (this.get('templates')) return RSVP.resolve(this.get('templates'));
 
-      const team = this.get('canvas.team');
+      const team = this.get('canvas.team.content');
 
-      return new RSVP.Promise(resolve => {
-        const url = `/v1/teams/${team.get('id')}/templates`;
-
-        return Ember.$.getJSON(url).then(res => {
-          this.set('templates', res.data.mapBy('attributes'));
-          resolve(this.get('templates'));
-        }, err => {
-          throw err;
-        });
+      return team.fetchTemplates().then(res => {
+        this.set('templates', res.data.mapBy('attributes'));
+        return this.get('templates');
+      }, err => {
+        throw err;
       });
     },
 

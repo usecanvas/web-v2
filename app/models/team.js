@@ -29,6 +29,10 @@ export default DS.Model.extend({
 
   isSlack: computed.not('isPersonal'),
 
+  fetchTemplates() {
+    return this.store.adapterFor('team').fetchTemplates(this);
+  },
+
   getDomainError() {
     const errors = this.get('errors').errorsFor('domain');
     if (!errors.length) return null;
