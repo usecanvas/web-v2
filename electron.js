@@ -6,6 +6,8 @@
 const electron = require('electron');
 const path = require('path');
 const storage = require('electron-json-storage');
+const os = require('os');
+const packageJSON = require('./package.json');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -34,7 +36,9 @@ app.on('ready', function onReady() {
 
   Reflect.deleteProperty(mainWindow, 'module');
 
-  // autoUpdate();
+  if (process.env.NODE_ENV === 'production') {
+    autoUpdate();
+  }
 
   // If you want to open up dev tools programmatically, call
   if (process.env.NODE_ENV === 'development') {
@@ -113,10 +117,24 @@ app.on('ready', function onReady() {
 });
 
 function autoUpdate() {
-  /* eslint-disable global-require */
-  const platform = require('os').platform();
-  const version = require('./package.json').version;
-  electron.autoUpdater.setFeedURL(
+  const platform = `${os.platform()}_${os.arch()}`;
+  const { version } = packageJSON;
+  const { autoUpdater, dialog } = electron;
+
+  autoUpdater.setFeedURL(
     `https://download.usecanvas.com/update/${platform}/${version}`);
-  /* eslint-enable global-require */
+  autoUpdater.checkForUpdates();
+
+  autoUpdater.on('update-downloaded', _ => {
+    dialog.showMessageBox({
+      type: 'question',
+      buttons: ['Restart', 'Later'],
+      title: 'Canvas',
+      message: `The new version of the Canvas app has been downloaded. Restart
+        the application to apply updates.`
+    }, buttonIndex => {
+      if (buttonIndex === 1) return;
+      autoUpdater.quitAndInstall();
+    });
+  });
 }
