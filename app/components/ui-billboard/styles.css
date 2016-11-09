@@ -2,6 +2,7 @@
 
 .ui-billboard {
   align-items: center;
+  background: white;
   display: flex;
   justify-content: center;
   text-align: center;
