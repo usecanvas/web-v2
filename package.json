@@ -66,6 +66,7 @@
     "postcss-nested": "1.0.0"
   },
   "dependencies": {
+    "electron-context-menu": "0.7.0",
     "electron-json-storage": "2.0.3",
     "ember-electron": "1.10.8"
   },
