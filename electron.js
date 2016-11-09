@@ -36,8 +36,10 @@ app.on('ready', function onReady() {
 
   Reflect.deleteProperty(mainWindow, 'module');
 
-  if (process.env.NODE_ENV === 'production') {
-    setInterval(autoUpdate, 300000);
+  try {
+    autoUpdate();
+  } catch (_err) {
+    // Can not auto update in development.
   }
 
   // If you want to open up dev tools programmatically, call
