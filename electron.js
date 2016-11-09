@@ -130,7 +130,7 @@ function autoUpdate() {
       type: 'question',
       buttons: ['Restart', 'Later'],
       title: 'Canvas',
-      message: `The new version of the Canvas app has been downloaded. Restart
+      message: `The new version of the Canvas app has been downloaded. Restart \
         the application to apply updates.`
     }, buttonIndex => {
       if (buttonIndex === 1) return;
