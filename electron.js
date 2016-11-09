@@ -48,20 +48,16 @@ app.on('ready', function onReady() {
 
   // If a loading operation goes wrong, we'll send Electron back to
   // Ember App entry point
-  mainWindow.webContents.on('did-fail-load', _evt => {
-    if (mainWindow.webContents.getURL() === 'http://localhost:4200/') {
-      mainWindow.loadURL(emberAppLocation);
-    }
+  mainWindow.webContents.on('did-fail-load', function() {
+    console.log('did-fail-load')
+    console.log(arguments);
   });
 
-  mainWindow.webContents.on('will-navigate', (evt, url) => {
-    if (['https://pro.usecanvas.com/', 'http://localhost:4200'].includes(url)) {
-      mainWindow.loadURL(emberAppLocation);
-    }
-  });
+  mainWindow.webContents.on('did-navigate', function(evt, url) {
+    console.log('did-navigate');
+    console.log(arguments);
 
-  mainWindow.webContents.on('did-navigate', (event, url) => {
-    if (['https://pro.usecanvas.com/', 'http://localhost:4200'].includes(url)) {
+    if (url.includes('/oauth/slack/callback')) {
       mainWindow.loadURL(emberAppLocation);
     }
   });
