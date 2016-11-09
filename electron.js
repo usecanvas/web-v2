@@ -34,6 +34,8 @@ app.on('ready', function onReady() {
 
   Reflect.deleteProperty(mainWindow, 'module');
 
+  // autoUpdate();
+
   // If you want to open up dev tools programmatically, call
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools();
@@ -109,3 +111,12 @@ app.on('ready', function onReady() {
     console.warn(`Exception: ${err}`);
   });
 });
+
+function autoUpdate() {
+  /* eslint-disable global-require */
+  const platform = require('os').platform();
+  const version = require('./package.json').version;
+  electron.autoUpdater.setFeedURL(
+    `https://download.usecanvas.com/update/${platform}/${version}`);
+  /* eslint-enable global-require */
+}
