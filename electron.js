@@ -37,9 +37,11 @@ app.on('ready', function onReady() {
   Reflect.deleteProperty(mainWindow, 'module');
 
   try {
-    autoUpdate();
-  } catch (_err) {
-    // Can not auto update in development.
+    initAutoUpdate();
+    setInterval(checkForUpdates, 1000 * 60 * 5);
+  } catch (err) {
+    // Ignore failed auto-update in development;
+    if (process.env.NODE_ENV !== 'development') throw err;
   }
 
   // If you want to open up dev tools programmatically, call
@@ -118,14 +120,13 @@ app.on('ready', function onReady() {
   });
 });
 
-function autoUpdate() {
+function initAutoUpdate() {
   const platform = `${os.platform()}_${os.arch()}`;
   const { version } = packageJSON;
   const { autoUpdater, dialog } = electron;
 
   autoUpdater.setFeedURL(
     `https://download.usecanvas.com/update/${platform}/${version}`);
-  autoUpdater.checkForUpdates();
 
   autoUpdater.on('update-downloaded', _ => {
     dialog.showMessageBox({
@@ -139,4 +140,8 @@ function autoUpdate() {
       autoUpdater.quitAndInstall();
     });
   });
+}
+
+function checkForUpdates() {
+  electron.autoUpdater.checkForUpdates();
 }
