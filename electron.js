@@ -37,7 +37,7 @@ app.on('ready', function onReady() {
   Reflect.deleteProperty(mainWindow, 'module');
 
   if (process.env.NODE_ENV === 'production') {
-    setInterval(autoUpdate, 30000);
+    setInterval(autoUpdate, 300000);
   }
 
   // If you want to open up dev tools programmatically, call
