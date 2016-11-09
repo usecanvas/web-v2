@@ -38,9 +38,8 @@ app.on('ready', function onReady() {
 
   try {
     initAutoUpdate();
-    setInterval(checkForUpdates, 1000 * 60 * 5);
+    electron.autoUpdater.checkForUpdates();
   } catch (err) {
-    // Ignore failed auto-update in development;
     if (process.env.NODE_ENV !== 'development') throw err;
   }
 
