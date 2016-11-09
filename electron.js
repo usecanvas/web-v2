@@ -1,15 +1,16 @@
 /* eslint-env node */
+/* eslint-disable strict */
 
-// eslint-disable-next-line strict
 'use strict';
 
-const electron             = require('electron');
-const path                 = require('path');
-const storage              = require('electron-json-storage');
-const app                  = electron.app;
-const BrowserWindow        = electron.BrowserWindow;
-const dirname              = __dirname || path.resolve(path.dirname());
-const emberAppLocation     = `file://${dirname}/dist/index.html`;
+const electron = require('electron');
+const path = require('path');
+const storage = require('electron-json-storage');
+
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const dirname = __dirname || path.resolve(path.dirname());
+const emberAppLocation = `file://${dirname}/dist/index.html`;
 
 require('electron-context-menu')();
 
@@ -46,17 +47,7 @@ app.on('ready', function onReady() {
   // please consult the ember-electron readme.
   mainWindow.loadURL(emberAppLocation);
 
-  // If a loading operation goes wrong, we'll send Electron back to
-  // Ember App entry point
-  mainWindow.webContents.on('did-fail-load', function() {
-    console.log('did-fail-load')
-    console.log(arguments);
-  });
-
   mainWindow.webContents.on('did-navigate', function(evt, url) {
-    console.log('did-navigate');
-    console.log(arguments);
-
     if (url.includes('/oauth/slack/callback')) {
       mainWindow.loadURL(emberAppLocation);
     }
