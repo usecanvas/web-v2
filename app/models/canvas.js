@@ -1,4 +1,6 @@
+import CanvasAdapter from 'canvas-web/adapters/canvas';
 import DS from 'ember-data';
+import ENV from 'canvas-web/config/environment';
 import Ember from 'ember';
 
 const { attr, belongsTo, hasMany } = DS;
@@ -22,6 +24,15 @@ export default DS.Model.extend({
   updatedAt: attr('date'),
 
   creator: belongsTo('user', { async: true }),
+
+  downloadURL: computed('id', 'team', function() {
+    const path = CanvasAdapter.create().urlForFindRecord(
+      this.get('id'),
+      this.get('constructor.modelName'),
+      { adapterOptions: { team: this.get('team') } });
+
+    return `${ENV.apiURL.replace(/\/v1\/$/, '')}${path}.canvas`;
+  }),
 
   firstContentBlock: computed('blocks.[]',
                               'blocks.@each.blocks',
