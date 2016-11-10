@@ -9,8 +9,7 @@ const storage = require('electron-json-storage');
 const os = require('os');
 const packageJSON = require('./package.json');
 
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { BrowserWindow, Menu, app } = electron;
 const dirname = __dirname || path.resolve(path.dirname());
 const emberAppLocation = `file://${dirname}/dist/index.html`;
 
@@ -98,7 +97,7 @@ app.on('ready', function onReady() {
   //
   // Note that 'uncaughtException' is a crude mechanism for exception handling
   // intended to be used only as a last resort. The event should not be used as
-  // an equivalent to "On Error Resume Next". Unhandled exceptions inherently
+  // an equivalent to 'On Error Resume Next'. Unhandled exceptions inherently
   // mean that an application is in an undefined state. Attempting to resume
   // application code without properly recovering from the exception can cause
   // additional unforeseen and unpredictable issues.
@@ -117,6 +116,27 @@ app.on('ready', function onReady() {
       'This is a serious issue that needs to be handled and/or debugged.');
     console.warn(`Exception: ${err}`);
   });
+
+  const template = [{
+    label: 'Application',
+    submenu: [
+      { label: 'About Canvas', selector: 'orderFrontStandardAboutPanel:' },
+      { type: 'separator' },
+      { label: 'Quit', accelerator: 'Command+Q', click: function() { app.quit(); }}
+    ]}, {
+      label: 'Edit',
+      submenu: [
+        { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+        { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
+        { type: 'separator' },
+        { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+        { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+        { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+        { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' }
+      ]}
+  ];
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 });
 
 function initAutoUpdate() {
