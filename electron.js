@@ -27,7 +27,6 @@ app.on('ready', function onReady() {
   mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
-    titleBarStyle: 'hidden-inset',
    'web-preferences': {
      'web-security': false
    }
