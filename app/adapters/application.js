@@ -9,15 +9,32 @@ const { computed, inject, run } = Ember;
 const { Promise } = Ember.RSVP;
 
 export default DS.JSONAPIAdapter.extend({
-  namespace: '/v1',
   csrfToken: inject.service(),
+
+  host: computed(function() {
+    if (ENV.isElectron) return ENV.apiURL;
+    return null;
+  }),
+
+  namespace: computed(function() {
+    if (ENV.isElectron) return '';
+    return '/v1';
+  }),
+
+  /*
+   * Relationships come back from the API with `v1` attached already, so we
+   * need to de-duplicate that when fetching relationships.
+   */
+  urlPrefix() {
+    const prefix = this._super(...arguments);
+    return prefix.replace(/v1\/+v1/g, 'v1');
+  },
 
   headers: computed(function() {
     return { 'x-csrf-token': this.get('csrfToken.token') };
   }).volatile(),
 
   ajax(url, type, options) {
-    url = ENV.isElectron ? ENV.apiURL.replace(/\/v1\/$/, '') + url : url;
     const adapter = this; // eslint-disable-line consistent-this
     const requestData = { url, method: type };
 

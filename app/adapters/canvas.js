@@ -3,7 +3,7 @@ import ApplicationAdapter from './application';
 export default ApplicationAdapter.extend({
   urlForCreateRecord(modelName, snapshot) {
     const teamID = snapshot.record.get('team.id');
-    return `${this.get('namespace')}/teams/${teamID}/canvases`;
+    return `${this.urlPrefix()}/teams/${teamID}/canvases`;
   },
 
   urlForDeleteRecord() {
@@ -12,7 +12,7 @@ export default ApplicationAdapter.extend({
 
   urlForFindRecord(id, modelName, snapshot) {
     const teamID = snapshot.adapterOptions.team.get('id');
-    return `${this.get('namespace')}/teams/${teamID}/canvases/${id}`;
+    return `${this.urlPrefix()}/teams/${teamID}/canvases/${id}`;
   },
 
   urlForUpdateRecord(id, modelName, snapshot) {
