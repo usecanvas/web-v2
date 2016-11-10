@@ -13,6 +13,12 @@ const { inject } = Ember;
  */
 export default Ember.Route.extend({
   /**
+   * Services for managing desktop menus in Electron
+   * @member {Ember.Service}
+   */
+  desktopMenus: inject.service(),
+
+  /**
    * Service for the signed-in account
    * @member {Ember.Service}
    */
@@ -49,6 +55,8 @@ export default Ember.Route.extend({
    *   determined
    */
   beforeModel({ targetName }) {
+    this.get('desktopMenus').setup();
+
     return this.get('currentAccount')
       .fetch()
       .then(_ => this.onAccountFetch(targetName, true))

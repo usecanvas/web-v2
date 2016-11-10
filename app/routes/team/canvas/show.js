@@ -4,11 +4,13 @@ import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 import Raven from 'raven';
 import ShareDB from 'sharedb';
+import copyText from 'canvas-web/lib/copy-text';
 
-const { computed, run } = Ember;
+const { computed, guidFor, inject, run } = Ember;
 const MAX_RECONNECTS = 10;
 
 export default Ember.Route.extend({
+  desktopMenus: inject.service(),
   connected: false,
   flashMessages: Ember.inject.service(),
 
@@ -17,6 +19,20 @@ export default Ember.Route.extend({
     const host = ENV.realtimeHost;
     return `${protocol}//${host}`;
   }),
+
+  beforeModel() {
+    const copyURL = this.copyURL.bind(this);
+
+    this.get('desktopMenus').get('editMenu').pushObjects([
+      { type: 'separator', boundFrom: guidFor(this) },
+      { label: 'Copy Current URL', accelerator: 'CmdOrCtrl+Shift+C',
+        boundFrom: guidFor(this), click: copyURL }
+    ]);
+  },
+
+  copyURL() {
+    copyText(this.modelFor('team.canvas').get('webURL'));
+  },
 
   model() {
     return this.modelFor('team.canvas');
@@ -92,6 +108,10 @@ export default Ember.Route.extend({
   deactivate() {
     this.set('connected', false);
     this.get('socket').close();
+    const editItems =
+      this.get('desktopMenus').get('editMenu')
+          .filter(item => item.boundFrom === guidFor(this));
+    this.get('desktopMenus.editMenu').removeObjects(editItems);
     clearInterval(this.get('pingInterval'));
   },
 
