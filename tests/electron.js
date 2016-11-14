@@ -1,4 +1,4 @@
-/* jshint undef: false */
+/* eslint-env node */
 
 const BrowserWindow = require('electron').BrowserWindow;
 const app = require('electron').app;
@@ -17,12 +17,12 @@ app.on('ready', function onReady() {
     height: 600
   });
 
-  delete mainWindow.module;
+  Reflect.deleteProperty(mainWindow, 'module');
 
   if (process.env.EMBER_ENV === 'test') {
-    mainWindow.loadURL('file://' + __dirname + '/index.html');
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
   } else {
-    mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
+    mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
   }
 
   mainWindow.on('closed', function onClosed() {

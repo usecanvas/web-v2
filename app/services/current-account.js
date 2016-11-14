@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import Raven from 'raven';
-import RSVP from 'rsvp';
 
 const { inject } = Ember;
 
