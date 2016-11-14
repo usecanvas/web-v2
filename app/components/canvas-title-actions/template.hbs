@@ -3,17 +3,21 @@
 {{/if}}
 
 <div local-class="actions">
-  {{#ui-dropdown as |d|}}
-    <div local-class="menu">
-      <div local-class="menu-content">
-        <div onclick={{action (queue (action toggleShowFilter) (action d.closeDropdown))}} local-class="menu-item">Filter</div>
-        <a href={{canvas.downloadURL}} download="{{canvas.title}}.canvas" local-class="menu-item">Download</a>
-        {{#if showDeleteCanvas}}<div onclick={{action 'deleteCanvas'}} local-class="menu-item">Delete</div>{{/if}}
+  {{#basic-dropdown horizontalPosition='right' as |dropdown|}}
+    {{#dropdown.trigger}}
+      <div local-class="trigger">
+        {{svg-jar "More" height="24" width="24"}}
       </div>
-    </div>
-  {{else}}
-    <div local-class="trigger">
-      {{svg-jar "More" height="24" width="24"}}
-    </div>
-  {{/ui-dropdown}}
+    {{/dropdown.trigger}}
+
+    {{#dropdown.content}}
+      <div local-class="menu">
+        <div local-class="menu-content">
+          <div onclick={{action (queue (action dropdown.actions.close) (action toggleShowFilter))}} local-class="menu-item">Filter</div>
+          <a href={{canvas.downloadURL}} download="{{canvas.title}}.canvas" local-class="menu-item">Download</a>
+          {{#if showDeleteCanvas}}<div onclick={{action 'deleteCanvas'}} local-class="menu-item">Delete</div>{{/if}}
+        </div>
+      </div>
+    {{/dropdown.content}}
+  {{/basic-dropdown}}
 </div>

@@ -1,0 +1,16 @@
+@value --gray from 'canvas-colors/styles/colors';
+
+:global {
+  .ember-basic-dropdown-trigger {
+    outline: none;
+  }
+
+  .ember-basic-dropdown-content {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px --gray;
+    padding: 0.25rem;
+    transform: translateY(0.5rem);
+    width: 12rem;
+  }
+}
