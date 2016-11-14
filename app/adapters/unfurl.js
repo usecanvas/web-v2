@@ -17,7 +17,7 @@ export default ApplicationAdapter.extend({
     return new RSVP.Promise((resolve, reject) => {
       Ember.$.ajax({
         type: 'POST',
-        url: '/v1/bulk',
+        url: `${this.urlPrefix()}/bulk`,
         contentType: 'application/json',
         headers: this.get('headers'),
         data: this.prepareBulkData(ids)
@@ -46,6 +46,6 @@ export default ApplicationAdapter.extend({
   },
 
   urlForFindRecord(url) {
-    return `${this.get('namespace')}/unfurls?url=${encodeURIComponent(url)}`;
+    return `${this.urlPrefix()}/unfurls?url=${encodeURIComponent(url)}`;
   }
 });

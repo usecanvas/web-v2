@@ -2,14 +2,33 @@ import { runInDebug, warn } from 'ember-data/-private/debug';
 import { TimeoutError, AbortError } from 'ember-data/adapters/errors';
 import DS from 'ember-data';
 import Ember from 'ember';
+import ENV from 'canvas-web/config/environment';
 import parseResponseHeaders from 'ember-data/-private/utils/parse-response-headers';
 
 const { computed, inject, run } = Ember;
 const { Promise } = Ember.RSVP;
 
 export default DS.JSONAPIAdapter.extend({
-  namespace: '/v1',
   csrfToken: inject.service(),
+
+  host: computed(function() {
+    if (ENV.isElectron) return ENV.apiURL;
+    return null;
+  }),
+
+  namespace: computed(function() {
+    if (ENV.isElectron) return '';
+    return '/v1';
+  }),
+
+  /*
+   * Relationships come back from the API with `v1` attached already, so we
+   * need to de-duplicate that when fetching relationships.
+   */
+  urlPrefix() {
+    const prefix = this._super(...arguments);
+    return prefix.replace(/v1\/+v1/g, 'v1');
+  },
 
   headers: computed(function() {
     return { 'x-csrf-token': this.get('csrfToken.token') };

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'canvas-web/config/environment';
 import Raven from 'raven';
 import RSVP from 'rsvp';
 
@@ -11,6 +12,12 @@ const { inject } = Ember;
  * @extends Ember.Route
  */
 export default Ember.Route.extend({
+  /**
+   * Services for managing desktop menus in Electron
+   * @member {Ember.Service}
+   */
+  desktopMenus: inject.service(),
+
   /**
    * Service for the signed-in account
    * @member {Ember.Service}
@@ -48,6 +55,8 @@ export default Ember.Route.extend({
    *   determined
    */
   beforeModel({ targetName }) {
+    this.get('desktopMenus').setup();
+
     return this.get('currentAccount')
       .fetch()
       .then(_ => this.onAccountFetch(targetName, true))
@@ -94,6 +103,8 @@ export default Ember.Route.extend({
   onAccountFetch(targetName, signedIn) {
     if (!signedIn && !this.get('unauthenticatedRoutes').includes(targetName)) {
       this.replaceWith('login');
+    } else if (ENV.isElectron && signedIn && targetName === 'login') {
+      this.transitionTo('index');
     }
   },
 

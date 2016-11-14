@@ -34,6 +34,12 @@ export default DS.Model.extend({
     return `${ENV.apiURL.replace(/\/v1\/$/, '')}${path}.canvas`;
   }),
 
+  webURL: computed('team.domain', 'id', function() {
+    const domain = this.get('team.domain');
+    const id = this.get('id');
+    return `https://pro.usecanvas.com/${domain}/${id}`;
+  }),
+
   firstContentBlock: computed('blocks.[]',
                               'blocks.@each.blocks',
                               'blocks.@each.content', function() {

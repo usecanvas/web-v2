@@ -1,12 +1,19 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import ENV from 'canvas-web/config/environment';
 
 const { attr, belongsTo } = DS;
 const { computed } = Ember;
 
-const TOPIC_REGEX =
-  new RegExp(`https?://${window.location.host}/([^/]+)/([a-z0-9]{22})`, 'i');
+let TOPIC_REGEX;
+if (ENV.isElectron) {
+  TOPIC_REGEX =
+    new RegExp(`https?://pro.usecanvas.com/([^/]+)/([a-z0-9]{22})`, 'i');
+} else {
+  TOPIC_REGEX =
+    new RegExp(`https?://${window.location.host}/([^/]+)/([a-z0-9]{22})`, 'i');
+}
 
 export default DS.Model.extend({
   name: attr(),

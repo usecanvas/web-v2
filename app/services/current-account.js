@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import Raven from 'raven';
-import RSVP from 'rsvp';
 
 const { inject } = Ember;
 
@@ -55,14 +54,9 @@ export default Ember.Service.extend({
    *   logged out
    */
   logout() {
-    return new RSVP.Promise(resolve => {
-      return Ember.$.ajax('/v1/session', {
-        headers: { 'x-csrf-token': this.get('csrfToken.token') },
-        type: 'DELETE'
-      }).then(_ => {
+    return this.get('store').adapterFor('session').logout().then(_ => {
         this.set('currentAccount', null);
-        resolve(null);
-      });
+        return null;
     });
   }
 });
