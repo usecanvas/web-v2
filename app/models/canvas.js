@@ -26,13 +26,13 @@ export default DS.Model.extend({
 
   creator: belongsTo('user', { async: true }),
 
-  downloadURL: computed('id', 'team', function() {
+  apiURL: computed('id', 'team', function() {
     const path = CanvasAdapter.create().urlForFindRecord(
       this.get('id'),
       this.get('constructor.modelName'),
       { adapterOptions: { team: this.get('team') } });
 
-    return `${ENV.apiURL.replace(/\/v1\/$/, '')}${path}.canvas`;
+    return `${ENV.apiURL.replace(/\/v1\/$/, '')}${path}`;
   }),
 
   webURL: computed('team.domain', 'id', function() {
