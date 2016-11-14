@@ -5,7 +5,7 @@ import RSVP from 'rsvp';
 const { run } = Ember;
 
 export default ApplicationAdapter.extend({
-  coalesceFindRequests: true,
+  // coalesceFindRequests: true,
 
   /**
    * Find multiple models by using the bulk endpoint.
