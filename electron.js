@@ -9,7 +9,7 @@ const storage = require('electron-json-storage');
 const os = require('os');
 const packageJSON = require('./package.json');
 
-const { BrowserWindow, Menu, app } = electron;
+const { BrowserWindow, app } = electron;
 const dirname = __dirname || path.resolve(path.dirname());
 const emberAppLocation = `file://${dirname}/dist/index.html`;
 
@@ -137,8 +137,4 @@ function initAutoUpdate() {
       autoUpdater.quitAndInstall();
     });
   });
-}
-
-function checkForUpdates() {
-  electron.autoUpdater.checkForUpdates();
 }
