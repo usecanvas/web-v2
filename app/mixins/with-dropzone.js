@@ -26,9 +26,23 @@ export default Ember.Mixin.create({
     return new RSVP.Promise(resolve => {
       reader.onloadend = resolve;
       reader.readAsText(file);
-    }).then(read => {
+    });
+  },
+
+  readJSONFile(file) {
+    return this.readFile(file).then(read => {
       try {
         return RSVP.resolve(JSON.parse(read.target.result));
+      } catch (err) {
+        return RSVP.reject(err);
+      }
+    });
+  },
+
+  readTextFile(file) {
+    return this.readFile(file).then(read => {
+      try {
+        return RSVP.resolve(read.target.result);
       } catch (err) {
         return RSVP.reject(err);
       }
@@ -39,13 +53,23 @@ export default Ember.Mixin.create({
 
   readTemplates(dataTransfer) {
     const files = Array.from(dataTransfer.files).filter(isJSONFile);
-    const reads = files.map(file => this.readFile(file));
+    const reads = files.map(file => this.readJSONFile(file));
+    return RSVP.all(reads);
+  },
+
+  readMarkdownFiles(dataTransfer) {
+    const files = Array.from(dataTransfer.files).filter(isMarkdownFile);
+    const reads = files.map(file => this.readTextFile(file));
     return RSVP.all(reads);
   }
 });
 
 function isCanvasFile({ name }) {
   return name.split('.').pop() === 'canvas';
+}
+
+function isMarkdownFile({ name }) {
+  return ['md', 'markdown'].includes(name.split('.').pop());
 }
 
 function isJSONFile(file) {

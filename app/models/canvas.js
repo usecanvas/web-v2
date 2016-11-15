@@ -14,6 +14,7 @@ export default DS.Model.extend({
   slackChannelIds: attr({ defaultValue: _ => [] }),
   type: attr(),
   version: attr(),
+  markdown: attr(),
 
   team: belongsTo('team', { async: true }),
   template: belongsTo('canvas', { async: true }),

@@ -48,9 +48,12 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   processDrops({ dataTransfer }) {
     this.set('processingDrop', true);
 
-    return this.readTemplates(dataTransfer).then(templates => {
+    return RSVP.all([this.readTemplates(dataTransfer),
+    this.readMarkdownFiles(dataTransfer)])
+    .then(([templates, mdFiles]) => {
       const uploads = templates.map(run.bind(this, 'uploadTemplate'));
-      return RSVP.all(uploads);
+      const canvases = mdFiles.map(run.bind(this, 'convertMarkdown'));
+      return RSVP.all([uploads, canvases]);
     }).then(_ => {
       this.set('processingDrop', false);
     }).catch(err => {
@@ -66,11 +69,22 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
     template.isTemplate = template.is_template;
 
     return this.get('store')
-               .createRecord('canvas', Object.assign(template, {
-                 slackChannelIds: this.get('channelIDs'),
-                 team
-               }))
-               .save();
+      .createRecord('canvas', Object.assign(template, {
+        slackChannelIds: this.get('channelIDs'),
+        team
+      }))
+      .save();
+  },
+
+  convertMarkdown(markdown) {
+    const team = this.get('team');
+    return this.get('store')
+      .createRecord('canvas', {
+        markdown,
+        slackChannelIds: this.get('channelIDs'),
+        team
+      })
+      .save();
   },
 
   actions: {

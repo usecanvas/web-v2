@@ -5,7 +5,6 @@ import Rangy from 'rangy';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import RSVP from 'rsvp';
 import SelectionState from 'canvas-editor/lib/selection-state';
-import WithDropzone from 'canvas-web/mixins/with-dropzone';
 import nsEvents from 'canvas-web/lib/ns-events';
 import { getTargetBlock, parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/sharedb-path';
 import { task, timeout } from 'ember-concurrency';
@@ -13,7 +12,7 @@ import { task, timeout } from 'ember-concurrency';
 const differ = new DMP();
 const { $, computed, inject, observer, on, run } = Ember;
 
-export default Ember.Component.extend(WithDropzone, {
+export default Ember.Component.extend({
   currentAccount: inject.service(),
   isFiltered: computed.bool('filterTerm'),
   localClassNames: ['route-canvas-show'],
@@ -84,18 +83,6 @@ export default Ember.Component.extend(WithDropzone, {
     if (this.get('canvas.blocks.length') > 1) return;
     if (this.get('canvas.blocks.firstObject.content')) return;
     this._super(...arguments);
-  },
-
-  processDrops({ dataTransfer }) {
-    this.set('processingDrop', true);
-
-    return this.readTemplates(dataTransfer).then(templates => {
-      const template = templates[0]; // Ignore more than one.
-      this.set('canvas.fillTemplate', template);
-      this.set('processingDrop', false);
-    }).catch(err => {
-      throw err;
-    });
   },
 
   scrollToTop: on('didInsertElement', observer('canvas', function() {
