@@ -114,7 +114,7 @@ export default Ember.Route.extend({
 
       // Once `ds-extended-errors` is enabled, switch to using that
       if (err.status === 404 ||
-          (err.errors && err.errors.detail === 'Page not found')) {
+          err.errors && err.errors.detail === 'Page not found') {
         Raven.captureException(err, { level: 'info' });
         this.intermediateTransitionTo('not-found', 'not-found');
       } else {
