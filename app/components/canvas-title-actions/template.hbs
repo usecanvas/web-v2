@@ -14,8 +14,8 @@
       <div local-class="menu">
         <div local-class="menu-content">
           <div onclick={{action (queue (action dropdown.actions.close) (action toggleShowFilter))}} local-class="menu-item">Filter</div>
-          <a href={{concat canvas.apiURL '.canvas'}} download="{{canvas.title}}.canvas" local-class="menu-item">Export as Canvas</a>
-          <a href={{concat canvas.apiURL '.md'}} download="{{canvas.title}}.md" local-class="menu-item">Export as Markdown</a>
+          <a href={{concat canvas.apiURL '.md'}} download="{{canvas.title}}.md" local-class="menu-item">View Markdown</a>
+          <a href={{concat canvas.apiURL '.canvas'}} download="{{canvas.title}}.canvas" local-class="menu-item">Download</a>
           {{#if showDeleteCanvas}}<div onclick={{action 'deleteCanvas'}} local-class="menu-item">Delete</div>{{/if}}
         </div>
       </div>
