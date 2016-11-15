@@ -82,12 +82,16 @@ export default Ember.Route.extend({
     const loggedIn = currentAccount.get('loggedIn');
     const intercomHash = currentAccount.get('currentAccount.intercomHash');
     const currentUser = currentAccount.get('currentUser');
+    const isInTeam = currentUser.get('team.isInTeam');
 
-    if (loggedIn && currentUser && intercomHash) {
+    if (loggedIn && currentUser  && isInTeam) {
       const id = currentAccount.get('currentAccount.id');
       /* eslint-disable camelcase */
       const opts = { Intercom: { user_hash: intercomHash } };
-      const traits = currentUser.get('content').toJSON();
+      const company = { id: currentUser.get('team.id'),
+        name: currentUser.get('team.domain') };
+      const traits = Object.assign(currentUser.get('content').toJSON(),
+        { company });
       this.get('segment').identifyUser(id, traits, opts);
     }
   },
