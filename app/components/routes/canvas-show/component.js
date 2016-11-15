@@ -49,7 +49,6 @@ export default Ember.Component.extend({
       this.set('showFilter', true);
     } else {
       this.set('filterTerm', '');
-      this.set('showFilter', false);
     }
   })),
 
