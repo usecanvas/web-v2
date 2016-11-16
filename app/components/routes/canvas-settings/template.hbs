@@ -1,5 +1,6 @@
 <div local-class="container" data-test-settings>
   <h3>Public Access</h3>
+
   <div local-class="public-access">
     {{ui-checkbox
       checked=allowLinkAccess
@@ -17,5 +18,18 @@
         </option>
       {{/each}}
     </select>
+  </div>
+
+  <h3>Template</h3>
+
+  <div local-class="template-settings">
+    {{ui-checkbox
+      checked=model.isTemplate
+      local-class="checkbox"
+      onToggle=(action 'toggleIsTemplate')}}
+
+    <span class={{unless model.isTemplate styles.muted}}>
+      This canvas is a template. Reade more about templates <a href="#">here</a>.
+    </span>
   </div>
 </div>

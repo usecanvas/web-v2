@@ -39,6 +39,8 @@ export default Ember.Component.extend({
   }).keepLatest(),
 
   actions: {
+    toggleIsTemplate: Ember.K,
+
     toggleLinkAccess() {
       this.toggleProperty('allowLinkAccess');
       this.get('persistPermissionState').perform();

@@ -6,7 +6,8 @@
   padding: 1rem;
 }
 
-.public-access {
+.public-access,
+.template-settings {
   display: flex;
 }
 
