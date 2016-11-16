@@ -82,7 +82,7 @@ export default Ember.Route.extend({
     const loggedIn = currentAccount.get('loggedIn');
     const intercomHash = currentAccount.get('currentAccount.intercomHash');
     const currentUser = currentAccount.get('currentUser');
-    const isInTeam = currentUser.get('team.isInTeam');
+    const isInTeam = currentAccount.get('currentUser.team.isInTeam');
 
     if (loggedIn && currentUser  && isInTeam) {
       const id = currentAccount.get('currentAccount.id');
