@@ -39,7 +39,10 @@ export default Ember.Component.extend({
   }).keepLatest(),
 
   actions: {
-    toggleIsTemplate: Ember.K,
+    toggleIsTemplate() {
+      this.toggleProperty('canvas.isTemplate');
+      this.get('canvas').save();
+    },
 
     toggleLinkAccess() {
       this.toggleProperty('allowLinkAccess');

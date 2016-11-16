@@ -24,11 +24,11 @@
 
   <div local-class="template-settings">
     {{ui-checkbox
-      checked=model.isTemplate
+      checked=canvas.isTemplate
       local-class="checkbox"
       onToggle=(action 'toggleIsTemplate')}}
 
-    <span class={{unless model.isTemplate styles.muted}}>
+    <span class={{unless canvas.isTemplate styles.muted}}>
       This canvas is a template. Reade more about templates <a href="#">here</a>.
     </span>
   </div>
