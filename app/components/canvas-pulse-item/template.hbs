@@ -14,14 +14,16 @@
       {{actionString}}{{#unless hideProvider}} on <a href="{{pulseEvent.providerUrl}}">{{pulseEvent.providerName}}</a>{{/unless}}.
     </div>
 
-    {{#if (and pulseEvent.url (not hideUnfurl))}}
-      <div local-class="attachment">
-        {{canvas-block-url
-          block=pulseEvent
-          canvasLinkComponent=(component 'canvas-link')
-          githubAuthComponent=(component 'github-oauth')
-          unfurl=(action 'unfurlEvent')}}
-      </div>
-    {{/if}}
+    {{#unless failedCanvasUnfurl}}
+      {{#if (and pulseEvent.url (not hideUnfurl))}}
+        <div local-class="attachment">
+          {{canvas-block-url
+            block=pulseEvent
+            canvasLinkComponent=(component 'canvas-link')
+            githubAuthComponent=(component 'github-oauth')
+            unfurl=(action 'unfurlEvent')}}
+        </div>
+      {{/if}}
+    {{/unless}}
   </div>
 </div>
