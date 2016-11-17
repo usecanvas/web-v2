@@ -8,6 +8,11 @@ export default Ember.Component.extend({
   hideUnfurl: computed.equal('pulseEvent.type', 'canvas_created'),
   unfurler: inject.service(),
 
+  /**
+   * @member {boolean} Whether this was a canvas pulse event whose unfurl failed
+   */
+  failedCanvasUnfurl: false,
+
   actionString: computed('pulseEvent.type', function() {
     const type = this.get('pulseEvent.type');
 
@@ -41,7 +46,17 @@ export default Ember.Component.extend({
 
   actions: {
     unfurlEvent(event) {
-      return this.get('unfurler').unfurl(event.get('url'));
+      return this.get('unfurler').unfurl(event.get('url')).then(unfurl => {
+        if (!this.get('pulseEvent.providerName') === 'Canvas') return unfurl;
+        if (unfurl.get('fetched')) return unfurl;
+
+        let verb = 'in';
+        if (this.get('pulseEvent.type') === 'reference_removed') verb = 'from';
+        this.set('actionString',
+                 `${this.get('actionString')} ${verb} a deleted canvas`);
+        this.set('failedCanvasUnfurl', true);
+        return unfurl;
+      });
     }
   }
 });
