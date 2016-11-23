@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'canvas-web',
     debugWebSockets: false,
     environment,
+    changelogURL: process.env.CHANGELOG_URL,
     isElectron: process.env.EMBER_CLI_ELECTRON,
     gitHubClientID: process.env.GITHUB_CLIENT_ID,
     gitHubRedirectURL: process.env.GITHUB_REDIRECT_URL,
