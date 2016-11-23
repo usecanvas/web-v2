@@ -30,29 +30,3 @@
 .trigger svg {
   fill: white;
 }
-
-.menu {
-  font-size: 0.875rem;
-}
-
-.menu-item {
-  display: block;
-  border-radius: 3px;
-  margin-bottom: 0.125rem;
-  padding: 0.25rem 0.5rem;
-}
-
-a.menu-item {
-  color: inherit;
-}
-
-.menu-item:hover,
-a.menu-item:hover {
-  background: --blue;
-  color: white;
-  cursor: pointer;
-}
-
-.menu-item:last-child {
-  margin-bottom: 0;
-}
