@@ -1,0 +1,11 @@
+{{#if link}}
+  <a href={{link}} local-class="link">
+    {{yield}}
+  </a>
+{{else if route}}
+  {{#link-to params=route local-class='link'}}
+    {{yield}}
+  {{/link-to}}
+{{else}}
+  {{yield}}
+{{/if}}

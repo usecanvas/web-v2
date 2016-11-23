@@ -9,6 +9,24 @@
     {{#intercom-launcher local-class='aside-item'}}
       {{svg-jar "Help" height="32" width="32"}}
     {{/intercom-launcher}}
+
+    <div local-class="aside-item">
+      {{#basic-dropdown as |dropdown|}}
+        {{#dropdown.trigger}}
+          {{svg-jar "More" height="32" width="32"}}
+        {{/dropdown.trigger}}
+
+        {{#dropdown.content}}
+          {{#ui-menu as |menu|}}
+            {{#if changelogURL}}
+              {{#menu.item link=changelogURL}}What's new?{{/menu.item}}
+            {{/if}}
+
+            {{#menu.item route=(array 'logout')}}Log Out...{{/menu.item}}
+          {{/ui-menu}}
+        {{/dropdown.content}}
+      {{/basic-dropdown}}
+    </div>
   </div>
 </div>
 

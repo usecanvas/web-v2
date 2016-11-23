@@ -4,6 +4,10 @@
       "description": "A URL pointing to the Canvas Pro API",
       "development_value": "http://localhost:4000/v1/"
     },
+    "CHANGELOG_URL": {
+      "description": "A URL pointing to the Canvas changelog",
+      "development_required": false
+    },
     "GITHUB_CLIENT_ID": {
       "description": "Client ID for a GitHub OAuth application"
     },

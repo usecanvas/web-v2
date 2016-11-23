@@ -1,0 +1,22 @@
+@value --blue from "canvas-colors/styles/colors";
+
+.ui-menu-item {
+  display: block;
+  border-radius: 3px;
+  margin-bottom: 0.125rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.ui-menu-item:hover {
+  background: --blue;
+  color: white;
+  cursor: pointer;
+}
+
+.ui-menu-item:last-child {
+  margin-bottom: 0;
+}
+
+.link {
+  color: inherit;
+}
