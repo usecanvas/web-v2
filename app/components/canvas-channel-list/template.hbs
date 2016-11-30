@@ -27,7 +27,7 @@
       </div>
     {{/if}}
 
-    <button class="{{if canvasChannels styles.edit-button--hidden}}" local-class="edit-button edit-button--placeholder" onclick={{action (toggle 'isEditingChannels' this)}}>
+    <button local-class="edit-button edit-button--placeholder {{if canvasChannels 'edit-button--hidden'}}" onclick={{action (toggle 'isEditingChannels' this)}}>
       {{#unless static}}
         {{#if canvasChannels}}
           Edit

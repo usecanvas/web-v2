@@ -10,15 +10,15 @@
 
   {{#if model.team.isInTeam}}
     <div local-class="aside-section">
-      {{#link-to 'team.canvas.show' local-class='aside-item' activeClass=styles.aside-item--active}}
+      {{#link-to 'team.canvas.show' local-class='aside-item' activeClass=(local-class 'aside-item--active')}}
         {{svg-jar 'AlignLeft' height='32' width='32'}}
       {{/link-to}}
 
-      {{#link-to 'team.canvas.pulse' local-class='aside-item' activeClass=styles.aside-item--active}}
+      {{#link-to 'team.canvas.pulse' local-class='aside-item' activeClass=(local-class 'aside-item--active')}}
         {{svg-jar 'Activity' height='32' width='32'}}
       {{/link-to}}
 
-      {{#link-to 'team.canvas.settings' local-class='aside-item' activeClass=styles.aside-item--active}}
+      {{#link-to 'team.canvas.settings' local-class='aside-item' activeClass=(local-class 'aside-item--active')}}
         {{svg-jar "Gear" height="32" width="32"}}
       {{/link-to}}
     </div>
