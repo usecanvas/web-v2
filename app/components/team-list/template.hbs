@@ -2,13 +2,13 @@
   {{#if personalTeam.domain}}
     {{#link-to "team.index" personalTeam
       local-class='item'
-      activeClass=styles.item--active}}
+      activeClass=(local-class 'item--active')}}
       {{team-list-item team=personalTeam}}
     {{/link-to}}
   {{else}}
     {{#link-to "setup"
       local-class='item'
-      activeClass=styles.item--active}}
+      activeClass=(local-class 'item--active')}}
       {{team-list-item team=personalTeam}}
     {{/link-to}}
   {{/if}}
@@ -17,7 +17,7 @@
 {{#each slackTeams as |team|}}
   {{#link-to "team.index" team
     local-class='item'
-    activeClass=styles.item--active}}
+    activeClass=(local-class 'item--active')}}
     {{team-list-item team=team}}
   {{/link-to}}
 {{/each}}

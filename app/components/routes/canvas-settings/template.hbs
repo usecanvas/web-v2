@@ -7,7 +7,7 @@
       local-class="checkbox"
       onToggle=(action 'toggleLinkAccess')}}
 
-    <span class={{unless allowLinkAccess styles.muted}}>
+    <span local-class="{{unless allowLinkAccess 'muted'}}">
       Anyone with the link to this canvas can
     </span>
 
@@ -28,7 +28,7 @@
       local-class="checkbox"
       onToggle=(action 'toggleIsTemplate')}}
 
-    <span class={{unless canvas.isTemplate styles.muted}}>
+    <span local-class="{{unless canvas.isTemplate 'muted'}}">
       This canvas is a template. Reade more about templates <a href="#">here</a>.
     </span>
   </div>
