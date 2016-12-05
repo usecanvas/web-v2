@@ -585,6 +585,7 @@ function generateOpFromDiff(diff, blockPath) {
  * Turn a block into a ShareDB-compatible block by duplicating it.
  *
  * @method
+ * @private
  * @param {CanvasEditor.RealtimeCanvas.Block} block The block to convert
  * @returns {object} A plain JS object representing the block for serialization
  */
@@ -609,6 +610,7 @@ function toShareDBBlock(block) {
  * Convert a value to JSON recursively.
  *
  * @method
+ * @private
  * @param {object} obj The object to JSONify
  * @returns {object} The JSONified object
  */
