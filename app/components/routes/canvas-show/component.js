@@ -535,6 +535,20 @@ export default Ember.Component.extend({
     },
 
     /**
+     * Redo the next operation.
+     *
+     * @method
+     */
+    redo: Ember.K,
+
+    /**
+     * Undo the last operation
+     *
+     * @method
+     */
+    undo: Ember.K,
+
+    /**
      * Unfurl a block into human-readable information.
      *
      * @method
