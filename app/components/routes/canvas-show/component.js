@@ -4,6 +4,7 @@ import Key from 'canvas-web/lib/key';
 import RSVP from 'rsvp';
 import Rangy from 'rangy';
 import SelectionState from 'canvas-editor/lib/selection-state';
+import UndoManager from 'canvas-editor/lib/undo-manager';
 import nsEvents from 'canvas-web/lib/ns-events';
 import { getTargetBlock, parseStringPath } from 'canvas-web/lib/sharedb-path';
 import { task, timeout } from 'ember-concurrency';
@@ -73,6 +74,13 @@ export default Ember.Component.extend({
    */
   showChannelSelector:
     computed.and('canvas.team.isInTeam', 'canvas.team.slackId'),
+
+  /**
+   * @member {CanvasWeb.UndoManager} A manager for the canvas's undo/redo state
+   */
+  undoManager: computed(function() {
+    return new UndoManager();
+  }),
 
   /*
    * METHODS
