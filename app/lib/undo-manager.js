@@ -1,4 +1,22 @@
 /**
+ * An object representing a unit of work on a data structure
+ *
+ * @typedef {Object} Component
+ * @property {Array<number|string>} p The path this component operates on
+ * @property {Object} ld An object deleted from a list
+ * @property {Object} li An object inserted into a list
+ * @property {Object} od An object deleted from an object
+ * @property {Object} oi An object inserted into an object
+ * @property {string} sd A deleted string
+ * @property {string} si An inserted string
+ */
+
+/**
+ * A list of {@link Component}s applied to a data structure
+ * @typedef {Array<Component>} Op
+ */
+
+/**
  * A manager for a canvas's undo/redo state.
  *
  * This manager behaves differently then one might expect an undo manager to
@@ -11,8 +29,31 @@
  * Likewise, a "redo" is the inverse/rebase of the last user "undo" operation,
  * and the manager is responsible for the task of tracking whether an undo or
  * redo is available.
- *
- * @class UndoManager
  */
 export default class UndoManager {
+  /**
+   * Create an undo manager.
+   */
+  constructor() {
+    /**
+     * A map containing all ops, user and remote.
+     * @type {Map}
+     */
+    this.allOps = new Map();
+
+    /**
+     * A map containing only user ops.
+     * @type {Map}
+     */
+    this.userOperations = new Map();
+  }
+
+  /**
+   * Push a new operation into the undo manager.
+   *
+   * @param {Op} op The operation to push
+   * @param {boolean} [isUserOp=false] Whether the op is a user op
+   */
+  pushOp(op, isUserOp = false) {
+  }
 }

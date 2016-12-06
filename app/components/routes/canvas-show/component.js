@@ -332,7 +332,8 @@ export default Ember.Component.extend({
    */
   submitOp(op) {
     this.set('canvas.editedAt', new Date());
-    this.get('canvas.shareDBDoc').submitOp(op);
+    const x = this.get('canvas.shareDBDoc').submitOp(op);
+    console.log(x);
   },
 
   /* eslint-disable max-statements */
