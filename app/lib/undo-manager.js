@@ -53,9 +53,9 @@ export default class UndoManager {
 
     /**
      * A number representing the position inside the user ops undo stack.
-     * @type {?number}
+     * @type {number}
      */
-    this.userOpsCursor = null;
+    this.userOpsCursor = -1;
   }
 
   /**
@@ -70,15 +70,44 @@ export default class UndoManager {
   }
 
   /**
+   * Redo the user op at the current corsor.
+   *
+   * @returns {?Op} The redo op, or null if none exists
+   */
+  redo() {
+    if (this.userOpsCursor + 1 === this.userOps.length) return null;
+
+    const [op, index] = this.userOps[this.userOpsCursor + 1];
+
+    let rebased = op;
+    for (let idx = index + 1, len = this.allOps.length; idx < len; idx += 1) {
+      rebased = JSONType.transform(rebased, this.allOps[idx], 'right');
+    }
+
+    // This user op is replaced by the redone version
+    this.userOps[this.userOpsCursor + 1] = [rebased, this.allOps.length];
+
+    this.userOpsCursor += 1;
+
+    return rebased;
+  }
+
+  /**
    * Undo the user op at the current cursor.
+   *
+   * @returns {?Op} The inverse op, or null if none exists
    */
   undo() {
+    if (this.userOpsCursor === -1) return null;
+
     const [op, index] = this.userOps[this.userOpsCursor];
 
     let inverse = JSONType.invert(op);
     for (let idx = index + 1, len = this.allOps.length; idx < len; idx += 1) {
       inverse = JSONType.transform(inverse, this.allOps[idx], 'right');
     }
+
+    this.userOpsCursor -= 1;
 
     return inverse;
   }

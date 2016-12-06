@@ -551,7 +551,13 @@ export default Ember.Component.extend({
      * @method
      * @param {jQuery.Event} evt The `redo` event
      */
-    redo: Ember.K,
+    redo(evt) {
+      evt.preventDefault();
+      const redoOp = this.get('undoManager').redo();
+      if (!redoOp) return;
+      OpApplication.applyOperation(this.get('canvas'), redoOp);
+      this.submitOp(redoOp, false);
+    },
 
     /**
      * Undo the last operation
@@ -561,9 +567,10 @@ export default Ember.Component.extend({
      */
     undo(evt) {
       evt.preventDefault();
-      const inverse = this.get('undoManager').undo();
-      OpApplication.applyOperation(this.get('canvas'), inverse);
-      this.submitOp(inverse, false);
+      const undoOp = this.get('undoManager').undo();
+      if (!undoOp) return;
+      OpApplication.applyOperation(this.get('canvas'), undoOp);
+      this.submitOp(undoOp, false);
     },
 
     /**
