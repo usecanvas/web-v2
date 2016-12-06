@@ -538,6 +538,7 @@ export default Ember.Component.extend({
      * Redo the next operation.
      *
      * @method
+     * @param {jQuery.Event} evt The `redo` event
      */
     redo: Ember.K,
 
@@ -545,6 +546,7 @@ export default Ember.Component.extend({
      * Undo the last operation
      *
      * @method
+     * @param {jQuery.Event} evt The `undo` event
      */
     undo: Ember.K,
 
