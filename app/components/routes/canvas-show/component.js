@@ -4,7 +4,7 @@ import Key from 'canvas-web/lib/key';
 import RSVP from 'rsvp';
 import Rangy from 'rangy';
 import SelectionState from 'canvas-editor/lib/selection-state';
-import UndoManager from 'canvas-editor/lib/undo-manager';
+import UndoManager from 'canvas-web/lib/undo-manager';
 import nsEvents from 'canvas-web/lib/ns-events';
 import { getTargetBlock, parseStringPath } from 'canvas-web/lib/sharedb-path';
 import { task, timeout } from 'ember-concurrency';
@@ -210,6 +210,8 @@ export default Ember.Component.extend({
    */
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
+      this.get('undoManager').pushOp(op, isLocalOp);
+
       if (isLocalOp) return;
 
       run.join(_ => {
@@ -332,8 +334,7 @@ export default Ember.Component.extend({
    */
   submitOp(op) {
     this.set('canvas.editedAt', new Date());
-    const x = this.get('canvas.shareDBDoc').submitOp(op);
-    console.log(x);
+    this.get('canvas.shareDBDoc').submitOp(op);
   },
 
   /* eslint-disable max-statements */
@@ -557,7 +558,12 @@ export default Ember.Component.extend({
      * @method
      * @param {jQuery.Event} evt The `undo` event
      */
-    undo: Ember.K,
+    undo(evt) {
+      evt.preventDefault();
+      const inverse = this.get('undoManager').undo();
+      OpApplication.applyOperation(this.get('canvas'), inverse);
+      this.submitOp(inverse);
+    },
 
     /**
      * Unfurl a block into human-readable information.

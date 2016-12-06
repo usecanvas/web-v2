@@ -1,3 +1,7 @@
+import ShareDB from 'sharedb';
+
+const JSONType = ShareDB.types.map.json0;
+
 /**
  * An object representing a unit of work on a data structure
  *
@@ -36,16 +40,29 @@ export default class UndoManager {
    */
   constructor() {
     /**
-     * A map containing all ops, user and remote.
-     * @type {Map}
+     * An array containing all ops, user and remote.
+     * @type {Array}
      */
-    this.allOps = new Map();
+    this.allOps = [];
 
     /**
-     * A map containing only user ops.
-     * @type {Map}
+     * An array containing only user ops.
+     * @type {Array<Op>}
      */
-    this.userOperations = new Map();
+    this.userOps = [];
+
+    /**
+     * A number representing the position inside the user ops undo stack.
+     * @type {?number}
+     */
+    this.userOpsCursor = null;
+
+    /**
+     * A number representing the position of the current user op in the all ops
+     * stack.
+     * @type {?number}
+     */
+    this.allOpsCursor = null;
   }
 
   /**
@@ -55,5 +72,34 @@ export default class UndoManager {
    * @param {boolean} [isUserOp=false] Whether the op is a user op
    */
   pushOp(op, isUserOp = false) {
+    this.allOps.push(op);
+    if (isUserOp) this.pushUserOp(op);
+  }
+
+  /**
+   * Undo the user op at the current cursor.
+   */
+  undo() {
+    const op = this.userOps[this.userOpsCursor];
+    const rebaseAgainst = this.allOps.slice(this.allOpsCursor + 1);
+    const inverse = JSONType.invert(op);
+
+    const rebased = rebaseAgainst.reduce((rebasingOp, rebaseOp) => {
+      return JSONType.transform(rebasingOp, rebaseOp, 'right');
+    }, inverse);
+
+    return rebased;
+  }
+
+  /**
+   * Push a user operation into the undo manager.
+   *
+   * @private
+   * @param {Op} op The operation to push
+   */
+  pushUserOp(op) {
+    this.userOps.push(op);
+    this.userOpsCursor = this.userOps.length - 1;
+    this.allOpsCursor = this.allOps.length - 1;
   }
 }
