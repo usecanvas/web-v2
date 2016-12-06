@@ -120,6 +120,7 @@ export default class UndoManager {
    */
   pushUserOp(op) {
     const index = this.allOps.length - 1;
+    this.userOps = this.userOps.slice(0, this.userOpsCursor + 1);
     this.userOps.push([op, index]);
     this.userOpsCursor = this.userOps.length - 1;
   }
