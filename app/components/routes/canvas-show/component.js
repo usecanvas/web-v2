@@ -210,13 +210,12 @@ export default Ember.Component.extend({
    */
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
-      this.get('undoManager').pushOp(op, isLocalOp);
-
       if (isLocalOp) return;
 
       run.join(_ => {
         this.syncLocalSelection(op);
         OpApplication.applyOperation(this.get('canvas'), op);
+        this.get('undoManager').pushOp(op);
       });
     });
   }),
@@ -331,10 +330,12 @@ export default Ember.Component.extend({
    *
    * @method
    * @param {Array<object>} op The operation to submit
+   * @param {boolean} [isUserOp=true] Whether the op is a "user" op
    */
-  submitOp(op) {
+  submitOp(op, isUserOp = true) {
     this.set('canvas.editedAt', new Date());
     this.get('canvas.shareDBDoc').submitOp(op);
+    this.get('undoManager').pushOp(op, isUserOp);
   },
 
   /* eslint-disable max-statements */
@@ -562,7 +563,7 @@ export default Ember.Component.extend({
       evt.preventDefault();
       const inverse = this.get('undoManager').undo();
       OpApplication.applyOperation(this.get('canvas'), inverse);
-      this.submitOp(inverse);
+      this.submitOp(inverse, false);
     },
 
     /**

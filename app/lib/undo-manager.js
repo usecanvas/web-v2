@@ -41,13 +41,13 @@ export default class UndoManager {
   constructor() {
     /**
      * An array containing all ops, user and remote.
-     * @type {Array}
+     * @type {Array<Op>}
      */
     this.allOps = [];
 
     /**
-     * An array containing only user ops.
-     * @type {Array<Op>}
+     * An array containing only user ops and their index within all ops
+     * @type {Array<Array<Op, number>>}
      */
     this.userOps = [];
 
@@ -56,13 +56,6 @@ export default class UndoManager {
      * @type {?number}
      */
     this.userOpsCursor = null;
-
-    /**
-     * A number representing the position of the current user op in the all ops
-     * stack.
-     * @type {?number}
-     */
-    this.allOpsCursor = null;
   }
 
   /**
@@ -80,15 +73,14 @@ export default class UndoManager {
    * Undo the user op at the current cursor.
    */
   undo() {
-    const op = this.userOps[this.userOpsCursor];
-    const rebaseAgainst = this.allOps.slice(this.allOpsCursor + 1);
-    const inverse = JSONType.invert(op);
+    const [op, index] = this.userOps[this.userOpsCursor];
 
-    const rebased = rebaseAgainst.reduce((rebasingOp, rebaseOp) => {
-      return JSONType.transform(rebasingOp, rebaseOp, 'right');
-    }, inverse);
+    let inverse = JSONType.invert(op);
+    for (let idx = index + 1, len = this.allOps.length; idx < len; idx += 1) {
+      inverse = JSONType.transform(inverse, this.allOps[idx], 'right');
+    }
 
-    return rebased;
+    return inverse;
   }
 
   /**
@@ -98,8 +90,8 @@ export default class UndoManager {
    * @param {Op} op The operation to push
    */
   pushUserOp(op) {
-    this.userOps.push(op);
+    const index = this.allOps.length - 1;
+    this.userOps.push([op, index]);
     this.userOpsCursor = this.userOps.length - 1;
-    this.allOpsCursor = this.allOps.length - 1;
   }
 }
