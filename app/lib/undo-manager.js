@@ -49,13 +49,13 @@ export default class UndoManager {
      * An array containing only user ops and their index within all ops
      * @type {Array<Array<Op, number>>}
      */
-    this.userOps = [];
+    this.undoStack = [];
 
     /**
      * A number representing the position inside the user ops undo stack.
      * @type {number}
      */
-    this.userOpsCursor = -1;
+    this.undoStackCursor = -1;
   }
 
   /**
@@ -75,19 +75,23 @@ export default class UndoManager {
    * @returns {?Op} The redo op, or null if none exists
    */
   redo() {
-    if (this.userOpsCursor + 1 === this.userOps.length) return null;
+    if (this.undoStackCursor + 1 === this.undoStack.length) return null;
 
-    const [op, index] = this.userOps[this.userOpsCursor + 1];
+    const [op, index] = this.undoStack[this.undoStackCursor + 1];
 
     let rebased = op;
     for (let idx = index + 1, len = this.allOps.length; idx < len; idx += 1) {
-      rebased = JSONType.transform(rebased, this.allOps[idx], 'right');
+      const rebaseOp = this.allOps[idx];
+      if (rebaseOp.undoRedo) continue;
+      rebased = JSONType.transform(rebased, rebaseOp, 'left');
     }
 
-    // This user op is replaced by the redone version
-    this.userOps[this.userOpsCursor + 1] = [rebased, this.allOps.length];
+    rebased.undoRedo = true;
 
-    this.userOpsCursor += 1;
+    this.undoStack[this.undoStackCursor + 1] =
+      [rebased, this.allOps.length + 1];
+
+    this.undoStackCursor += 1;
 
     return rebased;
   }
@@ -98,16 +102,19 @@ export default class UndoManager {
    * @returns {?Op} The inverse op, or null if none exists
    */
   undo() {
-    if (this.userOpsCursor === -1) return null;
+    if (this.undoStackCursor === -1) return null;
 
-    const [op, index] = this.userOps[this.userOpsCursor];
+    const [op, index] = this.undoStack[this.undoStackCursor];
 
     let inverse = JSONType.invert(op);
     for (let idx = index + 1, len = this.allOps.length; idx < len; idx += 1) {
-      inverse = JSONType.transform(inverse, this.allOps[idx], 'right');
+      const rebaseOp = this.allOps[idx];
+      // if (rebaseOp.undoRedo) continue;
+      inverse = JSONType.transform(inverse, rebaseOp, 'left');
     }
 
-    this.userOpsCursor -= 1;
+    inverse.undoRedo = true;
+    this.undoStackCursor -= 1;
 
     return inverse;
   }
@@ -120,8 +127,8 @@ export default class UndoManager {
    */
   pushUserOp(op) {
     const index = this.allOps.length - 1;
-    this.userOps = this.userOps.slice(0, this.userOpsCursor + 1);
-    this.userOps.push([op, index]);
-    this.userOpsCursor = this.userOps.length - 1;
+    this.undoStack = this.undoStack.slice(0, this.undoStackCursor + 1);
+    this.undoStack.push([op, index]);
+    this.undoStackCursor = this.undoStack.length - 1;
   }
 }

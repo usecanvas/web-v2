@@ -6,8 +6,8 @@ export default {
   name: 'error-handling',
 
   initialize() {
-    Ember.onerror = onEmberError;
-    RSVP.on('error', onRSVPError);
+    // Ember.onerror = onEmberError;
+    // RSVP.on('error', onRSVPError);
   }
 };
 
