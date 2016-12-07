@@ -330,11 +330,12 @@ export default Ember.Component.extend({
    *
    * @method
    * @param {Array<object>} op The operation to submit
+   * @param {boolean} [isUndoRedo=false] Whether the operation is a undo/redo op
    */
-  submitOp(op, isUserOp = true) {
+  submitOp(op, isUndoRedo = false) {
     this.set('canvas.editedAt', new Date());
     this.get('canvas.shareDBDoc').submitOp(op);
-    this.get('undoManager').pushUserOp(op);
+    if (!isUndoRedo) this.get('undoManager').pushUserOp(op);
   },
 
   /* eslint-disable max-statements */
@@ -553,7 +554,10 @@ export default Ember.Component.extend({
     redo(evt) {
       evt.preventDefault();
       const redoOp = this.get('undoManager').redo();
-      if (redoOp) OpApplication.applyOperation(this.get('canvas'), redoOp);
+      if (!redoOp) return;
+      this.syncLocalSelection(redoOp);
+      OpApplication.applyOperation(this.get('canvas'), redoOp);
+      this.submitOp(redoOp, true);
     },
 
     /**
@@ -565,7 +569,10 @@ export default Ember.Component.extend({
     undo(evt) {
       evt.preventDefault();
       const undoOp = this.get('undoManager').undo();
-      if (undoOp) OpApplication.applyOperation(this.get('canvas'), undoOp);
+      if (!undoOp) return;
+      this.syncLocalSelection(undoOp);
+      OpApplication.applyOperation(this.get('canvas'), undoOp);
+      this.submitOp(undoOp, true);
     },
 
     /**
