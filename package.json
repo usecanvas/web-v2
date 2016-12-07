@@ -9,7 +9,6 @@
   },
   "scripts": {
     "build": "ember build",
-    "docs": "esdoc -c .esdoc.json",
     "lint": "eslint app config tests",
     "start": "ember server",
     "test": "ember test -r dot"
@@ -63,7 +62,6 @@
     "ember-route-action-helper": "1.0.0",
     "ember-svg-jar": "0.9.3",
     "ember-test-selectors": "0.0.4",
-    "esdoc": "0.4.8",
     "loader.js": "^4.0.10",
     "postcss-nested": "1.0.0"
   },
