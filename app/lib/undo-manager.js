@@ -16,8 +16,32 @@ const json0 = ShareDB.types.map.json0;
  * It works by maintaining undo and redo stacks, and transforming operations in
  * those stacks when they need to be applied.
  *
- * For context on how this works, see [this post](https://groups.google.com/forum/#!searchin/sharejs/redo|sort:relevance/sharejs/d-dj4Jp-Ors/TPdEatEkPHoJ)
- * in the ShareJS Google Group.
+ * For context on how this works, see this post in the ShareJS Google Group:
+ * https://groups.google.com/forum/#!msg/sharejs/d-dj4Jp-Ors/jLQ21Kpr138J
+ *
+ * ## Basic Operation Handling
+ *
+ * For each user operation, the redo stack is emptied and the inverse of the
+ * user operation is pushed onto the undo stack.
+ *
+ * ```javascript
+ * undoManager.pushUserOp(op);
+ * ```
+ *
+ * For each remote operation, each operation in both the undo and redo stacks
+ * are cross-transformed with the remote operation.
+
+ * ```javascript
+ * undoManager.handleRemoteOp(op);
+ * ```
+ *
+ * When undoing, the inverse of the undo is pushed onto the redo stack, and when
+ * redoing, the inverse of the redo is pushed onto the undo stack.
+
+ * ```javascript
+ * const undoOp = undoManager.undo();
+ * const redoOp = undoManager.redo(); // <- Inverse of `undoOp`.
+ * ```
  *
  * @class UndoManager
  */
