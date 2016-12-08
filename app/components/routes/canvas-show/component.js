@@ -4,6 +4,7 @@ import Key from 'canvas-web/lib/key';
 import RSVP from 'rsvp';
 import Rangy from 'rangy';
 import SelectionState from 'canvas-editor/lib/selection-state';
+import UndoManager from 'canvas-web/lib/undo-manager';
 import nsEvents from 'canvas-web/lib/ns-events';
 import { getTargetBlock, parseStringPath } from 'canvas-web/lib/sharedb-path';
 import { task, timeout } from 'ember-concurrency';
@@ -73,6 +74,13 @@ export default Ember.Component.extend({
    */
   showChannelSelector:
     computed.and('canvas.team.isInTeam', 'canvas.team.slackId'),
+
+  /**
+   * @member {CanvasWeb.UndoManager} A manager for the canvas's undo/redo state
+   */
+  undoManager: computed(function() {
+    return new UndoManager();
+  }),
 
   /*
    * METHODS
@@ -207,6 +215,7 @@ export default Ember.Component.extend({
       run.join(_ => {
         this.syncLocalSelection(op);
         OpApplication.applyOperation(this.get('canvas'), op);
+        this.get('undoManager').handleRemoteOp(op);
       });
     });
   }),
@@ -321,10 +330,12 @@ export default Ember.Component.extend({
    *
    * @method
    * @param {Array<object>} op The operation to submit
+   * @param {boolean} [isUndoRedo=false] Whether the operation is a undo/redo op
    */
-  submitOp(op) {
+  submitOp(op, isUndoRedo = false) {
     this.set('canvas.editedAt', new Date());
     this.get('canvas.shareDBDoc').submitOp(op);
+    if (!isUndoRedo) this.get('undoManager').pushUserOp(op);
   },
 
   /* eslint-disable max-statements */
@@ -532,6 +543,36 @@ export default Ember.Component.extend({
       const path = this.getPathToBlock(block, index);
       const op = [{ p: path, li: toShareDBBlock(block) }];
       this.submitOp(op);
+    },
+
+    /**
+     * Redo the next operation.
+     *
+     * @method
+     * @param {jQuery.Event} evt The `redo` event
+     */
+    redo(evt) {
+      evt.preventDefault();
+      const redoOp = this.get('undoManager').redo();
+      if (!redoOp) return;
+      this.syncLocalSelection(redoOp);
+      OpApplication.applyOperation(this.get('canvas'), redoOp);
+      this.submitOp(redoOp, true);
+    },
+
+    /**
+     * Undo the last operation
+     *
+     * @method
+     * @param {jQuery.Event} evt The `undo` event
+     */
+    undo(evt) {
+      evt.preventDefault();
+      const undoOp = this.get('undoManager').undo();
+      if (!undoOp) return;
+      this.syncLocalSelection(undoOp);
+      OpApplication.applyOperation(this.get('canvas'), undoOp);
+      this.submitOp(undoOp, true);
     },
 
     /**
