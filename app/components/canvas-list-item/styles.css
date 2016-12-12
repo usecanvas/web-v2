@@ -62,9 +62,9 @@
 }
 
 .actions-button {
-  background: transparent;
-  border: none;
+  composes: button-reset from 'canvas-web/styles/utilities';
   display: block;
+  padding: 0.125rem 0.25rem;
 }
 
 .actions-button svg {
