@@ -1,4 +1,4 @@
-{{#link-to 'team.canvas.show' canvasID
+{{#yielding-link-to 'team.canvas.show' canvasID
   (if (and blockID filter)
     (query-params block=blockID filter=filter)
     (if blockID
@@ -6,6 +6,10 @@
       (if filter
         (query-params filter=filter)
         (query-params))))
-  class=class}}
-  {{yield}}
-{{/link-to}}
+  class=class as |link|}}
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{protocol}}//{{host}}{{link.href}}
+  {{/if}}
+{{/yielding-link-to}}
