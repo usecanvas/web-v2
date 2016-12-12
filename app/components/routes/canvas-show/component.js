@@ -32,6 +32,11 @@ export default Ember.Component.extend({
   currentAccount: inject.service(),
 
   /**
+   * @member {Ember.Service} A service for displaying flash messages
+   */
+  flashMessage: inject.service(),
+
+  /**
    * @member {Array<string>} An array of localized class names
    */
   localClassNames: 'route-canvas-show'.w(),
@@ -179,6 +184,29 @@ export default Ember.Component.extend({
     this._super(...arguments);
   },
 
+  /**
+   * Handle a fatal error on `window`.
+   *
+   * @method
+   * @param {string} message The error message
+   * @param {string} source The error source URL
+   * @param {number} line The line number of the error
+   * @param {number} col The column number of the error
+   * @param {Error} err The error
+   */
+  windowOnerror(_message, _source, _line, _col, _err) {
+    this.set('readOnly', true);
+
+    this.flashMessages.add({
+      destroyOnClick: false,
+      emoji: '😭',
+      message: `We seem to have encountered a really bad error :( Please \
+                reload the page to prevent data loss.`,
+      sticky: true,
+      type: 'danger'
+    });
+  },
+
   /*
    * Lifecycle Hooks
    * ---------------
@@ -221,6 +249,16 @@ export default Ember.Component.extend({
   }),
 
   /**
+   * Bind a window.onerror to prevent editing when an error occurs.
+   *
+   * @method
+   */
+  bindWindowOnerror: on('didInsertElement', function() {
+    this._oldWindowOnerror = window.onerror;
+    window.onerror = this.windowOnerror.bind(this);
+  }),
+
+  /**
    * Scroll to the top on render.
    *
    * @method
@@ -236,6 +274,15 @@ export default Ember.Component.extend({
    */
   unbindKeyboardShortcuts: on('willDestroyElement', function() {
     $(document).off(nsEvents(this, 'keydown'));
+  }),
+
+  /**
+   * Unbind window.onerror back to its original value.
+   *
+   * @method
+   */
+  unbindWindowOnerror: on('willDestroyElement', function() {
+    window.onerror = this._oldWindowOnerror;
   }),
 
   /*
