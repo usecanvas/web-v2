@@ -602,7 +602,13 @@ export default Ember.Component.extend({
       evt.preventDefault();
       const redoOp = this.get('undoManager').redo();
       if (!redoOp) return;
-      this.syncLocalSelection(redoOp);
+
+      try {
+        this.syncLocalSelection(redoOp);
+      } catch (err) {
+        console.warn(err);
+      }
+
       OpApplication.applyOperation(this.get('canvas'), redoOp);
       this.submitOp(redoOp, true);
     },
@@ -617,7 +623,13 @@ export default Ember.Component.extend({
       evt.preventDefault();
       const undoOp = this.get('undoManager').undo();
       if (!undoOp) return;
-      this.syncLocalSelection(undoOp);
+
+      try {
+        this.syncLocalSelection(undoOp);
+      } catch (err) {
+        console.warn(err);
+      }
+
       OpApplication.applyOperation(this.get('canvas'), undoOp);
       this.submitOp(undoOp, true);
     },
