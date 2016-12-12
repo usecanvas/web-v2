@@ -153,6 +153,31 @@ export default Ember.Component.extend({
    */
 
   /**
+   * Handle a `dragenter` event.
+   *
+   * @method
+   * @param {jQuery.Event} evt The `dragenter` event
+   */
+  dragEnter(_evt) {
+    if (this.get('canvas.blocks.length') > 1) return;
+    if (this.get('canvas.blocks.firstObject.content')) return;
+    this._super(...arguments);
+  },
+
+  /**
+   * Handle a regular 'keydown' event on this component.
+   * @method
+   * @param {jQuery.Event} evt The `keydown` event
+   */
+  keyDown(evt) {
+    const key = new Key(evt.originalEvent);
+
+    if (key.is('meta', 's')) {
+      evt.preventDefault();
+    }
+  },
+
+  /**
    * Handle a `keydown` event on the document.
    *
    * @method
@@ -169,19 +194,9 @@ export default Ember.Component.extend({
     } else if (key.is('esc')) {
       this.set('showFilter', false);
       this.set('filterTerm', '');
+    } else if (key.is('meta', 's')) {
+      evt.preventDefault();
     }
-  },
-
-  /**
-   * Handle a `dragenter` event.
-   *
-   * @method
-   * @param {jQuery.Event} evt The `dragenter` event
-   */
-  dragEnter(_evt) {
-    if (this.get('canvas.blocks.length') > 1) return;
-    if (this.get('canvas.blocks.firstObject.content')) return;
-    this._super(...arguments);
   },
 
   /**
