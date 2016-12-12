@@ -20,7 +20,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@usecanvas/canvas-editor": "3.2.2",
+    "@usecanvas/canvas-editor": "3.2.3",
     "autoprefixer": "6.5.1",
     "broccoli-asset-rev": "^2.4.5",
     "canvas-colors": "1.0.1",
