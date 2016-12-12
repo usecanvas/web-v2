@@ -4,13 +4,11 @@ import Qs from 'qs';
 const { computed } = Ember;
 
 export default Ember.Component.extend({
+  blockID: computed.oneWay('query.block'),
+  filter: computed.oneWay('query.filter'),
+  host: window.location.host,
+  protocol: window.location.protocol,
   tagName: '',
-
-  parsedURL: computed('url', function() {
-    const link = document.createElement('a');
-    link.href = this.get('url');
-    return link;
-  }),
 
   canvasID: computed('parsedURL', function() {
     return this.get('parsedURL.pathname')
@@ -19,8 +17,11 @@ export default Ember.Component.extend({
                .get('lastObject');
   }),
 
-  blockID: computed.oneWay('query.block'),
-  filter: computed.oneWay('query.filter'),
+  parsedURL: computed('url', function() {
+    const link = document.createElement('a');
+    link.href = this.get('url');
+    return link;
+  }),
 
   query: computed('parsedURL', function() {
     return Qs.parse(this.get('parsedURL.search').slice(1));
