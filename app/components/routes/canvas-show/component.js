@@ -128,12 +128,8 @@ export default Ember.Component.extend({
         }
       }
 
-      const canvasController =
-        Ember.getOwner(this).lookup('controller:team.canvas');
-      if (canvasController) {
-        const mainClass = canvasController.get('styles.main');
-        Ember.$(`.${mainClass}`).scrollTop(0);
-      }
+      const mainClass = 'js-canvas-show-main';
+      Ember.$(`.${mainClass}`).scrollTop(0);
     });
   }),
 
