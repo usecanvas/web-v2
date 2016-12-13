@@ -11,6 +11,7 @@
 
 # misc
 /.env
+/.env.*
 /.prod.env
 /.sass-cache
 /connect.lock
