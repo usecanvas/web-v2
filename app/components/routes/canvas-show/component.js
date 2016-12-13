@@ -409,7 +409,9 @@ export default Ember.Component.extend({
    */
   syncLocalSelection(op) {
     let activeElement =
-      this.$(window.getSelection().anchorNode).closest('.canvas-block').get(0);
+      this.$(window.getSelection().anchorNode)
+          .closest('.canvas-block-editable')
+          .get(0);
 
     if (!activeElement) return;
 
@@ -438,7 +440,9 @@ export default Ember.Component.extend({
         }
       } else if (comp.ld) {
         const prevBlock = this.getPreviousBlock(block);
-        activeElement = this.$(`[data-block-id=${prevBlock.get('id')}]`).get(0);
+        activeElement = this.$(
+          `#${prevBlock.get('id')} .canvas-block-editable`
+        ).get(0);
         activeBlockID = prevBlock.get('id');
         const range = Rangy.createRange();
         range.selectNodeContents(activeElement);
