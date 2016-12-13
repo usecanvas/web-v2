@@ -258,7 +258,7 @@ export default Ember.Component.extend({
    */
   bindKeyboardShortcuts: on('didInsertElement', function() {
     $(document).on(
-      nsEvents(this, 'keydown'), this.keydownDocument.bind(this));
+      nsEvents(this, 'keydown'), run.bind(this, 'keydownDocument'));
   }),
 
   /**

@@ -11,7 +11,7 @@ export default Ember.Mixin.create({
 
   setUpEventHandlers: on('didInsertElement', function() {
     $(document).on(nsEvents(this, this.get('eventList')),
-      _ => Ember.run(this, 'dropdownClick'));
+      Ember.run.bind(this, 'dropdownClick'));
   }),
 
   tearDownEventHandlers: on('willDestroyElement', function() {
