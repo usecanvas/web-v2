@@ -9,6 +9,7 @@ const { attr } = DS;
  * @extends DS.Model
  */
 export default DS.Model.extend({
+  attachments: attr(),
   fetched: attr(),
   fields: attr(),
   height: attr(),
