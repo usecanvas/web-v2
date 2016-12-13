@@ -64,9 +64,8 @@ export default class OpManager {
    * @private
    */
   flushOp() {
-    console.log('FLUSH OP');
-
     if (this.currentOp.length === 0) return;
+    console.log('FLUSH OP');
     this.shareDBDoc.submitOp(this.currentOp);
     this.undoManager.pushUserOp(this.currentOp);
     this.currentOp = [];
