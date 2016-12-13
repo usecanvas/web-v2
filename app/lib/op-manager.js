@@ -45,16 +45,14 @@ export default class OpManager {
    * @param {boolean} [isUndoRedo=false] Whether the operation is a undo/redo op
    */
   submitOp(op, isUndoRedo = false) {
-    console.log('SUBMIT OP');
-
     if (isUndoRedo) {
-      this.flushOp();
-      this.shareDBDoc.submitOp(op);
+      run.scheduleOnce('actions', this, 'flushOp');
+      run.scheduleOnce('actions', this, 'sendOp', op);
       return;
     }
 
     this.currentOp = JSON0.compose(this.currentOp, op);
-    run.scheduleOnce('actions', this.flushOp.bind(this));
+    run.scheduleOnce('actions', this, 'flushOp');
   }
 
   /**
@@ -65,9 +63,20 @@ export default class OpManager {
    */
   flushOp() {
     if (this.currentOp.length === 0) return;
-    console.log('FLUSH OP');
-    this.shareDBDoc.submitOp(this.currentOp);
+    this.sendOp(this.currentOp);
     this.undoManager.pushUserOp(this.currentOp);
     this.currentOp = [];
+  }
+
+  /**
+   * Send an operation to ShareDB.
+   *
+   * @method
+   * @private
+   * @param {Array<objectt>} op An operation to submit after flush
+   */
+  sendOp(op) {
+    if (op.length === 0) return;
+    this.shareDBDoc.submitOp(op);
   }
 }

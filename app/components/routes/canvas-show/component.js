@@ -270,8 +270,6 @@ export default Ember.Component.extend({
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
       if (isLocalOp) return;
 
-      console.log('REMOTE OP');
-
       run.join(_ => {
         this.syncLocalSelection(op);
         OpApplication.applyOperation(this.get('canvas'), op);
