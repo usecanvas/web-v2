@@ -1,6 +1,7 @@
 import DMP from 'diff-match-patch';
 import Ember from 'ember';
 import Key from 'canvas-web/lib/key';
+import OpManager from 'canvas-web/lib/op-manager';
 import RSVP from 'rsvp';
 import Rangy from 'rangy';
 import SelectionState from 'canvas-editor/lib/selection-state';
@@ -40,6 +41,12 @@ export default Ember.Component.extend({
    * @member {Array<string>} An array of localized class names
    */
   localClassNames: 'route-canvas-show'.w(),
+
+  /**
+   * @member {?CanvasWeb.OpManager} A lib for coalescing and submitting OT
+   *   operations
+   */
+  opManager: null,
 
   /**
    * @member {boolean} Whether to show the filter bar
@@ -233,6 +240,18 @@ export default Ember.Component.extend({
   }),
 
   /**
+   * Initialize an op manager.
+   *
+   * @method
+   */
+  initOpManager: on('init', function() {
+    const opManager = new OpManager(
+      this.get('canvas.shareDBDoc'),
+      this.get('undoManager'));
+    this.set('opManager', opManager);
+  }),
+
+  /**
    * Bind keydown event handlers on the canvas.
    *
    * @method
@@ -249,6 +268,8 @@ export default Ember.Component.extend({
    */
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
+      console.log('REMOTE OP');
+
       if (isLocalOp) return;
 
       run.join(_ => {
@@ -392,8 +413,7 @@ export default Ember.Component.extend({
    */
   submitOp(op, isUndoRedo = false) {
     this.set('canvas.editedAt', new Date());
-    this.get('canvas.shareDBDoc').submitOp(op);
-    if (!isUndoRedo) this.get('undoManager').pushUserOp(op);
+    this.get('opManager').submitOp(op, isUndoRedo);
   },
 
   /* eslint-disable max-statements */
