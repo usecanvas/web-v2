@@ -268,9 +268,9 @@ export default Ember.Component.extend({
    */
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
-      console.log('REMOTE OP');
-
       if (isLocalOp) return;
+
+      console.log('REMOTE OP');
 
       run.join(_ => {
         this.syncLocalSelection(op);
