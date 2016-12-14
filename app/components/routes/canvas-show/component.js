@@ -571,7 +571,10 @@ export default Ember.Component.extend({
       const team = this.get('canvas.team.content');
 
       return team.fetchTemplates().then(res => {
-        this.set('templates', res.data.mapBy('attributes'));
+        this.set('templates', res.data.map(template => {
+          return Object.assign({ id: template.id }, template.attributes);
+        }));
+
         return this.get('templates');
       }, err => {
         throw err;
@@ -644,6 +647,16 @@ export default Ember.Component.extend({
 
       OpApplication.applyOperation(this.get('canvas'), redoOp);
       this.submitOp(redoOp, true);
+    },
+
+    /**
+     * Called when a template has been applied to the canvas.
+     *
+     * @method
+     * @param {string} templateID The ID of the applied template
+     */
+    templateApplied(templateID) {
+      this.get('canvas').updateTemplate(templateID);
     },
 
     /**
