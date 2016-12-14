@@ -57,5 +57,18 @@ export default DS.Model.extend({
 
   title: computed('blocks.firstObject.content', function() {
     return this.get('blocks.firstObject.content') || 'Untitled';
-  })
+  }),
+
+  /**
+   * Update the template ID of the canvas.
+   *
+   * @method
+   * @param {string} templateID The ID of the new template
+   * @returns {Promise<CanvasWeb.Canvas} The updated canvas
+   */
+  updateTemplate(templateID) {
+    return this.store.adapterFor(this.constructor.modelName)
+      .updateTemplate(this, templateID)
+      .then(_ => this);
+  }
 });

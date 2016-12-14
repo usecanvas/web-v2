@@ -656,7 +656,7 @@ export default Ember.Component.extend({
      * @param {string} templateID The ID of the applied template
      */
     templateApplied(templateID) {
-      console.log('templateApplied', templateID);
+      this.get('canvas').updateTemplate(templateID);
     },
 
     /**
