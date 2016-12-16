@@ -7,7 +7,7 @@ import Ember from 'ember';
  *
  * 1. A regular link tag (i.e. `<a href={{link}}></a>`)
  * 2. A `link-to` component
- * 3. Or calling a closure action `onclick`
+ * 3. Or calling a closure action
  *
  * 1. A UI menu as a link tag for external links:
  *
@@ -23,7 +23,7 @@ import Ember from 'ember';
  *
  * 3. A UI menu using a closure action:
  *
- * {{#ui-menu click=(action 'beep')}}
+ * {{#ui-menu action=(action 'beep')}}
  *   Example
  * {{/ui-menu}}
  *
@@ -34,12 +34,12 @@ export default Ember.Component.extend({
   localClassNames: ['ui-menu-item'],
 
   /**
-   * @member {?Function} The closure action to be called on click:
+   * @member {?Function} The closure action to be called:
    */
   action: null,
 
   /**
-   * @member {?string} The download attribute for a `link`.
+   * @member {?string} The download attribute for a `link`:
    */
   download: null,
 
