@@ -11,5 +11,8 @@
     "js-cookie": "^2.1.3",
     "qs": "ljharb/qs#8aa9c26",
     "markdown-it": "^8.2.1"
+  },
+  "resolutions": {
+    "ember": "2.10.0-beta.1"
   }
 }
