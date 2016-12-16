@@ -37,6 +37,11 @@ export default Ember.Component.extend({
    */
   flashMessage: inject.service(),
 
+  /*
+   * @member {EmberCLISegment.SegmentService} A service for the segment api
+   */
+  segment: inject.service(),
+
   /**
    * @member {Array<string>} An array of localized class names
    */
@@ -626,6 +631,16 @@ export default Ember.Component.extend({
       const path = this.getPathToBlock(block, index);
       const op = [{ p: path, li: toShareDBBlock(block) }];
       this.submitOp(op);
+    },
+
+    /**
+     * Action fired after a template is applied to the current canvas.
+     *
+     * @method
+     */
+    templateApplied() {
+      this.get('segment').trackEvent('Instantiated Template',
+                                { source: 'autocomplete' });
     },
 
     /**
