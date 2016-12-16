@@ -5,9 +5,27 @@ import Ember from 'ember';
  *
  * The item can be used to render:
  *
- * - A regular link tag (i.e. `<a href={{link}}></a>`)
- * - A `link-to` Component
- * - Or yield any component with a `click` action
+ * 1. A regular link tag (i.e. `<a href={{link}}></a>`)
+ * 2. A `link-to` component
+ * 3. Or calling a closure action `onclick`
+ *
+ * 1. A UI menu as a link tag for external links:
+ *
+ * {{#ui-menu link='https://example.com'}}
+ *   Example
+ * {{/ui-menu}}
+ *
+ * 2. A UI menu using a `link-to` component for internal routes:
+ *
+ * {{#ui-menu route=(array 'foo' 'bar' 'baz'}}
+ *   Example
+ * {{/ui-menu}}
+ *
+ * 3. A UI menu using a closure action:
+ *
+ * {{#ui-menu click=(action 'beep')}}
+ *   Example
+ * {{/ui-menu}}
  *
  * @class CanvasWeb.UIMenuItemComponent
  * @extends Ember.Component
@@ -16,29 +34,33 @@ export default Ember.Component.extend({
   localClassNames: ['ui-menu-item'],
 
   /**
-   * @member {string} The download attribute for a `link`.
-   *
-   * <a href={{link}} download={{download}}>{{yield}}</a>
+   * @member {?Function} The closure action to be called on click:
+   */
+  action: null,
+
+  /**
+   * @member {?string} The download attribute for a `link`.
    */
   download: null,
 
   /**
-   * @member {string} A URL that will render the `ui-menu` item as a link:
-   *
-   * <a href={{link}}>{{yield}}</a>
+   * @member {?string} A URL that will render the `ui-menu` item as a link:
    */
   link: null,
 
   /**
-   * @member {array} An array to be passted to a link-to component's `params`
-   *   property.
-   *
-   * {{link-to params=route}}{{yield}}{{/link-to}}
+   * @member {?Array} An array to be passted to a link-to component's `params`
+   *   property:
    */
   route: null,
 
+  /**
+   * Calls the passed in `action` when the user clicks on the item.
+   *
+   * @method
+   */
   click() {
     const action = this.get('action');
-    return action && action();
+    if (action) action();
   }
 });
