@@ -1,4 +1,5 @@
 import DMP from 'diff-match-patch';
+
 import Ember from 'ember';
 import Key from 'canvas-web/lib/key';
 import OpManager from 'canvas-web/lib/op-manager';
@@ -273,6 +274,8 @@ export default Ember.Component.extend({
    */
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
+      this.set('canvas.version', this.get('canvas.shareDBDoc.version'));
+
       if (isLocalOp) return;
 
       run.join(_ => {

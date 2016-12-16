@@ -1,3 +1,9 @@
+{{ui-slider
+  min=0
+  max=canvas.version
+  onChange=(action 'onVersionChange')
+  value=version}}
+
 <div local-class="editor">
   {{canvas-editor-next
     editingEnabled=false
