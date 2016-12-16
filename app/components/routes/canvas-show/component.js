@@ -634,16 +634,6 @@ export default Ember.Component.extend({
     },
 
     /**
-     * Action fired after a template is applied to the current canvas.
-     *
-     * @method
-     */
-    templateApplied() {
-      this.get('segment').trackEvent('Instantiated Template',
-                                { source: 'autocomplete' });
-    },
-
-    /**
      * Redo the next operation.
      *
      * @method
@@ -671,6 +661,8 @@ export default Ember.Component.extend({
      * @param {string} templateID The ID of the applied template
      */
     templateApplied(templateID) {
+      this.get('segment').trackEvent('Instantiated Template',
+                                     { source: 'autocomplete' });
       this.get('canvas').updateTemplate(templateID);
     },
 
