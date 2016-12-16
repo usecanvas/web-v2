@@ -13,6 +13,7 @@ Router.map(function() { // eslint-disable-line array-callback-return
   this.route('setup');
   this.route('team', { path: '/:domain' }, function() {
     this.route('slack', { path: '/slack' });
+    this.route('beta', { path: '/beta' });
 
     this.route('canvas', { path: '/:id' }, function() {
       this.route('show', { path: '/' });
@@ -20,7 +21,6 @@ Router.map(function() { // eslint-disable-line array-callback-return
       this.route('settings', { path: '/settings' });
     });
   });
-
 
   // For rendering 500 in error handler
   this.route('error');
