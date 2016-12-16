@@ -12,6 +12,10 @@ export default Ember.Component.extend({
       });
     },
 
+    navigateHistory() {
+      this.get('onNavigateHistory')();
+    },
+
     onUseTemplate() {
       this.get('onUseTemplate')();
     },

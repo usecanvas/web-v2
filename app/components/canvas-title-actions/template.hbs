@@ -16,6 +16,10 @@
           Filter
         {{/menu.item}}
 
+        {{#menu.item action=(action 'navigateHistory')}}
+          Time Machine
+        {{/menu.item}}
+
         {{#menu.item link=(concat canvas.apiURL '.md')}}
           View Markdown
         {{/menu.item}}
