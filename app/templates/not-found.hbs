@@ -1,6 +1,18 @@
 {{#ui-billboard emoji='🕵️' fullScreen=true title='Uh oh, four-oh-four'}}
   <p>
     We couldn't find the page you're looking for.<br>
-    We even checked under the sofa. Maybe {{link-to 'return home' 'index'}}?
+    We even checked under the sofa.
+
+    {{#if loggedIn}}
+      Maybe {{link-to 'return home' 'index'}}?
+    {{/if}}
   </p>
+
+  {{#unless loggedIn}}
+    <p>
+      Perhaps you need to sign in?
+    </p>
+
+    {{sign-in-with-slack}}
+  {{/unless}}
 {{/ui-billboard}}
