@@ -1,25 +1,16 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
+import { moduleForComponent, test } from 'ember-qunit';
 
-moduleForComponent('routes/canvas-history', 'Integration | Component | routes/canvas history', {
+moduleForComponent('routes/canvas-history',
+                   'Integration | Component | routes/canvas history', {
   integration: true
 });
 
 test('it renders', function(assert) {
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{routes/canvas-history}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#routes/canvas-history}}
-      template block text
-    {{/routes/canvas-history}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  const canvas = Ember.Object.create(
+    { blocks: [{ content: 'Canvas Title' }], ops: [] });
+  this.set('canvas', canvas);
+  this.render(hbs`{{routes/canvas-history canvas=canvas}}`);
+  assert.ok(this.$().text().includes('Canvas Title'));
 });
