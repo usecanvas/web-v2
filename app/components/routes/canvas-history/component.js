@@ -41,6 +41,11 @@ export default Ember.Component.extend({
    * @method
    */
   initRealtimeBlocks() {
+    if (Ember.typeOf(this.get('canvas.blocks.firstObject')) === 'instance') {
+      // Already initialized
+      return;
+    }
+
     this.get('canvas').set('blocks', this.get('canvas.blocks').map(block => {
       return RealtimeCanvas.createBlockFromJSON(block);
     }));
