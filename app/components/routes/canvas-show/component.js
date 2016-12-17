@@ -37,6 +37,11 @@ export default Ember.Component.extend({
    */
   flashMessage: inject.service(),
 
+  /*
+   * @member {EmberCLISegment.SegmentService} A service for the segment api
+   */
+  segment: inject.service(),
+
   /**
    * @member {Array<string>} An array of localized class names
    */
@@ -656,6 +661,8 @@ export default Ember.Component.extend({
      * @param {string} templateID The ID of the applied template
      */
     templateApplied(templateID) {
+      this.get('segment').trackEvent('Instantiated Template',
+                                     { source: 'autocomplete' });
       this.get('canvas').updateTemplate(templateID);
     },
 

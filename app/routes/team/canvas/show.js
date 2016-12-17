@@ -13,6 +13,7 @@ export default Ember.Route.extend({
   desktopMenus: inject.service(),
   connected: false,
   flashMessages: Ember.inject.service(),
+  segment: inject.service(),
 
   realtimeURL: computed(function() {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
@@ -134,6 +135,8 @@ export default Ember.Route.extend({
         team: canvas.get('team'),
         template: canvas
       }).save().then(newCanvas => {
+        this.get('segment').trackEvent('Instantiated Template',
+                                  { source: 'template' });
         this.transitionTo('team.canvas.show', newCanvas);
       });
     },
