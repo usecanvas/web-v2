@@ -107,6 +107,15 @@ export default Ember.Component.extend({
 
   actions: {
     /**
+     * Clone the current document.
+     *
+     * @method
+     */
+    clone() {
+      console.log('Clone me...');
+    },
+
+    /**
      * Called when the version slider changes.
      *
      * @method

@@ -1,9 +1,14 @@
-<div local-class="slider">
+<div local-class="history-manager">
   {{ui-slider
-    min=0
+    local-class='slider'
     max=canvas.version
+    min=0
     onChange=(action 'onVersionChange')
     value=initialVersion}}
+
+  <button onclick={{action 'clone'}} local-class='clone'>
+    {{svg-jar 'Add' height=24 width=24 local-class='clone-icon'}}
+  </button>
 </div>
 
 <div local-class="editor">

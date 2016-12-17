@@ -4,11 +4,20 @@
   position: relative;
 }
 
-.slider {
+.history-manager {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  color: white;
+  display: flex;
   left: 0;
+  padding: 0.75rem 1rem;
   position: absolute;
   right: 0;
   top: 1.0625rem;
+}
+
+.slider {
+  width: 100%;
 }
 
 .editor {
