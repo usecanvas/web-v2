@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Raven from 'raven';
 import preload from 'canvas-web/lib/preload';
 
 const { inject } = Ember;
@@ -34,6 +35,13 @@ export default Ember.Route.extend({
       .then(user => {
         team.set('accountUser', user);
         this.set('currentAccount.currentUser', team.get('accountUser'));
+        const userContext = Raven.getContext().user;
+        userContext.email = user.get('email');
+        userContext.user =
+          { id: user.get('id'),
+            email: user.get('email'),
+            team: { id: team.get('id'), domain: team.get('domain') } };
+        Raven.setUserContext(userContext);
         return preload(team, ['canvases']);
       });
   },
