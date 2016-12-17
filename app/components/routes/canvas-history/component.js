@@ -1,11 +1,12 @@
-import Ember from 'ember';
 import * as OpApplication from 'canvas-web/lib/op-application';
+import Ember from 'ember';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ShareDB from 'sharedb';
 import { task, timeout } from 'ember-concurrency';
 
-const { computed, inject, on } = Ember;
+const DEBOUNCE = 200;
 const json0 = ShareDB.types.map.json0;
+const { computed, inject, on } = Ember;
 
 export default Ember.Component.extend({
   /**
@@ -102,7 +103,7 @@ export default Ember.Component.extend({
 
     this.set('version', toVersion);
 
-    yield timeout(100);
+    yield timeout(DEBOUNCE);
   }).keepLatest(),
 
   actions: {

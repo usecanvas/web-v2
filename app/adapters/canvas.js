@@ -11,7 +11,8 @@ export default ApplicationAdapter.extend({
   },
 
   urlForFindRecord(id, modelName, snapshot) {
-    const teamID = snapshot.adapterOptions.team.get('id');
+    const teamID = snapshot.record ? snapshot.record.get('team.id')
+      : snapshot.adapterOptions.team.get('id');
     return `${this.urlPrefix()}/teams/${teamID}/canvases/${id}`;
   },
 

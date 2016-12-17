@@ -8,14 +8,10 @@ import Ember from 'ember';
  */
 export default Ember.Route.extend({
   model() {
-    const canvas = this.modelFor('team.canvas');
-
-    if (canvas.get('shareDBDoc')) {
-      canvas.set('version', canvas.get('shareDBDoc.version'));
-    }
-
-    return canvas.get('ops').then(_ => {
-      return canvas;
-    });
+    return this.modelFor('team.canvas')
+               .reload()
+               .then(canvas => {
+                 return canvas.hasMany('ops').reload().then(_ => canvas);
+               });
   }
 });
