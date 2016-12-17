@@ -2,12 +2,19 @@ import Ember from 'ember';
 import * as OpApplication from 'canvas-web/lib/op-application';
 import RealtimeCanvas from 'canvas-editor/lib/realtime-canvas';
 import ShareDB from 'sharedb';
+import { task, timeout } from 'ember-concurrency';
 
-const { inject, on } = Ember;
+const { computed, inject, on } = Ember;
 const json0 = ShareDB.types.map.json0;
 
 export default Ember.Component.extend({
   /**
+   * @member {number} The initial version value
+   */
+  initialVersion: computed('version', function() {
+    return parseInt(this.get('version'), 10);
+  }),
+
   /**
    * @member {Array<string>} An array of localized class names
    */
@@ -45,23 +52,53 @@ export default Ember.Component.extend({
    * @method
    */
   initCanvasVersion() {
-    const version = parseInt(this.get('version'), 10);
+    const version = this.get('initialVersion');
     const maxVersion = this.get('canvas.version');
 
     if (version > maxVersion) throw new Error('Canvas version out of range');
     if (version === maxVersion) return;
 
-    const rewindOps =
+    const ops =
       this.get('canvas.ops')
-          .slice(version + 1, maxVersion + 1)
+          .slice(version, maxVersion)
           .mapBy('components')
           .map(json0.invert)
           .reverse();
 
-    rewindOps.forEach(op => {
-      OpApplication.applyOperation(this.get('canvas'), op);
-    });
+    ops.forEach(op => OpApplication.applyOperation(this.get('canvas'), op));
   },
+
+  /**
+   * Travel through time between two versions of a canvas.
+   *
+   * @method
+   * @param {number} toVersion The version to travel to
+   */
+  timeTravel: task(function *(toVersion) {
+    const fromVersion = parseInt(this.get('version'), 10);
+
+    if (fromVersion < toVersion) {
+      const ops =
+        this.get('canvas.ops')
+            .slice(fromVersion, toVersion)
+            .mapBy('components');
+
+      ops.forEach(op => OpApplication.applyOperation(this.get('canvas'), op));
+    } else if (fromVersion > toVersion) {
+      const ops =
+        this.get('canvas.ops')
+            .slice(toVersion, fromVersion)
+            .reverse()
+            .mapBy('components')
+            .map(json0.invert);
+
+      ops.forEach(op => OpApplication.applyOperation(this.get('canvas'), op));
+    }
+
+    this.set('version', toVersion);
+
+    yield timeout(100);
+  }).keepLatest(),
 
   actions: {
     /**
@@ -71,27 +108,9 @@ export default Ember.Component.extend({
      * @param {string} oldVersion The old version value
      * @param {string} newVersion The new version value
      */
-    onVersionChange(oldVersion, newVersion) {
-      oldVersion = parseInt(oldVersion, 10);
+    onVersionChange(_oldVersion, newVersion) {
       newVersion = parseInt(newVersion, 10);
-
-      if (oldVersion < newVersion) {
-        const ops =
-          this.get('canvas.ops')
-              .slice(oldVersion + 1, newVersion + 1)
-              .mapBy('components');
-
-        ops.forEach(op => OpApplication.applyOperation(this.get('canvas'), op));
-      } else if (oldVersion > newVersion) {
-        const ops =
-          this.get('canvas.ops')
-              .slice(newVersion + 1, oldVersion + 1)
-              .reverse()
-              .mapBy('components')
-              .map(json0.invert);
-
-        ops.forEach(op => OpApplication.applyOperation(this.get('canvas'), op));
-      }
+      this.get('timeTravel').perform(newVersion);
     },
 
     /**

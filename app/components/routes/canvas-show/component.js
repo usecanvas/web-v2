@@ -274,7 +274,7 @@ export default Ember.Component.extend({
    */
   bindOpEvents: on('didInsertElement', function() {
     this.get('canvas.shareDBDoc').on('op', (op, isLocalOp) => {
-      this.set('canvas.version', this.get('canvas.shareDBDoc.version'));
+      this.set('canvas.version', this.get('canvas.shareDBDoc.version') + 1);
 
       if (isLocalOp) return;
 
