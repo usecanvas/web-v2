@@ -4,19 +4,7 @@
   position: relative;
 }
 
-.message {
-  color: --dark-gray;
-  font-size: 0.75rem;
-  font-style: italic;
-  left: 0;
-  padding: 1rem 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  text-align: center;
-}
-
-.filter {
+.slider {
   left: 0;
   position: absolute;
   right: 0;

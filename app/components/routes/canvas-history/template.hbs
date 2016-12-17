@@ -1,8 +1,10 @@
-{{ui-slider
-  min=0
-  max=canvas.version
-  onChange=(action 'onVersionChange')
-  value=initialVersion}}
+<div local-class="slider">
+  {{ui-slider
+    min=0
+    max=canvas.version
+    onChange=(action 'onVersionChange')
+    value=initialVersion}}
+</div>
 
 <div local-class="editor">
   {{canvas-editor-next
