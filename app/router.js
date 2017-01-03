@@ -11,9 +11,9 @@ Router.map(function() { // eslint-disable-line array-callback-return
   this.route('login');
   this.route('logout');
   this.route('setup');
+  this.route('beta', { path: '/beta' });
   this.route('team', { path: '/:domain' }, function() {
     this.route('slack', { path: '/slack' });
-    this.route('beta', { path: '/beta' });
 
     this.route('canvas', { path: '/:id' }, function() {
       this.route('show', { path: '/' });

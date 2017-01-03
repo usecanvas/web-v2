@@ -42,7 +42,7 @@ export default Ember.Route.extend({
    * List of unauthenticated routes
    * @member {Array<string>}
    */
-  unauthenticatedRoutes: 'login team.canvas.show'.w(),
+  unauthenticatedRoutes: 'beta login team.canvas.show'.w(),
 
   /**
    * Callback before model is loaded that fetches the logged-in account and
