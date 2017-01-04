@@ -16,6 +16,12 @@
           Filter
         {{/menu.item}}
 
+        {{#if (eq canvas.team.domain 'usecanvas')}}
+          {{#menu.item action=(action 'navigateHistory')}}
+            Time Machine
+          {{/menu.item}}
+        {{/if}}
+
         {{#menu.item link=(concat canvas.apiURL '.md')}}
           View Markdown
         {{/menu.item}}

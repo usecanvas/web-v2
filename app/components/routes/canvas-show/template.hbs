@@ -41,6 +41,7 @@
                            showDeleteCanvas=canvas.team.isInTeam
                            onUseTemplate=(route-action 'createFromTemplate')
                            onDeleteCanvas=(route-action 'onDeleteCanvas')
+                           onNavigateHistory=(route-action 'navigateHistory')
                            toggleShowFilter=(toggle 'showFilter' this)
                            isTemplate=canvas.isTemplate)
     titleBylineComponent=(component 'canvas-title-byline'

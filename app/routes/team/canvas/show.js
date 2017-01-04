@@ -141,6 +141,20 @@ export default Ember.Route.extend({
       });
     },
 
+    /**
+     * Called when a user wishes to navigate to a canvas's history view.
+     *
+     * @method
+     */
+    navigateHistory() {
+      const canvas = this.get('controller.model');
+
+      this.transitionTo(
+        'team.canvas.history',
+        canvas.get('id'),
+        { queryParams: { version: canvas.get('shareDBDoc.version') } });
+    },
+
     updateCanvasChannels(channels) {
       const canvas = this.get('controller.model');
       const ids = channels.mapBy('id');

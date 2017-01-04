@@ -18,6 +18,7 @@ export default DS.Model.extend({
 
   team: belongsTo('team', { async: true }),
   template: belongsTo('canvas', { async: true }),
+  ops: hasMany('op', { async: true }),
   pulseEvents: hasMany('pulseEvent', { async: true }),
 
   editedAt: attr('date'),

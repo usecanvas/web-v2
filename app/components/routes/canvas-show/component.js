@@ -1,3 +1,4 @@
+import * as OpApplication from 'canvas-web/lib/op-application';
 import DMP from 'diff-match-patch';
 import Ember from 'ember';
 import Key from 'canvas-web/lib/key';
@@ -9,7 +10,6 @@ import UndoManager from 'canvas-web/lib/undo-manager';
 import nsEvents from 'canvas-web/lib/ns-events';
 import { getTargetBlock, parseStringPath } from 'canvas-web/lib/sharedb-path';
 import { task, timeout } from 'ember-concurrency';
-import * as OpApplication from 'canvas-web/lib/op-application';
 
 const differ = new DMP();
 const { $, computed, inject, observer, on, run } = Ember;
@@ -742,7 +742,7 @@ function generateOpFromDiff(diff, blockPath) {
  * @param {CanvasEditor.RealtimeCanvas.Block} block The block to convert
  * @returns {object} A plain JS object representing the block for serialization
  */
-function toShareDBBlock(block) {
+export function toShareDBBlock(block) {
   const json = {
     id: block.get('id'),
     type: block.get('type'),

@@ -1,0 +1,44 @@
+@value --blue from 'canvas-colors/styles/colors';
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.route-canvas-history {
+  position: relative;
+}
+
+.history-manager {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  left: 0;
+  padding: 0.75rem 1rem;
+  position: absolute;
+  right: 0;
+  top: 1.0625rem;
+}
+
+.slider {
+  width: 100%;
+}
+
+.clone {
+  composes: button-reset from 'canvas-web/styles/utilities';
+  margin-left: 1rem;
+}
+
+.clone-icon {
+  fill: white;
+}
+
+.clone:hover {
+  .clone-icon {
+    fill: --blue;
+  }
+}
+
+.editor {
+  margin: 0 auto;
+  max-width: 47rem;
+  padding: 4rem 0;
+}

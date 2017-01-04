@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('canvas', 'Unit | Model | canvas', {
+moduleForModel('op', 'Unit | Model | op', {
   // Specify the other units that are required for this test.
-  needs: 'model:op model:pulseEvent model:team model:user'.w()
+  needs: 'model:canvas'.w()
 });
 
 test('it exists', function(assert) {
