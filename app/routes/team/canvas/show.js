@@ -137,7 +137,9 @@ export default Ember.Route.extend({
       }).save().then(newCanvas => {
         this.get('segment').trackEvent('Instantiated Template',
                                   { source: 'template' });
-        this.transitionTo('team.canvas.show', newCanvas);
+        this.transitionTo('team.canvas.show', newCanvas).then(_ => {
+          window.location.reload();
+        });
       });
     },
 
