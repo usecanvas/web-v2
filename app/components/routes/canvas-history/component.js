@@ -8,14 +8,14 @@ const DEBOUNCE = 200;
 const json0 = ShareDB.types.map.json0;
 const { computed, inject, on } = Ember;
 
+/**
+ * Component that allows a canvas's history to be explored via a slider
+ * component.
+ *
+ * @class CanvasWeb.CanvasHistoryRouteComponent
+ * @extends Ember.Component
+ */
 export default Ember.Component.extend({
-  /**
-   * @member {number} The initial version value
-   */
-  initialVersion: computed('version', function() {
-    return parseInt(this.get('version'), 10);
-  }),
-
   /**
    * @member {Array<string>} An array of localized class names
    */
@@ -25,6 +25,13 @@ export default Ember.Component.extend({
    * @member {CanvasWeb.UnfurlerService} The card-unfurling service
    */
   unfurler: inject.service(),
+
+  /**
+   * @member {number} The initial version value
+   */
+  initialVersion: computed('version', function() {
+    return parseInt(this.get('version'), 10);
+  }),
 
   /**
    * Initialize RealtimeCanvas blocks and roll the canvas back to `version`.
@@ -37,7 +44,7 @@ export default Ember.Component.extend({
   }),
 
   /**
-   * Initialize the canvas's realtime blocks.
+   * Initialize the canvas's realtime blocks, if necessary.
    *
    * @method
    */

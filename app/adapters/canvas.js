@@ -1,4 +1,7 @@
 import ApplicationAdapter from './application';
+import Ember from 'ember';
+
+const { get } = Ember;
 
 export default ApplicationAdapter.extend({
   urlForCreateRecord(modelName, snapshot) {
@@ -11,8 +14,8 @@ export default ApplicationAdapter.extend({
   },
 
   urlForFindRecord(id, modelName, snapshot) {
-    const teamID = snapshot.record ? snapshot.record.get('team.id')
-      : snapshot.adapterOptions.team.get('id');
+    const teamID = get(snapshot, 'record.team.id') ||
+                   get(snapshot, 'adapterOptions.team.id');
     return `${this.urlPrefix()}/teams/${teamID}/canvases/${id}`;
   },
 

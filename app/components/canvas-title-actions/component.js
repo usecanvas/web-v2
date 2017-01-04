@@ -12,6 +12,11 @@ export default Ember.Component.extend({
       });
     },
 
+    /**
+     * Called when the user wishes to navigate to the canvas history route.
+     *
+     * @method
+     */
     navigateHistory() {
       this.get('onNavigateHistory')();
     },

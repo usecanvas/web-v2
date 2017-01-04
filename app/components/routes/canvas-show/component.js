@@ -1,5 +1,5 @@
+import * as OpApplication from 'canvas-web/lib/op-application';
 import DMP from 'diff-match-patch';
-
 import Ember from 'ember';
 import Key from 'canvas-web/lib/key';
 import OpManager from 'canvas-web/lib/op-manager';
@@ -10,7 +10,6 @@ import UndoManager from 'canvas-web/lib/undo-manager';
 import nsEvents from 'canvas-web/lib/ns-events';
 import { getTargetBlock, parseStringPath } from 'canvas-web/lib/sharedb-path';
 import { task, timeout } from 'ember-concurrency';
-import * as OpApplication from 'canvas-web/lib/op-application';
 
 const differ = new DMP();
 const { $, computed, inject, observer, on, run } = Ember;
