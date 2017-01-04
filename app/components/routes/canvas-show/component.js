@@ -742,7 +742,7 @@ function generateOpFromDiff(diff, blockPath) {
  * @param {CanvasEditor.RealtimeCanvas.Block} block The block to convert
  * @returns {object} A plain JS object representing the block for serialization
  */
-function toShareDBBlock(block) {
+export function toShareDBBlock(block) {
   const json = {
     id: block.get('id'),
     type: block.get('type'),

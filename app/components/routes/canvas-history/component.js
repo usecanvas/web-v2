@@ -119,7 +119,9 @@ export default Ember.Component.extend({
      *
      * @method
      */
-    clone: Ember.K,
+    clone() {
+      this.get('onClone')();
+    },
 
     /**
      * Called when the version slider changes.
