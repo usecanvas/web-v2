@@ -14,6 +14,18 @@ import { parseListPath, parseObjectPath, parseStringPath } from 'canvas-web/lib/
  */
 export function applyOperation(model, op) {
   for (const comp of op) {
+    if (comp.hasOwnProperty('ld') &&
+        comp.hasOwnProperty('li')) {
+      applyListReplace(model, comp);
+      continue;
+    }
+
+    if (comp.hasOwnProperty('od') &&
+        comp.hasOwnProperty('oi')) {
+      applyObjectReplace(model, comp);
+      continue;
+    }
+
     for (const compKey in comp) {
       if (!comp.hasOwnProperty(compKey)) continue;
 
@@ -80,6 +92,22 @@ function applyListInsert(model, { p, li }) {
 }
 
 /**
+ * Apply a list replace component.
+ *
+ * @method
+ * @private
+ * @param {CanvasEditor.RealtimeCanvas} model The model to apply the comp to
+ * @param {object} comp The component to apply
+ * @param {string} [comp.p] The path to the target insert point
+ * @param {string} [comp.ld] The object to delete
+ * @param {string} [comp.li] The object to insert
+ */
+function applyListReplace(model, { p, ld, li }) {
+  applyListDelete(model, { p, ld });
+  applyListInsert(model, { p, li });
+}
+
+/**
  * Apply an object delete component.
  *
  * @method
@@ -107,6 +135,22 @@ function applyObjectDelete(model, { p, _od }) {
 function applyObjectInsert(model, { p, oi }) {
   const { block, metaPath } = parseObjectPath(p, model);
   block.set(metaPath.join('.'), oi);
+}
+
+/**
+ * Apply an object replace component.
+ *
+ * @method
+ * @private
+ * @param {CanvasEditor.RealtimeCanvas} model The model to apply the comp to
+ * @param {object} comp The component to apply
+ * @param {string} [comp.p] The path to the target insert point
+ * @param {string} [comp.od] The object to delete
+ * @param {string} [comp.oi] The object to insert
+ */
+function applyObjectReplace(model, { p, od, oi }) {
+  applyObjectDelete(model, { p, od });
+  applyObjectInsert(model, { p, oi });
 }
 
 /**
