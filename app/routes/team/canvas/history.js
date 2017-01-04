@@ -13,5 +13,11 @@ export default Ember.Route.extend({
                .then(canvas => {
                  return canvas.hasMany('ops').reload().then(_ => canvas);
                });
+  },
+
+  queryParams: {
+    version: {
+      replace: true
+    }
   }
 });
