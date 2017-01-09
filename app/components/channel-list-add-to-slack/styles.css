@@ -1,0 +1,42 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
+
+.channel-list-add-to-slack {
+  align-items: center;
+  color: --dark-gray;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+}
+
+.reasons {
+  list-style: none;
+  padding: 0;
+}
+
+.reasons-item {
+  margin-bottom: 0.125rem;
+  position: relative;
+
+  &:before {
+    background: --gray;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 6px;
+    left: -0.625rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+  }
+}
+
+.later {
+  margin-top: 0.5rem;
+}
+
+.later-action {
+  color: inherit;
+  font-weight: 600;
+}
