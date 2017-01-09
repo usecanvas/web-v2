@@ -1,4 +1,5 @@
 @value --dark-gray from 'canvas-colors/styles/colors';
+@value --extra-light-gray from 'canvas-colors/styles/colors';
 @value --gray from 'canvas-colors/styles/colors';
 
 .channel-list-add-to-slack {
@@ -7,6 +8,23 @@
   display: flex;
   flex-direction: column;
   font-size: 0.75rem;
+}
+
+.faux-data {
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
+.faux-data-item {
+  background: --extra-light-gray;
+  border-radius: 1000px;
+  height: 10px;
+  margin-bottom: 10px;
+  width: 138px;
+
+  &:nth-child(2n) {
+    width: 108px;
+  }
 }
 
 .reasons {
