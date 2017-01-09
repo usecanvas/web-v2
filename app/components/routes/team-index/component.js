@@ -22,7 +22,10 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   disablePointer: Ember.String.htmlSafe('pointer-events: none'),
 
   channelModel: computed('channel', 'team.channels.[]', function() {
-    return this.get('team.channels').findBy('name', this.get('channel'));
+    if (this.get('channel')) {
+      return this.get('team.channels').findBy('name', this.get('channel'));
+    }
+    return null;
   }),
 
   filteredCanvases: computed(

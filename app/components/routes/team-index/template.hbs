@@ -11,10 +11,11 @@
       didCreateCanvas=(action 'didCreateCanvas')}}
   </div>
 
+
   <div local-class="content">
     <div local-class="sidebar">
       <div local-class="sidebar-scroll">
-        {{#if team.slackId}}
+        {{#if (and team.slackId (not team.needsSlackToken))}}
           {{canvas-list-filter
             channel=channel
             channels=team.channels}}
@@ -42,12 +43,12 @@
 
     <div local-class="canvas-list">
       <div local-class="canvas-list-scroll">
-        {{#if channelModel.topicCanvas.isFulfilled}}
+        {{#if (and (not team.needsSlackToken) channelModel.topicCanvas.isFulfilled)}}
           {{channel-topic-canvas canvas=channelModel.topicCanvas.content}}
         {{/if}}
 
         {{canvas-list
-          canvases=filteredCanvases
+          canvases=(if channel filteredCanvases canvases)
           channel=channel
           team=team
           didCreateCanvas=(action 'didCreateCanvas')}}

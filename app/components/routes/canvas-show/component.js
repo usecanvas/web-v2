@@ -86,11 +86,14 @@ export default Ember.Component.extend({
       this.get('canvas.linkAccess') === 'read';
   }),
 
+  hasChannelPermissions: computed.not('canvas.team.needsSlackToken'),
+
   /**
    * @member {boolean} Whether the channel selector should be visible
    */
   showChannelSelector:
-    computed.and('canvas.team.isInTeam', 'canvas.team.slackId'),
+    computed.and('hasChannelPermissions', 'canvas.team.isInTeam',
+                 'canvas.team.slackId'),
 
   /**
    * @member {CanvasWeb.UndoManager} A manager for the canvas's undo/redo state
