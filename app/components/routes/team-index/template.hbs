@@ -12,15 +12,33 @@
   </div>
 
   <div local-class="content">
-    {{#if team.slackId}}
-      <div local-class="canvas-list-filter">
-        <div local-class="canvas-list-filter-scroll">
+    <div local-class="sidebar">
+      <div local-class="sidebar-scroll">
+        {{#if team.slackId}}
           {{canvas-list-filter
             channel=channel
             channels=team.channels}}
-        </div>
+        {{else}}
+          <p>
+            Finish the team setup to:
+          </p>
+
+          <ul>
+            <li>Organize Canvases into Slack channels</li>
+            <li>Set up Slack notifications</li>
+            <li>Create Canvases from within Slack</li>
+          </ul>
+
+          <p>
+            {{add-to-slack}}
+          </p>
+
+          <p>
+            <small>I'll <a href="#">do this later</a>.</small>
+          </p>
+        {{/if}}
       </div>
-    {{/if}}
+    </div>
 
     <div local-class="canvas-list">
       <div local-class="canvas-list-scroll">
