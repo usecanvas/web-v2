@@ -11,37 +11,36 @@
       didCreateCanvas=(action 'didCreateCanvas')}}
   </div>
 
-
   <div local-class="content">
     {{#if team.slackId}}
-    <div local-class="sidebar">
-      <div local-class="sidebar-scroll">
-        {{#if (not team.needsSlackToken)}}
-          {{canvas-list-filter
-            channel=channel
-            channels=team.channels}}
-        {{else}}
-          <p>
-            Set up the Slack integration
-          </p>
+      <div local-class="sidebar">
+        <div local-class="sidebar-scroll">
+          {{#if (not team.needsSlackToken)}}
+            {{canvas-list-filter
+              channel=channel
+              channels=team.channels}}
+          {{else}}
+            <p>
+              Set up the Slack integration
+            </p>
 
-          <ul>
-            <li>Organize with <strong>#channels</strong></li>
-            <li><strong>/canvas new</strong> from Slack</li>
-            <li>Work with <strong>@mentions</strong></li>
-            <li>Get <strong>notifications</strong> in Slack</li>
-          </ul>
+            <ul>
+              <li>Organize with <strong>#channels</strong></li>
+              <li><strong>/canvas new</strong> from Slack</li>
+              <li>Work with <strong>@mentions</strong></li>
+              <li>Get <strong>notifications</strong> in Slack</li>
+            </ul>
 
-          <p>
-            {{add-to-slack}}
-          </p>
+            <p>
+              {{add-to-slack}}
+            </p>
 
-          <p>
-            <small>I'll <a href="#">do this later</a>.</small>
-          </p>
-        {{/if}}
+            <p>
+              <small>I'll <a href="#">do this later</a>.</small>
+            </p>
+          {{/if}}
+        </div>
       </div>
-    </div>
     {{/if}}
 
     <div local-class="canvas-list">
