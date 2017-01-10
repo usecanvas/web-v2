@@ -91,6 +91,12 @@ export default Ember.Component.extend(ChannelIDs, WithDropzone, {
   },
 
   actions: {
+    dismiss(identifier) {
+      return this.get('store')
+        .createRecord('ui-dismissal', { identifier })
+        .save();
+    },
+
     didCreateCanvas(canvas) {
       this.get('newCanvases').pushObject(canvas.get('id'));
       this.sendAction('didCreateCanvas', canvas);

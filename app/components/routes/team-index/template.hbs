@@ -12,16 +12,20 @@
   </div>
 
   <div local-class="content">
-    {{#if team.slackId}}
+    {{#if (and team.slackId (not team.needsSlackToken))}}
       <div local-class="sidebar">
         <div local-class="sidebar-scroll">
-          {{#if (not team.needsSlackToken)}}
-            {{canvas-list-filter
-              channel=channel
-              channels=team.channels}}
-          {{else}}
-            {{channel-list-add-to-slack}}
-          {{/if}}
+          {{canvas-list-filter
+            channel=channel
+            channels=team.channels}}
+        </div>
+      </div>
+    {{else if (and team.slackId (not (is-dismissed team.id 'channel-list-add-to-slack')))}}
+      <div local-class="sidebar">
+        <div local-class="sidebar-scroll">
+          {{channel-list-add-to-slack
+            dismiss=(action 'dismiss'
+            (join '.' (w '*' team.id 'channel-list-add-to-slack')))}}
         </div>
       </div>
     {{/if}}
@@ -31,7 +35,6 @@
         {{#if (and (not team.needsSlackToken) channelModel.topicCanvas.isFulfilled)}}
           {{channel-topic-canvas canvas=channelModel.topicCanvas.content}}
         {{/if}}
-
         {{canvas-list
           canvases=(if channel filteredCanvases team.canvases)
           channel=channel
