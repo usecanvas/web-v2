@@ -12,7 +12,7 @@
   </div>
 
   <div local-class="content">
-    {{#if (and team.slackId (not team.needsSlackToken))}}
+    {{#if (and team.slackId team.hasChannelsRead)}}
       <div local-class="sidebar">
         <div local-class="sidebar-scroll">
           {{canvas-list-filter
@@ -32,7 +32,7 @@
 
     <div local-class="canvas-list">
       <div local-class="canvas-list-scroll">
-        {{#if (and (not team.needsSlackToken) channelModel.topicCanvas.isFulfilled)}}
+        {{#if (and team.hasChannelsRead channelModel.topicCanvas.isFulfilled)}}
           {{channel-topic-canvas canvas=channelModel.topicCanvas.content}}
         {{/if}}
         {{canvas-list

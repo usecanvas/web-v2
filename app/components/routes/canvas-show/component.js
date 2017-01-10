@@ -86,13 +86,11 @@ export default Ember.Component.extend({
       this.get('canvas.linkAccess') === 'read';
   }),
 
-  hasChannelPermissions: computed.not('canvas.team.needsSlackToken'),
-
   /**
    * @member {boolean} Whether the channel selector should be visible
    */
   showChannelSelector:
-    computed.and('hasChannelPermissions', 'canvas.team.isInTeam',
+    computed.and('canvas.team.hasChannelsRead', 'canvas.team.isInTeam',
                  'canvas.team.slackId'),
 
   /**

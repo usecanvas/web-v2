@@ -9,7 +9,7 @@ export default Ember.Route.extend({
 
   afterModel() {
     const team = this.modelFor('team');
-    if (!team.get('needsSlackToken') && team.get('isInTeam')) {
+    if (team.get('hasChannelsRead') && team.get('isInTeam')) {
       return preload(this.modelFor('team'), ['channels']);
     }
 

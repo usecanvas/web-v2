@@ -11,6 +11,7 @@ export default DS.Model.extend({
   images: attr(),
   isInTeam: attr(),
   slackId: attr(),
+  slackScopes: attr(),
 
   accountUser: belongsTo('user', { async: true }),
   canvases: hasMany('canvas', { async: true }),
@@ -18,6 +19,9 @@ export default DS.Model.extend({
 
   insertedAt: attr('date'),
   updatedAt: attr('date'),
+
+  hasChannelsRead: hasScope('channels:read'),
+  hasChannelsHistory: hasScope('channels:history'),
 
   image88: computed('images.[]', function() {
     return this.get('images.image_88');
@@ -39,3 +43,9 @@ export default DS.Model.extend({
     return errors[0].message;
   }
 });
+
+function hasScope(scope) {
+  return Ember.computed('slackScopes.[]', function() {
+    return (this.get('slackScopes') || []).includes(scope);
+  }):
+}

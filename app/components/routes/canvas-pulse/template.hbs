@@ -1,6 +1,6 @@
 <div local-class="container">
   <div local-class="pulse" data-test-pulse>
-    {{#if canvas.team.needsSlackToken}}
+    {{#if canvas.team.hasChannelsHistory}}
       Pulse requires Slack to be {{#link-to 'team.settings'}}integrated{{/link-to}}
     {{else}}
       {{canvas-pulse pulseEvents=pulseEvents}}
