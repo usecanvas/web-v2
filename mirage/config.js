@@ -12,6 +12,10 @@ export function testConfig() {
     return schema.teams.all();
   });
 
+  this.get('/ui-dismissals', schema => {
+    return schema.uiDismissals.all();
+  });
+
   this.get('/teams/:domain', (schema, req) => {
     return schema.teams.findBy({ domain: req.params.domain });
   });
