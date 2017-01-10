@@ -1,0 +1,8 @@
+<div local-class="container" data-test-settings>
+  <h3>Integrations</h3>
+  {{#if team.needsSlackToken}}
+    {{add-to-slack}}
+  {{else if team.slackId}}
+    Slack is integrated
+  {{/if}}
+</div>

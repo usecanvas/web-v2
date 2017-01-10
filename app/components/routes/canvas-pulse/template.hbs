@@ -1,5 +1,9 @@
 <div local-class="container">
   <div local-class="pulse" data-test-pulse>
-    {{canvas-pulse pulseEvents=pulseEvents}}
+    {{#if canvas.team.needsSlackToken}}
+      Pulse requires Slack to be {{#link-to 'team.settings'}}integrated{{/link-to}}
+    {{else}}
+      {{canvas-pulse pulseEvents=pulseEvents}}
+    {{/if}}
   </div>
 </div>

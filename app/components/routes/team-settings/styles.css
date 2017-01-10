@@ -1,0 +1,7 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.container {
+  margin: 4rem auto;
+  max-width: 42rem;
+  padding: 1rem;
+}
