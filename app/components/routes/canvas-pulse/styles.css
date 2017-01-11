@@ -3,3 +3,9 @@
   max-width: 42rem;
   padding: 1rem;
 }
+
+.settings {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

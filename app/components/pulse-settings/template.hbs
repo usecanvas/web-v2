@@ -1,0 +1,27 @@
+{{#ui-list as |list|}}
+  {{#list.item}}
+    <div local-class="item">
+      <div>
+        <strong>Slack</strong><br>
+        <small local-class="item-description">Monitors Slack channels for Canvas references</small>
+      </div>
+
+      <div local-class="item-action">
+        <button onclick={{action closeDropdown}}>Set Up</button> 
+      </div>
+    </div>
+  {{/list.item}}
+
+  {{#list.item}}
+    <div local-class="item disabled">
+      <div>
+        <strong>GitHub</strong><br>
+        <small local-class="item-description">Monitors GitHub issues and pull requests for canvas references</small>
+      </div>
+
+      <div local-class="item-action">
+        <button disabled>Set Up</button>
+      </div>
+    </div>
+  {{/list.item}}
+{{/ui-list}}

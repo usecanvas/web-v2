@@ -1,3 +1,15 @@
+<div local-class="settings">
+  {{#basic-dropdown as |dropdown|}}
+    {{#dropdown.trigger}}
+      Settings
+    {{/dropdown.trigger}}
+
+    {{#dropdown.content}}
+      {{pulse-settings closeDropdown=(action dropdown.actions.close)}}
+    {{/dropdown.content}}
+  {{/basic-dropdown}}
+</div>
+
 <div local-class="container">
   <div local-class="pulse" data-test-pulse>
     {{#unless canvas.team.hasChannelsHistory}}
