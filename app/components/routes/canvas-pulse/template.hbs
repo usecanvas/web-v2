@@ -1,9 +1,10 @@
 <div local-class="container">
   <div local-class="pulse" data-test-pulse>
-    {{#if canvas.team.hasChannelsHistory}}
+    {{#unless canvas.team.hasChannelsHistory}}
       Pulse requires Slack to be {{#link-to 'team.settings'}}integrated{{/link-to}}
+      {{add-to-slack scope=(diff canvas.team.slackScopes slackScopesForPulse)}}
     {{else}}
       {{canvas-pulse pulseEvents=pulseEvents}}
-    {{/if}}
+    {{/unless}}
   </div>
 </div>
