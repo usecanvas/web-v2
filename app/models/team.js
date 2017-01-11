@@ -47,5 +47,5 @@ export default DS.Model.extend({
 function hasScope(scope) {
   return Ember.computed('slackScopes.[]', function() {
     return (this.get('slackScopes') || []).includes(scope);
-  }):
+  });
 }
