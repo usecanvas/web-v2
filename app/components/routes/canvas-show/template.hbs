@@ -36,8 +36,7 @@
     canvas=canvas
     canvasLinkComponent=(component 'canvas-link')
     githubAuthComponent=(component 'github-oauth')
-    slackAuthComponent=(component 'slack-oauth' scope=(diff canvas.team.slackScopes
-    (w 'bot channels:history channels:read chat:write:bot commands team:read users:read')))
+    slackAuthComponent=(component 'slack-oauth' currentScopes=canvas.team.slackScopes extendedScopes=(w 'channels:history'))
     titleActionsComponent=(component 'canvas-title-actions'
                            canvas=canvas
                            showDeleteCanvas=canvas.team.isInTeam

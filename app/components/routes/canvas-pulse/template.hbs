@@ -6,7 +6,7 @@
 
     {{#dropdown.content}}
       {{pulse-settings
-        addToSlack=(component 'add-to-slack' scope=(diff canvas.team.slackScopes slackScopesForPulse))
+        addToSlack=(component 'add-to-slack' currentScopes=canvas.team.slackScopes extendedScopes=slackScopes)
         closeDropdown=(action dropdown.actions.close)
         slackIsSetUp=canvas.team.hasChannelsHistory}}
     {{/dropdown.content}}

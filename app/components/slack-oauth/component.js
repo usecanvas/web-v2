@@ -14,8 +14,7 @@ export default Ember.Component.extend(OAuth, {
   /**
    * @member {Array<string>} A base set of non-invasive scopes that we request.
    */
-  baseScope: `
-    bot
+  baseScopes: `bot
     channels:read
     chat:write:bot
     commands
@@ -34,10 +33,15 @@ export default Ember.Component.extend(OAuth, {
   endpoint: 'https://slack.com/oauth/authorize',
 
   /**
+   * @member {Array<string>} The scopes that the team currently has.
+   */
+  currentScopes: [],
+
+  /**
    * @member {Array<string>} A set of extended invasive scopes to be added on
    *   to the base OAuth scope set
    */
-  extendedScope: [],
+  extendedScopes: [],
 
   /**
    * @member {?string} The redirect URI for the Slack OAuth client
@@ -45,11 +49,15 @@ export default Ember.Component.extend(OAuth, {
   redirectURL: ENV.slackAddRedirectURI,
 
   /**
+   * @member {Array<string>} A list of scopes that will be requested unless
+   * already granted.
+   */
+  unionScopes: Ember.computed.union('baseScopes', 'extendedScopes'),
+
+  /**
    * @member {Array<string>} A list of scopes that will be requested.
    */
-  scope: computed('baseScope.[]', 'extendedScope.[]', function() {
-    return this.get('baseScope').concat(this.get('extendedScope'));
-  }),
+  scope: Ember.computed.setDiff('unionScopes', 'currentScopes'),
 
   /**
    * @member {string} A Slack OAuth state nonce—we are currently not making

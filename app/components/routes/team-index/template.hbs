@@ -24,6 +24,7 @@
       <div local-class="sidebar">
         <div local-class="sidebar-scroll">
           {{channel-list-add-to-slack
+            currentScopes=team.slackScopes
             dismiss=(action 'dismiss'
             (join '.' (w '*' team.id 'channel-list-add-to-slack')))}}
         </div>
