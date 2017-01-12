@@ -52,12 +52,12 @@ export default Ember.Component.extend(OAuth, {
    * @member {Array<string>} A list of scopes that will be requested unless
    * already granted.
    */
-  unionScopes: Ember.computed.union('baseScopes', 'extendedScopes'),
+  unionScopes: computed.union('baseScopes', 'extendedScopes'),
 
   /**
    * @member {Array<string>} A list of scopes that will be requested.
    */
-  scope: Ember.computed.setDiff('unionScopes', 'currentScopes'),
+  scope: computed.setDiff('unionScopes', 'currentScopes'),
 
   /**
    * @member {string} A Slack OAuth state nonce—we are currently not making
