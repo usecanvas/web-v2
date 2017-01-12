@@ -7,7 +7,13 @@
       </div>
 
       <div local-class="item-action">
-        <button onclick={{action closeDropdown}}>Set Up</button> 
+        {{#if slackIsSetUp}}
+          Enabled
+        {{else}}
+          {{#component addToSlack}}
+            Set Up
+          {{/component}}
+        {{/if}}
       </div>
     </div>
   {{/list.item}}

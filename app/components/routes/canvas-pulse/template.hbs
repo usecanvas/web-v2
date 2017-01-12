@@ -5,18 +5,16 @@
     {{/dropdown.trigger}}
 
     {{#dropdown.content}}
-      {{pulse-settings closeDropdown=(action dropdown.actions.close)}}
+      {{pulse-settings
+        addToSlack=(component 'add-to-slack' scope=(diff canvas.team.slackScopes slackScopesForPulse))
+        closeDropdown=(action dropdown.actions.close)
+        slackIsSetUp=canvas.team.hasChannelsHistory}}
     {{/dropdown.content}}
   {{/basic-dropdown}}
 </div>
 
 <div local-class="container">
   <div local-class="pulse" data-test-pulse>
-    {{#unless canvas.team.hasChannelsHistory}}
-      Pulse requires Slack to be {{#link-to 'team.settings'}}integrated{{/link-to}}
-      {{add-to-slack scope=(diff canvas.team.slackScopes slackScopesForPulse)}}
-    {{else}}
-      {{canvas-pulse pulseEvents=pulseEvents}}
-    {{/unless}}
+    {{canvas-pulse pulseEvents=pulseEvents}}
   </div>
 </div>
