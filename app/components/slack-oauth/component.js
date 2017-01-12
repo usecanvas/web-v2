@@ -10,6 +10,7 @@ export default Ember.Component.extend(OAuth, {
     channels:read
     chat:write:bot
     commands
+    groups:read
     team:read
     users:read`.w(),
   state: 'add'
