@@ -1,0 +1,22 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+
+.pulse-settings {
+  font-size: 0.875rem;
+  padding: 0 0.5em;
+}
+
+.item {
+  display: flex;
+}
+
+.item.disabled {
+  opacity: 0.25;
+}
+
+.item-description {
+  color: --dark-gray;
+}
+
+.item-action {
+  flex: none;
+}

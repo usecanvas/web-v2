@@ -1,3 +1,18 @@
+<div local-class="settings">
+  {{#basic-dropdown as |dropdown|}}
+    {{#dropdown.trigger}}
+      {{svg-jar 'SlidersVertical' height=32 width=32 local-class='icon'}}
+    {{/dropdown.trigger}}
+
+    {{#dropdown.content}}
+      {{pulse-settings
+        addToSlack=(component 'add-to-slack' currentScopes=canvas.team.slackScopes extendedScopes=slackScopes)
+        closeDropdown=(action dropdown.actions.close)
+        slackIsSetUp=canvas.team.hasChannelsHistory}}
+    {{/dropdown.content}}
+  {{/basic-dropdown}}
+</div>
+
 <div local-class="container">
   <div local-class="pulse" data-test-pulse>
     {{canvas-pulse pulseEvents=pulseEvents}}

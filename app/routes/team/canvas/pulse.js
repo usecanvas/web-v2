@@ -17,6 +17,6 @@ export default Ember.Route.extend({
           url: `mailto:${canvas.get('creator.email')}`
         }
       })].unshiftObjects(pulseEvents.toArray());
-    });
+    }).then(pulseEvents => ({ canvas, pulseEvents }));
   }
 });

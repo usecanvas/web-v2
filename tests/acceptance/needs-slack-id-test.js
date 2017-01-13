@@ -9,6 +9,6 @@ test('visiting a team that needs a Slack ID', assert => {
   visit('/usecanvas');
 
   andThen(function() {
-    assert.equal(currentURL(), '/usecanvas/slack');
+    assert.equal(currentURL(), '/usecanvas');
   });
 });

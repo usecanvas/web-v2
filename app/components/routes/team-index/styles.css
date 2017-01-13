@@ -10,13 +10,13 @@
   composes: content from 'canvas-web/components/team-list-wrapper/styles';
 }
 
-.canvas-list-filter {
+.sidebar {
   border-right: 1px solid --light-gray;
   min-width: 14rem;
   position: relative;
 }
 
-.canvas-list-filter-scroll {
+.sidebar-scroll {
   bottom: 0;
   left: 0;
   overflow-y: auto;

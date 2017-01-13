@@ -1,5 +1,17 @@
+@value --gray from 'canvas-colors/styles/colors';
+
 .container {
   margin: 4rem auto;
   max-width: 42rem;
   padding: 1rem;
+}
+
+.settings {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.icon {
+  fill: --gray;
 }

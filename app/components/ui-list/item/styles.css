@@ -1,0 +1,10 @@
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.ui-list-item {
+  border-bottom: 1px solid --light-gray;
+  padding: 0.5em 0;
+
+  &:last-child {
+    border: none;
+  }
+}

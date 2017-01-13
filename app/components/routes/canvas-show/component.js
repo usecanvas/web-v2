@@ -90,7 +90,8 @@ export default Ember.Component.extend({
    * @member {boolean} Whether the channel selector should be visible
    */
   showChannelSelector:
-    computed.and('canvas.team.isInTeam', 'canvas.team.slackId'),
+    computed.and('canvas.team.hasChannelsRead', 'canvas.team.isInTeam',
+                 'canvas.team.slackId'),
 
   /**
    * @member {CanvasWeb.UndoManager} A manager for the canvas's undo/redo state

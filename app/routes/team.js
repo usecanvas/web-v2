@@ -21,11 +21,6 @@ export default Ember.Route.extend({
       return null;
     }
 
-    if (team.get('needsSlackToken')) {
-      this.transitionTo('team.slack');
-      return null;
-    }
-
     /*
      * Force Ember to fetch the user keyed by team ID for the current account
      * and team.
