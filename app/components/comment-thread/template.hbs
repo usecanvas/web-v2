@@ -1,1 +1,7 @@
-{{yield}}
+<div local-class="root">
+  {{#each comments as |comment|}}
+    <div local-class="item">
+      {{comment-thread/item}}
+    </div>
+  {{/each}}
+</div>

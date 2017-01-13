@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+}
+
+.avatar {
+  flex: none;
+  margin-right: 0.5rem;
+}
+
+.main {
+  flex: 1;
+}

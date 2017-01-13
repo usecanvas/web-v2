@@ -1,0 +1,18 @@
+.root {
+  background: black;
+  border-radius: 5px;
+  color: white;
+  padding: 0.5rem;
+}
+
+.item {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+
+  &:last-child {
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
