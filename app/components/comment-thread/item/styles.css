@@ -1,3 +1,5 @@
+@value --comment-thread-item-muted-text-color from 'canvas-web/components/comment-thread/styles';
+
 .root {
   display: flex;
 }
@@ -9,4 +11,12 @@
 
 .main {
   flex: 1;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.timestamp {
+  color: --comment-thread-item-muted-text-color;
 }

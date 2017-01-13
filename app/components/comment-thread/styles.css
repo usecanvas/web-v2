@@ -1,12 +1,17 @@
+@value --comment-thread-background-color: #1C202C;
+@value --comment-thread-text-color: #D7DAED;
+@value --comment-thread-item-muted-text-color: #5B5E6C;
+
 .root {
-  background: black;
+  background: --comment-thread-background-color;
   border-radius: 5px;
-  color: white;
+  color: --comment-thread-text-color;
+  font-size: 0.75rem;
   padding: 0.5rem;
 }
 
 .item {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid --comment-thread-item-muted-text-color;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
 
