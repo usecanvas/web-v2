@@ -2,7 +2,7 @@
   <div local-class="main">
     <div local-class="content">
     {{textarea value=content}}
-    <input type='button' disabled={{eq content ''}} value='submit' onclick={{action createComment content}}>
+    <input type='button' disabled={{eq content ''}} value='submit' onclick={{perform submit content}}>
     </div>
   </div>
 </div>

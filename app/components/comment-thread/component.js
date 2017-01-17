@@ -3,7 +3,6 @@ import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   comments: [1, 2, 3, 4],
-  showCreateItem: true,
   store: Ember.inject.service(),
 
   block: Ember.computed(function() {
@@ -16,16 +15,13 @@ export default Ember.Component.extend({
   createComment: task(function *(content) {
     const canvas = this.get('canvas');
     const block = this.get('block');
-    const creator = this.get('creator');
 
     const comment = yield this.get('store').createRecord('comment', {
       blocks: [{ type: 'paragraph', content }],
       canvas,
-      block,
-      creator
+      block
     }).save();
 
     this.get('comments').pushObject(comment);
-    this.set('showCreateItem', false);
   }).drop(),
 });

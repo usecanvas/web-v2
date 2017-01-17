@@ -4,7 +4,5 @@
       {{comment-thread/item comment=comment}}
     </div>
   {{/each}}
-  {{#if showCreateItem}}
-    {{comment-thread/create-item createComment=(perform createComment)}}
-  {{/if}}
+  {{comment-thread/create-item createComment=(perform createComment)}}
 </div>
