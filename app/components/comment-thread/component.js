@@ -2,8 +2,15 @@ import Ember from 'ember';
 import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
-  comments: [1, 2, 3, 4],
+  createdComments: Ember.computed(_ => []),
   store: Ember.inject.service(),
+  comments: Ember.computed.union('blockComments', 'createdComments'),
+
+  blockComments: Ember.computed('blockId', 'canvas.id', function() {
+    const canvas = this.get('canvas');
+    const block = this.get('block');
+    return this.get('store').query('comment', { filter: { canvas, block } });
+  }),
 
   block: Ember.computed(function() {
     const id = this.get('blockId');
@@ -22,6 +29,6 @@ export default Ember.Component.extend({
       block
     }).save();
 
-    this.get('comments').pushObject(comment);
+    this.get('createdComments').pushObject(comment);
   }).drop(),
 });
