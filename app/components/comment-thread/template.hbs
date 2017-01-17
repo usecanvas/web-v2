@@ -1,7 +1,10 @@
 <div local-class="root">
   {{#each comments as |comment|}}
     <div local-class="item">
-      {{comment-thread/item}}
+      {{comment-thread/item comment=comment}}
     </div>
   {{/each}}
+  {{#if showCreateItem}}
+    {{comment-thread/create-item createComment=(perform createComment)}}
+  {{/if}}
 </div>

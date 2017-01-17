@@ -1,0 +1,8 @@
+<div local-class="root">
+  <div local-class="main">
+    <div local-class="content">
+    {{textarea value=content}}
+    <input type='button' disabled={{eq content ''}} value='submit' onclick={{action createComment content}}>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,20 @@
 <div local-class="root">
   <div local-class="avatar">
-    <img src="#" height=32 width=32>
+    <img src="{{comment.creator.avatarUrl}}" height=32 width=32>
   </div>
 
   <div local-class="main">
     <div local-class="meta">
-      <span local-class="username">@mschoening</span>
-      <span local-class="timestamp">3:05PM</span>
+      <span local-class="username">{{commment.creator.name}}</span>
+      <span local-class="timestamp">{{comment.updatedAt}}</span>
     </div>
 
     <div local-class="content">
-      Hello, I am a comment.
+      {{#each comment.blocks as |block|}}
+        <div local-class="block">
+          {{block.content}}
+        </div>
+      {{/each}}
     </div>
   </div>
 </div>
