@@ -20,3 +20,7 @@
 .timestamp {
   color: --comment-thread-item-muted-text-color;
 }
+
+.delete {
+   color: red;
+}

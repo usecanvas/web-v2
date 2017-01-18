@@ -22,4 +22,9 @@ export default Ember.Component.extend({
     }).save();
     this.get('comments').pushObject(comment);
   }).drop(),
+
+  removeComment: task(function *(comment) {
+    this.get('comments').removeObject(comment);
+    yield comment.destroyRecord();
+  }).drop(),
 });

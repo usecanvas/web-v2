@@ -1,7 +1,7 @@
 <div local-class="root">
   {{#each (filter-by 'blockId' blockId comments) as |comment|}}
     <div local-class="item">
-      {{comment-thread/item comment=comment}}
+      {{comment-thread/item comment=comment removeComment=(perform removeComment comment)}}
     </div>
   {{/each}}
   {{comment-thread/create-item createComment=(perform createComment)}}
