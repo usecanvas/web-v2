@@ -8,13 +8,13 @@
       <span local-class="username">{{commment.creator.name}}</span>
       <span local-class="timestamp">{{moment-from-now comment.updatedAt}}</span>
       <span local-class="edit" {{action (toggle 'isEditing' this)}}>Edit</span>
-      <span local-class="delete" {{action removeComment}}>Delete</span>
+      <span local-class="delete" {{action (optional removeComment)}}>Delete</span>
     </div>
 
     {{#if isEditing}}
       {{comment-thread/create-item
         content=(join '' (map-by 'content' comment.blocks))
-        submitComment=(pipe-action (action editComment) (action (mut isEditing) false))}}
+        submitComment=(pipe-action (action (optional editComment)) (action (mut isEditing) false))}}
     {{else}}
     <div local-class="content">
       {{#each comment.blocks as |block|}}
