@@ -78,14 +78,6 @@ export default Ember.Component.extend({
    */
   isFiltered: computed.bool('filterTerm'),
 
-  comments: computed(_ => []),
-
-  loadComments: task(function *() {
-    const canvas = this.get('canvas');
-    yield this.get('store').query('comment', { filter: { canvas } })
-      .then(c => this.set('comments', c.toArray()));
-  }).observes('canvas.id').on('init'),
-
   /**
    * @member {boolean} Whether the canvas is in readonly mode
    */

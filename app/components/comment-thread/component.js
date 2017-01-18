@@ -9,12 +9,11 @@ export default Ember.Component.extend({
     const canvas = this.get('canvas');
     const block = yield store.findRecord('block', this.get('blockId'));
 
-    const comment = yield store.createRecord('comment', {
+    yield store.createRecord('comment', {
       blocks: [{ type: 'paragraph', content }],
       canvas,
       block
     }).save();
-    this.get('comments').pushObject(comment);
   }).drop(),
 
   editComment: task(function *(comment, content) {
@@ -23,7 +22,6 @@ export default Ember.Component.extend({
   }).drop(),
 
   removeComment: task(function *(comment) {
-    this.get('comments').removeObject(comment);
     yield comment.destroyRecord();
   }).drop(),
 });
