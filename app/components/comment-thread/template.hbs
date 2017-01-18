@@ -1,8 +1,8 @@
 <div local-class="root">
   {{#each blockComments as |comment|}}
     <div local-class="item">
-      {{comment-thread/item comment=comment removeComment=(perform removeComment comment)}}
+      {{comment-thread/item comment=comment editComment=(perform editComment comment) removeComment=(perform removeComment comment)}}
     </div>
   {{/each}}
-  {{comment-thread/create-item createComment=(perform createComment)}}
+  {{comment-thread/create-item submitComment=(perform createComment)}}
 </div>

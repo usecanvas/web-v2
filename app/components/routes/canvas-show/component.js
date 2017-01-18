@@ -1,7 +1,6 @@
 import * as OpApplication from 'canvas-web/lib/op-application';
 import DMP from 'diff-match-patch';
 import Ember from 'ember';
-import DS from 'ember-data';
 import Key from 'canvas-web/lib/key';
 import OpManager from 'canvas-web/lib/op-manager';
 import RSVP from 'rsvp';

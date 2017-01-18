@@ -4,23 +4,22 @@ import { task } from 'ember-concurrency';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
 
-  block: Ember.computed(function() {
-    const id = this.get('blockId');
-    const store = this.get('store');
-    return store.peekRecord('block', id) ||
-      store.push({ data: { id, type: 'block' } });
-  }),
-
   createComment: task(function *(content) {
+    const store = this.get('store');
     const canvas = this.get('canvas');
-    const block = this.get('block');
+    const block = yield store.findRecord('block', this.get('blockId'));
 
-    const comment = yield this.get('store').createRecord('comment', {
+    const comment = yield store.createRecord('comment', {
       blocks: [{ type: 'paragraph', content }],
       canvas,
       block
     }).save();
     this.get('comments').pushObject(comment);
+  }).drop(),
+
+  editComment: task(function *(comment, content) {
+    comment.set('blocks', [{ type: 'paragraph', content }]);
+    yield comment.save();
   }).drop(),
 
   removeComment: task(function *(comment) {

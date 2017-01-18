@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   content: '',
 
   submit: task(function *(content) {
-    yield this.get('createComment')(content);
+    yield this.get('submitComment')(content);
     this.set('content', '');
   }).drop()
 });
