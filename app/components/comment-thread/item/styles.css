@@ -1,10 +1,13 @@
 @value --comment-thread-item-muted-text-color from 'canvas-web/components/comment-thread/styles';
+@value --red from 'canvas-colors/styles/colors';
 
 .root {
   display: flex;
 }
 
 .avatar {
+  border-radius: 50%;
+  display: block;
   flex: none;
   margin-right: 0.5rem;
 }
@@ -13,14 +16,30 @@
   flex: 1;
 }
 
+.meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action {
+  margin: 0 0.25rem;
+}
+
 .username {
   font-weight: bold;
 }
 
-.timestamp {
+.timestamp,
+.edit,
+.delete {
   color: --comment-thread-item-muted-text-color;
 }
 
+.edit,
 .delete {
-   color: red;
+  cursor: pointer;
+}
+
+.delete:hover {
+   color: --red;
 }

@@ -1,14 +1,21 @@
 <div local-class="root">
-  <div local-class="avatar">
-    <img src="{{comment.creator.avatarUrl}}" height=32 width=32>
-  </div>
+  <img
+    height=32
+    local-class='avatar'
+    src="{{comment.creator.avatarUrl}}"
+    width=32>
 
   <div local-class="main">
     <div local-class="meta">
-      <span local-class="username">{{comment.creator.name}}</span>
-      <span local-class="timestamp">{{moment-from-now comment.updatedAt}}</span>
-      <span local-class="edit" {{action (toggle 'isEditing' this)}}>Edit</span>
-      <span local-class="delete" {{action (optional removeComment)}}>Delete</span>
+      <div>
+        <span local-class="action username">{{comment.creator.name}}</span>
+        <span local-class="action timestamp">{{moment-from-now comment.updatedAt}}</span>
+      </div>
+
+      <div>
+        <span local-class="action edit" {{action (toggle 'isEditing' this)}}>Edit</span>
+        <span local-class="action delete" {{action (optional removeComment)}}>Delete</span>
+      </div>
     </div>
 
     {{#if isEditing}}
