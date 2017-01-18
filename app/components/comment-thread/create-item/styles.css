@@ -1,9 +1,0 @@
-@value --comment-thread-item-muted-text-color from 'canvas-web/components/comment-thread/styles';
-
-.root {
-  display: flex;
-}
-
-.main {
-  flex: 1;
-}

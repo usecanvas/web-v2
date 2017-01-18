@@ -12,7 +12,7 @@
     </div>
 
     {{#if isEditing}}
-      {{comment-thread/create-item
+      {{comment-thread/form
         content=(join '' (map-by 'content' comment.blocks))
         submitComment=(pipe-action (action (optional editComment)) (action (mut isEditing) false))}}
     {{else}}
