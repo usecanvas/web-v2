@@ -1,5 +1,5 @@
 <div local-class="root">
-  {{#each comments as |comment|}}
+  {{#each (filter-by 'blockId' blockId comments) as |comment|}}
     <div local-class="item">
       {{comment-thread/item comment=comment}}
     </div>

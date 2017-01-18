@@ -1,6 +1,7 @@
 import * as OpApplication from 'canvas-web/lib/op-application';
 import DMP from 'diff-match-patch';
 import Ember from 'ember';
+import DS from 'ember-data';
 import Key from 'canvas-web/lib/key';
 import OpManager from 'canvas-web/lib/op-manager';
 import RSVP from 'rsvp';
@@ -77,6 +78,14 @@ export default Ember.Component.extend({
    * @member {boolean} Whether there is a filter term present (blank === false)
    */
   isFiltered: computed.bool('filterTerm'),
+
+  comments: computed('canvas.id', function() {
+    const canvas = this.get('canvas');
+    return DS.PromiseArray.create({
+      promise: this.get('store').query('comment', { filter: { canvas } })
+        .then(c => c.toArray())
+    });
+  }),
 
   /**
    * @member {boolean} Whether the canvas is in readonly mode
