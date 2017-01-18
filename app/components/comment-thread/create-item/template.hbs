@@ -1,7 +1,7 @@
 <div local-class="root">
   <div local-class="main">
     <div local-class="content">
-    {{textarea value=content}}
+    {{textarea value=content key-down=(action 'commentKeyDown')}}
     <input type='button' disabled={{eq content ''}} value='submit' onclick={{perform submit content}}>
     </div>
   </div>
