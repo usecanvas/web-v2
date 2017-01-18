@@ -23,13 +23,13 @@
         content=(join '' (map-by 'content' comment.blocks))
         submitComment=(pipe-action (action (optional editComment)) (action (mut isEditing) false))}}
     {{else}}
-    <div local-class="content">
-      {{#each comment.blocks as |block|}}
-        <div local-class="block">
-          {{block.content}}
-        </div>
-      {{/each}}
-    </div>
+      <div local-class="content">
+        {{#each comment.blocks as |block|}}
+          <div local-class="block">
+            {{block.content}}
+          </div>
+        {{/each}}
+      </div>
     {{/if}}
   </div>
 </div>
