@@ -1,0 +1,20 @@
+@value --light-blue from 'canvas-colors/styles/colors';
+
+.comment-field {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  display: block;
+  padding: 0;
+  outline: none;
+  resize: none;
+  width: 100%;
+}
+
+.submit-button {
+  background: none;
+  border: none;
+  color: --light-blue;
+  padding: 0;
+}
