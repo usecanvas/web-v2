@@ -5,7 +5,7 @@
 
   <div local-class="main">
     <div local-class="meta">
-      <span local-class="username">{{commment.creator.name}}</span>
+      <span local-class="username">{{comment.creator.name}}</span>
       <span local-class="timestamp">{{moment-from-now comment.updatedAt}}</span>
       <span local-class="edit" {{action (toggle 'isEditing' this)}}>Edit</span>
       <span local-class="delete" {{action (optional removeComment)}}>Delete</span>
