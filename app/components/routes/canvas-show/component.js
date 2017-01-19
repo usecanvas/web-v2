@@ -109,6 +109,7 @@ export default Ember.Component.extend({
   }),
 
   setupLiveComments: task(function *() {
+    if (Ember.testing) return;
     const store = this.get('store');
     const token = yield store.createRecord('token', {}).save();
     const socket = new Phoenix.Socket(this.get('liveURL'), {
