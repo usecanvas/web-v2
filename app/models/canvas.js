@@ -17,6 +17,7 @@ export default DS.Model.extend({
   markdown: attr(),
 
   team: belongsTo('team', { async: true }),
+  comments: hasMany('comment', { async: true }),
   template: belongsTo('canvas', { async: true }),
   ops: hasMany('op', { async: true }),
   pulseEvents: hasMany('pulseEvent', { async: true }),

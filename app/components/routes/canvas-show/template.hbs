@@ -34,7 +34,9 @@
     onUndo=(action 'undo')
     unfurlBlock=(action 'unfurlBlock')
     canvas=canvas
+    comments=canvas.comments
     canvasLinkComponent=(component 'canvas-link')
+    commentThreadComponent=(component 'comment-thread' canvas=canvas)
     githubAuthComponent=(component 'github-oauth')
     slackAuthComponent=(component 'slack-oauth' currentScopes=canvas.team.slackScopes extendedScopes=(w 'channels:history'))
     titleActionsComponent=(component 'canvas-title-actions'

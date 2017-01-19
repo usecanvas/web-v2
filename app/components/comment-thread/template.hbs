@@ -1,0 +1,16 @@
+<div local-class="root">
+  {{#each blockComments as |comment|}}
+    <div local-class="item">
+      {{comment-thread/item
+        comment=comment
+        editComment=(perform editComment comment)
+        removeComment=(perform removeComment comment)}}
+    </div>
+  {{/each}}
+
+  <div local-class="item">
+    {{comment-thread/form
+      placeholder='Leave a reply...'
+      submitComment=(perform createComment)}}
+  </div>
+</div>

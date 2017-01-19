@@ -12,6 +12,10 @@ export function testConfig() {
     return schema.teams.all();
   });
 
+  this.get('/comments', schema => {
+    return schema.comments.all();
+  });
+
   this.get('/ui-dismissals', schema => {
     return schema.uiDismissals.all();
   });

@@ -1,0 +1,35 @@
+<div local-class="root">
+  <img
+    height=32
+    local-class='avatar'
+    src="{{comment.creator.avatarUrl}}"
+    width=32>
+
+  <div local-class="main">
+    <div local-class="meta">
+      <div>
+        <span local-class="action username">{{comment.creator.name}}</span>
+        <span local-class="action timestamp">{{moment-from-now comment.updatedAt}}</span>
+      </div>
+
+      <div>
+        <span local-class="action edit" {{action (toggle 'isEditing' this)}}>Edit</span>
+        <span local-class="action delete" {{action (optional removeComment)}}>Delete</span>
+      </div>
+    </div>
+
+    {{#if isEditing}}
+      {{comment-thread/form
+        content=(join '' (map-by 'content' comment.blocks))
+        submitComment=(pipe-action (action (optional editComment)) (action (mut isEditing) false))}}
+    {{else}}
+      <div local-class="content">
+        {{#each comment.blocks as |block|}}
+          <div local-class="block">
+            {{block.content}}
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+</div>

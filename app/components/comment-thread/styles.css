@@ -1,0 +1,24 @@
+@value --comment-thread-background-color: #1C202C;
+@value --comment-thread-border-color: #383A43;
+@value --comment-thread-text-color: #D7DAED;
+@value --comment-thread-item-muted-text-color: #5B5E6C;
+
+.root {
+  background: --comment-thread-background-color;
+  border-radius: 5px;
+  color: --comment-thread-text-color;
+  font-size: 0.75rem;
+  padding: 1rem;
+}
+
+.item {
+  border-bottom: 1px solid --comment-thread-border-color;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+
+  &:last-child {
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}

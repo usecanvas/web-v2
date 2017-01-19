@@ -1,0 +1,13 @@
+{{textarea
+  autofocus=true
+  key-down=(action 'commentKeyDown')
+  local-class='comment-field'
+  placeholder=placeholder
+  value=content}}
+
+<input
+  disabled={{eq content ''}}
+  local-class='submit-button'
+  onclick={{perform submit content}}
+  type="button"
+  value="Post">
