@@ -1,10 +1,8 @@
 import * as OpApplication from 'canvas-web/lib/op-application';
 import DMP from 'diff-match-patch';
 import Ember from 'ember';
-import ENV from 'canvas-web/config/environment';
 import Key from 'canvas-web/lib/key';
 import OpManager from 'canvas-web/lib/op-manager';
-import Phoenix from 'canvas-web/lib/phoenix';
 import RSVP from 'rsvp';
 import Rangy from 'rangy';
 import SelectionState from 'canvas-editor/lib/selection-state';
@@ -71,6 +69,12 @@ export default Ember.Component.extend({
   store: inject.service(),
 
   /**
+   * @member {CanvasWeb.PhoenixSocketService} The service that contains
+   * the socket that communicated with the phoenix api
+   */
+  phoenixSocket: inject.service(),
+
+  /**
    * @member {CanvasWeb.UnfurlerService} The card-unfurling service
    */
   unfurler: inject.service(),
@@ -107,22 +111,10 @@ export default Ember.Component.extend({
     return new UndoManager();
   }),
 
-  liveURL: computed(_ => {
-    const host = ENV.apiURL.replace(/^.+?\/\//, '').replace(/\/v1\/$/, '');
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    return `${protocol}//${host}/socket`;
-  }),
-
   setupLiveComments: task(function *() {
     if (Ember.testing) return;
-    const store = this.get('store');
-    const token = yield store.createRecord('token', {}).save();
-    const socket = new Phoenix.Socket(this.get('liveURL'), {
-      heartbeatIntervalMs: 15000,
-      params: { token: token.get('token') }
-    });
-    socket.connect();
-    const channel = socket.channel(`team:${this.get('canvas.team.id')}`);
+    const socket = yield this.get('phoenixSocket.socket');
+    const channel = socket.channel(`canvas:${this.get('canvas.id')}`);
     channel.join();
 
     // Listen for events
