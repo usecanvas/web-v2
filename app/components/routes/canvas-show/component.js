@@ -35,6 +35,11 @@ export default Ember.Component.extend({
   currentAccount: inject.service(),
 
   /**
+   * @member {Phoenix.Channel} The channel that sends comment notifications
+   */
+  commentChannel: null,
+
+  /**
    * @member {Ember.Service} A service for displaying flash messages
    */
   flashMessage: inject.service(),
@@ -124,6 +129,7 @@ export default Ember.Component.extend({
     channel.on('new_comment', run.bind(this, 'liveCreateComment'));
     channel.on('updated_comment', run.bind(this, 'livePushComment'));
     channel.on('deleted_comment', run.bind(this, 'liveUnloadComment'));
+    this.set('commentChannel', channel);
   }).on('init'),
 
   /**
@@ -385,6 +391,13 @@ export default Ember.Component.extend({
    */
   unbindWindowOnerror: on('willDestroyElement', function() {
     window.onerror = this._oldWindowOnerror;
+  }),
+
+  leaveChannel: on('willDestroyElement', function() {
+    const channel = this.get('commentChannel');
+    if (channel) {
+      channel.leave();
+    }
   }),
 
   /*
