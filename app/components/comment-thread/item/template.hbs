@@ -13,7 +13,7 @@
       </div>
 
       <div>
-        <span local-class="action edit" {{action (toggle 'isEditing' this)}}>Edit</span>
+        {{#if (eq currentUser.id comment.creator.id)}}<span local-class="action edit" {{action (toggle 'isEditing' this)}}>Edit</span>{{/if}}
         <span local-class="action delete" {{action (optional removeComment)}}>Delete</span>
       </div>
     </div>

@@ -3,6 +3,7 @@
     <div local-class="item">
       {{comment-thread/item
         comment=comment
+        currentUser=currentUser
         editComment=(perform editComment comment)
         removeComment=(perform removeComment comment)}}
     </div>
