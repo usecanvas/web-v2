@@ -33,6 +33,11 @@ export default Ember.Component.extend({
   currentAccount: inject.service(),
 
   /**
+   * @member {Phoenix.Channel} The channel that sends comment notifications
+   */
+  commentChannel: null,
+
+  /**
    * @member {Ember.Service} A service for displaying flash messages
    */
   flashMessage: inject.service(),
@@ -62,6 +67,12 @@ export default Ember.Component.extend({
    * @member {DS.Store} The Ember Data store
    */
   store: inject.service(),
+
+  /**
+   * @member {CanvasWeb.PhoenixSocketService} The service that contains
+   * the socket that communicated with the phoenix api
+   */
+  phoenixSocket: inject.service(),
 
   /**
    * @member {CanvasWeb.UnfurlerService} The card-unfurling service
@@ -99,6 +110,51 @@ export default Ember.Component.extend({
   undoManager: computed(function() {
     return new UndoManager();
   }),
+
+  setupLiveComments: task(function *() {
+    if (Ember.testing) return;
+    const socket = yield this.get('phoenixSocket.socket');
+    if (!socket) return;
+    const channel = socket.channel(`canvas:${this.get('canvas.id')}`);
+    channel.join();
+
+    // Listen for events
+    channel.on('new_comment', run.bind(this, 'liveCreateComment'));
+    channel.on('updated_comment', run.bind(this, 'livePushComment'));
+    channel.on('deleted_comment', run.bind(this, 'liveUnloadComment'));
+    this.set('commentChannel', channel);
+  }).on('init'),
+
+  /**
+  * Because of issue described here: https://github.com/emberjs/data/issues/4262
+  * we need to check to see if the incoming comment already exists in the store
+  * but hasn't finished saving yet.
+  */
+  liveCreateComment(payload) {
+    const { data: { attributes: { blocks }, relationships } } = payload;
+    const { block: { data: { id: blockId } },
+      canvas: { data: { id: canvasId } } } = relationships;
+    const savingModels = this.get('canvas.comments').filterBy('isSaving', true);
+    const modelInStore = savingModels.any(model =>
+      model.get('block.id') === blockId &&
+      model.get('canvas.id') === canvasId &&
+      model.get('blocks').mapBy('id').join(',') === blocks.mapBy('id').join(',')
+    );
+    if (!modelInStore) this.livePushComment(payload);
+  },
+
+  livePushComment(payload) {
+    const store = this.get('store');
+    store.pushPayload(payload);
+  },
+
+  liveUnloadComment({ data: { id } }) {
+    const store = this.get('store');
+    const record = store.peekRecord('comment', id);
+    if (record && !record.get('isDeleted')) {
+       store.unloadRecord(record);
+    }
+  },
 
   /*
    * METHODS
@@ -319,6 +375,13 @@ export default Ember.Component.extend({
    */
   unbindWindowOnerror: on('willDestroyElement', function() {
     window.onerror = this._oldWindowOnerror;
+  }),
+
+  leaveChannel: on('willDestroyElement', function() {
+    const channel = this.get('commentChannel');
+    if (channel) {
+      channel.leave();
+    }
   }),
 
   /*
