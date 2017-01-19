@@ -55,6 +55,7 @@ export default Ember.Service.extend({
    */
   logout() {
     return this.get('store').adapterFor('session').logout().then(_ => {
+        this.set('loggedIn', false);
         this.set('currentAccount', null);
         return null;
     });

@@ -114,6 +114,7 @@ export default Ember.Component.extend({
   setupLiveComments: task(function *() {
     if (Ember.testing) return;
     const socket = yield this.get('phoenixSocket.socket');
+    if (!socket) return;
     const channel = socket.channel(`canvas:${this.get('canvas.id')}`);
     channel.join();
 
@@ -123,15 +124,6 @@ export default Ember.Component.extend({
     channel.on('deleted_comment', run.bind(this, 'liveUnloadComment'));
     this.set('commentChannel', channel);
   }).on('init'),
-
-  /**
-  * Function to check if the two comment block arrays passed in are "equivalent"
-  */
-  eqBlocks(blocks1, blocks2) {
-    if (blocks1.length !== blocks2.length) return false;
-    return blocks1.every((b, idx) => b.type === blocks2[idx].type &&
-                         b.content === blocks2[idx].content);
-  },
 
   /**
   * Because of issue described here: https://github.com/emberjs/data/issues/4262
@@ -146,7 +138,7 @@ export default Ember.Component.extend({
     const modelInStore = savingModels.any(model =>
       model.get('block.id') === blockId &&
       model.get('canvas.id') === canvasId &&
-      this.eqBlocks(model.get('blocks'), blocks)
+      model.get('blocks').mapBy('id').join(',') === blocks.mapBy('id').join(',')
     );
     if (!modelInStore) this.livePushComment(payload);
   },

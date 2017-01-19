@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Paragraph from 'canvas-editor/lib/realtime-canvas/paragraph';
 import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
@@ -8,12 +9,10 @@ export default Ember.Component.extend({
     const store = this.get('store');
     const canvas = this.get('canvas');
     const block = yield store.findRecord('block', this.get('blockId'));
+    const contentBlock = Paragraph.create({ content });
+    const blocks = [contentBlock.toJSON({ serializeId: true })];
 
-    yield store.createRecord('comment', {
-      blocks: [{ type: 'paragraph', content }],
-      canvas,
-      block
-    }).save();
+    yield store.createRecord('comment', { blocks, canvas, block }).save();
   }).drop(),
 
   editComment: task(function *(comment, content) {
