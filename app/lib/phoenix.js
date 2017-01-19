@@ -1,3 +1,4 @@
+/* eslint-disable */
 // v1.2.1
 // https://raw.githubusercontent.com/phoenixframework/phoenix/v1.2.1/web/static/js/phoenix.js
 //

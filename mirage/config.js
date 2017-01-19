@@ -16,6 +16,10 @@ export function testConfig() {
     return schema.comments.all();
   });
 
+  this.post('/tokens', schema => {
+    return schema.create('token');
+  });
+
   this.get('/ui-dismissals', schema => {
     return schema.uiDismissals.all();
   });

@@ -120,20 +120,47 @@ export default Ember.Component.extend({
     channel.join();
 
     // Listen for events
-    channel.on('new_comment', run.bind(this, 'livePushComment'));
+    channel.on('new_comment', run.bind(this, 'liveCreateComment'));
     channel.on('updated_comment', run.bind(this, 'livePushComment'));
     channel.on('deleted_comment', run.bind(this, 'liveUnloadComment'));
   }).on('init'),
+
+  /**
+  * Function to check if the two comment block arrays passed in are "equivalent"
+  */
+  eqBlocks(blocks1, blocks2) {
+    if (blocks1.length !== blocks2.length) return false;
+    return blocks1.every((b, idx) => b.type === blocks2[idx].type &&
+                         b.content === blocks2[idx].content);
+  },
+
+  /**
+  * Because of issue described here: https://github.com/emberjs/data/issues/4262
+  * we need to check to see if the incoming comment already exists in the store
+  * but hasn't finished saving yet.
+  */
+  liveCreateComment(payload) {
+    const { data: { attributes: { blocks }, relationships } } = payload;
+    const { block: { data: { id: blockId } },
+      canvas: { data: { id: canvasId } } } = relationships;
+    const savingModels = this.get('canvas.comments').filterBy('isSaving', true);
+    const modelInStore = savingModels.any(model =>
+      model.get('block.id') === blockId &&
+      model.get('canvas.id') === canvasId &&
+      this.eqBlocks(model.get('blocks'), blocks)
+    );
+    if (!modelInStore) this.livePushComment(payload);
+  },
 
   livePushComment(payload) {
     const store = this.get('store');
     store.pushPayload(payload);
   },
 
-  liveUnloadComment({data: { id } }) {
+  liveUnloadComment({ data: { id } }) {
     const store = this.get('store');
     const record = store.peekRecord('comment', id);
-    if (record) {
+    if (record && !record.get('isDeleted')) {
        store.unloadRecord(record);
     }
   },
