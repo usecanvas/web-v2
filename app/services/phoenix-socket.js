@@ -55,7 +55,7 @@ export default Ember.Service.extend({
    *
    * @method
    */
-  setSocketToken: task(function* () {
+  setSocketToken: task(function *() {
     const token = yield this.get('store').createRecord('token', {}).save();
     this.set('socketParams.token', token.get('token'));
   })
