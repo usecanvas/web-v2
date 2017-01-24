@@ -4,7 +4,7 @@ import ENV from 'canvas-web/config/environment';
 import Phoenix from 'canvas-web/lib/phoenix';
 import { task } from 'ember-concurrency';
 
-const { computed, inject, observer, run } = Ember;
+const { computed, inject, run } = Ember;
 
 export default Ember.Service.extend({
   currentAccount: inject.service(),
