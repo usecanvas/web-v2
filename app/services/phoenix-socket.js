@@ -16,14 +16,6 @@ export default Ember.Service.extend({
     return `${protocol}//${host}/socket`;
   }),
 
-  loggedOut: observer('currentAccount.loggedIn', function() {
-    if (!this.get('currentAccount.loggedIn') || this._socket) {
-      this.get('setSocketToken').cancelAll();
-      this.get('store').unloadAll('token');
-      this._socket.disconnect();
-    }
-  }),
-
   /**
    * @member {Ember.Object} An object containing socket params that will be
    *   read anew each time the socket attempts to connect or reconnect
