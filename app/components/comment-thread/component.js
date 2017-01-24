@@ -12,7 +12,8 @@ export default Ember.Component.extend({
     const contentBlock = Paragraph.create({ content });
     const blocks = [contentBlock.toJSON({ serializeId: true })];
 
-    yield store.createRecord('comment', { blocks, canvas, block }).save();
+    yield store.createRecord('comment',
+                             { blocks, canvas, block }).save();
   }).drop(),
 
   editComment: task(function *(comment, content) {
