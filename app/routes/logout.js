@@ -21,6 +21,7 @@ export default Ember.Route.extend({
     return this.get('currentAccount')
                .logout()
                .then(_ => this.transitionTo('login'))
+               .then(_ => window.location.reload())
                .catch(err => {
                  throw err;
                });

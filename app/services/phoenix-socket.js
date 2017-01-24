@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 import ENV from 'canvas-web/config/environment';
 import Phoenix from 'canvas-web/lib/phoenix';
+import { task } from 'ember-concurrency';
 
-const { computed, inject, observer, RSVP } = Ember;
+const { computed, inject, run } = Ember;
 
 export default Ember.Service.extend({
   currentAccount: inject.service(),
@@ -14,24 +16,39 @@ export default Ember.Service.extend({
     return `${protocol}//${host}/socket`;
   }),
 
-  loggedOut: observer('currentAccount.loggedIn', function() {
-    if (!this.get('currentAccount.loggedIn') || this._socket) {
-      this.get('store').unloadAll('token');
-      this._socket.disconnect();
-    }
-  }),
+  /**
+   * @member {Ember.Object} An object containing socket params that will be
+   *   read anew each time the socket attempts to connect or reconnect
+   */
+  socketParams: Ember.computed(_ => Ember.Object.create()),
 
   socket: computed('currentAccount.loggedIn', function() {
     if (!this.get('currentAccount.loggedIn')) return RSVP.Promise.resolve(null);
 
-    return this.get('store').createRecord('token', {}).save().then(token => {
+    return this.get('setSocketToken').perform().then(_ => {
       const socket = new Phoenix.Socket(this.get('liveURL'), {
         heartbeatIntervalMs: 15000,
-        params: { token: token.get('token') }
+        params: this.get('socketParams')
       });
+
       socket.connect();
+
+      socket.onClose(run.bind(this, function() {
+        this.get('setSocketToken').perform();
+      }));
+
       this._socket = socket;
       return socket;
     });
+  }),
+
+  /**
+   * Create an access token and set it as a property on the socket params.
+   *
+   * @method
+   */
+  setSocketToken: task(function *() {
+    const token = yield this.get('store').createRecord('token', {}).save();
+    this.set('socketParams.token', token.get('token'));
   })
 });
