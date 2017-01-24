@@ -21,15 +21,29 @@ export default Ember.Service.extend({
     }
   }),
 
+  socketParams: Ember.computed(_ => Ember.Object.create()),
+
   socket: computed('currentAccount.loggedIn', function() {
     if (!this.get('currentAccount.loggedIn')) return RSVP.Promise.resolve(null);
 
     return this.get('store').createRecord('token', {}).save().then(token => {
+      this.set('socketParams.token', token.get('token'));
+
       const socket = new Phoenix.Socket(this.get('liveURL'), {
         heartbeatIntervalMs: 15000,
-        params: { token: token.get('token') }
+        params: this.get('socketParams')
       });
+
       socket.connect();
+
+      socket.onClose(_ => {
+        // The token has likely expired, so we create a new token and use that
+        // for further reconnection attempts.
+        this.get('store').createRecord('token', {}).save().then(token => {
+          this.set('socketParams.token', token.get('token'));
+        });
+      });
+
       this._socket = socket;
       return socket;
     });
