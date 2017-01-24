@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 import ENV from 'canvas-web/config/environment';
 import Phoenix from 'canvas-web/lib/phoenix';
+import { task } from 'ember-concurrency';
 
-const { computed, inject, observer, RSVP } = Ember;
+const { computed, inject, observer, run } = Ember;
 
 export default Ember.Service.extend({
   currentAccount: inject.service(),
@@ -16,6 +18,7 @@ export default Ember.Service.extend({
 
   loggedOut: observer('currentAccount.loggedIn', function() {
     if (!this.get('currentAccount.loggedIn') || this._socket) {
+      this.get('setSocketToken').cancelAll();
       this.get('store').unloadAll('token');
       this._socket.disconnect();
     }
@@ -30,14 +33,17 @@ export default Ember.Service.extend({
   socket: computed('currentAccount.loggedIn', function() {
     if (!this.get('currentAccount.loggedIn')) return RSVP.Promise.resolve(null);
 
-    return this.setSocketToken().then(_ => {
+    return this.get('setSocketToken').perform().then(_ => {
       const socket = new Phoenix.Socket(this.get('liveURL'), {
         heartbeatIntervalMs: 15000,
         params: this.get('socketParams')
       });
 
       socket.connect();
-      socket.onClose(this.setSocketToken.bind(this));
+
+      socket.onClose(run.bind(this, function() {
+        this.get('setSocketToken').perform();
+      }));
 
       this._socket = socket;
       return socket;
@@ -48,12 +54,9 @@ export default Ember.Service.extend({
    * Create an access token and set it as a property on the socket params.
    *
    * @method
-   * @return {Promise<null>}
    */
-  setSocketToken() {
-    return this.get('store').createRecord('token', {}).save().then(token => {
-      this.set('socketParams.token', token.get('token'));
-      return null;
-    });
-  }
+  setSocketToken: task(function* () {
+    const token = yield this.get('store').createRecord('token', {}).save();
+    this.set('socketParams.token', token.get('token'));
+  })
 });
