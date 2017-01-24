@@ -21,31 +21,39 @@ export default Ember.Service.extend({
     }
   }),
 
+  /**
+   * @member {Ember.Object} An object containing socket params that will be
+   *   read anew each time the socket attempts to connect or reconnect
+   */
   socketParams: Ember.computed(_ => Ember.Object.create()),
 
   socket: computed('currentAccount.loggedIn', function() {
     if (!this.get('currentAccount.loggedIn')) return RSVP.Promise.resolve(null);
 
-    return this.get('store').createRecord('token', {}).save().then(token => {
-      this.set('socketParams.token', token.get('token'));
-
+    return this.setSocketToken().then(_ => {
       const socket = new Phoenix.Socket(this.get('liveURL'), {
         heartbeatIntervalMs: 15000,
         params: this.get('socketParams')
       });
 
       socket.connect();
-
-      socket.onClose(_ => {
-        // The token has likely expired, so we create a new token and use that
-        // for further reconnection attempts.
-        this.get('store').createRecord('token', {}).save().then(token => {
-          this.set('socketParams.token', token.get('token'));
-        });
-      });
+      socket.onClose(this.setSocketToken.bind(this));
 
       this._socket = socket;
       return socket;
     });
-  })
+  }),
+
+  /**
+   * Create an access token and set it as a property on the socket params.
+   *
+   * @method
+   * @return {Promise<null>}
+   */
+  setSocketToken() {
+    return this.get('store').createRecord('token', {}).save().then(token => {
+      this.set('socketParams.token', token.get('token'));
+      return null;
+    });
+  }
 });
