@@ -19,6 +19,7 @@
 
 <div local-class="editor">
   {{canvas-editor-next
+    subscribeProps=(hash subscriptions=subscriptions defaultSubscribeState=defaultSubscribeState)
     editingEnabled=(unless (or readOnly isFiltered) connected)
     fetchTemplates=(action 'fetchTemplates')
     fetchUploadSignature=(action 'fetchUploadSignature')

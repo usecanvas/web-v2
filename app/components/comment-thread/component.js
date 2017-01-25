@@ -4,17 +4,19 @@ import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+  blockId: 0, //default block id
 
-  subscriptions: Ember.computed(_ => []),
-  subscription: Ember.computed('subscriptions.[]', function() {
-    if (this.get('subscriptions.isFulfilled')) {
+  subscribeProps: Ember.computed(_ => ({})),
+  subscription: Ember.computed('subscribeProps.subscriptions.[]', function() {
+    if (this.get('subscribeProps.subscriptions.isFulfilled')) {
       return this.findRecord('subscription', this.get('blockId'));
     }
     return this.materializeSubscription(this.get('blockId'));
   }),
 
   materializeSubscription(id) {
-    const [type, subscribed] = ['subscription', false];
+    const [type, subscribed] = ['subscription',
+      this.get('subscribeProps.defaultSubscribeState')];
     const attributes = { subscribed };
     const relationships = { canvas:
       { type: 'canvas', id: this.get('canvas.id') } };

@@ -130,6 +130,8 @@ export default Ember.Component.extend({
                                               this.get('canvas.id'));
   }),
 
+  defaultSubscribeState: computed.not('watchedCanvas'),
+
   toggleWatchCanvas: task(function *(isWatching) {
     const canvas = this.get('canvas');
     yield isWatching ? isWatching.destroyRecord()
