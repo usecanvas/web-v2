@@ -52,6 +52,7 @@ export default Ember.Service.extend({
       const token = yield this.get('store').createRecord('token', {}).save();
       this.set('socketParams.token', token.get('token'));
     } catch (_err) {
+      // Ignore failed token creation
     }
   })
 });
