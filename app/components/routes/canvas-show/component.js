@@ -112,7 +112,7 @@ export default Ember.Component.extend({
   }),
 
   watchedCanvases: computed(function() {
-    return this.get('store').findAll('watched-canvas');
+    return this.get('store').findAll('canvas-watch');
   }),
 
   watchedCanvas: computed('watchedCanvases.[]', function() {
@@ -123,7 +123,7 @@ export default Ember.Component.extend({
   toggleWatchCanvas: task(function *(isWatching) {
     const canvas = this.get('canvas');
     yield isWatching ? isWatching.destroyRecord()
-      : this.get('store').createRecord('watched-canvas', { canvas }).save();
+      : this.get('store').createRecord('canvas-watch', { canvas }).save();
   }).drop(),
 
   setupLiveComments: task(function *() {

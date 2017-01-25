@@ -20,8 +20,8 @@ export function testConfig() {
     return schema.create('token');
   });
 
-  this.get('/watched-canvases', schema => {
-    return schema.watchedCanvases.all();
+  this.get('/canvas-watches', schema => {
+    return schema.canvasWatches.all();
   });
 
   this.get('/ui-dismissals', schema => {
