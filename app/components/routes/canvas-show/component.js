@@ -121,6 +121,10 @@ export default Ember.Component.extend({
     return this.get('store').findAll('canvas-watch');
   }),
 
+  subscriptions: computed(function() {
+    return this.get('store').findAll('subscription');
+  }),
+
   watchedCanvas: computed('watchedCanvases.[]', function() {
     return this.get('watchedCanvases').findBy('canvasID',
                                               this.get('canvas.id'));

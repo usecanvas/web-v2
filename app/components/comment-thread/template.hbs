@@ -1,4 +1,7 @@
 <div local-class="root">
+  <span local-class="action delete" {{action (perform toggleSubscription subscription)}}>
+    {{if subscription.subscribed 'Unsubscribe' 'Subscribe'}}
+  </span>
   {{#each (sort-by 'insertedAt' blockComments) as |comment|}}
     <div local-class="item">
       {{comment-thread/item

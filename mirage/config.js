@@ -24,6 +24,10 @@ export function testConfig() {
     return schema.canvasWatches.all();
   });
 
+  this.get('/subscriptions', schema => {
+    return schema.subscriptions.all();
+  });
+
   this.get('/ui-dismissals', schema => {
     return schema.uiDismissals.all();
   });
