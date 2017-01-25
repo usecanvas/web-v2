@@ -116,7 +116,7 @@ export default Ember.Component.extend({
   }),
 
   watchedCanvas: computed('watchedCanvases.[]', function() {
-    return this.get('watchedCanvases').findBy('canvas.id',
+    return this.get('watchedCanvases').findBy('canvasID',
                                               this.get('canvas.id'));
   }),
 
