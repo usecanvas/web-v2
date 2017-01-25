@@ -28,13 +28,15 @@
           Download Canvas
         {{/menu.item}}
 
-        {{#menu.item action=(action toggleWatchCanvas)}}
-          {{#if watchedCanvas}}
-            Unwatch Canvas
-          {{else}}
-            Watch Canvas
-          {{/if}}
-        {{/menu.item}}
+        {{#if showWatchCanvas}}
+          {{#menu.item action=(action toggleWatchCanvas)}}
+            {{#if watchedCanvas}}
+              Unwatch Canvas
+            {{else}}
+              Watch Canvas
+            {{/if}}
+          {{/menu.item}}
+        {{/if}}
 
         {{#if showDeleteCanvas}}
           {{#menu.item action=(action 'deleteCanvas')}}

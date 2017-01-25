@@ -112,6 +112,7 @@ export default Ember.Component.extend({
   }),
 
   watchedCanvases: computed(function() {
+    if (!this.get('canvas.team.isInTeam')) return [];
     return this.get('store').findAll('canvas-watch');
   }),
 
