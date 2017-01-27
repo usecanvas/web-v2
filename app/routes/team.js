@@ -26,7 +26,7 @@ export default Ember.Route.extend({
      * and team.
      */
     return this.store
-      .findRecord('user', team.get('id'), { adapterOptions: { team } })
+      .queryRecord('user', team.get('id'))
       .then(user => {
         team.set('accountUser', user);
         this.set('currentAccount.currentUser', team.get('accountUser'));
