@@ -4,7 +4,12 @@ import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('routes/setup-x',
                    'Integration | Component | routes/setup x', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    // stub out route actions as they do not resolve in component tests
+    this.container.registry.registrations['helper:route-action'] =
+      Ember.Helper.helper(_ => Ember.RSVP.resolve({}));
+  }
 });
 
 test('it renders', function(assert) {
