@@ -24,7 +24,7 @@ Router.map(function() { // eslint-disable-line array-callback-return
   });
 
   // For rendering 500 in error handler
-  this.route('error');
+  this.route('server-error');
 
   // Catch all
   this.route('not-found', { path: '*path' });
