@@ -1,7 +1,7 @@
 import ApplicationAdapter from './application';
 
 export default ApplicationAdapter.extend({
-  urlForFindRecord() {
+  urlForQueryRecord() {
     return `${this.urlPrefix()}/account`;
   }
 });
