@@ -111,6 +111,22 @@ export default Ember.Component.extend({
     return new UndoManager();
   }),
 
+  watchedCanvases: computed(function() {
+    if (!this.get('canvas.team.isInTeam')) return [];
+    return this.get('store').findAll('canvas-watch');
+  }),
+
+  watchedCanvas: computed('watchedCanvases.[]', function() {
+    return this.get('watchedCanvases').findBy('canvasID',
+                                              this.get('canvas.id'));
+  }),
+
+  toggleWatchCanvas: task(function *(isWatching) {
+    const canvas = this.get('canvas');
+    yield isWatching ? isWatching.destroyRecord()
+      : this.get('store').createRecord('canvas-watch', { canvas }).save();
+  }).drop(),
+
   setupLiveComments: task(function *() {
     if (Ember.testing) return;
     const socket = yield this.get('phoenixSocket.socket');

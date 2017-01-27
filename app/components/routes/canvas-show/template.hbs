@@ -40,11 +40,14 @@
     slackAuthComponent=(component 'slack-oauth' currentScopes=canvas.team.slackScopes extendedScopes=(w 'channels:history'))
     titleActionsComponent=(component 'canvas-title-actions'
                            canvas=canvas
+                           showWatchCanvas=canvas.team.isInTeam
+                           watchedCanvas=watchedCanvas
                            showDeleteCanvas=canvas.team.isInTeam
                            onUseTemplate=(route-action 'createFromTemplate')
                            onDeleteCanvas=(route-action 'onDeleteCanvas')
                            onNavigateHistory=(route-action 'navigateHistory')
                            toggleShowFilter=(toggle 'showFilter' this)
+                           toggleWatchCanvas=(perform toggleWatchCanvas watchedCanvas)
                            isTemplate=canvas.isTemplate)
     titleBylineComponent=(component 'canvas-title-byline'
                           canvas=canvas
