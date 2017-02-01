@@ -67,8 +67,7 @@
     "loader.js": "^4.0.10",
     "postcss-custom-properties": "5.0.1",
     "postcss-nested": "1.0.0",
-    "ember-welcome-page": "^2.0.2",
-    "loader.js": "^4.0.10"
+    "ember-welcome-page": "^2.0.2"
   },
   "dependencies": {
     "electron-context-menu": "0.7.0",
