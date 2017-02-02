@@ -1833,6 +1833,7 @@ Connection.prototype.handleMessage = function(message) {
       return;
 
     default:
+      if (message && message.pong === true) return;
       console.warn('Ignorning unrecognized message', message);
   }
 };
