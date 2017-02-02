@@ -12,7 +12,7 @@ export default Ember.Service.extend({
 
   persist(id, blocks) {
     const db = this.get('db');
-    const maxSize = 100;
+    const maxSize = 50;
     return db.get(id).then(item => {
       const hist = item ? item.hist.slice(-maxSize) : [];
       hist.push(blocks);

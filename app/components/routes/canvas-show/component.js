@@ -480,15 +480,8 @@ export default Ember.Component.extend({
   },
 
   idbPersist: task(function *(canvas) {
-    const serializedBlocks = canvas.get('blocks').map(block => {
-      const serializedBlock = block.toJSON({ includeId: true });
-      if (block.isGroup) {
-        serializedBlock.blocks =
-          block.blocks.map(b => b.toJSON({ includeId: true }));
-      }
-      return serializedBlock;
-    });
-    yield this.get('dexie').persist(canvas.get('id'), serializedBlocks);
+    yield this.get('dexie').persist(canvas.get('id'),
+                                    this.serializedBlocks(canvas));
     yield timeout(1000);
   }).keepLatest(),
 
@@ -502,6 +495,17 @@ export default Ember.Component.extend({
   isEventInEditor(evt) {
     return this.$('.canvas-editor')[0].contains(evt.target) ||
       this.$('[data-card-block-selected=true]').length;
+  },
+
+  serializedBlocks(canvas) {
+    return canvas.get('blocks').map(block => {
+      const serializedBlock = block.toJSON({ includeId: true });
+      if (block.isGroup) {
+        serializedBlock.blocks =
+          block.blocks.map(b => b.toJSON({ includeId: true }));
+      }
+      return serializedBlock;
+    });
   },
 
   /**
