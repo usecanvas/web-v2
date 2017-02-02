@@ -22,6 +22,8 @@ export default Ember.Service.extend({
    */
   csrfToken: inject.service(),
 
+  dexie: inject.service(),
+
   loggedIn: false,
 
   /**
@@ -57,7 +59,7 @@ export default Ember.Service.extend({
     return this.get('store').adapterFor('session').logout().then(_ => {
         this.set('loggedIn', false);
         this.set('currentAccount', null);
-        return null;
+        return this.get('dexie.db').clear();
     });
   }
 });

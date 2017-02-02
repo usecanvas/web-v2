@@ -46,6 +46,11 @@ module.exports = function(defaults) {
   app.import(`${app.bowerDirectory}/raven-js/dist/plugins/ember.js`);
   app.import('vendor/shims/raven.js');
   app.import(`${app.bowerDirectory}/qs/dist/qs.js`);
+  app.import({
+    development: `${app.bowerDirectory}/dexie/dist/dexie.js`,
+    production: `${app.bowerDirectory}/dexie/dist/dexie.min.js`
+  });
+  app.import('vendor/shims/dexie.js');
   app.import('vendor/shims/qs.js');
 
   return app.toTree();

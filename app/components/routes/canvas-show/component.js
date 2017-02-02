@@ -38,6 +38,11 @@ export default Ember.Component.extend({
   commentChannel: null,
 
   /**
+   * @member {Ember.Service} A service for the dexie wrapper
+   */
+  dexie: inject.service(),
+
+  /**
    * @member {Ember.Service} A service for displaying flash messages
    */
   flashMessage: inject.service(),
@@ -474,6 +479,12 @@ export default Ember.Component.extend({
     return range;
   },
 
+  idbPersist: task(function *(canvas) {
+    yield this.get('dexie').persist(canvas.get('id'),
+                                    this.serializedBlocks(canvas));
+    yield timeout(1000);
+  }).keepLatest(),
+
   /**
    * Determine whether an event took place in the editor.
    *
@@ -486,6 +497,17 @@ export default Ember.Component.extend({
       this.$('[data-card-block-selected=true]').length;
   },
 
+  serializedBlocks(canvas) {
+    return canvas.get('blocks').map(block => {
+      const serializedBlock = block.toJSON({ includeId: true });
+      if (block.isGroup) {
+        serializedBlock.blocks =
+          block.blocks.map(b => b.toJSON({ includeId: true }));
+      }
+      return serializedBlock;
+    });
+  },
+
   /**
    * Submit the given operation and update the edited time on the canvas for
    * local display.
@@ -495,6 +517,7 @@ export default Ember.Component.extend({
    * @param {boolean} [isUndoRedo=false] Whether the operation is a undo/redo op
    */
   submitOp(op, isUndoRedo = false) {
+    this.get('idbPersist').perform(this.get('canvas'));
     this.set('canvas.editedAt', new Date());
     this.get('opManager').submitOp(op, isUndoRedo);
   },
