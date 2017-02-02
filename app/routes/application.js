@@ -113,7 +113,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    error(err) {
+    error(err = {}) {
       Ember.Logger.error(err);
 
       // Once `ds-extended-errors` is enabled, switch to using that
@@ -124,7 +124,7 @@ export default Ember.Route.extend({
       } else {
         Raven.captureException(err);
         if (Raven.isSetup()) Raven.showReportDialog();
-        this.intermediateTransitionTo('error');
+        this.intermediateTransitionTo('server-error');
       }
     }
   }

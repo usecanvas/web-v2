@@ -38,7 +38,7 @@ export default Ember.Service.extend({
    *   and set
    */
   fetch() {
-    return this.get('store').findRecord('account', 'me').then(account => {
+    return this.get('store').queryRecord('account', 'me').then(account => {
       this.set('loggedIn', true);
       this.set('currentAccount', account);
       Raven.setUserContext(account.getProperties('id'));
