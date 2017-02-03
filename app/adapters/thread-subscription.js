@@ -5,6 +5,7 @@ export default ApplicationAdapter.extend({
     return this.updateRecord(...arguments);
   },
 
+  // Use PUT, the API for thread subs is create-or-replace.
   updateRecord(store, type, snapshot) {
     const data = {};
     const serializer = store.serializerFor(type.modelName);
