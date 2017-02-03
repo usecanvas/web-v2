@@ -6,24 +6,12 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   blockId: 0, //default block id
 
-  subscribeProps: Ember.computed(_ => ({})),
+  subscribeProps: Ember.computed(_ => ({ subscriptions: [] })),
+
   subscription: Ember.computed('subscribeProps.subscriptions.[]', function() {
-    if (this.get('subscribeProps.subscriptions.isFulfilled')) {
-      return this.findRecord('subscription', this.get('blockId'));
-    }
-    return this.materializeSubscription(this.get('blockId'));
+    const subscriptions = this.get('subscribeProps.subscriptions');
+    return subscriptions.findBy('id', this.get('blockId'));
   }),
-
-  materializeSubscription(id) {
-    const [type, subscribed] = ['subscription',
-      this.get('subscribeProps.defaultSubscribeState')];
-    const attributes = { subscribed };
-    const relationships = { canvas:
-      { type: 'canvas', id: this.get('canvas.id') } };
-    const payload = { data: { id, type, attributes, relationships } };
-
-    return this.get('store').push(payload);
-  },
 
   createComment: task(function *(content) {
     const store = this.get('store');
@@ -43,6 +31,14 @@ export default Ember.Component.extend({
 
   removeComment: task(function *(comment) {
     yield comment.destroyRecord();
+  }).drop(),
+
+  setSubscription: task(function *(subscribed) {
+    const canvas = this.get('canvas');
+    const subscription = this.get('store').createRecord('thread-subscription', {
+      id: this.get('blockId'), canvas, subscribed
+    });
+    yield subscription.save();
   }).drop(),
 
   toggleSubscription: task(function *(subscription) {
