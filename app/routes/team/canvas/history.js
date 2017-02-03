@@ -7,7 +7,10 @@ import Ember from 'ember';
  * @extends Ember.Route
  */
 export default Ember.Route.extend({
+  segment: Ember.inject.service(),
+
   model() {
+    this.get('segment').trackEvent('Entered Time Machine');
     return this.modelFor('team.canvas')
                .reload()
                .then(canvas => {

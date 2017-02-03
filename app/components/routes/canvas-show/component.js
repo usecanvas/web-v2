@@ -282,6 +282,7 @@ export default Ember.Component.extend({
     if (evt.target.nodeName === 'INPUT' || this.isEventInEditor(evt)) return;
 
     if (key.is('slash')) {
+      this.trackFilterEvent('keyboard');
       this.set('showFilter', true);
       evt.preventDefault();
     } else if (key.is('esc')) {
@@ -587,6 +588,10 @@ export default Ember.Component.extend({
   },
   /* eslint-enable max-statements */
 
+  trackFilterEvent(source) {
+    this.get('segment').trackEvent('Entered Filter View', { source });
+  },
+
   /*
    * ACTIONS
    * =======
@@ -687,7 +692,10 @@ export default Ember.Component.extend({
 
       return team.fetchTemplates().then(res => {
         this.set('templates', res.data.map(template => {
-          return Object.assign({ id: template.id }, template.attributes);
+          const { id, attributes } = template;
+          const isGlobal = team.get('id') !==
+            Ember.get(template, 'relationships.team.data.id');
+          return Object.assign({ id, isGlobal }, attributes);
         }));
 
         return this.get('templates');
@@ -725,7 +733,9 @@ export default Ember.Component.extend({
       const selectedWord = endIndex === -1 ? wholeText.slice(startIndex)
         : wholeText.slice(startIndex, endIndex);
       if (selectedWord.trim() !== '') {
+      this.trackFilterEvent('keyboard');
         this.set('filterTerm', selectedWord);
+        this.trackFilterEvent('mouse');
         this.set('showFilter', true);
       }
     },
@@ -771,8 +781,11 @@ export default Ember.Component.extend({
      * @param {string} templateID The ID of the applied template
      */
     templateApplied(templateID) {
+      /* eslint-disable camelcase */
+      const { isGlobal: is_global } =
+        this.get('templates').findBy('id', templateID);
       this.get('segment').trackEvent('Instantiated Template',
-                                     { source: 'autocomplete' });
+        { is_global, source: 'autocomplete' });
       this.get('canvas').updateTemplate(templateID);
     },
 
