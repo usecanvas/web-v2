@@ -46,11 +46,11 @@
                            onUseTemplate=(route-action 'createFromTemplate')
                            onDeleteCanvas=(route-action 'onDeleteCanvas')
                            onNavigateHistory=(route-action 'navigateHistory')
-                           toggleShowFilter=(toggle 'showFilter' this)
+                           toggleShowFilter=(pipe-action (action trackFilterEvent 'menu') (toggle 'showFilter' this))
                            toggleWatchCanvas=(perform toggleWatchCanvas watchedCanvas)
                            isTemplate=canvas.isTemplate)
     titleBylineComponent=(component 'canvas-title-byline'
                           canvas=canvas
                           showChannelSelector=showChannelSelector
-                          updateCanvasChannels=(route-action 'updateCanvasChannels'))}}
+                          updateCanvasChannels=(queue (action trackUpdateChannels) (route-action 'updateCanvasChannels')))}}
 </div>

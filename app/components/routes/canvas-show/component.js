@@ -137,6 +137,7 @@ export default Ember.Component.extend({
     const canvas = this.get('canvas');
     yield isWatching ? isWatching.destroyRecord()
       : this.get('store').createRecord('canvas-watch', { canvas }).save();
+    if (!isWatching) this.get('segment').trackEvent('Watched Canvas');
   }).drop(),
 
   setupLiveComments: task(function *() {
@@ -282,6 +283,7 @@ export default Ember.Component.extend({
     if (evt.target.nodeName === 'INPUT' || this.isEventInEditor(evt)) return;
 
     if (key.is('slash')) {
+      this.trackFilterEvent('keyboard');
       this.set('showFilter', true);
       evt.preventDefault();
     } else if (key.is('esc')) {
@@ -587,6 +589,34 @@ export default Ember.Component.extend({
   },
   /* eslint-enable max-statements */
 
+  trackBlockInsertion(block) {
+    if (block.get('isCard')) {
+      const source = block.get('meta.url');
+      this.get('segment').trackEvent('Created Card', { source });
+    }
+  },
+
+  trackBlockReplace(block) {
+    if (block.get('isCard')) {
+      const source = block.get('meta.url');
+      this.get('segment').trackEvent('Created Card', { source });
+    }
+  },
+
+  trackFilterEvent(source) {
+    this.get('segment').trackEvent('Entered Filter View', { source });
+  },
+
+  trackUpdateChannels(newChannels) {
+    const ids = newChannels.mapBy('id');
+    const slackChannelIds = this.get('canvas.slackChannelIds');
+    const channels = this.get('canvas.team.channels');
+    const diff = ids.filter(id => !slackChannelIds.includes(id));
+    diff.map(id => channels.findBy('id', id).get('name'))
+      .forEach(channel => this.get('segment')
+      .trackEvent('Added Slack Channel', { channel }));
+  },
+
   /*
    * ACTIONS
    * =======
@@ -670,6 +700,7 @@ export default Ember.Component.extend({
         li: toShareDBBlock(newBlock)
       }];
 
+      this.trackBlockReplace(newBlock);
       this.submitOp(op);
     },
 
@@ -687,7 +718,10 @@ export default Ember.Component.extend({
 
       return team.fetchTemplates().then(res => {
         this.set('templates', res.data.map(template => {
-          return Object.assign({ id: template.id }, template.attributes);
+          const { id, attributes } = template;
+          const isGlobal = team.get('id') !==
+            Ember.get(template, 'relationships.team.data.id');
+          return Object.assign({ id, isGlobal }, attributes);
         }));
 
         return this.get('templates');
@@ -725,7 +759,9 @@ export default Ember.Component.extend({
       const selectedWord = endIndex === -1 ? wholeText.slice(startIndex)
         : wholeText.slice(startIndex, endIndex);
       if (selectedWord.trim() !== '') {
+      this.trackFilterEvent('keyboard');
         this.set('filterTerm', selectedWord);
+        this.trackFilterEvent('mouse');
         this.set('showFilter', true);
       }
     },
@@ -740,6 +776,7 @@ export default Ember.Component.extend({
     newBlockInsertedLocally(index, block) {
       const path = this.getPathToBlock(block, index);
       const op = [{ p: path, li: toShareDBBlock(block) }];
+      this.trackBlockInsertion(block);
       this.submitOp(op);
     },
 
@@ -771,8 +808,11 @@ export default Ember.Component.extend({
      * @param {string} templateID The ID of the applied template
      */
     templateApplied(templateID) {
+      /* eslint-disable camelcase */
+      const { isGlobal: is_global } =
+        this.get('templates').findBy('id', templateID);
       this.get('segment').trackEvent('Instantiated Template',
-                                     { source: 'autocomplete' });
+        { is_global, source: 'autocomplete' });
       this.get('canvas').updateTemplate(templateID);
     },
 
