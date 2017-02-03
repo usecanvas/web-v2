@@ -52,5 +52,5 @@
     titleBylineComponent=(component 'canvas-title-byline'
                           canvas=canvas
                           showChannelSelector=showChannelSelector
-                          updateCanvasChannels=(route-action 'updateCanvasChannels'))}}
+                          updateCanvasChannels=(queue (action trackUpdateChannels) (route-action 'updateCanvasChannels')))}}
 </div>

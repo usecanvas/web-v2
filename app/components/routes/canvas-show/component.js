@@ -137,6 +137,7 @@ export default Ember.Component.extend({
     const canvas = this.get('canvas');
     yield isWatching ? isWatching.destroyRecord()
       : this.get('store').createRecord('canvas-watch', { canvas }).save();
+    if (!isWatching) this.get('segment').trackEvent('Watched Canvas');
   }).drop(),
 
   setupLiveComments: task(function *() {
@@ -588,8 +589,32 @@ export default Ember.Component.extend({
   },
   /* eslint-enable max-statements */
 
+  trackBlockInsertion(block) {
+    if (block.get('isCard')) {
+      const source = block.get('meta.url');
+      this.get('segment').trackEvent('Created Card', { source });
+    }
+  },
+
+  trackBlockReplace(block) {
+    if (block.get('isCard')) {
+      const source = block.get('meta.url');
+      this.get('segment').trackEvent('Created Card', { source });
+    }
+  },
+
   trackFilterEvent(source) {
     this.get('segment').trackEvent('Entered Filter View', { source });
+  },
+
+  trackUpdateChannels(newChannels) {
+    const ids = newChannels.mapBy('id');
+    const slackChannelIds = this.get('canvas.slackChannelIds');
+    const channels = this.get('canvas.team.channels');
+    const diff = ids.filter(id => !slackChannelIds.includes(id));
+    diff.map(id => channels.findBy('id', id).get('name'))
+      .forEach(channel => this.get('segment')
+      .trackEvent('Added Slack Channel', { channel }));
   },
 
   /*
@@ -675,6 +700,7 @@ export default Ember.Component.extend({
         li: toShareDBBlock(newBlock)
       }];
 
+      this.trackBlockReplace(newBlock);
       this.submitOp(op);
     },
 
@@ -750,6 +776,7 @@ export default Ember.Component.extend({
     newBlockInsertedLocally(index, block) {
       const path = this.getPathToBlock(block, index);
       const op = [{ p: path, li: toShareDBBlock(block) }];
+      this.trackBlockInsertion(block);
       this.submitOp(op);
     },
 
