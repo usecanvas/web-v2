@@ -121,10 +121,17 @@ export default Ember.Component.extend({
     return this.get('store').findAll('canvas-watch');
   }),
 
+  subscriptions: computed(function() {
+    if (!this.get('canvas.team.isInTeam')) return [];
+    return this.get('store').findAll('thread-subscription');
+  }),
+
   watchedCanvas: computed('watchedCanvases.[]', function() {
     return this.get('watchedCanvases').findBy('canvasID',
                                               this.get('canvas.id'));
   }),
+
+  defaultSubscribeState: computed.not('watchedCanvas'),
 
   toggleWatchCanvas: task(function *(isWatching) {
     const canvas = this.get('canvas');

@@ -35,7 +35,7 @@
     unfurlBlock=(action 'unfurlBlock')
     canvas=canvas
     canvasLinkComponent=(component 'canvas-link')
-    commentThreadComponent=(component 'comment-thread' canvas=canvas currentUser=currentAccount.currentUser)
+    commentThreadComponent=(component 'comment-thread' canvas=canvas currentUser=currentAccount.currentUser subscribeProps=(hash subscriptions=subscriptions defaultSubscribeState=defaultSubscribeState))
     githubAuthComponent=(component 'github-oauth')
     slackAuthComponent=(component 'slack-oauth' currentScopes=canvas.team.slackScopes extendedScopes=(w 'channels:history'))
     titleActionsComponent=(component 'canvas-title-actions'
