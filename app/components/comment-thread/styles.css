@@ -11,6 +11,10 @@
   padding: 1rem;
 }
 
+.actions {
+  text-align: right;
+}
+
 .item {
   border-bottom: 1px solid --comment-thread-border-color;
   margin-bottom: 1rem;

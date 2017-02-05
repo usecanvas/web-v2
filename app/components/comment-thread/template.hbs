@@ -1,13 +1,16 @@
 <div local-class="root">
-  {{#if subscription}}
-    <span local-class="action delete" {{action (perform toggleSubscription subscription)}}>
-      {{if subscription.subscribed 'Unsubscribe' 'Subscribe'}}
-    </span>
-  {{else}}
-    <span local-class="action delete" {{action (perform setSubscription subscribeProps.defaultSubscribeState)}}>
-      {{if subscribeProps.defaultSubscribeState 'Subscribe' 'Unsubscribe'}}
-    </span>
-  {{/if}}
+  <div local-class="actions">
+    {{#if subscription}}
+      <span local-class="action delete" {{action (perform toggleSubscription subscription)}}>
+        {{if subscription.subscribed 'Unsubscribe' 'Subscribe'}}
+      </span>
+    {{else}}
+      <span local-class="action delete" {{action (perform setSubscription subscribeProps.defaultSubscribeState)}}>
+        {{if subscribeProps.defaultSubscribeState 'Subscribe' 'Unsubscribe'}}
+      </span>
+    {{/if}}
+  </div>
+
   {{#each (sort-by 'insertedAt' blockComments) as |comment|}}
     <div local-class="item">
       {{comment-thread/item
