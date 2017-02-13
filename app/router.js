@@ -6,7 +6,8 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() { // eslint-disable-line array-callback-return
+Router.map(function() {
+  // eslint-disable-line array-callback-return
   this.route('post-auth');
   this.route('login');
   this.route('logout');
@@ -14,6 +15,7 @@ Router.map(function() { // eslint-disable-line array-callback-return
   this.route('beta', { path: '/beta' });
   this.route('team', { path: '/:domain' }, function() {
     this.route('slack', { path: '/slack' });
+    this.route('settings', { path: '/settings' });
 
     this.route('canvas', { path: '/:id' }, function() {
       this.route('show', { path: '/' });

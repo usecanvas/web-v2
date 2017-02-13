@@ -1,0 +1,19 @@
+@value --blue from 'canvas-colors/styles/colors';
+@value --green from 'canvas-colors/styles/colors';
+
+.export-button {
+  background: #E7E8FF;
+  border: none;
+  border-radius: 3px;
+  color: --blue;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-right: 1rem;
+  outline: 0;
+  padding: 0.125rem 0.5rem;
+}
+
+.confirmation-flash {
+  color: --green;
+  font-size: 0.75rem;
+}
