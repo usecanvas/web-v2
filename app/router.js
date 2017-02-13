@@ -6,8 +6,7 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() {
-  // eslint-disable-line array-callback-return
+Router.map(function() { // eslint-disable-line array-callback-return
   this.route('post-auth');
   this.route('login');
   this.route('logout');
