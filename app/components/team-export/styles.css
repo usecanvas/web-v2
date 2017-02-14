@@ -1,5 +1,7 @@
 @value --blue from 'canvas-colors/styles/colors';
-@value --green from 'canvas-colors/styles/colors';
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --gray from 'canvas-colors/styles/colors';
+@value --extra-light-gray from 'canvas-colors/styles/colors';
 
 .export-button {
   background: #E7E8FF;
@@ -8,12 +10,17 @@
   color: --blue;
   cursor: pointer;
   font-size: 0.875rem;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   outline: 0;
   padding: 0.125rem 0.5rem;
 }
 
-.confirmation-flash {
-  color: --green;
+.export-button.disabled {
+  background: --extra-light-gray;
+  color: --gray;
+}
+
+.confirmation {
+  color: --dark-gray;
   font-size: 0.75rem;
 }

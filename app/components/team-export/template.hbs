@@ -1,16 +1,23 @@
-<h3>Export</h3>
-
 <p>
   Your team's canvases are available for export in the form of a series of
-  Markdown files (one per canvas). The export can take a few minutes so we'll
-  email you when your export is ready for download.
+  <strong>Markdown files</strong> (one per canvas). The export can take a few
+  minutes so we'll email you when your export is ready for download.
 </p>
 
 <div>
-  <button local-class="export-button">Start Export</button>
+  <button local-class="export-button {{if isExporting 'disabled'}}" {{action (toggle 'isExporting' this)}}>
+    {{#if isExporting}}
+      Exporting...
+    {{else}}
+      Start Export
+    {{/if}}
+  </button>
+
+  {{#if isExporting}}
+    <span local-class="confirmation">
+      <strong>Export started!</strong> We will email you a download link as soon
+      as it is done.
+    </span>
+  {{/if}}
 </div>
 
-<span local-class="confirmation-flash">
-  Success! We have started the export process and will email you a download
-  link as soon as it is done.
-</span>

@@ -1,0 +1,17 @@
+@value --dark-gray from 'canvas-colors/styles/colors';
+@value --light-gray from 'canvas-colors/styles/colors';
+
+.root {
+  border-bottom: 1px solid --light-gray;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+
+.root:last-child {
+  border: none;
+  margin-bottom: 0;
+}
+
+.title {
+  color: --dark-gray;
+}
