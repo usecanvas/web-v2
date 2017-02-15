@@ -5,19 +5,27 @@
 </p>
 
 <div>
-  <button local-class="export-button {{if isExporting 'disabled'}}" {{action (toggle 'isExporting' this)}}>
-    {{#if isExporting}}
-      Exporting...
-    {{else}}
-      Start Export
-    {{/if}}
-  </button>
+  {{#unless exportCanvases.lastSuccessful}}
+    <button local-class="export-button {{if exportCanvases.isRunning 'disabled'}}" onclick={{perform exportCanvases}}>
+      {{#if exportCanvases.isRunning}}
+        Exporting...
+      {{else}}
+        Start Export
+      {{/if}}
+    </button>
+  {{/unless}}
 
-  {{#if isExporting}}
+  {{#if exportFailed}}
+    <span local-class="error">
+      Export failed.
+    </span>
+  {{else if exportCanvases.isRunning}}
     <span local-class="confirmation">
-      <strong>Export started!</strong> We will email you a download link as soon
-      as it is done.
+      <strong>Export started!</strong> Once finished, a download will automatically start.
+    </span>
+  {{else if exportCanvases.lastSuccessful}}
+    <span local-class="confirmation">
+      <strong>Export succeeded!</strong>
     </span>
   {{/if}}
 </div>
-

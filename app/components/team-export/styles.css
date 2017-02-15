@@ -1,4 +1,5 @@
 @value --blue from 'canvas-colors/styles/colors';
+@value --red from 'canvas-colors/styles/colors';
 @value --dark-gray from 'canvas-colors/styles/colors';
 @value --gray from 'canvas-colors/styles/colors';
 @value --extra-light-gray from 'canvas-colors/styles/colors';
@@ -22,5 +23,10 @@
 
 .confirmation {
   color: --dark-gray;
+  font-size: 0.75rem;
+}
+
+.error {
+  color: --red;
   font-size: 0.75rem;
 }
