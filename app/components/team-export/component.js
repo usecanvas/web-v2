@@ -1,47 +1,43 @@
 import Ember from 'ember';
+import ENV from 'canvas-web/config/environment';
 import { task } from 'ember-concurrency';
 
-const { Component, RSVP, computed, inject } = Ember;
-const { URL } = window;
+const { Component, RSVP, computed, inject, run, $ } = Ember;
 
 export default Component.extend({
   csrfToken: inject.service(),
-  url: computed('team.id', function() {
-    return `/v1/exports/${this.get('team.id')}`;
+  url: computed('team.domain', function() {
+    return `/v1/export-tokens/${this.get('team.domain')}`;
   }),
 
-  getFile(url) {
+  getToken(url) {
     return new RSVP.Promise((res, rej) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.responseType = 'blob';
-      xhr.setRequestHeader('x-csf-token', this.get('csrfToken.token'));
-      xhr.onload = res;
-      xhr.onerror = rej;
-      xhr.send();
+      return $.ajax({
+        headers: {
+          Accept: 'application/json',
+          'x-csrf-token': this.get('csrfToken.token')
+        },
+        type: 'GET',
+        url
+      }).then(payload => run(null, res, JSON.parse(payload)),
+        jqXHR => run(null, rej, jqXHR));
     });
   },
 
-  downloadFile(xhr) {
-    if (xhr.status !== 200) throw xhr.status;
-    const blob = xhr.response;
-    const url = URL.createObjectURL(blob);
-    const fileName = xhr.getResponseHeader('content-disposition')
-      .replace(/.+?filename\=/, '');
+  downloadFile(url) {
     const el = document.createElement('a');
     document.body.appendChild(el);
     el.setAttribute('href', url);
-    el.setAttribute('download', fileName);
     el.style.display = 'none';
     el.click();
     el.remove();
-    URL.revokeObjectURL(url);
   },
 
   exportCanvases: task(function *() {
     try {
-      const { target } = yield this.getFile(this.get('url'));
-      this.downloadFile(target);
+      const { token } = yield this.getToken(this.get('url'));
+      const url = `${ENV.apiURL}exports/${token}`;
+      this.downloadFile(url);
     } catch (_e) {
       this.set('exportFailed', true);
     }
