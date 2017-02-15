@@ -1,0 +1,17 @@
+{{#team-list-wrapper teams=teamsList.teams}}
+  <div local-class="container">
+    <h2>{{team.name}} Team Settings</h2>
+
+    {{#ui-settings-list as |settings|}}
+      {{#settings.item title="Manage your team"}}
+        Canvas teams are mapped to Slack teams. To change the <strong>team name</strong>, <strong>team
+        avatar</strong>, or <strong>manage team members</strong>
+        <a href="https://{{team.domain}}/slack.com/admin">head over to Slack</a>.
+      {{/settings.item}}
+
+      {{#settings.item title="Export"}}
+        {{team-export team=team}}
+      {{/settings.item}}
+    {{/ui-settings-list}}
+  </div>
+{{/team-list-wrapper}}
