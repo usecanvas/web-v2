@@ -10,10 +10,6 @@ export default Component.extend({
     return `/v1/exports/${this.get('team.id')}`;
   }),
 
-  fileName: computed('team.name', function() {
-    return `canvas-export-${this.get('team.name').dasherize()}.zip`;
-  }),
-
   getFile(url) {
     return new RSVP.Promise((res, rej) => {
       const xhr = new XMLHttpRequest();
@@ -30,10 +26,12 @@ export default Component.extend({
     if (xhr.status !== 200) throw xhr.status;
     const blob = xhr.response;
     const url = URL.createObjectURL(blob);
+    const fileName = xhr.getResponseHeader('content-disposition')
+      .replace(/.+?filename\=/, '');
     const el = document.createElement('a');
     document.body.appendChild(el);
     el.setAttribute('href', url);
-    el.setAttribute('download', this.get('fileName'));
+    el.setAttribute('download', fileName);
     el.style.display = 'none';
     el.click();
     el.remove();
