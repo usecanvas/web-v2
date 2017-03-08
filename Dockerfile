@@ -5,13 +5,9 @@ ENV LANG=en_US.UTF-8
 
 # Install Node.js
 WORKDIR /tmp
-RUN wget https://nodejs.org/dist/v7.3.0/node-v7.3.0.tar.gz && \
-    tar -xzvf node-v7.3.0.tar.gz && \
-    cd node-v7.3.0 && \
-    ./configure && \
-    make && \
-    make install
-RUN rm -r /tmp/node-v7.3.0*
+RUN wget https://nodejs.org/dist/v7.3.0/node-v7.3.0-linux-x64.tar.xz && \
+    tar -xJf node-v7.3.0-linux-x64.tar.xz -C /usr/local --strip-components=1
+RUN rm -r /tmp/node-v7.3.0-linux-x64.tar.xz
 
 # Install Ruby & foreman
 RUN apt-get update
