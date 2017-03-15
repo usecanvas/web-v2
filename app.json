@@ -1,36 +1,32 @@
 {
+  "name": "Canvas Web",
+  "website": "https://github.com/usecanvas/pro-web",
+  "description": "The Canvas web app",
   "env": {
     "API_URL": {
-      "description": "A URL pointing to the Canvas Pro API",
-      "development_value": "http://localhost:4000/v1/"
+      "description": "A URL pointing to the Canvas Pro API"
     },
     "CHANGELOG_URL": {
-      "description": "A URL pointing to the Canvas changelog",
-      "development_required": false
+      "description": "A URL pointing to the Canvas changelog"
     },
     "GITHUB_CLIENT_ID": {
       "description": "Client ID for a GitHub OAuth application"
     },
     "GITHUB_REDIRECT_URL": {
-      "description": "Redirect URL for a GitHub OAuth callback",
-      "development_value": "http://localhost:4000/oauth/github/callback"
+      "description": "Redirect URL for a GitHub OAuth callback"
     },
     "INTERCOM_APP_ID": {
-      "description": "The ID of our Intercom app",
-      "development_required": false
+      "description": "The ID of our Intercom app"
     },
     "NODE_ENV": {
       "description": "Environment to run Node process in",
-      "development_value": "development",
       "value": "production"
     },
     "NPM_TOKEN": {
-      "description": "An NPM token for fetching private modules",
-      "development_required": false
+      "description": "An NPM token for fetching private modules"
     },
     "PORT": {
       "description": "Port on which to run the app",
-      "development_value": "4200",
       "required": false
     },
     "PROXY_API_HOST": {
@@ -38,8 +34,7 @@
       "required": false
     },
     "REALTIME_HOST": {
-      "description": "A host pointing to the realtime service",
-      "development_value": "localhost:4001"
+      "description": "A host pointing to the realtime service"
     },
     "SEGMENT_WRITE_KEY": {
       "description": "The write key to send data to segment",
@@ -51,6 +46,18 @@
     },
     "SLACK_CLIENT_ID": {
       "description": "A client ID for a Slack application"
+    }
+  },
+  "environments": {
+    "development": {
+      "API_URL": "http://localhost:4000/v1",
+      "CHANGELOG_URL": "",
+      "GITHUB_REDIRECT_URL": "http://localhost:4000/oauth/github/callback",
+      "INTERCOM_APP_ID": "",
+      "NODE_ENV": "development",
+      "NPM_TOKEN": "",
+      "PORT": "4200",
+      "REALTIME_HOST": "localhost:4001"
     }
   }
 }
