@@ -33,6 +33,10 @@
       "development_value": "4200",
       "required": false
     },
+    "PROXY_API_HOST": {
+      "description": "Host for the proxy API, which may differ from API_URL's host under Docker",
+      "required": false
+    },
     "REALTIME_HOST": {
       "description": "A host pointing to the realtime service",
       "development_value": "localhost:4001"
