@@ -1,52 +1,16 @@
-# Canvas Web [![CircleCI](https://circleci.com/gh/usecanvas/pro-web.svg?style=svg&circle-token=1179a600a98c51819d50e3aa6c9124323da53593)](https://circleci.com/gh/usecanvas/pro-web)
+# Canvas Web [![CircleCI][circle_ci_badge]][circle_ci_url] [![Deploy][heroku_button_svg]][heroku_deploy]
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is the Canvas web app. It communicates both with the
+[Canvas API][canvas_api] and the [Canvas Realtime][canvas_realtime] apps.
 
-## Prerequisites
+## Running on Heroku
 
-You will need the following things properly installed on your computer.
+After deploying the [API][canvas_api] and [Realtime][canvas_realtime] apps,
+deploy this app to Heroku using the Heroku button in this README.
 
-* [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
-
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd canvas-web`
-* `npm install`
-* `bower install`
-
-## Running / Development
-
-* `foreman start -f Procfile.dev`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](http://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+[canvas_api]: https://github.com/usecanvas/pro-api
+[canvas_realtime]: https://github.com/usecanvas/pro-realtime
+[circle_ci_badge]: https://circleci.com/gh/usecanvas/pro-web.svg?style=svg&circle-token=1179a600a98c51819d50e3aa6c9124323da53593
+[circle_ci_url]: https://circleci.com/gh/usecanvas/pro-web
+[heroku_button_svg]: https://www.herokucdn.com/deploy/button.svg
+[heroku_deploy]: https://heroku.com/deploy?template=https://github.com/usecanvas/pro-web
