@@ -13,4 +13,4 @@ deploy this app to Heroku using the Heroku button in this README.
 [circle_ci_badge]: https://circleci.com/gh/usecanvas/pro-web.svg?style=svg&circle-token=1179a600a98c51819d50e3aa6c9124323da53593
 [circle_ci_url]: https://circleci.com/gh/usecanvas/pro-web
 [heroku_button_svg]: https://www.herokucdn.com/deploy/button.svg
-[heroku_deploy]: https://heroku.com/deploy?template=https://github.com/usecanvas/pro-web
+[heroku_deploy]: https://heroku.com/deploy?template=https://github.com/usecanvas/web-v2
